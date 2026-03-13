@@ -1,0 +1,705 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Directory Services API
+  description: >-
+    HTTP Directory Access Protocol (HDAP) REST API for ForgeRock Directory
+    Services (DS). Provides JSON-based access to directory data, translating
+    HTTP operations into LDAP operations and mapping JSON resources to LDAP
+    entries. Supports CRUD operations, search, and password management for
+    directory entries.
+  version: 7.4.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: directory-services
+
+servers:
+  - url: https://{deployment}/ds
+    description: ForgeRock Directory Services HDAP endpoint
+    variables:
+      deployment:
+        default: ds.example.com
+        description: The DS deployment hostname
+
+security:
+  - bearerAuth: []
+  - basicAuth: []
+
+tags:
+  - name: Users
+    description: Manage user entries in the directory
+  - name: Groups
+    description: Manage group entries in the directory
+  - name: Entries
+    description: Generic LDAP entry operations via HDAP
+  - name: Schema
+    description: Directory schema information
+  - name: Health
+    description: Health and status monitoring
+
+paths:
+  /api/users:
+    get:
+      operationId: listUsers
+      summary: List directory users
+      description: >-
+        Query user entries in the directory. Supports CREST query filters
+        which are translated to LDAP search operations with appropriate
+        filter expressions.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsCookie'
+        - $ref: '#/components/parameters/SortKeys'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of user entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQueryResult'
+        '400':
+          description: Invalid query filter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createUser
+      summary: Create a directory user
+      description: >-
+        Create a new user entry in the directory. The JSON resource is mapped
+        to an LDAP entry with appropriate object classes and attributes.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        description: The user entry to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get a directory user
+      description: >-
+        Retrieve a specific user entry by its identifier. The identifier
+        maps to an LDAP RDN value (e.g., uid).
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The user entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateUser
+      summary: Replace a directory user
+      description: >-
+        Replace an entire user entry. All provided attributes are set; omitted
+        attributes are removed from the entry.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - name: If-Match
+          in: header
+          description: MVCC revision for optimistic concurrency
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '412':
+          description: Revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchUser
+      summary: Patch a directory user
+      description: >-
+        Partially update a user entry using JSON Patch operations. Each
+        operation is translated to the corresponding LDAP modification.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - name: If-Match
+          in: header
+          description: MVCC revision
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: User patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteUser
+      summary: Delete a directory user
+      description: Delete a user entry from the directory.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - name: If-Match
+          in: header
+          description: MVCC revision
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/users/{userId}:
+    post:
+      operationId: userAction
+      summary: Perform a user action
+      description: >-
+        Perform actions on a user entry such as password reset or password
+        change via _action query parameter.
+      tags:
+        - Users
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - name: _action
+          in: query
+          required: true
+          description: The action to perform
+          schema:
+            type: string
+            enum:
+              - resetPassword
+              - modifyPassword
+      requestBody:
+        description: Action-specific request body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                  description: Current password (for modifyPassword)
+                newPassword:
+                  type: string
+                  description: New password
+      responses:
+        '200':
+          description: Action completed
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/groups:
+    get:
+      operationId: listGroups
+      summary: List directory groups
+      description: >-
+        Query group entries in the directory. Groups are mapped from LDAP
+        groupOfUniqueNames or groupOfNames entries.
+      tags:
+        - Groups
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsCookie'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GroupQueryResult'
+    post:
+      operationId: createGroup
+      summary: Create a directory group
+      description: Create a new group entry in the directory.
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: Group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '409':
+          description: Group already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/groups/{groupId}:
+    get:
+      operationId: getGroup
+      summary: Get a directory group
+      description: Retrieve a specific group entry by its identifier.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: The group identifier (maps to LDAP cn)
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The group entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateGroup
+      summary: Replace a directory group
+      description: Replace an entire group entry.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: The group identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: Group updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+    patch:
+      operationId: patchGroup
+      summary: Patch a directory group
+      description: >-
+        Partially update a group entry. Commonly used to add or remove
+        group members.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: The group identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Group patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+    delete:
+      operationId: deleteGroup
+      summary: Delete a directory group
+      description: Delete a group entry from the directory.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          description: The group identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Group deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+
+  /api/{collection}:
+    get:
+      operationId: listEntries
+      summary: List directory entries
+      description: >-
+        Query entries from any HDAP-configured collection endpoint. The
+        collection maps to an LDAP subtree with a defined JSON-to-LDAP
+        mapping.
+      tags:
+        - Entries
+      parameters:
+        - name: collection
+          in: path
+          required: true
+          description: The HDAP collection name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsCookie'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntryQueryResult'
+
+  /alive:
+    get:
+      operationId: healthCheck
+      summary: Health check
+      description: >-
+        Returns the health status of the DS instance. Used by load balancers
+        and monitoring systems.
+      tags:
+        - Health
+      responses:
+        '200':
+          description: DS is healthy
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  - Server is ALIVE
+        '503':
+          description: DS is not healthy
+
+  /healthy:
+    get:
+      operationId: detailedHealthCheck
+      summary: Detailed health check
+      description: >-
+        Returns detailed health status of the DS instance including
+        replication state.
+      tags:
+        - Health
+      responses:
+        '200':
+          description: DS is healthy and replicated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  replicationStatus:
+                    type: string
+        '503':
+          description: DS is unhealthy or degraded
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 access token
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication (for directory bind)
+
+  parameters:
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The user identifier (maps to LDAP uid or _id)
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: >-
+        CREST query filter expression, translated to an LDAP filter
+        (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to return
+      schema:
+        type: string
+
+  schemas:
+    User:
+      type: object
+      description: A directory user entry mapped from LDAP to JSON via HDAP
+      properties:
+        _id:
+          type: string
+          description: User identifier (mapped from LDAP uid)
+        _rev:
+          type: string
+          description: Entry revision for MVCC
+          readOnly: true
+        userName:
+          type: string
+          description: Login username
+        givenName:
+          type: string
+          description: First name
+        sn:
+          type: string
+          description: Surname / last name
+        cn:
+          type: string
+          description: Common name (full name)
+        mail:
+          type: string
+          format: email
+          description: Email address
+        telephoneNumber:
+          type: string
+          description: Phone number
+        description:
+          type: string
+          description: User description
+        memberOf:
+          type: array
+          description: Groups this user belongs to
+          readOnly: true
+          items:
+            type: string
+        userPassword:
+          type: string
+          format: password
+          description: Password (write-only, stored hashed)
+          writeOnly: true
+
+    UserQueryResult:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+
+    Group:
+      type: object
+      description: A directory group entry
+      properties:
+        _id:
+          type: string
+          description: Group identifier (mapped from LDAP cn)
+        _rev:
+          type: string
+          description: Entry revision
+          readOnly: true
+        cn:
+          type: string
+          description: Group common name
+        description:
+          type: string
+          description: Group description
+        members:
+          type: array
+          description: Group member identifiers
+          items:
+            type: string
+
+    GroupQueryResult:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+
+    EntryQueryResult:
+      type: object
+      description: Generic HDAP query result
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              _rev:
+                type: string
+            additionalProperties: true
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+          - operation
+          - field
+        properties:
+          operation:
+            type: string
+            enum:
+              - add
+              - remove
+              - replace
+          field:
+            type: string
+          value: {}
+
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string

@@ -1,0 +1,981 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Identity Cloud REST API
+  description: >-
+    REST API for managing identities, authentication, and authorization in
+    ForgeRock Identity Cloud (PingOne Advanced Identity Cloud). Provides access
+    management and identity management endpoints for Advanced Identity Cloud
+    tenant environments, including authentication journeys, session management,
+    managed object CRUD, OAuth 2.0 and OpenID Connect flows.
+  version: 1.0.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: identity-cloud
+
+servers:
+  - url: https://{tenant}.forgeblocks.com
+    description: ForgeRock Identity Cloud tenant
+    variables:
+      tenant:
+        default: mycompany
+        description: The tenant identifier for your Identity Cloud environment
+
+security:
+  - bearerAuth: []
+  - apiKeyAuth: []
+
+tags:
+  - name: Authentication
+    description: Authenticate users through authentication trees (journeys)
+  - name: Sessions
+    description: Manage authenticated sessions
+  - name: Managed Users
+    description: CRUD operations on managed user objects
+  - name: Managed Roles
+    description: CRUD operations on managed role objects
+  - name: OAuth2 Clients
+    description: Manage OAuth 2.0 client registrations
+  - name: Server Info
+    description: Retrieve server information and configuration
+
+paths:
+  /am/json/realms/root/realms/{realm}/authenticate:
+    post:
+      operationId: authenticateUser
+      summary: Authenticate a user
+      description: >-
+        Initiates or continues an authentication journey (tree) in the specified
+        realm. Returns callbacks that the client must respond to, or a tokenId
+        on successful completion of the journey.
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: authIndexType
+          in: query
+          description: The type of authentication index to use (e.g., service, module)
+          schema:
+            type: string
+            enum:
+              - service
+              - module
+              - resource
+              - level
+        - name: authIndexValue
+          in: query
+          description: The value of the authentication index (e.g., the tree/journey name)
+          schema:
+            type: string
+        - name: Accept-API-Version
+          in: header
+          required: true
+          description: API version protocol header
+          schema:
+            type: string
+            default: resource=2.0,protocol=1.0
+      requestBody:
+        description: Callback responses from a previous authentication step
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+      responses:
+        '200':
+          description: >-
+            Authentication step response containing callbacks or a successful
+            authentication result with tokenId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /am/json/realms/root/realms/{realm}/sessions:
+    post:
+      operationId: manageSessions
+      summary: Perform session actions
+      description: >-
+        Perform actions on sessions such as getting session info, refreshing
+        idle timeout, or logging out. The action is specified via the _action
+        query parameter.
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _action
+          in: query
+          required: true
+          description: The action to perform on the session
+          schema:
+            type: string
+            enum:
+              - getSessionInfo
+              - refresh
+              - logout
+              - validate
+        - name: Accept-API-Version
+          in: header
+          required: true
+          description: API version protocol header
+          schema:
+            type: string
+            default: resource=2.0,protocol=1.0
+      requestBody:
+        description: Session token identifier
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokenId:
+                  type: string
+                  description: The SSO token ID for the session
+      responses:
+        '200':
+          description: Session action completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionInfo'
+        '401':
+          description: Session is invalid or expired
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openidm/managed/{realm}_user:
+    get:
+      operationId: listManagedUsers
+      summary: List managed users
+      description: >-
+        Query managed user objects in the specified realm. Supports filtering,
+        sorting, and pagination through query parameters.
+      tags:
+        - Managed Users
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/SortKeys'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of managed users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUserList'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createManagedUser
+      summary: Create a managed user
+      description: >-
+        Create a new managed user object in the specified realm. The user object
+        must include required properties such as userName.
+      tags:
+        - Managed Users
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+      requestBody:
+        required: true
+        description: The managed user object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedUser'
+      responses:
+        '201':
+          description: Managed user created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '400':
+          description: Bad request - invalid user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict - user already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openidm/managed/{realm}_user/{userId}:
+    get:
+      operationId: getManagedUser
+      summary: Get a managed user
+      description: >-
+        Retrieve a specific managed user object by its identifier from the
+        specified realm.
+      tags:
+        - Managed Users
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The managed user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateManagedUser
+      summary: Replace a managed user
+      description: >-
+        Replace an entire managed user object. The request body must contain
+        the complete user representation.
+      tags:
+        - Managed Users
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/UserId'
+        - name: If-Match
+          in: header
+          description: Revision identifier for optimistic concurrency control
+          schema:
+            type: string
+            default: '*'
+      requestBody:
+        required: true
+        description: The complete managed user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedUser'
+      responses:
+        '200':
+          description: Managed user updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '412':
+          description: Precondition failed - revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchManagedUser
+      summary: Patch a managed user
+      description: >-
+        Partially update a managed user object using JSON Patch operations.
+      tags:
+        - Managed Users
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/UserId'
+        - name: If-Match
+          in: header
+          description: Revision identifier for optimistic concurrency control
+          schema:
+            type: string
+            default: '*'
+      requestBody:
+        required: true
+        description: JSON Patch operations to apply
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Managed user patched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteManagedUser
+      summary: Delete a managed user
+      description: >-
+        Delete a managed user object from the specified realm.
+      tags:
+        - Managed Users
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/UserId'
+        - name: If-Match
+          in: header
+          description: Revision identifier for optimistic concurrency control
+          schema:
+            type: string
+            default: '*'
+      responses:
+        '200':
+          description: Managed user deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openidm/managed/{realm}_role:
+    get:
+      operationId: listManagedRoles
+      summary: List managed roles
+      description: >-
+        Query managed role objects in the specified realm. Supports filtering,
+        sorting, and pagination.
+      tags:
+        - Managed Roles
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of managed roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedRoleList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createManagedRole
+      summary: Create a managed role
+      description: Create a new managed role object in the specified realm.
+      tags:
+        - Managed Roles
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+      requestBody:
+        required: true
+        description: The managed role object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedRole'
+      responses:
+        '201':
+          description: Managed role created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedRole'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openidm/managed/{realm}_role/{roleId}:
+    get:
+      operationId: getManagedRole
+      summary: Get a managed role
+      description: Retrieve a specific managed role object by its identifier.
+      tags:
+        - Managed Roles
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - name: roleId
+          in: path
+          required: true
+          description: The unique identifier of the managed role
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The managed role object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedRole'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /am/json/realms/root/realms/{realm}/serverinfo/*:
+    get:
+      operationId: getServerInfo
+      summary: Get server information
+      description: >-
+        Retrieve server information including supported features, cookie name,
+        and realm configuration.
+      tags:
+        - Server Info
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+      responses:
+        '200':
+          description: Server information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerInfo'
+
+  /am/oauth2/realms/root/realms/{realm}/authorize:
+    get:
+      operationId: authorizeOAuth2
+      summary: OAuth 2.0 authorization endpoint
+      description: >-
+        Initiates an OAuth 2.0 authorization flow. Redirects the user agent to
+        the authorization server for authentication and consent.
+      tags:
+        - OAuth2 Clients
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: client_id
+          in: query
+          required: true
+          description: The OAuth 2.0 client identifier
+          schema:
+            type: string
+        - name: response_type
+          in: query
+          required: true
+          description: The OAuth 2.0 response type
+          schema:
+            type: string
+            enum:
+              - code
+              - token
+              - id_token
+              - code token
+              - code id_token
+        - name: redirect_uri
+          in: query
+          required: true
+          description: The URI to redirect to after authorization
+          schema:
+            type: string
+            format: uri
+        - name: scope
+          in: query
+          description: Space-delimited list of requested scopes
+          schema:
+            type: string
+        - name: state
+          in: query
+          description: Opaque value to maintain state between request and callback
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to login or consent page
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /am/oauth2/realms/root/realms/{realm}/access_token:
+    post:
+      operationId: getAccessToken
+      summary: OAuth 2.0 token endpoint
+      description: >-
+        Exchange an authorization code, refresh token, or client credentials
+        for an access token.
+      tags:
+        - OAuth2 Clients
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  description: The OAuth 2.0 grant type
+                  enum:
+                    - authorization_code
+                    - client_credentials
+                    - refresh_token
+                    - password
+                    - urn:ietf:params:oauth:grant-type:device_code
+                code:
+                  type: string
+                  description: Authorization code (for authorization_code grant)
+                redirect_uri:
+                  type: string
+                  description: Redirect URI (must match the authorization request)
+                refresh_token:
+                  type: string
+                  description: Refresh token (for refresh_token grant)
+                scope:
+                  type: string
+                  description: Requested scopes
+                username:
+                  type: string
+                  description: Resource owner username (for password grant)
+                password:
+                  type: string
+                  description: Resource owner password (for password grant)
+      responses:
+        '200':
+          description: Token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid grant or request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthErrorResponse'
+        '401':
+          description: Invalid client credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthErrorResponse'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 access token obtained from the token endpoint. Required for
+        access management and identity management operations.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: >-
+        API key for tenant read-only operations. Used together with
+        x-api-secret header.
+
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the managed user
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: >-
+        CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated list of fields to sort by (prefix with - for descending)
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+
+  schemas:
+    AuthenticationRequest:
+      type: object
+      description: Authentication callback response payload
+      properties:
+        authId:
+          type: string
+          description: Authentication session identifier from the previous step
+        callbacks:
+          type: array
+          description: Completed callback responses
+          items:
+            $ref: '#/components/schemas/Callback'
+
+    AuthenticationResponse:
+      type: object
+      description: Authentication step result
+      properties:
+        authId:
+          type: string
+          description: Authentication session identifier for the next step
+        tokenId:
+          type: string
+          description: SSO token ID returned on successful authentication
+        successUrl:
+          type: string
+          description: URL to redirect to after successful authentication
+        realm:
+          type: string
+          description: The realm in which authentication occurred
+        callbacks:
+          type: array
+          description: Callbacks requiring user input
+          items:
+            $ref: '#/components/schemas/Callback'
+
+    Callback:
+      type: object
+      description: An authentication callback
+      properties:
+        type:
+          type: string
+          description: The callback type
+          examples:
+            - NameCallback
+            - PasswordCallback
+            - ChoiceCallback
+            - TextOutputCallback
+        output:
+          type: array
+          description: Output values from the server
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                description: The output value
+        input:
+          type: array
+          description: Input values to be provided by the client
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                description: The input value
+
+    SessionInfo:
+      type: object
+      description: Session information
+      properties:
+        username:
+          type: string
+          description: The username of the session owner
+        universalId:
+          type: string
+          description: Universal identifier for the session owner
+        realm:
+          type: string
+          description: The realm the session belongs to
+        latestAccessTime:
+          type: string
+          format: date-time
+          description: Most recent access time for the session
+        maxIdleExpirationTime:
+          type: string
+          format: date-time
+          description: Time at which the session will expire due to inactivity
+        maxSessionExpirationTime:
+          type: string
+          format: date-time
+          description: Maximum session expiration time
+        properties:
+          type: object
+          description: Session properties
+          additionalProperties:
+            type: string
+
+    ManagedUser:
+      type: object
+      description: A managed user identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+        userName:
+          type: string
+          description: Unique login username
+        givenName:
+          type: string
+          description: First name
+        sn:
+          type: string
+          description: Last name (surname)
+        mail:
+          type: string
+          format: email
+          description: Email address
+        telephoneNumber:
+          type: string
+          description: Phone number
+        password:
+          type: string
+          format: password
+          description: Password (write-only)
+          writeOnly: true
+        accountStatus:
+          type: string
+          description: Account status
+          enum:
+            - active
+            - inactive
+        effectiveRoles:
+          type: array
+          description: Computed effective roles
+          readOnly: true
+          items:
+            type: object
+        effectiveAssignments:
+          type: array
+          description: Computed effective assignments
+          readOnly: true
+          items:
+            type: object
+
+    ManagedUserList:
+      type: object
+      description: Paginated list of managed users
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedUser'
+        resultCount:
+          type: integer
+          description: Number of results in this page
+        pagedResultsCookie:
+          type: string
+          description: Cookie for fetching the next page
+        totalPagedResultsPolicy:
+          type: string
+          description: Policy for total result count
+        totalPagedResults:
+          type: integer
+          description: Total number of results (-1 if unknown)
+        remainingPagedResults:
+          type: integer
+          description: Remaining results after this page
+
+    ManagedRole:
+      type: object
+      description: A managed role object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision
+          readOnly: true
+        name:
+          type: string
+          description: Role name
+        description:
+          type: string
+          description: Role description
+        condition:
+          type: string
+          description: Conditional role membership filter expression
+        temporalConstraints:
+          type: array
+          description: Time-based constraints for role activation
+          items:
+            type: object
+            properties:
+              duration:
+                type: string
+                description: ISO 8601 time interval
+
+    ManagedRoleList:
+      type: object
+      description: Paginated list of managed roles
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedRole'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+
+    ServerInfo:
+      type: object
+      description: Server configuration information
+      properties:
+        cookieName:
+          type: string
+          description: Name of the SSO cookie
+        domains:
+          type: array
+          items:
+            type: string
+          description: Cookie domains
+        protectedUserAttributes:
+          type: array
+          items:
+            type: string
+        forgotPassword:
+          type: string
+        selfRegistration:
+          type: string
+        lang:
+          type: string
+        successfulUserRegistrationDestination:
+          type: string
+        socialImplementations:
+          type: array
+          items:
+            type: object
+
+    TokenResponse:
+      type: object
+      description: OAuth 2.0 token response
+      properties:
+        access_token:
+          type: string
+          description: The access token
+        token_type:
+          type: string
+          description: Token type (e.g., Bearer)
+        expires_in:
+          type: integer
+          description: Token lifetime in seconds
+        refresh_token:
+          type: string
+          description: Refresh token (if applicable)
+        scope:
+          type: string
+          description: Granted scopes
+        id_token:
+          type: string
+          description: OpenID Connect ID token (if applicable)
+
+    OAuthErrorResponse:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+          description: Error code
+        error_description:
+          type: string
+          description: Human-readable error description
+
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+          - operation
+          - field
+        properties:
+          operation:
+            type: string
+            description: The patch operation type
+            enum:
+              - add
+              - remove
+              - replace
+              - increment
+          field:
+            type: string
+            description: JSON pointer to the field to patch
+          value:
+            description: The value for add, replace, or increment operations
+
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message

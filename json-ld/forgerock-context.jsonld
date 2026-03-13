@@ -1,0 +1,209 @@
+{
+  "@context": {
+    "@version": 1.1,
+
+    "forgerock": "https://schema.forgerock.com/",
+    "schema": "https://schema.org/",
+    "iam": "https://www.w3.org/ns/iam#",
+    "sec": "https://w3id.org/security#",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ldap": "https://www.w3.org/ns/ldap#",
+    "oauth": "https://www.w3.org/ns/oauth#",
+
+    "ManagedUser": {
+      "@id": "forgerock:ManagedUser",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "userName": "foaf:accountName",
+        "givenName": "schema:givenName",
+        "sn": "schema:familyName",
+        "mail": "schema:email",
+        "telephoneNumber": "schema:telephone",
+        "accountStatus": "forgerock:accountStatus",
+        "city": "schema:addressLocality",
+        "stateProvince": "schema:addressRegion",
+        "postalCode": "schema:postalCode",
+        "country": "schema:addressCountry",
+        "postalAddress": "schema:streetAddress",
+        "description": "schema:description",
+        "effectiveRoles": {
+          "@id": "forgerock:effectiveRoles",
+          "@type": "@id"
+        },
+        "effectiveAssignments": {
+          "@id": "forgerock:effectiveAssignments",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "ManagedRole": {
+      "@id": "forgerock:ManagedRole",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "name": "schema:name",
+        "description": "schema:description",
+        "condition": "forgerock:roleCondition",
+        "temporalConstraints": "forgerock:temporalConstraints",
+        "members": {
+          "@id": "schema:member",
+          "@type": "@id"
+        },
+        "assignments": {
+          "@id": "forgerock:roleAssignments",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Session": {
+      "@id": "forgerock:Session",
+      "@context": {
+        "tokenId": "forgerock:tokenId",
+        "username": "foaf:accountName",
+        "universalId": "dcterms:identifier",
+        "realm": "forgerock:realm",
+        "latestAccessTime": {
+          "@id": "forgerock:latestAccessTime",
+          "@type": "xsd:dateTime"
+        },
+        "maxIdleExpirationTime": {
+          "@id": "forgerock:maxIdleExpirationTime",
+          "@type": "xsd:dateTime"
+        },
+        "maxSessionExpirationTime": {
+          "@id": "forgerock:maxSessionExpirationTime",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Policy": {
+      "@id": "forgerock:AuthorizationPolicy",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "active": "forgerock:isActive",
+        "applicationName": "forgerock:policySet",
+        "resources": "forgerock:policyResources",
+        "actionValues": "forgerock:actionValues",
+        "subject": "forgerock:subjectCondition",
+        "condition": "forgerock:environmentCondition",
+        "resourceTypeUuid": {
+          "@id": "forgerock:resourceType",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "OAuth2Token": {
+      "@id": "oauth:AccessToken",
+      "@context": {
+        "access_token": "oauth:accessToken",
+        "token_type": "oauth:tokenType",
+        "expires_in": "oauth:expiresIn",
+        "refresh_token": "oauth:refreshToken",
+        "scope": "oauth:scope",
+        "id_token": "oauth:idToken"
+      }
+    },
+
+    "DirectoryEntry": {
+      "@id": "forgerock:DirectoryEntry",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "cn": "foaf:name",
+        "givenName": "schema:givenName",
+        "sn": "schema:familyName",
+        "mail": "schema:email",
+        "telephoneNumber": "schema:telephone",
+        "description": "schema:description",
+        "memberOf": {
+          "@id": "schema:memberOf",
+          "@type": "@id"
+        },
+        "userName": "foaf:accountName"
+      }
+    },
+
+    "DirectoryGroup": {
+      "@id": "forgerock:DirectoryGroup",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "cn": "foaf:name",
+        "description": "schema:description",
+        "members": {
+          "@id": "schema:member",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Entitlement": {
+      "@id": "forgerock:Entitlement",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "name": "schema:name",
+        "description": "schema:description",
+        "applicationName": "forgerock:applicationName",
+        "type": "forgerock:entitlementType",
+        "owner": {
+          "@id": "schema:owner",
+          "@type": "@id"
+        },
+        "riskLevel": "forgerock:riskLevel"
+      }
+    },
+
+    "Certification": {
+      "@id": "forgerock:AccessCertification",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": "forgerock:certificationType",
+        "status": "forgerock:certificationStatus",
+        "createdDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Route": {
+      "@id": "forgerock:GatewayRoute",
+      "@context": {
+        "_id": "dcterms:identifier",
+        "name": "schema:name",
+        "condition": "forgerock:routeCondition",
+        "handler": "forgerock:routeHandler",
+        "baseURI": {
+          "@id": "forgerock:baseURI",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "ConfidenceScore": {
+      "@id": "forgerock:ConfidenceScore",
+      "@context": {
+        "entitlementId": {
+          "@id": "forgerock:entitlement",
+          "@type": "@id"
+        },
+        "userId": {
+          "@id": "forgerock:user",
+          "@type": "@id"
+        },
+        "confidenceScore": {
+          "@id": "forgerock:confidenceValue",
+          "@type": "xsd:decimal"
+        },
+        "drivingAttributes": "forgerock:drivingAttributes"
+      }
+    }
+  }
+}

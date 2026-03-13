@@ -1,0 +1,731 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Autonomous Identity API
+  description: >-
+    REST API for the ForgeRock Autonomous Identity analytics platform. Uses
+    AI-driven analysis powered by Apache Spark to determine confidence scores,
+    predictions, and recommendations for entitlement assignments. Provides
+    endpoints for accessing entitlements, rules, applications, company views,
+    and analytics data.
+  version: 2022.11.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: autonomous-identity
+
+servers:
+  - url: https://{deployment}/autoid
+    description: ForgeRock Autonomous Identity server
+    variables:
+      deployment:
+        default: autoid.example.com
+        description: The Autonomous Identity deployment hostname
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Entitlements
+    description: Query entitlements and confidence scores
+  - name: Rules
+    description: Access entitlement assignment rules and justifications
+  - name: Applications
+    description: Query onboarded application data
+  - name: Users
+    description: Query user entitlement data and recommendations
+  - name: Company View
+    description: Company-wide analytics and dashboards
+  - name: Analytics
+    description: Analytics pipeline status and results
+
+paths:
+  /api/entitlements:
+    get:
+      operationId: listEntitlements
+      summary: List entitlements
+      description: >-
+        Query entitlements across all onboarded applications. Returns
+        entitlement details with aggregated confidence score statistics.
+      tags:
+        - Entitlements
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+        - name: application
+          in: query
+          description: Filter by application name
+          schema:
+            type: string
+        - name: confidenceThreshold
+          in: query
+          description: Minimum confidence score threshold (0-100)
+          schema:
+            type: number
+            minimum: 0
+            maximum: 100
+      responses:
+        '200':
+          description: List of entitlements with confidence data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementList'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/entitlements/{entitlementId}:
+    get:
+      operationId: getEntitlement
+      summary: Get entitlement details
+      description: >-
+        Retrieve detailed information about a specific entitlement including
+        confidence score distribution, assigned users, and driving attributes.
+      tags:
+        - Entitlements
+      parameters:
+        - name: entitlementId
+          in: path
+          required: true
+          description: The entitlement identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Entitlement details with analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementDetail'
+        '404':
+          description: Entitlement not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/entitlements/{entitlementId}/users:
+    get:
+      operationId: listEntitlementUsers
+      summary: List users with entitlement
+      description: >-
+        List all users assigned to a specific entitlement with their
+        individual confidence scores and driving attributes.
+      tags:
+        - Entitlements
+      parameters:
+        - name: entitlementId
+          in: path
+          required: true
+          description: The entitlement identifier
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+        - name: confidenceThreshold
+          in: query
+          description: Filter by minimum confidence score
+          schema:
+            type: number
+      responses:
+        '200':
+          description: List of users with confidence scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementUserList'
+
+  /api/entitlements/{entitlementId}/recommendations:
+    get:
+      operationId: getEntitlementRecommendations
+      summary: Get entitlement recommendations
+      description: >-
+        Retrieve recommendations for users who do not have the entitlement
+        but should, based on their attribute data and the AI model's
+        predictions.
+      tags:
+        - Entitlements
+      parameters:
+        - name: entitlementId
+          in: path
+          required: true
+          description: The entitlement identifier
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+        - name: confidenceThreshold
+          in: query
+          description: Minimum confidence score for recommendations
+          schema:
+            type: number
+      responses:
+        '200':
+          description: Recommendations for the entitlement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationList'
+
+  /api/rules:
+    get:
+      operationId: listRules
+      summary: List assignment rules
+      description: >-
+        Query entitlement assignment rules derived from the AI model.
+        Rules explain why specific entitlements are assigned based on
+        user attribute combinations.
+      tags:
+        - Rules
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+        - name: entitlement
+          in: query
+          description: Filter by entitlement name
+          schema:
+            type: string
+        - name: application
+          in: query
+          description: Filter by application name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleList'
+
+  /api/rules/{ruleId}:
+    get:
+      operationId: getRule
+      summary: Get a rule
+      description: Retrieve details of a specific assignment rule.
+      tags:
+        - Rules
+      parameters:
+        - name: ruleId
+          in: path
+          required: true
+          description: The rule identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+        '404':
+          description: Rule not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/applications:
+    get:
+      operationId: listApplications
+      summary: List applications
+      description: >-
+        Query onboarded applications in the Autonomous Identity platform.
+      tags:
+        - Applications
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: List of applications
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationList'
+
+  /api/applications/{applicationId}:
+    get:
+      operationId: getApplication
+      summary: Get an application
+      description: Retrieve details of a specific onboarded application.
+      tags:
+        - Applications
+      parameters:
+        - name: applicationId
+          in: path
+          required: true
+          description: The application identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Application details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+        '404':
+          description: Application not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/users/{userId}/entitlements:
+    get:
+      operationId: listUserEntitlements
+      summary: List user entitlements
+      description: >-
+        Retrieve all entitlements assigned to a specific user with their
+        confidence scores and justification data.
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The user identifier
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+        - name: confidenceThreshold
+          in: query
+          description: Filter by minimum confidence score
+          schema:
+            type: number
+      responses:
+        '200':
+          description: List of user entitlements with confidence scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEntitlementList'
+
+  /api/users/{userId}/recommendations:
+    get:
+      operationId: getUserRecommendations
+      summary: Get user recommendations
+      description: >-
+        Get recommended entitlements for a user based on their attributes
+        and the AI model's predictions.
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The user identifier
+          schema:
+            type: string
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Entitlement recommendations for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationList'
+
+  /api/companyview:
+    get:
+      operationId: getCompanyView
+      summary: Get company view analytics
+      description: >-
+        Retrieve company-wide analytics including confidence score
+        distributions, entitlement statistics, and risk metrics
+        across the entire organization.
+      tags:
+        - Company View
+      responses:
+        '200':
+          description: Company-wide analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyView'
+
+  /api/analytics/status:
+    get:
+      operationId: getAnalyticsStatus
+      summary: Get analytics pipeline status
+      description: >-
+        Retrieve the current status of the analytics pipeline, including
+        training status, last run time, and pipeline health.
+      tags:
+        - Analytics
+      responses:
+        '200':
+          description: Analytics pipeline status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsStatus'
+
+  /api/analytics/reports:
+    get:
+      operationId: listAnalyticsReports
+      summary: List analytics reports
+      description: >-
+        List available analytics reports from completed pipeline runs.
+      tags:
+        - Analytics
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: List of analytics reports
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticsReportList'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Authentication token for Autonomous Identity API
+
+  parameters:
+    PageSize:
+      name: maxResults
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+
+  schemas:
+    EntitlementDetail:
+      type: object
+      description: Detailed entitlement with analytics data
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Entitlement name
+        description:
+          type: string
+        application:
+          type: string
+          description: Source application name
+        totalUsers:
+          type: integer
+          description: Number of users with this entitlement
+        averageConfidenceScore:
+          type: number
+          description: Average confidence score across all assignments
+        confidenceDistribution:
+          type: object
+          description: Distribution of confidence scores
+          properties:
+            high:
+              type: integer
+              description: Assignments with confidence >= 80%
+            medium:
+              type: integer
+              description: Assignments with confidence 50-79%
+            low:
+              type: integer
+              description: Assignments with confidence < 50%
+        drivingAttributes:
+          type: array
+          description: User attributes that most influence this entitlement assignment
+          items:
+            type: object
+            properties:
+              attribute:
+                type: string
+              weight:
+                type: number
+
+    EntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntitlementDetail'
+        totalResults:
+          type: integer
+        offset:
+          type: integer
+
+    EntitlementUserList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              userName:
+                type: string
+              confidenceScore:
+                type: number
+                description: Confidence score (0-100)
+              drivingAttributes:
+                type: object
+                description: Attributes driving the confidence score
+                additionalProperties:
+                  type: string
+        totalResults:
+          type: integer
+
+    RecommendationList:
+      type: object
+      description: Entitlement recommendations
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              userName:
+                type: string
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+                description: Predicted confidence score
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
+        totalResults:
+          type: integer
+
+    Rule:
+      type: object
+      description: An entitlement assignment rule from the AI model
+      properties:
+        id:
+          type: string
+        entitlement:
+          type: string
+          description: Entitlement this rule applies to
+        application:
+          type: string
+        conditions:
+          type: array
+          description: Attribute conditions that define this rule
+          items:
+            type: object
+            properties:
+              attribute:
+                type: string
+              operator:
+                type: string
+                enum:
+                  - equals
+                  - contains
+                  - startsWith
+              value:
+                type: string
+        confidenceScore:
+          type: number
+          description: Confidence score for assignments matching this rule
+        coverageCount:
+          type: integer
+          description: Number of users matching this rule
+
+    RuleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        totalResults:
+          type: integer
+
+    Application:
+      type: object
+      description: An onboarded application
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        totalEntitlements:
+          type: integer
+        totalUsers:
+          type: integer
+        averageConfidenceScore:
+          type: number
+
+    ApplicationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
+
+    UserEntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
+              justification:
+                type: string
+                description: AI-generated justification for the assignment
+        totalResults:
+          type: integer
+
+    CompanyView:
+      type: object
+      description: Company-wide analytics summary
+      properties:
+        totalUsers:
+          type: integer
+        totalEntitlements:
+          type: integer
+        totalApplications:
+          type: integer
+        averageConfidenceScore:
+          type: number
+        confidenceDistribution:
+          type: object
+          properties:
+            high:
+              type: integer
+            medium:
+              type: integer
+            low:
+              type: integer
+        riskSummary:
+          type: object
+          properties:
+            highRiskUsers:
+              type: integer
+              description: Users with many low-confidence assignments
+            highRiskEntitlements:
+              type: integer
+              description: Entitlements with low average confidence
+            outlierAssignments:
+              type: integer
+              description: Assignments that differ from peer groups
+
+    AnalyticsStatus:
+      type: object
+      description: Analytics pipeline status
+      properties:
+        pipelineStatus:
+          type: string
+          enum:
+            - idle
+            - running
+            - completed
+            - failed
+        lastRunTime:
+          type: string
+          format: date-time
+        lastRunDuration:
+          type: string
+          description: Duration of the last pipeline run
+        trainingStatus:
+          type: string
+          enum:
+            - not_started
+            - training
+            - completed
+            - failed
+        predictionStatus:
+          type: string
+          enum:
+            - not_started
+            - running
+            - completed
+            - failed
+        recommendationStatus:
+          type: string
+          enum:
+            - not_started
+            - running
+            - completed
+            - failed
+
+    AnalyticsReportList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              runDate:
+                type: string
+                format: date-time
+              status:
+                type: string
+              totalEntitlementsProcessed:
+                type: integer
+              totalUsersProcessed:
+                type: integer
+              averageConfidenceScore:
+                type: number
+        totalResults:
+          type: integer
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string

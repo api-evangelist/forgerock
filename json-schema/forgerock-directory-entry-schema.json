@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/directory-entry",
+  "title": "ForgeRock Directory Entry",
+  "description": "A directory entry accessed via the ForgeRock Directory Services HDAP (HTTP Directory Access Protocol) API. Represents an LDAP entry mapped to a JSON resource with standard person and organizational attributes.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Entry identifier mapped from the LDAP RDN attribute (e.g., uid)"
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Entry revision for MVCC concurrency control (mapped from LDAP etag)",
+      "readOnly": true
+    },
+    "userName": {
+      "type": "string",
+      "description": "Login username (mapped from LDAP uid)"
+    },
+    "cn": {
+      "type": "string",
+      "description": "Common name (typically full name)"
+    },
+    "givenName": {
+      "type": "string",
+      "description": "First name"
+    },
+    "sn": {
+      "type": "string",
+      "description": "Surname / last name"
+    },
+    "mail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "telephoneNumber": {
+      "type": "string",
+      "description": "Telephone number"
+    },
+    "description": {
+      "type": "string",
+      "description": "Entry description"
+    },
+    "memberOf": {
+      "type": "array",
+      "description": "DNs of groups this entry belongs to (virtual attribute)",
+      "readOnly": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "userPassword": {
+      "type": "string",
+      "description": "User password (write-only, stored as a hash in the directory)",
+      "writeOnly": true
+    },
+    "ds-pwp-account-disabled": {
+      "type": "boolean",
+      "description": "Whether the account is disabled by password policy"
+    },
+    "ds-pwp-last-login-time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last successful authentication time",
+      "readOnly": true
+    },
+    "createTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Entry creation time",
+      "readOnly": true
+    },
+    "modifyTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification time",
+      "readOnly": true
+    }
+  },
+  "required": ["_id"],
+  "additionalProperties": true
+}

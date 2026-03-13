@@ -1,0 +1,520 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Identity Gateway API
+  description: >-
+    REST API for ForgeRock Identity Gateway (IG) providing route management,
+    monitoring, and administration. IG acts as a reverse proxy that enforces
+    security and access control for web applications, APIs, and microservices,
+    integrating them with the ForgeRock Identity Platform.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: identity-gateway
+
+servers:
+  - url: https://{deployment}/ig
+    description: ForgeRock Identity Gateway server
+    variables:
+      deployment:
+        default: ig.example.com
+        description: The IG deployment hostname
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Routes
+    description: Manage IG route configurations
+  - name: Monitoring
+    description: Health check and monitoring endpoints
+  - name: Studio
+    description: IG Studio route design endpoints
+  - name: Objects
+    description: Inspect live IG configuration objects
+
+paths:
+  /openig/api/system/objects:
+    get:
+      operationId: listObjects
+      summary: List configuration objects
+      description: >-
+        List all live configuration objects in the IG runtime, including
+        routes, handlers, filters, and decorators currently loaded.
+      tags:
+        - Objects
+      parameters:
+        - name: _queryFilter
+          in: query
+          description: CREST query filter
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of configuration objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectList'
+        '403':
+          description: Forbidden - administrative access required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openig/api/system/objects/{objectType}/{objectId}:
+    get:
+      operationId: getObject
+      summary: Get a configuration object
+      description: >-
+        Retrieve details of a specific live configuration object from the
+        IG runtime.
+      tags:
+        - Objects
+      parameters:
+        - name: objectType
+          in: path
+          required: true
+          description: Type of the configuration object
+          schema:
+            type: string
+            enum:
+              - Router
+              - Route
+              - Handler
+              - Filter
+              - Chain
+        - name: objectId
+          in: path
+          required: true
+          description: Identifier of the configuration object
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Configuration object details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openig/api/system/objects/router-handler/routes:
+    get:
+      operationId: listRoutes
+      summary: List routes
+      description: >-
+        List all routes currently loaded in the IG router, including their
+        names, conditions, and status.
+      tags:
+        - Routes
+      parameters:
+        - name: _queryFilter
+          in: query
+          description: CREST query filter for routes
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of routes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteList'
+    post:
+      operationId: createRoute
+      summary: Create a route
+      description: >-
+        Deploy a new route configuration to the IG router. The route is
+        immediately active upon creation.
+      tags:
+        - Routes
+      requestBody:
+        required: true
+        description: The route configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '201':
+          description: Route created and deployed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Invalid route configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openig/api/system/objects/router-handler/routes/{routeId}:
+    get:
+      operationId: getRoute
+      summary: Get a route
+      description: Retrieve a specific route configuration by its identifier.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          description: The route identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The route configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          description: Route not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateRoute
+      summary: Update a route
+      description: Replace a route configuration. The updated route is immediately active.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          description: The route identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '200':
+          description: Route updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          description: Route not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteRoute
+      summary: Delete a route
+      description: Remove a route from the IG router. The route is immediately deactivated.
+      tags:
+        - Routes
+      parameters:
+        - name: routeId
+          in: path
+          required: true
+          description: The route identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Route deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '404':
+          description: Route not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openig/api/system/monitoring:
+    get:
+      operationId: getMonitoringSummary
+      summary: Get monitoring summary
+      description: >-
+        Retrieve a monitoring summary of the IG instance, including request
+        counts, response times, and status code distributions.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Monitoring summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringSummary'
+
+  /openig/api/system/monitoring/{endpointId}:
+    get:
+      operationId: getEndpointMonitoring
+      summary: Get endpoint monitoring
+      description: >-
+        Retrieve monitoring data for a specific endpoint or route, including
+        request counts and response time percentiles.
+      tags:
+        - Monitoring
+      parameters:
+        - name: endpointId
+          in: path
+          required: true
+          description: The endpoint or route identifier to monitor
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Endpoint monitoring data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointMonitoring'
+        '404':
+          description: Endpoint not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /openig/api/system/health:
+    get:
+      operationId: getHealthStatus
+      summary: Check IG health
+      description: >-
+        Returns the health status of the IG instance. Used for load balancer
+        health checks and monitoring.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: IG is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - ACTIVE
+                  version:
+                    type: string
+                    description: IG version
+        '503':
+          description: IG is not healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - MAINTENANCE
+                      - FAILED
+
+  /openig/api/studio/routes:
+    get:
+      operationId: listStudioRoutes
+      summary: List studio routes
+      description: >-
+        List routes available in the IG Studio interface for visual editing
+        and management.
+      tags:
+        - Studio
+      responses:
+        '200':
+          description: List of routes in Studio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteList'
+    post:
+      operationId: createStudioRoute
+      summary: Create a route via Studio
+      description: >-
+        Create a new route through the IG Studio API with a simplified
+        configuration format.
+      tags:
+        - Studio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Route'
+      responses:
+        '201':
+          description: Route created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token for administrative operations
+
+  schemas:
+    Route:
+      type: object
+      description: An IG route configuration
+      properties:
+        _id:
+          type: string
+          description: Route identifier (derived from route name)
+        name:
+          type: string
+          description: Human-readable route name
+        condition:
+          type: string
+          description: >-
+            Expression that determines when this route handles a request
+            (e.g., "${find(request.uri.path, '/myapp')}")
+        handler:
+          description: The handler that processes requests matching this route
+          oneOf:
+            - type: string
+              description: Reference to a named handler
+            - type: object
+              description: Inline handler configuration
+              properties:
+                type:
+                  type: string
+                  description: Handler type name
+                config:
+                  type: object
+                  description: Handler configuration
+        baseURI:
+          type: string
+          format: uri
+          description: Base URI for the protected application
+        heap:
+          type: array
+          description: Heap objects declared for this route
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+              config:
+                type: object
+        auditService:
+          type: object
+          description: Audit service configuration for this route
+
+    RouteList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+        resultCount:
+          type: integer
+
+    ConfigObject:
+      type: object
+      description: A live configuration object in the IG runtime
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          description: Object type (Router, Handler, Filter, etc.)
+        name:
+          type: string
+        config:
+          type: object
+          description: Object configuration
+
+    ObjectList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigObject'
+        resultCount:
+          type: integer
+
+    MonitoringSummary:
+      type: object
+      description: IG monitoring summary
+      properties:
+        totalRequestCount:
+          type: integer
+          description: Total number of requests processed
+        totalResponseCount:
+          type: integer
+          description: Total number of responses sent
+        averageResponseTime:
+          type: number
+          format: double
+          description: Average response time in milliseconds
+        statusCodeCounts:
+          type: object
+          description: Response counts by HTTP status code
+          additionalProperties:
+            type: integer
+
+    EndpointMonitoring:
+      type: object
+      description: Monitoring data for a specific endpoint
+      properties:
+        requestCount:
+          type: integer
+        responseCount:
+          type: integer
+        averageResponseTime:
+          type: number
+          format: double
+        percentiles:
+          type: object
+          properties:
+            p50:
+              type: number
+              format: double
+            p95:
+              type: number
+              format: double
+            p99:
+              type: number
+              format: double
+        statusCodeCounts:
+          type: object
+          additionalProperties:
+            type: integer
+
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string

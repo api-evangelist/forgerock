@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/entitlement",
+  "title": "ForgeRock Entitlement",
+  "description": "An entitlement representing a granular access right from an onboarded target application. Entitlements are aggregated into a centralized catalog by Identity Governance for review, certification, and compliance purposes.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier for the entitlement"
+    },
+    "name": {
+      "type": "string",
+      "description": "Entitlement name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the entitlement"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Name of the application that owns this entitlement"
+    },
+    "applicationId": {
+      "type": "string",
+      "description": "Identifier of the owning application"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of entitlement",
+      "enum": ["group", "permission", "role", "privilege", "license"]
+    },
+    "owner": {
+      "type": "string",
+      "description": "User identifier of the entitlement owner"
+    },
+    "riskLevel": {
+      "type": "string",
+      "description": "Risk classification for the entitlement",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "glossary": {
+      "type": "object",
+      "description": "Business glossary metadata for the entitlement",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "requestable": {
+          "type": "boolean",
+          "description": "Whether users can request this entitlement"
+        },
+        "approvalRequired": {
+          "type": "boolean",
+          "description": "Whether approval is required to grant this entitlement"
+        }
+      }
+    },
+    "assignedUsers": {
+      "type": "integer",
+      "description": "Number of users currently assigned this entitlement",
+      "readOnly": true
+    }
+  },
+  "required": ["name", "applicationName"]
+}

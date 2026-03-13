@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/managed-user",
+  "title": "ForgeRock Managed User",
+  "description": "A managed user identity object stored in the ForgeRock Identity Platform repository. Represents a person with attributes for authentication, profile data, and identity lifecycle management.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier assigned by the system",
+      "readOnly": true
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Object revision string for optimistic concurrency control",
+      "readOnly": true
+    },
+    "userName": {
+      "type": "string",
+      "description": "Unique login username for the identity",
+      "minLength": 1
+    },
+    "givenName": {
+      "type": "string",
+      "description": "First name / given name"
+    },
+    "sn": {
+      "type": "string",
+      "description": "Last name / surname"
+    },
+    "mail": {
+      "type": "string",
+      "format": "email",
+      "description": "Primary email address"
+    },
+    "telephoneNumber": {
+      "type": "string",
+      "description": "Primary telephone number"
+    },
+    "password": {
+      "type": "string",
+      "description": "Password (write-only, never returned in responses)",
+      "writeOnly": true
+    },
+    "accountStatus": {
+      "type": "string",
+      "description": "Current account status",
+      "enum": ["active", "inactive"]
+    },
+    "description": {
+      "type": "string",
+      "description": "User description or notes"
+    },
+    "city": {
+      "type": "string",
+      "description": "City of residence"
+    },
+    "stateProvince": {
+      "type": "string",
+      "description": "State or province"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal or ZIP code"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code (ISO 3166-1 alpha-2)"
+    },
+    "postalAddress": {
+      "type": "string",
+      "description": "Full postal address"
+    },
+    "preferences": {
+      "type": "object",
+      "description": "User preferences such as marketing and update opt-ins",
+      "properties": {
+        "updates": {
+          "type": "boolean",
+          "description": "Opted in to receive updates"
+        },
+        "marketing": {
+          "type": "boolean",
+          "description": "Opted in to receive marketing communications"
+        }
+      }
+    },
+    "consentedMappings": {
+      "type": "array",
+      "description": "Record of user consent for data sharing",
+      "items": {
+        "type": "object",
+        "properties": {
+          "mapping": {
+            "type": "string"
+          },
+          "consentDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "kbaInfo": {
+      "type": "array",
+      "description": "Knowledge-based authentication (security questions)",
+      "items": {
+        "type": "object",
+        "properties": {
+          "customQuestion": {
+            "type": "string"
+          },
+          "selectedQuestion": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "effectiveRoles": {
+      "type": "array",
+      "description": "Computed effective roles for the user (virtual property)",
+      "readOnly": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "_ref": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "effectiveAssignments": {
+      "type": "array",
+      "description": "Computed effective assignments derived from roles",
+      "readOnly": true,
+      "items": {
+        "type": "object"
+      }
+    },
+    "lastSync": {
+      "type": "object",
+      "description": "Information about the last synchronization event",
+      "readOnly": true,
+      "properties": {
+        "effectiveAssignments": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "required": ["userName"],
+  "additionalProperties": true
+}

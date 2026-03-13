@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/managed-role",
+  "title": "ForgeRock Managed Role",
+  "description": "A managed role object in the ForgeRock Identity Platform. Roles define collections of privileges and can be assigned to users either directly or through conditional membership rules.",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier assigned by the system",
+      "readOnly": true
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Object revision string for optimistic concurrency control",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "Role name",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "description": "Role description"
+    },
+    "condition": {
+      "type": "string",
+      "description": "Query filter expression for conditional (dynamic) role membership. Users matching this condition are automatically assigned the role."
+    },
+    "temporalConstraints": {
+      "type": "array",
+      "description": "Time-based constraints for role activation. The role is only active during the specified time windows.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "duration": {
+            "type": "string",
+            "description": "ISO 8601 time interval (e.g., 2024-01-01T00:00:00Z/2024-12-31T23:59:59Z)"
+          }
+        },
+        "required": ["duration"]
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "description": "References to assignment objects that define what this role grants on connected systems",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_ref": {
+            "type": "string",
+            "description": "Reference path to the assignment object"
+          },
+          "_refProperties": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "members": {
+      "type": "array",
+      "description": "References to user objects that are members of this role",
+      "readOnly": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "_ref": {
+            "type": "string"
+          },
+          "_refProperties": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": true
+}

@@ -1,0 +1,1280 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management API
+  description: >-
+    REST API for ForgeRock Access Management (AM) providing authentication,
+    authorization, session management, and policy evaluation. Supports OAuth 2.0
+    and OpenID Connect flows, authentication trees/journeys, policy-based
+    authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+
+servers:
+  - url: https://{deployment}/am
+    description: ForgeRock Access Management server
+    variables:
+      deployment:
+        default: am.example.com
+        description: The AM deployment hostname
+
+security:
+  - ssoToken: []
+  - bearerAuth: []
+
+tags:
+  - name: Authentication
+    description: Authenticate users via authentication trees and modules
+  - name: Sessions
+    description: Query, validate, and manage authenticated sessions
+  - name: Policies
+    description: Manage authorization policies
+  - name: Policy Sets
+    description: Manage policy sets (applications)
+  - name: Resource Types
+    description: Manage resource types for authorization
+  - name: OAuth2
+    description: OAuth 2.0 token and authorization endpoints
+  - name: OpenID Connect
+    description: OpenID Connect discovery and userinfo
+  - name: Realms
+    description: Manage AM realms
+  - name: Scripts
+    description: Manage AM scripts
+
+paths:
+  /json/realms/root/realms/{realm}/authenticate:
+    post:
+      operationId: authenticate
+      summary: Authenticate a user
+      description: >-
+        Initiates or continues an authentication session using a specified
+        authentication tree (journey) or module. On each step, the server
+        returns callbacks that the client must respond to. On success, returns
+        a tokenId (SSO token).
+      tags:
+        - Authentication
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: authIndexType
+          in: query
+          description: Type of authentication index
+          schema:
+            type: string
+            enum:
+              - service
+              - module
+        - name: authIndexValue
+          in: query
+          description: Name of the authentication tree or module
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        description: Callback responses from a previous authentication step
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationCallbackRequest'
+      responses:
+        '200':
+          description: Authentication step or success result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /json/realms/root/realms/{realm}/sessions:
+    get:
+      operationId: querySessions
+      summary: Query sessions
+      description: >-
+        Query active sessions in the specified realm. Requires administrative
+        privileges.
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _queryFilter
+          in: query
+          description: CREST query filter for sessions
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of active sessions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionQueryResult'
+        '403':
+          description: Insufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: sessionAction
+      summary: Perform a session action
+      description: >-
+        Perform an action on a session such as validate, logout, getSessionInfo,
+        or refresh.
+      tags:
+        - Sessions
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _action
+          in: query
+          required: true
+          description: The session action to perform
+          schema:
+            type: string
+            enum:
+              - validate
+              - logout
+              - getSessionInfo
+              - refresh
+              - getSessionProperties
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        description: Session token data
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tokenId:
+                  type: string
+                  description: The SSO token ID
+      responses:
+        '200':
+          description: Session action result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionActionResult'
+        '401':
+          description: Invalid or expired session
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /json/realms/root/realms/{realm}/policies:
+    get:
+      operationId: listPolicies
+      summary: List authorization policies
+      description: >-
+        Query authorization policies in the specified realm. Supports CREST
+        query filters.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _queryFilter
+          in: query
+          description: CREST query filter expression
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyList'
+        '403':
+          description: Insufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createPolicyOrEvaluate
+      summary: Create a policy or evaluate policies
+      description: >-
+        Create a new authorization policy, or evaluate policies using the
+        _action=evaluate or _action=evaluateTree query parameter.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _action
+          in: query
+          description: Action to perform (evaluate or evaluateTree)
+          schema:
+            type: string
+            enum:
+              - evaluate
+              - evaluateTree
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        description: Policy definition or evaluation request
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/Policy'
+                - $ref: '#/components/schemas/PolicyEvaluationRequest'
+      responses:
+        '200':
+          description: Policy evaluation result
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicyDecision'
+        '201':
+          description: Policy created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '400':
+          description: Invalid policy or evaluation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /json/realms/root/realms/{realm}/policies/{policyName}:
+    get:
+      operationId: getPolicy
+      summary: Get a policy
+      description: Retrieve a specific authorization policy by name.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: policyName
+          in: path
+          required: true
+          description: The policy name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: The policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updatePolicy
+      summary: Update a policy
+      description: Replace an existing authorization policy.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: policyName
+          in: path
+          required: true
+          description: The policy name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        description: The complete policy definition
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          description: Policy updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deletePolicy
+      summary: Delete a policy
+      description: Delete an authorization policy by name.
+      tags:
+        - Policies
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: policyName
+          in: path
+          required: true
+          description: The policy name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Policy deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /json/realms/root/realms/{realm}/resourcetypes:
+    get:
+      operationId: listResourceTypes
+      summary: List resource types
+      description: Query resource types used in authorization policies.
+      tags:
+        - Resource Types
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _queryFilter
+          in: query
+          description: CREST query filter
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of resource types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeList'
+    post:
+      operationId: createResourceType
+      summary: Create a resource type
+      description: Create a new resource type for use in authorization policies.
+      tags:
+        - Resource Types
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceType'
+      responses:
+        '201':
+          description: Resource type created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+
+  /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}:
+    get:
+      operationId: getResourceType
+      summary: Get a resource type
+      description: Retrieve a specific resource type by its UUID.
+      tags:
+        - Resource Types
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: resourceTypeId
+          in: path
+          required: true
+          description: The resource type UUID
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: The resource type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+        '404':
+          description: Resource type not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateResourceType
+      summary: Update a resource type
+      description: Replace an existing resource type.
+      tags:
+        - Resource Types
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: resourceTypeId
+          in: path
+          required: true
+          description: The resource type UUID
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceType'
+      responses:
+        '200':
+          description: Resource type updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+    delete:
+      operationId: deleteResourceType
+      summary: Delete a resource type
+      description: Delete a resource type by UUID.
+      tags:
+        - Resource Types
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: resourceTypeId
+          in: path
+          required: true
+          description: The resource type UUID
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Resource type deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+
+  /json/global-config/realms:
+    get:
+      operationId: listRealms
+      summary: List realms
+      description: Query all configured realms in the AM deployment.
+      tags:
+        - Realms
+      parameters:
+        - name: _queryFilter
+          in: query
+          description: CREST query filter for realms
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of realms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RealmList'
+    post:
+      operationId: createRealm
+      summary: Create a realm
+      description: Create a new realm in the AM deployment.
+      tags:
+        - Realms
+      parameters:
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realm'
+      responses:
+        '201':
+          description: Realm created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+
+  /json/global-config/realms/{realmName}:
+    get:
+      operationId: getRealm
+      summary: Get a realm
+      description: Retrieve configuration for a specific realm.
+      tags:
+        - Realms
+      parameters:
+        - name: realmName
+          in: path
+          required: true
+          description: The realm name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Realm configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+        '404':
+          description: Realm not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateRealm
+      summary: Update a realm
+      description: Update configuration for an existing realm.
+      tags:
+        - Realms
+      parameters:
+        - name: realmName
+          in: path
+          required: true
+          description: The realm name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realm'
+      responses:
+        '200':
+          description: Realm updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+    delete:
+      operationId: deleteRealm
+      summary: Delete a realm
+      description: Delete a realm from the AM deployment.
+      tags:
+        - Realms
+      parameters:
+        - name: realmName
+          in: path
+          required: true
+          description: The realm name
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Realm deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+
+  /json/realms/root/realms/{realm}/scripts:
+    get:
+      operationId: listScripts
+      summary: List scripts
+      description: Query scripts configured in the specified realm.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: _queryFilter
+          in: query
+          description: CREST query filter
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of scripts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptList'
+
+  /json/realms/root/realms/{realm}/scripts/{scriptId}:
+    get:
+      operationId: getScript
+      summary: Get a script
+      description: Retrieve a specific script by its UUID.
+      tags:
+        - Scripts
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: scriptId
+          in: path
+          required: true
+          description: The script UUID
+          schema:
+            type: string
+            format: uuid
+        - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: The script
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '404':
+          description: Script not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /oauth2/realms/root/realms/{realm}/authorize:
+    get:
+      operationId: oAuth2Authorize
+      summary: OAuth 2.0 authorization endpoint
+      description: >-
+        Initiates an OAuth 2.0 authorization code or implicit grant flow.
+        Redirects the user agent to authenticate and consent.
+      tags:
+        - OAuth2
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: response_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - code
+              - token
+              - id_token
+        - name: redirect_uri
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+        - name: scope
+          in: query
+          schema:
+            type: string
+        - name: state
+          in: query
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to login or consent
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+
+  /oauth2/realms/root/realms/{realm}/access_token:
+    post:
+      operationId: oAuth2Token
+      summary: OAuth 2.0 token endpoint
+      description: >-
+        Exchange credentials for access tokens. Supports authorization_code,
+        client_credentials, refresh_token, password, and device_code grants.
+      tags:
+        - OAuth2
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                    - authorization_code
+                    - client_credentials
+                    - refresh_token
+                    - password
+                code:
+                  type: string
+                redirect_uri:
+                  type: string
+                refresh_token:
+                  type: string
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: Access token response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid grant
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+
+  /oauth2/realms/root/realms/{realm}/tokeninfo:
+    get:
+      operationId: oAuth2TokenInfo
+      summary: OAuth 2.0 token introspection
+      description: >-
+        Retrieve information about an access token including its scope,
+        expiration, and associated client.
+      tags:
+        - OAuth2
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+        - name: access_token
+          in: query
+          required: true
+          description: The access token to introspect
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Token information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+
+  /oauth2/realms/root/realms/{realm}/userinfo:
+    get:
+      operationId: oidcUserInfo
+      summary: OpenID Connect UserInfo endpoint
+      description: >-
+        Returns claims about the authenticated end-user. Requires a valid
+        access token with the openid scope.
+      tags:
+        - OpenID Connect
+      parameters:
+        - $ref: '#/components/parameters/RealmPath'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User info claims
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfo'
+        '401':
+          description: Invalid or missing access token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthError'
+
+  /.well-known/openid-configuration:
+    get:
+      operationId: oidcDiscovery
+      summary: OpenID Connect discovery
+      description: >-
+        Returns the OpenID Connect Provider configuration metadata, including
+        supported endpoints, scopes, claims, and signing algorithms.
+      tags:
+        - OpenID Connect
+      responses:
+        '200':
+          description: OpenID Connect configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OIDCConfiguration'
+
+components:
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token
+
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+
+  schemas:
+    AuthenticationCallbackRequest:
+      type: object
+      description: Authentication callback response from client
+      properties:
+        authId:
+          type: string
+          description: Authentication session identifier
+        callbacks:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              output:
+                type: array
+                items:
+                  type: object
+              input:
+                type: array
+                items:
+                  type: object
+
+    AuthenticationResponse:
+      type: object
+      description: Authentication step or success result
+      properties:
+        authId:
+          type: string
+        tokenId:
+          type: string
+          description: SSO token on successful authentication
+        successUrl:
+          type: string
+        realm:
+          type: string
+        callbacks:
+          type: array
+          items:
+            type: object
+
+    SessionQueryResult:
+      type: object
+      description: Session query results
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionInfo'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    SessionInfo:
+      type: object
+      description: Session information
+      properties:
+        username:
+          type: string
+        universalId:
+          type: string
+        realm:
+          type: string
+        latestAccessTime:
+          type: string
+          format: date-time
+        maxIdleExpirationTime:
+          type: string
+          format: date-time
+        maxSessionExpirationTime:
+          type: string
+          format: date-time
+
+    SessionActionResult:
+      type: object
+      description: Result of a session action
+      properties:
+        valid:
+          type: boolean
+          description: Whether the session is valid (for validate action)
+        uid:
+          type: string
+        realm:
+          type: string
+
+    Policy:
+      type: object
+      description: An authorization policy
+      properties:
+        name:
+          type: string
+          description: Policy name
+        active:
+          type: boolean
+          description: Whether the policy is active
+        description:
+          type: string
+        applicationName:
+          type: string
+          description: The policy set this policy belongs to
+        actionValues:
+          type: object
+          description: Action-value pairs
+          additionalProperties:
+            type: boolean
+        resources:
+          type: array
+          description: Resources this policy applies to
+          items:
+            type: string
+        subject:
+          type: object
+          description: Subject conditions
+        condition:
+          type: object
+          description: Environment conditions
+        resourceTypeUuid:
+          type: string
+          description: UUID of the resource type
+
+    PolicyList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    PolicyEvaluationRequest:
+      type: object
+      description: Policy evaluation request
+      properties:
+        resources:
+          type: array
+          items:
+            type: string
+          description: Resources to evaluate
+        application:
+          type: string
+          description: Policy set name
+        subject:
+          type: object
+          description: Subject for evaluation
+          properties:
+            ssoToken:
+              type: string
+            claims:
+              type: object
+        environment:
+          type: object
+          description: Environment conditions
+          additionalProperties:
+            type: array
+            items:
+              type: string
+
+    PolicyDecision:
+      type: object
+      description: Authorization decision for a resource
+      properties:
+        resource:
+          type: string
+        actions:
+          type: object
+          additionalProperties:
+            type: boolean
+        attributes:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        advices:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+
+    ResourceType:
+      type: object
+      description: A resource type definition
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        patterns:
+          type: array
+          items:
+            type: string
+          description: URL patterns for this resource type
+        actions:
+          type: object
+          description: Available actions and their default values
+          additionalProperties:
+            type: boolean
+
+    ResourceTypeList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+        resultCount:
+          type: integer
+
+    Realm:
+      type: object
+      description: An AM realm configuration
+      properties:
+        name:
+          type: string
+          description: Realm name
+        parentPath:
+          type: string
+          description: Parent realm path
+        active:
+          type: boolean
+          description: Whether the realm is active
+        aliases:
+          type: array
+          items:
+            type: string
+          description: DNS aliases for the realm
+
+    RealmList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Realm'
+        resultCount:
+          type: integer
+
+    Script:
+      type: object
+      description: An AM script
+      properties:
+        _id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        script:
+          type: string
+          description: Base64-encoded script content
+        language:
+          type: string
+          enum:
+            - JAVASCRIPT
+            - GROOVY
+        context:
+          type: string
+          description: The script context type
+          enum:
+            - AUTHENTICATION_TREE_DECISION_NODE
+            - POLICY_CONDITION
+            - OIDC_CLAIMS
+            - SOCIAL_IDP_PROFILE_TRANSFORMATION
+        createdBy:
+          type: string
+        creationDate:
+          type: integer
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: integer
+
+    ScriptList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+        resultCount:
+          type: integer
+
+    TokenResponse:
+      type: object
+      description: OAuth 2.0 token response
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+        id_token:
+          type: string
+
+    TokenInfo:
+      type: object
+      description: Token introspection result
+      properties:
+        access_token:
+          type: string
+        grant_type:
+          type: string
+        scope:
+          type: array
+          items:
+            type: string
+        realm:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        client_id:
+          type: string
+
+    UserInfo:
+      type: object
+      description: OpenID Connect UserInfo claims
+      properties:
+        sub:
+          type: string
+          description: Subject identifier
+        name:
+          type: string
+        given_name:
+          type: string
+        family_name:
+          type: string
+        email:
+          type: string
+          format: email
+        email_verified:
+          type: boolean
+        phone_number:
+          type: string
+        address:
+          type: object
+          properties:
+            formatted:
+              type: string
+
+    OIDCConfiguration:
+      type: object
+      description: OpenID Connect discovery metadata
+      properties:
+        issuer:
+          type: string
+          format: uri
+        authorization_endpoint:
+          type: string
+          format: uri
+        token_endpoint:
+          type: string
+          format: uri
+        userinfo_endpoint:
+          type: string
+          format: uri
+        jwks_uri:
+          type: string
+          format: uri
+        registration_endpoint:
+          type: string
+          format: uri
+        scopes_supported:
+          type: array
+          items:
+            type: string
+        response_types_supported:
+          type: array
+          items:
+            type: string
+        grant_types_supported:
+          type: array
+          items:
+            type: string
+        subject_types_supported:
+          type: array
+          items:
+            type: string
+        id_token_signing_alg_values_supported:
+          type: array
+          items:
+            type: string
+        token_endpoint_auth_methods_supported:
+          type: array
+          items:
+            type: string
+        claims_supported:
+          type: array
+          items:
+            type: string
+
+    OAuthError:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
+
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string

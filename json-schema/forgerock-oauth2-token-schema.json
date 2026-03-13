@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/oauth2-token",
+  "title": "ForgeRock OAuth 2.0 Token Response",
+  "description": "An OAuth 2.0 token response from the ForgeRock Access Management token endpoint. Conforms to RFC 6749 and OpenID Connect Core specifications.",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The access token issued by the authorization server"
+    },
+    "token_type": {
+      "type": "string",
+      "description": "The type of token issued (typically Bearer)",
+      "enum": ["Bearer"]
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Lifetime of the access token in seconds",
+      "minimum": 0
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Refresh token that can be used to obtain new access tokens"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Space-delimited list of scopes granted to the access token"
+    },
+    "id_token": {
+      "type": "string",
+      "description": "OpenID Connect ID token (JWT) when openid scope is requested"
+    }
+  },
+  "required": ["access_token", "token_type", "expires_in"]
+}

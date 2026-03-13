@@ -1,0 +1,1292 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Identity Management API
+  description: >-
+    REST API for ForgeRock Identity Management (IDM) providing CRUD operations
+    on managed objects and identity lifecycle management. Supports provisioning,
+    synchronization, reconciliation, workflow-driven identity operations, and
+    configuration management through the /openidm context path.
+  version: 7.4.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: identity-management
+
+servers:
+  - url: https://{deployment}/openidm
+    description: ForgeRock Identity Management server
+    variables:
+      deployment:
+        default: idm.example.com
+        description: The IDM deployment hostname
+
+security:
+  - bearerAuth: []
+  - basicAuth: []
+
+tags:
+  - name: Managed Objects
+    description: CRUD operations on managed identity objects
+  - name: System Objects
+    description: Access objects in connected remote systems
+  - name: Configuration
+    description: Read and update IDM configuration
+  - name: Reconciliation
+    description: Trigger and manage reconciliation operations
+  - name: Synchronization
+    description: Trigger on-demand synchronization
+  - name: Audit
+    description: Access audit log records
+  - name: Scheduler
+    description: Manage scheduled tasks and jobs
+  - name: Workflow
+    description: Manage BPMN workflow processes and tasks
+
+paths:
+  /managed/{objectType}:
+    get:
+      operationId: listManagedObjects
+      summary: List managed objects
+      description: >-
+        Query managed objects of the specified type. Supports CREST query
+        filters, pagination, sorting, and field selection.
+      tags:
+        - Managed Objects
+      parameters:
+        - $ref: '#/components/parameters/ObjectType'
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/SortKeys'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createManagedObject
+      summary: Create a managed object
+      description: >-
+        Create a new managed object of the specified type. The server assigns
+        the _id if not provided via the _action=create query parameter.
+      tags:
+        - Managed Objects
+      parameters:
+        - $ref: '#/components/parameters/ObjectType'
+        - name: _action
+          in: query
+          description: Must be set to create for server-assigned IDs
+          schema:
+            type: string
+            enum:
+              - create
+      requestBody:
+        required: true
+        description: The managed object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedObject'
+      responses:
+        '201':
+          description: Object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '400':
+          description: Invalid object data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Object already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /managed/{objectType}/{objectId}:
+    get:
+      operationId: getManagedObject
+      summary: Get a managed object
+      description: Retrieve a specific managed object by type and identifier.
+      tags:
+        - Managed Objects
+      parameters:
+        - $ref: '#/components/parameters/ObjectType'
+        - $ref: '#/components/parameters/ObjectId'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The managed object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateManagedObject
+      summary: Replace a managed object
+      description: >-
+        Replace an entire managed object or create one with a client-assigned
+        identifier.
+      tags:
+        - Managed Objects
+      parameters:
+        - $ref: '#/components/parameters/ObjectType'
+        - $ref: '#/components/parameters/ObjectId'
+        - name: If-Match
+          in: header
+          description: Revision for optimistic concurrency control
+          schema:
+            type: string
+            default: '*'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedObject'
+      responses:
+        '200':
+          description: Object updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '201':
+          description: Object created with client-assigned ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '412':
+          description: Revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchManagedObject
+      summary: Patch a managed object
+      description: >-
+        Partially update a managed object using JSON Patch operations (add,
+        remove, replace, increment).
+      tags:
+        - Managed Objects
+      parameters:
+        - $ref: '#/components/parameters/ObjectType'
+        - $ref: '#/components/parameters/ObjectId'
+        - name: If-Match
+          in: header
+          description: Revision for optimistic concurrency control
+          schema:
+            type: string
+            default: '*'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Object patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteManagedObject
+      summary: Delete a managed object
+      description: Delete a managed object by type and identifier.
+      tags:
+        - Managed Objects
+      parameters:
+        - $ref: '#/components/parameters/ObjectType'
+        - $ref: '#/components/parameters/ObjectId'
+        - name: If-Match
+          in: header
+          description: Revision for optimistic concurrency control
+          schema:
+            type: string
+            default: '*'
+      responses:
+        '200':
+          description: Object deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /system/{systemName}/{objectType}:
+    get:
+      operationId: listSystemObjects
+      summary: List system objects
+      description: >-
+        Query objects from a connected remote system (connector). The system
+        name and object type correspond to the connector configuration and
+        its object types.
+      tags:
+        - System Objects
+      parameters:
+        - name: systemName
+          in: path
+          required: true
+          description: Name of the connected system
+          schema:
+            type: string
+        - name: objectType
+          in: path
+          required: true
+          description: Object type in the connected system (e.g., account, group)
+          schema:
+            type: string
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Query results from the remote system
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '404':
+          description: System or object type not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /system/{systemName}/{objectType}/{objectId}:
+    get:
+      operationId: getSystemObject
+      summary: Get a system object
+      description: Retrieve a specific object from a connected remote system.
+      tags:
+        - System Objects
+      parameters:
+        - name: systemName
+          in: path
+          required: true
+          description: Name of the connected system
+          schema:
+            type: string
+        - name: objectType
+          in: path
+          required: true
+          description: Object type in the connected system
+          schema:
+            type: string
+        - name: objectId
+          in: path
+          required: true
+          description: Object identifier in the remote system
+          schema:
+            type: string
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The system object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /config:
+    get:
+      operationId: listConfigurations
+      summary: List configuration objects
+      description: >-
+        List all IDM configuration objects stored in the repository.
+      tags:
+        - Configuration
+      responses:
+        '200':
+          description: List of configuration object identifiers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  configurations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        pid:
+                          type: string
+                        factoryPid:
+                          type: string
+
+  /config/{configId}:
+    get:
+      operationId: getConfiguration
+      summary: Get a configuration object
+      description: >-
+        Retrieve a specific configuration object by its identifier
+        (e.g., managed, sync, router, audit).
+      tags:
+        - Configuration
+      parameters:
+        - name: configId
+          in: path
+          required: true
+          description: Configuration object identifier (e.g., managed, sync, audit)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The configuration object
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: Configuration not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateConfiguration
+      summary: Update a configuration object
+      description: Replace an entire configuration object.
+      tags:
+        - Configuration
+      parameters:
+        - name: configId
+          in: path
+          required: true
+          description: Configuration object identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Configuration updated
+          content:
+            application/json:
+              schema:
+                type: object
+    delete:
+      operationId: deleteConfiguration
+      summary: Delete a configuration object
+      description: Delete a configuration object by identifier.
+      tags:
+        - Configuration
+      parameters:
+        - name: configId
+          in: path
+          required: true
+          description: Configuration object identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Configuration deleted
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /recon/{mappingName}:
+    post:
+      operationId: triggerReconciliation
+      summary: Trigger reconciliation
+      description: >-
+        Trigger a reconciliation operation for the specified mapping. The
+        mapping defines the source and target systems and the synchronization
+        rules.
+      tags:
+        - Reconciliation
+      parameters:
+        - name: mappingName
+          in: path
+          required: true
+          description: The sync mapping name (e.g., systemLdapAccounts_managedUser)
+          schema:
+            type: string
+        - name: _action
+          in: query
+          required: true
+          description: Must be recon
+          schema:
+            type: string
+            enum:
+              - recon
+      responses:
+        '200':
+          description: Reconciliation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationResult'
+        '404':
+          description: Mapping not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /recon:
+    get:
+      operationId: listReconciliations
+      summary: List reconciliation runs
+      description: >-
+        Query reconciliation run records. Returns details about past and
+        in-progress reconciliation operations.
+      tags:
+        - Reconciliation
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/SortKeys'
+      responses:
+        '200':
+          description: List of reconciliation records
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationList'
+
+  /recon/{reconId}:
+    get:
+      operationId: getReconciliation
+      summary: Get reconciliation details
+      description: Retrieve details about a specific reconciliation run.
+      tags:
+        - Reconciliation
+      parameters:
+        - name: reconId
+          in: path
+          required: true
+          description: The reconciliation run identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reconciliation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReconciliationResult'
+        '404':
+          description: Reconciliation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /sync:
+    post:
+      operationId: triggerSync
+      summary: Trigger on-demand synchronization
+      description: >-
+        Trigger a synchronization action for a specific object change. Useful
+        for performing immediate sync of individual objects.
+      tags:
+        - Synchronization
+      parameters:
+        - name: _action
+          in: query
+          required: true
+          description: Must be performAction
+          schema:
+            type: string
+            enum:
+              - performAction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: The sync action to perform
+                  enum:
+                    - CREATE
+                    - UPDATE
+                    - DELETE
+                    - LINK
+                    - UNLINK
+                mapping:
+                  type: string
+                  description: The mapping name
+                sourceId:
+                  type: string
+                  description: The source object identifier
+      responses:
+        '200':
+          description: Sync action performed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  action:
+                    type: string
+
+  /audit/{auditTopic}:
+    get:
+      operationId: queryAuditLogs
+      summary: Query audit log entries
+      description: >-
+        Query audit log records for the specified topic (e.g., access,
+        activity, authentication, config, recon, sync).
+      tags:
+        - Audit
+      parameters:
+        - name: auditTopic
+          in: path
+          required: true
+          description: The audit topic to query
+          schema:
+            type: string
+            enum:
+              - access
+              - activity
+              - authentication
+              - config
+              - recon
+              - sync
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/SortKeys'
+      responses:
+        '200':
+          description: Audit log entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditQueryResult'
+
+  /audit/{auditTopic}/{auditId}:
+    get:
+      operationId: getAuditLogEntry
+      summary: Get an audit log entry
+      description: Retrieve a specific audit log entry by topic and identifier.
+      tags:
+        - Audit
+      parameters:
+        - name: auditTopic
+          in: path
+          required: true
+          description: The audit topic
+          schema:
+            type: string
+        - name: auditId
+          in: path
+          required: true
+          description: The audit entry identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The audit entry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditEntry'
+        '404':
+          description: Audit entry not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /scheduler/job:
+    get:
+      operationId: listScheduledJobs
+      summary: List scheduled jobs
+      description: Query all configured scheduled jobs.
+      tags:
+        - Scheduler
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of scheduled jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJobList'
+    post:
+      operationId: createScheduledJob
+      summary: Create a scheduled job
+      description: Create a new scheduled job with a cron expression or interval.
+      tags:
+        - Scheduler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchedulerJob'
+      responses:
+        '201':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+
+  /scheduler/job/{jobId}:
+    get:
+      operationId: getScheduledJob
+      summary: Get a scheduled job
+      description: Retrieve a specific scheduled job configuration.
+      tags:
+        - Scheduler
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: The job identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The scheduled job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateScheduledJob
+      summary: Update a scheduled job
+      description: Replace a scheduled job configuration.
+      tags:
+        - Scheduler
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: The job identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchedulerJob'
+      responses:
+        '200':
+          description: Job updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+    delete:
+      operationId: deleteScheduledJob
+      summary: Delete a scheduled job
+      description: Delete a scheduled job by identifier.
+      tags:
+        - Scheduler
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: The job identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+
+  /workflow/processdefinition:
+    get:
+      operationId: listProcessDefinitions
+      summary: List workflow process definitions
+      description: >-
+        Query available BPMN workflow process definitions deployed to IDM.
+      tags:
+        - Workflow
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of process definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessDefinitionList'
+
+  /workflow/processinstance:
+    get:
+      operationId: listProcessInstances
+      summary: List workflow process instances
+      description: Query active workflow process instances.
+      tags:
+        - Workflow
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of process instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessInstanceList'
+    post:
+      operationId: createProcessInstance
+      summary: Start a workflow process
+      description: >-
+        Start a new workflow process instance from a deployed process definition.
+      tags:
+        - Workflow
+      parameters:
+        - name: _action
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _key:
+                  type: string
+                  description: Process definition key
+                variables:
+                  type: object
+                  description: Process variables
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Process instance started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessInstance'
+
+  /workflow/taskinstance:
+    get:
+      operationId: listTaskInstances
+      summary: List workflow task instances
+      description: Query active user tasks from running workflow processes.
+      tags:
+        - Workflow
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of task instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInstanceList'
+
+  /workflow/taskinstance/{taskId}:
+    get:
+      operationId: getTaskInstance
+      summary: Get a task instance
+      description: Retrieve details of a specific workflow task instance.
+      tags:
+        - Workflow
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          description: The task instance identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The task instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInstance'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: completeTaskInstance
+      summary: Complete a task instance
+      description: Complete a workflow user task and provide output variables.
+      tags:
+        - Workflow
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          description: The task instance identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Task completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInstance'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token or IDM session token
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication (for internal admin access)
+
+  parameters:
+    ObjectType:
+      name: objectType
+      in: path
+      required: true
+      description: >-
+        The managed object type (e.g., user, role, assignment, organization).
+        In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
+      schema:
+        type: string
+    ObjectId:
+      name: objectId
+      in: path
+      required: true
+      description: The unique identifier of the managed object
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated fields to include in the response
+      schema:
+        type: string
+
+  schemas:
+    ManagedObject:
+      type: object
+      description: A managed identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
+
+    QueryResult:
+      type: object
+      description: CREST query result
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedObject'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResultsPolicy:
+          type: string
+        totalPagedResults:
+          type: integer
+        remainingPagedResults:
+          type: integer
+
+    ReconciliationResult:
+      type: object
+      description: Reconciliation run result
+      properties:
+        _id:
+          type: string
+          description: Reconciliation run identifier
+        state:
+          type: string
+          description: Current state
+          enum:
+            - SUCCESS
+            - FAILED
+            - ACTIVE
+            - CANCELED
+        stage:
+          type: string
+        mapping:
+          type: string
+          description: The mapping name
+        started:
+          type: string
+          format: date-time
+        ended:
+          type: string
+          format: date-time
+        progress:
+          type: object
+          properties:
+            source:
+              type: object
+              properties:
+                existing:
+                  type: object
+                  properties:
+                    processed:
+                      type: integer
+                    total:
+                      type: string
+            target:
+              type: object
+              properties:
+                existing:
+                  type: object
+                  properties:
+                    processed:
+                      type: integer
+                    total:
+                      type: string
+        situationSummary:
+          type: object
+          description: Summary of situations found during reconciliation
+          additionalProperties:
+            type: integer
+        statusSummary:
+          type: object
+          description: Summary of action outcomes
+          additionalProperties:
+            type: integer
+
+    ReconciliationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReconciliationResult'
+        resultCount:
+          type: integer
+
+    AuditEntry:
+      type: object
+      description: An audit log entry
+      properties:
+        _id:
+          type: string
+        eventName:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        transactionId:
+          type: string
+        userId:
+          type: string
+        trackingIds:
+          type: array
+          items:
+            type: string
+        runAs:
+          type: string
+        objectId:
+          type: string
+        operation:
+          type: string
+        before:
+          type: object
+        after:
+          type: object
+        changedFields:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - SUCCESS
+            - FAILURE
+
+    AuditQueryResult:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuditEntry'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    SchedulerJob:
+      type: object
+      description: A scheduled job configuration
+      properties:
+        _id:
+          type: string
+          readOnly: true
+        enabled:
+          type: boolean
+          description: Whether the job is enabled
+        type:
+          type: string
+          description: Job type
+          enum:
+            - cron
+            - simple
+        schedule:
+          type: string
+          description: Cron expression for cron-type jobs
+        misfirePolicy:
+          type: string
+          description: Policy for handling missed executions
+          enum:
+            - fireAndProceed
+            - doNothing
+        invokeService:
+          type: string
+          description: The service to invoke
+        invokeContext:
+          type: object
+          description: Context for the service invocation
+          properties:
+            action:
+              type: string
+            mapping:
+              type: string
+        invokeLogLevel:
+          type: string
+          enum:
+            - info
+            - debug
+            - trace
+
+    SchedulerJobList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerJob'
+        resultCount:
+          type: integer
+
+    ProcessDefinition:
+      type: object
+      description: A BPMN workflow process definition
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        version:
+          type: integer
+        category:
+          type: string
+        deploymentId:
+          type: string
+
+    ProcessDefinitionList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessDefinition'
+        resultCount:
+          type: integer
+
+    ProcessInstance:
+      type: object
+      description: A running workflow process instance
+      properties:
+        _id:
+          type: string
+        processDefinitionId:
+          type: string
+        businessKey:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        startUserId:
+          type: string
+        status:
+          type: string
+
+    ProcessInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessInstance'
+        resultCount:
+          type: integer
+
+    TaskInstance:
+      type: object
+      description: A workflow user task instance
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assignee:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        processDefinitionId:
+          type: string
+        processInstanceId:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
+
+    TaskInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskInstance'
+        resultCount:
+          type: integer
+
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+          - operation
+          - field
+        properties:
+          operation:
+            type: string
+            enum:
+              - add
+              - remove
+              - replace
+              - increment
+          field:
+            type: string
+          value: {}
+
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string

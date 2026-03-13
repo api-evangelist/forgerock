@@ -1,0 +1,886 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Identity Governance API
+  description: >-
+    REST API for ForgeRock Identity Governance providing access reviews,
+    certifications, role management, entitlement management, access requests,
+    and compliance workflows. Enables organizations to review and certify
+    access assignments, manage entitlements from onboarded applications,
+    and enforce compliance policies.
+  version: 7.1.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: identity-governance
+
+servers:
+  - url: https://{deployment}/iga
+    description: ForgeRock Identity Governance server
+    variables:
+      deployment:
+        default: iga.example.com
+        description: The Identity Governance deployment hostname
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Certifications
+    description: Manage access certification campaigns
+  - name: Access Reviews
+    description: Conduct and manage access review items
+  - name: Access Requests
+    description: Request and approve access to resources
+  - name: Entitlements
+    description: Manage entitlements from onboarded applications
+  - name: Roles
+    description: Manage identity governance roles
+  - name: Violations
+    description: Manage policy violations and segregation of duties
+
+paths:
+  /governance/certification:
+    get:
+      operationId: listCertifications
+      summary: List certification campaigns
+      description: >-
+        Query certification campaigns. Certifications enable authorized users
+        to review and certify access assignments to ensure compliance.
+      tags:
+        - Certifications
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/SortKeys'
+      responses:
+        '200':
+          description: List of certification campaigns
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificationList'
+        '403':
+          description: Insufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createCertification
+      summary: Create a certification campaign
+      description: >-
+        Create a new access certification campaign. Supports identity
+        certification, role definition certification, and role membership
+        certification types.
+      tags:
+        - Certifications
+      requestBody:
+        required: true
+        description: Certification campaign definition
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Certification'
+      responses:
+        '201':
+          description: Certification campaign created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certification'
+        '400':
+          description: Invalid certification configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /governance/certification/{certificationId}:
+    get:
+      operationId: getCertification
+      summary: Get a certification campaign
+      description: Retrieve details of a specific certification campaign.
+      tags:
+        - Certifications
+      parameters:
+        - $ref: '#/components/parameters/CertificationId'
+      responses:
+        '200':
+          description: Certification campaign details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certification'
+        '404':
+          description: Certification not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchCertification
+      summary: Update a certification campaign
+      description: Partially update a certification campaign (e.g., close or cancel it).
+      tags:
+        - Certifications
+      parameters:
+        - $ref: '#/components/parameters/CertificationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Certification updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certification'
+
+  /governance/certification/{certificationId}/items:
+    get:
+      operationId: listCertificationItems
+      summary: List certification items
+      description: >-
+        List individual review items within a certification campaign. Each
+        item represents a user-entitlement assignment to be reviewed.
+      tags:
+        - Access Reviews
+      parameters:
+        - $ref: '#/components/parameters/CertificationId'
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+      responses:
+        '200':
+          description: List of certification review items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificationItemList'
+
+  /governance/certification/{certificationId}/items/{itemId}:
+    get:
+      operationId: getCertificationItem
+      summary: Get a certification item
+      description: Retrieve details of a specific certification review item.
+      tags:
+        - Access Reviews
+      parameters:
+        - $ref: '#/components/parameters/CertificationId'
+        - name: itemId
+          in: path
+          required: true
+          description: The certification item identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Certification item details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificationItem'
+        '404':
+          description: Item not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: reviewCertificationItem
+      summary: Review a certification item
+      description: >-
+        Submit a review decision for a certification item. Decisions include
+        certify (approve), revoke, or exception.
+      tags:
+        - Access Reviews
+      parameters:
+        - $ref: '#/components/parameters/CertificationId'
+        - name: itemId
+          in: path
+          required: true
+          description: The certification item identifier
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                decision:
+                  type: string
+                  description: Review decision
+                  enum:
+                    - certify
+                    - revoke
+                    - exception
+                    - abstain
+                comment:
+                  type: string
+                  description: Reviewer comment
+                exceptionDuration:
+                  type: string
+                  description: Duration for exception (ISO 8601 period)
+      responses:
+        '200':
+          description: Review submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificationItem'
+
+  /governance/request:
+    get:
+      operationId: listAccessRequests
+      summary: List access requests
+      description: >-
+        Query access requests. Users can request access to applications,
+        entitlements, or roles, and managers can request revocation.
+      tags:
+        - Access Requests
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/SortKeys'
+      responses:
+        '200':
+          description: List of access requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequestList'
+    post:
+      operationId: createAccessRequest
+      summary: Create an access request
+      description: >-
+        Submit a new access request for a user to gain access to a
+        resource (application, entitlement, or role).
+      tags:
+        - Access Requests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccessRequest'
+      responses:
+        '201':
+          description: Access request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequest'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /governance/request/{requestId}:
+    get:
+      operationId: getAccessRequest
+      summary: Get an access request
+      description: Retrieve details of a specific access request.
+      tags:
+        - Access Requests
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          description: The access request identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Access request details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequest'
+        '404':
+          description: Request not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: accessRequestAction
+      summary: Perform an access request action
+      description: >-
+        Approve, deny, or cancel an access request via the _action query
+        parameter.
+      tags:
+        - Access Requests
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          description: The access request identifier
+          schema:
+            type: string
+        - name: _action
+          in: query
+          required: true
+          description: The action to perform
+          schema:
+            type: string
+            enum:
+              - approve
+              - deny
+              - cancel
+      requestBody:
+        description: Action details
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                  description: Approval or denial comment
+      responses:
+        '200':
+          description: Action completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessRequest'
+
+  /governance/entitlement:
+    get:
+      operationId: listEntitlements
+      summary: List entitlements
+      description: >-
+        Query the entitlements catalog. Entitlements are aggregated from
+        onboarded target applications into a centralized repository.
+      tags:
+        - Entitlements
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+        - $ref: '#/components/parameters/SortKeys'
+      responses:
+        '200':
+          description: List of entitlements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntitlementList'
+
+  /governance/entitlement/{entitlementId}:
+    get:
+      operationId: getEntitlement
+      summary: Get an entitlement
+      description: Retrieve details of a specific entitlement.
+      tags:
+        - Entitlements
+      parameters:
+        - name: entitlementId
+          in: path
+          required: true
+          description: The entitlement identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Entitlement details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Entitlement'
+        '404':
+          description: Entitlement not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /governance/role:
+    get:
+      operationId: listGovernanceRoles
+      summary: List governance roles
+      description: Query governance roles used in access policies and certifications.
+      tags:
+        - Roles
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+      responses:
+        '200':
+          description: List of governance roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GovernanceRoleList'
+
+  /governance/violation:
+    get:
+      operationId: listViolations
+      summary: List policy violations
+      description: >-
+        Query segregation of duties (SoD) and compliance policy violations.
+      tags:
+        - Violations
+      parameters:
+        - $ref: '#/components/parameters/QueryFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PagedResultsOffset'
+      responses:
+        '200':
+          description: List of violations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViolationList'
+
+  /governance/violation/{violationId}:
+    get:
+      operationId: getViolation
+      summary: Get a policy violation
+      description: Retrieve details of a specific policy violation.
+      tags:
+        - Violations
+      parameters:
+        - name: violationId
+          in: path
+          required: true
+          description: The violation identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Violation details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Violation'
+        '404':
+          description: Violation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: violationAction
+      summary: Resolve a policy violation
+      description: >-
+        Perform an action on a violation such as remediate, allow (exception),
+        or escalate.
+      tags:
+        - Violations
+      parameters:
+        - name: violationId
+          in: path
+          required: true
+          description: The violation identifier
+          schema:
+            type: string
+        - name: _action
+          in: query
+          required: true
+          description: The action to perform
+          schema:
+            type: string
+            enum:
+              - remediate
+              - allow
+              - escalate
+      requestBody:
+        description: Action details
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                exceptionDuration:
+                  type: string
+      responses:
+        '200':
+          description: Violation action completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Violation'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token with governance scopes
+
+  parameters:
+    CertificationId:
+      name: certificationId
+      in: path
+      required: true
+      description: The certification campaign identifier
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
+
+  schemas:
+    Certification:
+      type: object
+      description: An access certification campaign
+      properties:
+        _id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Campaign name
+        description:
+          type: string
+          description: Campaign description
+        type:
+          type: string
+          description: Certification type
+          enum:
+            - identity
+            - roleDefinition
+            - roleMembership
+            - entitlementOwner
+        status:
+          type: string
+          description: Campaign status
+          enum:
+            - draft
+            - active
+            - closed
+            - expired
+            - cancelled
+        stages:
+          type: array
+          description: Review stages with deadlines and reviewers
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              deadline:
+                type: string
+                format: date-time
+              reviewers:
+                type: array
+                items:
+                  type: string
+        entitlementFilter:
+          type: object
+          description: Filter to select which entitlements to include
+        createdDate:
+          type: string
+          format: date-time
+          readOnly: true
+        closedDate:
+          type: string
+          format: date-time
+          readOnly: true
+
+    CertificationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certification'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    CertificationItem:
+      type: object
+      description: An individual item within a certification campaign
+      properties:
+        _id:
+          type: string
+        userId:
+          type: string
+          description: User being reviewed
+        userName:
+          type: string
+        entitlementName:
+          type: string
+          description: Entitlement under review
+        applicationName:
+          type: string
+          description: Application the entitlement belongs to
+        decision:
+          type: string
+          description: Current review decision
+          enum:
+            - certify
+            - revoke
+            - exception
+            - abstain
+            - pending
+        comment:
+          type: string
+        reviewer:
+          type: string
+          description: Assigned reviewer
+        reviewDate:
+          type: string
+          format: date-time
+
+    CertificationItemList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertificationItem'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    AccessRequest:
+      type: object
+      description: An access request
+      properties:
+        _id:
+          type: string
+          readOnly: true
+        requestType:
+          type: string
+          description: Type of request
+          enum:
+            - grant
+            - revoke
+        userId:
+          type: string
+          description: User requesting or being requested for
+        resourceType:
+          type: string
+          description: Type of resource requested
+          enum:
+            - application
+            - entitlement
+            - role
+        resourceId:
+          type: string
+          description: Identifier of the requested resource
+        justification:
+          type: string
+          description: Business justification
+        status:
+          type: string
+          description: Request status
+          enum:
+            - pending
+            - approved
+            - denied
+            - cancelled
+            - fulfilled
+            - failed
+        approver:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+          readOnly: true
+
+    AccessRequestList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessRequest'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    Entitlement:
+      type: object
+      description: An entitlement from an onboarded application
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+          description: Entitlement name
+        description:
+          type: string
+        applicationName:
+          type: string
+          description: Source application
+        applicationId:
+          type: string
+        type:
+          type: string
+          description: Entitlement type (e.g., group, permission, role)
+        owner:
+          type: string
+          description: Entitlement owner
+        riskLevel:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - critical
+
+    EntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entitlement'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    GovernanceRole:
+      type: object
+      description: A governance role
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        owner:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+        entitlements:
+          type: array
+          items:
+            type: string
+
+    GovernanceRoleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/GovernanceRole'
+        resultCount:
+          type: integer
+
+    Violation:
+      type: object
+      description: A segregation of duties or compliance policy violation
+      properties:
+        _id:
+          type: string
+        policyName:
+          type: string
+          description: Name of the violated policy
+        userId:
+          type: string
+          description: User in violation
+        userName:
+          type: string
+        conflictingEntitlements:
+          type: array
+          description: Entitlements that conflict
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+            - active
+            - remediated
+            - exception
+        severity:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - critical
+        detectedDate:
+          type: string
+          format: date-time
+
+    ViolationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Violation'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+
+    PatchOperations:
+      type: array
+      items:
+        type: object
+        required:
+          - operation
+          - field
+        properties:
+          operation:
+            type: string
+            enum:
+              - add
+              - remove
+              - replace
+          field:
+            type: string
+          value: {}
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string

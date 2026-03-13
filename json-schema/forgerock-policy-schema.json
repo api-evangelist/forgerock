@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/policy",
+  "title": "ForgeRock Authorization Policy",
+  "description": "An authorization policy in ForgeRock Access Management that defines access control rules for resources. Policies specify which subjects can perform which actions on which resources under what conditions.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique policy name within the policy set"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the policy is currently active and enforced",
+      "default": true
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the policy"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "The policy set (application) this policy belongs to"
+    },
+    "actionValues": {
+      "type": "object",
+      "description": "Map of action names to their allowed/denied values",
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "examples": [
+        {
+          "GET": true,
+          "POST": true,
+          "DELETE": false
+        }
+      ]
+    },
+    "resources": {
+      "type": "array",
+      "description": "Resource patterns this policy applies to (may include wildcards)",
+      "items": {
+        "type": "string"
+      },
+      "examples": [
+        ["https://api.example.com/resource/*"]
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "description": "Subject condition defining who this policy applies to",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Subject condition type",
+          "enum": [
+            "Identity",
+            "AuthenticatedUsers",
+            "JwtClaim",
+            "AND",
+            "OR",
+            "NOT",
+            "NONE"
+          ]
+        },
+        "subjectValues": {
+          "type": "array",
+          "description": "Values for the subject condition (e.g., user/group IDs)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "condition": {
+      "type": "object",
+      "description": "Environment condition defining when this policy applies",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Condition type",
+          "enum": [
+            "AND",
+            "OR",
+            "NOT",
+            "IP",
+            "IPv4",
+            "IPv6",
+            "SimpleTime",
+            "LEAuthLevel",
+            "AuthLevel",
+            "AuthScheme",
+            "AuthenticateToService",
+            "AuthenticateToRealm",
+            "Script",
+            "OAuth2Scope",
+            "ResourceEnvIP"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "resourceTypeUuid": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUID of the resource type associated with this policy"
+    },
+    "resourceAttributes": {
+      "type": "array",
+      "description": "Response attributes to include in policy decisions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "propertyName": {
+            "type": "string"
+          },
+          "propertyValues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "User who created the policy",
+      "readOnly": true
+    },
+    "creationDate": {
+      "type": "integer",
+      "description": "Creation timestamp in milliseconds since epoch",
+      "readOnly": true
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "description": "User who last modified the policy",
+      "readOnly": true
+    },
+    "lastModifiedDate": {
+      "type": "integer",
+      "description": "Last modification timestamp in milliseconds since epoch",
+      "readOnly": true
+    }
+  },
+  "required": ["name", "resources", "applicationName", "resourceTypeUuid"]
+}

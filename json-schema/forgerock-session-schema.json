@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schema.forgerock.com/session",
+  "title": "ForgeRock Session",
+  "description": "An authenticated session in ForgeRock Access Management. Sessions are created upon successful authentication and tracked via SSO tokens (iPlanetDirectoryPro cookies).",
+  "type": "object",
+  "properties": {
+    "tokenId": {
+      "type": "string",
+      "description": "The SSO token identifier for this session"
+    },
+    "username": {
+      "type": "string",
+      "description": "Username of the session owner"
+    },
+    "universalId": {
+      "type": "string",
+      "description": "Universal identifier for the session owner (e.g., id=user,ou=user,dc=example,dc=com)"
+    },
+    "realm": {
+      "type": "string",
+      "description": "The realm in which the session was created"
+    },
+    "latestAccessTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Most recent time the session was accessed"
+    },
+    "maxIdleExpirationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time at which the session will expire due to inactivity"
+    },
+    "maxSessionExpirationTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Absolute maximum session expiration time regardless of activity"
+    },
+    "properties": {
+      "type": "object",
+      "description": "Custom session properties",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the session is currently valid"
+    },
+    "sessionType": {
+      "type": "string",
+      "description": "Type of session",
+      "enum": ["user", "stateless"]
+    }
+  },
+  "required": ["tokenId"]
+}
