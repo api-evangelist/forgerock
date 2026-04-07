@@ -29,12 +29,12 @@ security:
   - bearerAuth: []
 
 tags:
-  - name: Certifications
-    description: Manage access certification campaigns
-  - name: Access Reviews
-    description: Conduct and manage access review items
   - name: Access Requests
     description: Request and approve access to resources
+  - name: Access Reviews
+    description: Conduct and manage access review items
+  - name: Certifications
+    description: Manage access certification campaigns
   - name: Entitlements
     description: Manage entitlements from onboarded applications
   - name: Roles

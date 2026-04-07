@@ -32,17 +32,17 @@ security:
 tags:
   - name: Authentication
     description: Authenticate users through authentication trees (journeys)
-  - name: Sessions
-    description: Manage authenticated sessions
-  - name: Managed Users
-    description: CRUD operations on managed user objects
   - name: Managed Roles
     description: CRUD operations on managed role objects
+  - name: Managed Users
+    description: CRUD operations on managed user objects
   - name: OAuth2 Clients
     description: Manage OAuth 2.0 client registrations
   - name: Server Info
     description: Retrieve server information and configuration
 
+  - name: Sessions
+    description: Manage authenticated sessions
 paths:
   /am/json/realms/root/realms/{realm}/authenticate:
     post:

@@ -28,15 +28,15 @@ security:
   - bearerAuth: []
 
 tags:
-  - name: Routes
-    description: Manage IG route configurations
   - name: Monitoring
     description: Health check and monitoring endpoints
-  - name: Studio
-    description: IG Studio route design endpoints
   - name: Objects
     description: Inspect live IG configuration objects
 
+  - name: Routes
+    description: Manage IG route configurations
+  - name: Studio
+    description: IG Studio route design endpoints
 paths:
   /openig/api/system/objects:
     get:

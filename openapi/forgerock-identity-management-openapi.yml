@@ -29,20 +29,20 @@ security:
   - basicAuth: []
 
 tags:
-  - name: Managed Objects
-    description: CRUD operations on managed identity objects
-  - name: System Objects
-    description: Access objects in connected remote systems
-  - name: Configuration
-    description: Read and update IDM configuration
-  - name: Reconciliation
-    description: Trigger and manage reconciliation operations
-  - name: Synchronization
-    description: Trigger on-demand synchronization
   - name: Audit
     description: Access audit log records
+  - name: Configuration
+    description: Read and update IDM configuration
+  - name: Managed Objects
+    description: CRUD operations on managed identity objects
+  - name: Reconciliation
+    description: Trigger and manage reconciliation operations
   - name: Scheduler
     description: Manage scheduled tasks and jobs
+  - name: Synchronization
+    description: Trigger on-demand synchronization
+  - name: System Objects
+    description: Access objects in connected remote systems
   - name: Workflow
     description: Manage BPMN workflow processes and tasks
 

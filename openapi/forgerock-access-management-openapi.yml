@@ -31,23 +31,21 @@ security:
 tags:
   - name: Authentication
     description: Authenticate users via authentication trees and modules
-  - name: Sessions
-    description: Query, validate, and manage authenticated sessions
-  - name: Policies
-    description: Manage authorization policies
-  - name: Policy Sets
-    description: Manage policy sets (applications)
-  - name: Resource Types
-    description: Manage resource types for authorization
   - name: OAuth2
     description: OAuth 2.0 token and authorization endpoints
   - name: OpenID Connect
     description: OpenID Connect discovery and userinfo
+  - name: Policies
+    description: Manage authorization policies
   - name: Realms
     description: Manage AM realms
+  - name: Resource Types
+    description: Manage resource types for authorization
   - name: Scripts
     description: Manage AM scripts
 
+  - name: Sessions
+    description: Query, validate, and manage authenticated sessions
 paths:
   /json/realms/root/realms/{realm}/authenticate:
     post:

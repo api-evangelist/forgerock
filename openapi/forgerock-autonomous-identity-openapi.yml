@@ -29,19 +29,19 @@ security:
   - bearerAuth: []
 
 tags:
+  - name: Analytics
+    description: Analytics pipeline status and results
+
+  - name: Applications
+    description: Query onboarded application data
+  - name: Company View
+    description: Company-wide analytics and dashboards
   - name: Entitlements
     description: Query entitlements and confidence scores
   - name: Rules
     description: Access entitlement assignment rules and justifications
-  - name: Applications
-    description: Query onboarded application data
   - name: Users
     description: Query user entitlement data and recommendations
-  - name: Company View
-    description: Company-wide analytics and dashboards
-  - name: Analytics
-    description: Analytics pipeline status and results
-
 paths:
   /api/entitlements:
     get:
