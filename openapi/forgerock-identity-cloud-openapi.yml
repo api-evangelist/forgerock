@@ -47,7 +47,7 @@ paths:
   /am/json/realms/root/realms/{realm}/authenticate:
     post:
       operationId: authenticateUser
-      summary: Authenticate a user
+      summary: ForgeRock Authenticate a user
       description: >-
         Initiates or continues an authentication journey (tree) in the specified
         realm. Returns callbacks that the client must respond to, or a tokenId
@@ -103,7 +103,7 @@ paths:
   /am/json/realms/root/realms/{realm}/sessions:
     post:
       operationId: manageSessions
-      summary: Perform session actions
+      summary: ForgeRock Perform session actions
       description: >-
         Perform actions on sessions such as getting session info, refreshing
         idle timeout, or logging out. The action is specified via the _action
@@ -157,7 +157,7 @@ paths:
   /openidm/managed/{realm}_user:
     get:
       operationId: listManagedUsers
-      summary: List managed users
+      summary: ForgeRock List managed users
       description: >-
         Query managed user objects in the specified realm. Supports filtering,
         sorting, and pagination through query parameters.
@@ -185,7 +185,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createManagedUser
-      summary: Create a managed user
+      summary: ForgeRock Create a managed user
       description: >-
         Create a new managed user object in the specified realm. The user object
         must include required properties such as userName.
@@ -223,7 +223,7 @@ paths:
   /openidm/managed/{realm}_user/{userId}:
     get:
       operationId: getManagedUser
-      summary: Get a managed user
+      summary: ForgeRock Get a managed user
       description: >-
         Retrieve a specific managed user object by its identifier from the
         specified realm.
@@ -248,7 +248,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateManagedUser
-      summary: Replace a managed user
+      summary: ForgeRock Replace a managed user
       description: >-
         Replace an entire managed user object. The request body must contain
         the complete user representation.
@@ -291,7 +291,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     patch:
       operationId: patchManagedUser
-      summary: Patch a managed user
+      summary: ForgeRock Patch a managed user
       description: >-
         Partially update a managed user object using JSON Patch operations.
       tags:
@@ -327,7 +327,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteManagedUser
-      summary: Delete a managed user
+      summary: ForgeRock Delete a managed user
       description: >-
         Delete a managed user object from the specified realm.
       tags:
@@ -358,7 +358,7 @@ paths:
   /openidm/managed/{realm}_role:
     get:
       operationId: listManagedRoles
-      summary: List managed roles
+      summary: ForgeRock List managed roles
       description: >-
         Query managed role objects in the specified realm. Supports filtering,
         sorting, and pagination.
@@ -385,7 +385,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createManagedRole
-      summary: Create a managed role
+      summary: ForgeRock Create a managed role
       description: Create a new managed role object in the specified realm.
       tags:
         - Managed Roles
@@ -415,7 +415,7 @@ paths:
   /openidm/managed/{realm}_role/{roleId}:
     get:
       operationId: getManagedRole
-      summary: Get a managed role
+      summary: ForgeRock Get a managed role
       description: Retrieve a specific managed role object by its identifier.
       tags:
         - Managed Roles
@@ -444,7 +444,7 @@ paths:
   /am/json/realms/root/realms/{realm}/serverinfo/*:
     get:
       operationId: getServerInfo
-      summary: Get server information
+      summary: ForgeRock Get server information
       description: >-
         Retrieve server information including supported features, cookie name,
         and realm configuration.
@@ -463,7 +463,7 @@ paths:
   /am/oauth2/realms/root/realms/{realm}/authorize:
     get:
       operationId: authorizeOAuth2
-      summary: OAuth 2.0 authorization endpoint
+      summary: ForgeRock OAuth 2.0 authorization endpoint
       description: >-
         Initiates an OAuth 2.0 authorization flow. Redirects the user agent to
         the authorization server for authentication and consent.
@@ -519,7 +519,7 @@ paths:
   /am/oauth2/realms/root/realms/{realm}/access_token:
     post:
       operationId: getAccessToken
-      summary: OAuth 2.0 token endpoint
+      summary: ForgeRock OAuth 2.0 token endpoint
       description: >-
         Exchange an authorization code, refresh token, or client credentials
         for an access token.

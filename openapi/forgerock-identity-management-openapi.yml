@@ -50,7 +50,7 @@ paths:
   /managed/{objectType}:
     get:
       operationId: listManagedObjects
-      summary: List managed objects
+      summary: ForgeRock List managed objects
       description: >-
         Query managed objects of the specified type. Supports CREST query
         filters, pagination, sorting, and field selection.
@@ -78,7 +78,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createManagedObject
-      summary: Create a managed object
+      summary: ForgeRock Create a managed object
       description: >-
         Create a new managed object of the specified type. The server assigns
         the _id if not provided via the _action=create query parameter.
@@ -123,7 +123,7 @@ paths:
   /managed/{objectType}/{objectId}:
     get:
       operationId: getManagedObject
-      summary: Get a managed object
+      summary: ForgeRock Get a managed object
       description: Retrieve a specific managed object by type and identifier.
       tags:
         - Managed Objects
@@ -146,7 +146,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateManagedObject
-      summary: Replace a managed object
+      summary: ForgeRock Replace a managed object
       description: >-
         Replace an entire managed object or create one with a client-assigned
         identifier.
@@ -188,7 +188,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     patch:
       operationId: patchManagedObject
-      summary: Patch a managed object
+      summary: ForgeRock Patch a managed object
       description: >-
         Partially update a managed object using JSON Patch operations (add,
         remove, replace, increment).
@@ -224,7 +224,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deleteManagedObject
-      summary: Delete a managed object
+      summary: ForgeRock Delete a managed object
       description: Delete a managed object by type and identifier.
       tags:
         - Managed Objects
@@ -254,7 +254,7 @@ paths:
   /system/{systemName}/{objectType}:
     get:
       operationId: listSystemObjects
-      summary: List system objects
+      summary: ForgeRock List system objects
       description: >-
         Query objects from a connected remote system (connector). The system
         name and object type correspond to the connector configuration and
@@ -294,7 +294,7 @@ paths:
   /system/{systemName}/{objectType}/{objectId}:
     get:
       operationId: getSystemObject
-      summary: Get a system object
+      summary: ForgeRock Get a system object
       description: Retrieve a specific object from a connected remote system.
       tags:
         - System Objects
@@ -335,7 +335,7 @@ paths:
   /config:
     get:
       operationId: listConfigurations
-      summary: List configuration objects
+      summary: ForgeRock List configuration objects
       description: >-
         List all IDM configuration objects stored in the repository.
       tags:
@@ -363,7 +363,7 @@ paths:
   /config/{configId}:
     get:
       operationId: getConfiguration
-      summary: Get a configuration object
+      summary: ForgeRock Get a configuration object
       description: >-
         Retrieve a specific configuration object by its identifier
         (e.g., managed, sync, router, audit).
@@ -391,7 +391,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateConfiguration
-      summary: Update a configuration object
+      summary: ForgeRock Update a configuration object
       description: Replace an entire configuration object.
       tags:
         - Configuration
@@ -417,7 +417,7 @@ paths:
                 type: object
     delete:
       operationId: deleteConfiguration
-      summary: Delete a configuration object
+      summary: ForgeRock Delete a configuration object
       description: Delete a configuration object by identifier.
       tags:
         - Configuration
@@ -439,7 +439,7 @@ paths:
   /recon/{mappingName}:
     post:
       operationId: triggerReconciliation
-      summary: Trigger reconciliation
+      summary: ForgeRock Trigger reconciliation
       description: >-
         Trigger a reconciliation operation for the specified mapping. The
         mapping defines the source and target systems and the synchronization
@@ -478,7 +478,7 @@ paths:
   /recon:
     get:
       operationId: listReconciliations
-      summary: List reconciliation runs
+      summary: ForgeRock List reconciliation runs
       description: >-
         Query reconciliation run records. Returns details about past and
         in-progress reconciliation operations.
@@ -499,7 +499,7 @@ paths:
   /recon/{reconId}:
     get:
       operationId: getReconciliation
-      summary: Get reconciliation details
+      summary: ForgeRock Get reconciliation details
       description: Retrieve details about a specific reconciliation run.
       tags:
         - Reconciliation
@@ -527,7 +527,7 @@ paths:
   /sync:
     post:
       operationId: triggerSync
-      summary: Trigger on-demand synchronization
+      summary: ForgeRock Trigger on-demand synchronization
       description: >-
         Trigger a synchronization action for a specific object change. Useful
         for performing immediate sync of individual objects.
@@ -580,7 +580,7 @@ paths:
   /audit/{auditTopic}:
     get:
       operationId: queryAuditLogs
-      summary: Query audit log entries
+      summary: ForgeRock Query audit log entries
       description: >-
         Query audit log records for the specified topic (e.g., access,
         activity, authentication, config, recon, sync).
@@ -615,7 +615,7 @@ paths:
   /audit/{auditTopic}/{auditId}:
     get:
       operationId: getAuditLogEntry
-      summary: Get an audit log entry
+      summary: ForgeRock Get an audit log entry
       description: Retrieve a specific audit log entry by topic and identifier.
       tags:
         - Audit
@@ -649,7 +649,7 @@ paths:
   /scheduler/job:
     get:
       operationId: listScheduledJobs
-      summary: List scheduled jobs
+      summary: ForgeRock List scheduled jobs
       description: Query all configured scheduled jobs.
       tags:
         - Scheduler
@@ -664,7 +664,7 @@ paths:
                 $ref: '#/components/schemas/SchedulerJobList'
     post:
       operationId: createScheduledJob
-      summary: Create a scheduled job
+      summary: ForgeRock Create a scheduled job
       description: Create a new scheduled job with a cron expression or interval.
       tags:
         - Scheduler
@@ -685,7 +685,7 @@ paths:
   /scheduler/job/{jobId}:
     get:
       operationId: getScheduledJob
-      summary: Get a scheduled job
+      summary: ForgeRock Get a scheduled job
       description: Retrieve a specific scheduled job configuration.
       tags:
         - Scheduler
@@ -711,7 +711,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateScheduledJob
-      summary: Update a scheduled job
+      summary: ForgeRock Update a scheduled job
       description: Replace a scheduled job configuration.
       tags:
         - Scheduler
@@ -737,7 +737,7 @@ paths:
                 $ref: '#/components/schemas/SchedulerJob'
     delete:
       operationId: deleteScheduledJob
-      summary: Delete a scheduled job
+      summary: ForgeRock Delete a scheduled job
       description: Delete a scheduled job by identifier.
       tags:
         - Scheduler
@@ -759,7 +759,7 @@ paths:
   /workflow/processdefinition:
     get:
       operationId: listProcessDefinitions
-      summary: List workflow process definitions
+      summary: ForgeRock List workflow process definitions
       description: >-
         Query available BPMN workflow process definitions deployed to IDM.
       tags:
@@ -777,7 +777,7 @@ paths:
   /workflow/processinstance:
     get:
       operationId: listProcessInstances
-      summary: List workflow process instances
+      summary: ForgeRock List workflow process instances
       description: Query active workflow process instances.
       tags:
         - Workflow
@@ -792,7 +792,7 @@ paths:
                 $ref: '#/components/schemas/ProcessInstanceList'
     post:
       operationId: createProcessInstance
-      summary: Start a workflow process
+      summary: ForgeRock Start a workflow process
       description: >-
         Start a new workflow process instance from a deployed process definition.
       tags:
@@ -830,7 +830,7 @@ paths:
   /workflow/taskinstance:
     get:
       operationId: listTaskInstances
-      summary: List workflow task instances
+      summary: ForgeRock List workflow task instances
       description: Query active user tasks from running workflow processes.
       tags:
         - Workflow
@@ -847,7 +847,7 @@ paths:
   /workflow/taskinstance/{taskId}:
     get:
       operationId: getTaskInstance
-      summary: Get a task instance
+      summary: ForgeRock Get a task instance
       description: Retrieve details of a specific workflow task instance.
       tags:
         - Workflow
@@ -873,7 +873,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: completeTaskInstance
-      summary: Complete a task instance
+      summary: ForgeRock Complete a task instance
       description: Complete a workflow user task and provide output variables.
       tags:
         - Workflow

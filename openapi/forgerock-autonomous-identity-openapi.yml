@@ -46,7 +46,7 @@ paths:
   /api/entitlements:
     get:
       operationId: listEntitlements
-      summary: List entitlements
+      summary: ForgeRock List entitlements
       description: >-
         Query entitlements across all onboarded applications. Returns
         entitlement details with aggregated confidence score statistics.
@@ -84,7 +84,7 @@ paths:
   /api/entitlements/{entitlementId}:
     get:
       operationId: getEntitlement
-      summary: Get entitlement details
+      summary: ForgeRock Get entitlement details
       description: >-
         Retrieve detailed information about a specific entitlement including
         confidence score distribution, assigned users, and driving attributes.
@@ -114,7 +114,7 @@ paths:
   /api/entitlements/{entitlementId}/users:
     get:
       operationId: listEntitlementUsers
-      summary: List users with entitlement
+      summary: ForgeRock List users with entitlement
       description: >-
         List all users assigned to a specific entitlement with their
         individual confidence scores and driving attributes.
@@ -145,7 +145,7 @@ paths:
   /api/entitlements/{entitlementId}/recommendations:
     get:
       operationId: getEntitlementRecommendations
-      summary: Get entitlement recommendations
+      summary: ForgeRock Get entitlement recommendations
       description: >-
         Retrieve recommendations for users who do not have the entitlement
         but should, based on their attribute data and the AI model's
@@ -177,7 +177,7 @@ paths:
   /api/rules:
     get:
       operationId: listRules
-      summary: List assignment rules
+      summary: ForgeRock List assignment rules
       description: >-
         Query entitlement assignment rules derived from the AI model.
         Rules explain why specific entitlements are assigned based on
@@ -208,7 +208,7 @@ paths:
   /api/rules/{ruleId}:
     get:
       operationId: getRule
-      summary: Get a rule
+      summary: ForgeRock Get a rule
       description: Retrieve details of a specific assignment rule.
       tags:
         - Rules
@@ -236,7 +236,7 @@ paths:
   /api/applications:
     get:
       operationId: listApplications
-      summary: List applications
+      summary: ForgeRock List applications
       description: >-
         Query onboarded applications in the Autonomous Identity platform.
       tags:
@@ -255,7 +255,7 @@ paths:
   /api/applications/{applicationId}:
     get:
       operationId: getApplication
-      summary: Get an application
+      summary: ForgeRock Get an application
       description: Retrieve details of a specific onboarded application.
       tags:
         - Applications
@@ -283,7 +283,7 @@ paths:
   /api/users/{userId}/entitlements:
     get:
       operationId: listUserEntitlements
-      summary: List user entitlements
+      summary: ForgeRock List user entitlements
       description: >-
         Retrieve all entitlements assigned to a specific user with their
         confidence scores and justification data.
@@ -314,7 +314,7 @@ paths:
   /api/users/{userId}/recommendations:
     get:
       operationId: getUserRecommendations
-      summary: Get user recommendations
+      summary: ForgeRock Get user recommendations
       description: >-
         Get recommended entitlements for a user based on their attributes
         and the AI model's predictions.
@@ -340,7 +340,7 @@ paths:
   /api/companyview:
     get:
       operationId: getCompanyView
-      summary: Get company view analytics
+      summary: ForgeRock Get company view analytics
       description: >-
         Retrieve company-wide analytics including confidence score
         distributions, entitlement statistics, and risk metrics
@@ -358,7 +358,7 @@ paths:
   /api/analytics/status:
     get:
       operationId: getAnalyticsStatus
-      summary: Get analytics pipeline status
+      summary: ForgeRock Get analytics pipeline status
       description: >-
         Retrieve the current status of the analytics pipeline, including
         training status, last run time, and pipeline health.
@@ -375,7 +375,7 @@ paths:
   /api/analytics/reports:
     get:
       operationId: listAnalyticsReports
-      summary: List analytics reports
+      summary: ForgeRock List analytics reports
       description: >-
         List available analytics reports from completed pipeline runs.
       tags:

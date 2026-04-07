@@ -52,7 +52,7 @@ paths:
   /json/realms/root/realms/{realm}/authenticate:
     post:
       operationId: authenticate
-      summary: Authenticate a user
+      summary: ForgeRock Authenticate a user
       description: >-
         Initiates or continues an authentication session using a specified
         authentication tree (journey) or module. On each step, the server
@@ -99,7 +99,7 @@ paths:
   /json/realms/root/realms/{realm}/sessions:
     get:
       operationId: querySessions
-      summary: Query sessions
+      summary: ForgeRock Query sessions
       description: >-
         Query active sessions in the specified realm. Requires administrative
         privileges.
@@ -128,7 +128,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: sessionAction
-      summary: Perform a session action
+      summary: ForgeRock Perform a session action
       description: >-
         Perform an action on a session such as validate, logout, getSessionInfo,
         or refresh.
@@ -176,7 +176,7 @@ paths:
   /json/realms/root/realms/{realm}/policies:
     get:
       operationId: listPolicies
-      summary: List authorization policies
+      summary: ForgeRock List authorization policies
       description: >-
         Query authorization policies in the specified realm. Supports CREST
         query filters.
@@ -205,7 +205,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createPolicyOrEvaluate
-      summary: Create a policy or evaluate policies
+      summary: ForgeRock Create a policy or evaluate policies
       description: >-
         Create a new authorization policy, or evaluate policies using the
         _action=evaluate or _action=evaluateTree query parameter.
@@ -256,7 +256,7 @@ paths:
   /json/realms/root/realms/{realm}/policies/{policyName}:
     get:
       operationId: getPolicy
-      summary: Get a policy
+      summary: ForgeRock Get a policy
       description: Retrieve a specific authorization policy by name.
       tags:
         - Policies
@@ -284,7 +284,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updatePolicy
-      summary: Update a policy
+      summary: ForgeRock Update a policy
       description: Replace an existing authorization policy.
       tags:
         - Policies
@@ -319,7 +319,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     delete:
       operationId: deletePolicy
-      summary: Delete a policy
+      summary: ForgeRock Delete a policy
       description: Delete an authorization policy by name.
       tags:
         - Policies
@@ -349,7 +349,7 @@ paths:
   /json/realms/root/realms/{realm}/resourcetypes:
     get:
       operationId: listResourceTypes
-      summary: List resource types
+      summary: ForgeRock List resource types
       description: Query resource types used in authorization policies.
       tags:
         - Resource Types
@@ -370,7 +370,7 @@ paths:
                 $ref: '#/components/schemas/ResourceTypeList'
     post:
       operationId: createResourceType
-      summary: Create a resource type
+      summary: ForgeRock Create a resource type
       description: Create a new resource type for use in authorization policies.
       tags:
         - Resource Types
@@ -394,7 +394,7 @@ paths:
   /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}:
     get:
       operationId: getResourceType
-      summary: Get a resource type
+      summary: ForgeRock Get a resource type
       description: Retrieve a specific resource type by its UUID.
       tags:
         - Resource Types
@@ -423,7 +423,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateResourceType
-      summary: Update a resource type
+      summary: ForgeRock Update a resource type
       description: Replace an existing resource type.
       tags:
         - Resource Types
@@ -452,7 +452,7 @@ paths:
                 $ref: '#/components/schemas/ResourceType'
     delete:
       operationId: deleteResourceType
-      summary: Delete a resource type
+      summary: ForgeRock Delete a resource type
       description: Delete a resource type by UUID.
       tags:
         - Resource Types
@@ -477,7 +477,7 @@ paths:
   /json/global-config/realms:
     get:
       operationId: listRealms
-      summary: List realms
+      summary: ForgeRock List realms
       description: Query all configured realms in the AM deployment.
       tags:
         - Realms
@@ -497,7 +497,7 @@ paths:
                 $ref: '#/components/schemas/RealmList'
     post:
       operationId: createRealm
-      summary: Create a realm
+      summary: ForgeRock Create a realm
       description: Create a new realm in the AM deployment.
       tags:
         - Realms
@@ -520,7 +520,7 @@ paths:
   /json/global-config/realms/{realmName}:
     get:
       operationId: getRealm
-      summary: Get a realm
+      summary: ForgeRock Get a realm
       description: Retrieve configuration for a specific realm.
       tags:
         - Realms
@@ -547,7 +547,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     put:
       operationId: updateRealm
-      summary: Update a realm
+      summary: ForgeRock Update a realm
       description: Update configuration for an existing realm.
       tags:
         - Realms
@@ -574,7 +574,7 @@ paths:
                 $ref: '#/components/schemas/Realm'
     delete:
       operationId: deleteRealm
-      summary: Delete a realm
+      summary: ForgeRock Delete a realm
       description: Delete a realm from the AM deployment.
       tags:
         - Realms
@@ -597,7 +597,7 @@ paths:
   /json/realms/root/realms/{realm}/scripts:
     get:
       operationId: listScripts
-      summary: List scripts
+      summary: ForgeRock List scripts
       description: Query scripts configured in the specified realm.
       tags:
         - Scripts
@@ -620,7 +620,7 @@ paths:
   /json/realms/root/realms/{realm}/scripts/{scriptId}:
     get:
       operationId: getScript
-      summary: Get a script
+      summary: ForgeRock Get a script
       description: Retrieve a specific script by its UUID.
       tags:
         - Scripts
@@ -651,7 +651,7 @@ paths:
   /oauth2/realms/root/realms/{realm}/authorize:
     get:
       operationId: oAuth2Authorize
-      summary: OAuth 2.0 authorization endpoint
+      summary: ForgeRock OAuth 2.0 authorization endpoint
       description: >-
         Initiates an OAuth 2.0 authorization code or implicit grant flow.
         Redirects the user agent to authenticate and consent.
@@ -700,7 +700,7 @@ paths:
   /oauth2/realms/root/realms/{realm}/access_token:
     post:
       operationId: oAuth2Token
-      summary: OAuth 2.0 token endpoint
+      summary: ForgeRock OAuth 2.0 token endpoint
       description: >-
         Exchange credentials for access tokens. Supports authorization_code,
         client_credentials, refresh_token, password, and device_code grants.
@@ -749,7 +749,7 @@ paths:
   /oauth2/realms/root/realms/{realm}/tokeninfo:
     get:
       operationId: oAuth2TokenInfo
-      summary: OAuth 2.0 token introspection
+      summary: ForgeRock OAuth 2.0 token introspection
       description: >-
         Retrieve information about an access token including its scope,
         expiration, and associated client.
@@ -780,7 +780,7 @@ paths:
   /oauth2/realms/root/realms/{realm}/userinfo:
     get:
       operationId: oidcUserInfo
-      summary: OpenID Connect UserInfo endpoint
+      summary: ForgeRock OpenID Connect UserInfo endpoint
       description: >-
         Returns claims about the authenticated end-user. Requires a valid
         access token with the openid scope.
@@ -807,7 +807,7 @@ paths:
   /.well-known/openid-configuration:
     get:
       operationId: oidcDiscovery
-      summary: OpenID Connect discovery
+      summary: ForgeRock OpenID Connect discovery
       description: >-
         Returns the OpenID Connect Provider configuration metadata, including
         supported endpoints, scopes, claims, and signing algorithms.

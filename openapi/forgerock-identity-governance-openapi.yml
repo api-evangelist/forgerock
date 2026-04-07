@@ -46,7 +46,7 @@ paths:
   /governance/certification:
     get:
       operationId: listCertifications
-      summary: List certification campaigns
+      summary: ForgeRock List certification campaigns
       description: >-
         Query certification campaigns. Certifications enable authorized users
         to review and certify access assignments to ensure compliance.
@@ -72,7 +72,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: createCertification
-      summary: Create a certification campaign
+      summary: ForgeRock Create a certification campaign
       description: >-
         Create a new access certification campaign. Supports identity
         certification, role definition certification, and role membership
@@ -103,7 +103,7 @@ paths:
   /governance/certification/{certificationId}:
     get:
       operationId: getCertification
-      summary: Get a certification campaign
+      summary: ForgeRock Get a certification campaign
       description: Retrieve details of a specific certification campaign.
       tags:
         - Certifications
@@ -124,7 +124,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     patch:
       operationId: patchCertification
-      summary: Update a certification campaign
+      summary: ForgeRock Update a certification campaign
       description: Partially update a certification campaign (e.g., close or cancel it).
       tags:
         - Certifications
@@ -147,7 +147,7 @@ paths:
   /governance/certification/{certificationId}/items:
     get:
       operationId: listCertificationItems
-      summary: List certification items
+      summary: ForgeRock List certification items
       description: >-
         List individual review items within a certification campaign. Each
         item represents a user-entitlement assignment to be reviewed.
@@ -169,7 +169,7 @@ paths:
   /governance/certification/{certificationId}/items/{itemId}:
     get:
       operationId: getCertificationItem
-      summary: Get a certification item
+      summary: ForgeRock Get a certification item
       description: Retrieve details of a specific certification review item.
       tags:
         - Access Reviews
@@ -196,7 +196,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     patch:
       operationId: reviewCertificationItem
-      summary: Review a certification item
+      summary: ForgeRock Review a certification item
       description: >-
         Submit a review decision for a certification item. Decisions include
         certify (approve), revoke, or exception.
@@ -242,7 +242,7 @@ paths:
   /governance/request:
     get:
       operationId: listAccessRequests
-      summary: List access requests
+      summary: ForgeRock List access requests
       description: >-
         Query access requests. Users can request access to applications,
         entitlements, or roles, and managers can request revocation.
@@ -262,7 +262,7 @@ paths:
                 $ref: '#/components/schemas/AccessRequestList'
     post:
       operationId: createAccessRequest
-      summary: Create an access request
+      summary: ForgeRock Create an access request
       description: >-
         Submit a new access request for a user to gain access to a
         resource (application, entitlement, or role).
@@ -291,7 +291,7 @@ paths:
   /governance/request/{requestId}:
     get:
       operationId: getAccessRequest
-      summary: Get an access request
+      summary: ForgeRock Get an access request
       description: Retrieve details of a specific access request.
       tags:
         - Access Requests
@@ -317,7 +317,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: accessRequestAction
-      summary: Perform an access request action
+      summary: ForgeRock Perform an access request action
       description: >-
         Approve, deny, or cancel an access request via the _action query
         parameter.
@@ -361,7 +361,7 @@ paths:
   /governance/entitlement:
     get:
       operationId: listEntitlements
-      summary: List entitlements
+      summary: ForgeRock List entitlements
       description: >-
         Query the entitlements catalog. Entitlements are aggregated from
         onboarded target applications into a centralized repository.
@@ -383,7 +383,7 @@ paths:
   /governance/entitlement/{entitlementId}:
     get:
       operationId: getEntitlement
-      summary: Get an entitlement
+      summary: ForgeRock Get an entitlement
       description: Retrieve details of a specific entitlement.
       tags:
         - Entitlements
@@ -411,7 +411,7 @@ paths:
   /governance/role:
     get:
       operationId: listGovernanceRoles
-      summary: List governance roles
+      summary: ForgeRock List governance roles
       description: Query governance roles used in access policies and certifications.
       tags:
         - Roles
@@ -430,7 +430,7 @@ paths:
   /governance/violation:
     get:
       operationId: listViolations
-      summary: List policy violations
+      summary: ForgeRock List policy violations
       description: >-
         Query segregation of duties (SoD) and compliance policy violations.
       tags:
@@ -450,7 +450,7 @@ paths:
   /governance/violation/{violationId}:
     get:
       operationId: getViolation
-      summary: Get a policy violation
+      summary: ForgeRock Get a policy violation
       description: Retrieve details of a specific policy violation.
       tags:
         - Violations
@@ -476,7 +476,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
     post:
       operationId: violationAction
-      summary: Resolve a policy violation
+      summary: ForgeRock Resolve a policy violation
       description: >-
         Perform an action on a violation such as remediate, allow (exception),
         or escalate.
