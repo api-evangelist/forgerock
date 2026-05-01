@@ -13,7 +13,7 @@ tags:
   - OAuth
   - OpenID Connect
 created: '2024'
-modified: '2026-03-04'
+modified: '2026-04-28'
 apis:
   - name: ForgeRock Identity Cloud REST API
     description: REST API for managing identities, authentication, and authorization in ForgeRock Identity Cloud, providing access management and identity management endpoints for Advanced Identity Cloud tenant environments.
