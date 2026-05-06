@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: ForgeRock
 providerId: forgerock
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Access Management
   - Authentication
@@ -13,172 +14,140 @@ tags:
   - Identity Management
   - OAuth
   - OpenID Connect
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: ForgeRock was acquired by Ping Identity in 2023 and the forgerock.com pricing/platform pages now redirect to pingidentity.com. The unified ForgeRock + PingOne platform is sold via two product families — PingOne for Customers (CIAM) and PingOne for Workforce (workforce IAM) — with public starting prices on both. Self-hosted ForgeRock Identity Platform deployments remain available under custom enterprise contracts.
+sources:
+  - https://www.pingidentity.com/en/platform/pricing.html
+  - https://www.forgerock.com/platform/pricing
 plans:
-  - id: forgerock-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the ForgeRock API surface. Intended for evaluation, prototyping,
-      and low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: forgerock-pingone-customers-essential
+    name: PingOne for Customers — Essential
+    type: subscription
+    description: Customer Identity and Access Management (CIAM) entry tier covering authentication, registration, and SSO for end customers. Annual contract; pricing starts at $35,000/year.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+      - label: Annual License
+        description: Customer-identity (CIAM) annual license — entry tier
+        name: pingone_customers_essential
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
         geo: global
         domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
+          - https://api.pingone.com
         unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
-        unit: 1
-        price: '0.00'
+        price: starting at $35,000 annually
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: ForgeRock Identity Cloud REST API
-      - name: ForgeRock Access Management API
-      - name: ForgeRock Identity Management API
-      - name: ForgeRock Identity Gateway API
-      - name: ForgeRock Directory Services API
-      - name: ForgeRock Identity Governance API
-      - name: ForgeRock Autonomous Identity API
-  - id: forgerock-pro
-    name: Professional
-    type: paid
-    description: Production tier for ForgeRock. Provides higher quotas, priority support, and access to
-      the broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: Authentication & SSO
+      - name: Registration & Self-Service
+      - name: Adaptive MFA
+      - name: PingOne Admin Console
+      - name: 30-Day Free Trial
+  - id: forgerock-pingone-customers-plus
+    name: PingOne for Customers — Plus
+    type: subscription
+    description: CIAM upper tier; expands on Essential with deeper risk, fraud, and orchestration capabilities. Annual contract; pricing starts at $50,000/year.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
+      - label: Annual License
+        description: Customer-identity Plus tier annual license
+        name: pingone_customers_plus
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
         geo: global
         domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
+          - https://api.pingone.com
         unit: 1
-        price: TBD
+        price: starting at $50,000 annually
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+    elements:
+      - name: All Essential Features
+      - name: Risk-Based Authentication
+      - name: Identity Orchestration (PingOne DaVinci)
+      - name: Fraud Signals
+  - id: forgerock-pingone-workforce-essential
+    name: PingOne for Workforce — Essential
+    type: subscription
+    description: Workforce IAM entry tier for employees, contractors, and partners. Per-user monthly pricing on annual contract with a 5,000-user minimum.
+    entries:
+      - label: Per-User License
+        description: Workforce identity per-user monthly fee on annual contract; 5,000-user minimum
+        name: pingone_workforce_essential
+        type: subscription
+        metric: seat
         limit: -1
         timeFrame: month
         geo: global
         domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
-        unit: 1000
-        price: TBD
-        userMultiplied: false
+          - https://api.pingone.com
+        unit: 1
+        price: $3 per user per month
+        userMultiplied: true
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: ForgeRock Identity Cloud REST API
-      - name: ForgeRock Access Management API
-      - name: ForgeRock Identity Management API
-      - name: ForgeRock Identity Gateway API
-      - name: ForgeRock Directory Services API
-      - name: ForgeRock Identity Governance API
-      - name: ForgeRock Autonomous Identity API
-  - id: forgerock-enterprise
-    name: Enterprise
+      - name: SSO
+      - name: Multi-Factor Authentication
+      - name: Provisioning
+      - name: 5,000-User Minimum
+      - name: Annual Contract
+  - id: forgerock-pingone-workforce-plus
+    name: PingOne for Workforce — Plus
+    type: subscription
+    description: Workforce IAM upper tier with advanced risk, lifecycle, and governance features. Per-user monthly pricing on annual contract with a 5,000-user minimum.
+    entries:
+      - label: Per-User License
+        description: Workforce Plus per-user monthly fee on annual contract; 5,000-user minimum
+        name: pingone_workforce_plus
+        type: subscription
+        metric: seat
+        limit: -1
+        timeFrame: month
+        geo: global
+        domains:
+          - https://api.pingone.com
+        unit: 1
+        price: $6 per user per month
+        userMultiplied: true
+    elements:
+      - name: All Essential Features
+      - name: Risk-Based Authentication
+      - name: Lifecycle Workflows
+      - name: 5,000-User Minimum
+      - name: Annual Contract
+  - id: forgerock-passwordless
+    name: PingOne Passwordless
     type: enterprise
-    description: Custom-negotiated tier for ForgeRock. Includes dedicated capacity, contractual SLAs,
-      security review, data residency options, and named technical account management.
+    description: Passwordless authentication add-on (FIDO2 / passkeys / DaVinci flows). Public pricing not disclosed.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Add-on
+        description: Passwordless add-on; pricing on request
+        name: passwordless
+        type: subscription
+        metric: varies
         limit: -1
-        timeFrame: month
-        geo: configurable
+        timeFrame: year
+        geo: global
         domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
+          - https://api.pingone.com
         unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
+    elements:
+      - name: FIDO2 / Passkeys
+      - name: DaVinci Orchestration
+      - name: Risk Signals
+  - id: forgerock-self-hosted-enterprise
+    name: ForgeRock Identity Platform (Self-Hosted)
+    type: enterprise
+    description: Self-managed ForgeRock Identity Platform deployments (AM, IDM, DS, IG, IGA, Autonomous Identity) for customers requiring on-premises or private-cloud install. Custom-negotiated contracts; sold by Ping Identity.
+    entries:
+      - label: Enterprise License
+        description: Self-managed ForgeRock platform license
+        name: self_hosted
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
         geo: configurable
         domains:
           - https://{tenant}.forgeblocks.com
@@ -192,19 +161,15 @@ plans:
         price: custom
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
+      - name: ForgeRock Access Management (AM)
+      - name: ForgeRock Identity Management (IDM)
+      - name: ForgeRock Directory Services (DS)
+      - name: ForgeRock Identity Gateway (IG)
+      - name: ForgeRock Identity Governance (IGA)
+      - name: ForgeRock Autonomous Identity (AutoID)
       - name: 24/7 Dedicated Support
       - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
       - name: Custom Data Residency
-      - name: ForgeRock Identity Cloud REST API
-      - name: ForgeRock Access Management API
-      - name: ForgeRock Identity Management API
-      - name: ForgeRock Identity Gateway API
-      - name: ForgeRock Directory Services API
-      - name: ForgeRock Identity Governance API
-      - name: ForgeRock Autonomous Identity API
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com

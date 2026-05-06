@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: ForgeRock
 providerId: forgerock
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Access Management
   - Authentication
@@ -14,108 +15,46 @@ tags:
   - OAuth
   - OpenID Connect
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the ForgeRock API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
+description: Following the Ping Identity acquisition, the ForgeRock platform's runtime rate-limiting is governed by the deployed product (AM/IDM/DS/IG) configuration and, for cloud tenants, by PingOne service-level limits. Public per-second numbers are not published; PingOne API limits are documented per-endpoint in the developer portal but vary by tenant tier and may be raised via support.
+notes: Numeric limits not publicly tabulated. ForgeRock self-hosted limits are operator-configured; PingOne hosted limits are tenant-tier dependent and not enumerated on a single public page.
+sources:
+  - https://developer.pingidentity.com/pingone-api/foundations/introduction.html
+  - https://www.pingidentity.com/en/platform/pricing.html
 headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
   retryAfter: Retry-After
-  policy: RateLimit-Policy
+  requestId: X-Request-Id
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
+  - name: PingOne tenant API throttle
+    scope: tenant/api-key
+    metric: varies
+    limit: per-tenant tier; documented per-endpoint in PingOne developer docs
     applies:
-      - ForgeRock Identity Cloud REST API
+      - PingOne Management API
+      - PingOne Authentication API
+      - PingOne MFA API
+  - name: ForgeRock self-hosted (operator configured)
+    scope: deployment/realm
+    metric: requests_per_second
+    limit: configured at the AM throttling filter; no platform-imposed default
+    applies:
       - ForgeRock Access Management API
       - ForgeRock Identity Management API
-      - ForgeRock Identity Gateway API
       - ForgeRock Directory Services API
-      - ForgeRock Identity Governance API
-      - ForgeRock Autonomous Identity API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - ForgeRock Identity Cloud REST API
-      - ForgeRock Access Management API
-      - ForgeRock Identity Management API
       - ForgeRock Identity Gateway API
-      - ForgeRock Directory Services API
-      - ForgeRock Identity Governance API
-      - ForgeRock Autonomous Identity API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - ForgeRock Identity Cloud REST API
-      - ForgeRock Access Management API
-      - ForgeRock Identity Management API
-      - ForgeRock Identity Gateway API
-      - ForgeRock Directory Services API
-      - ForgeRock Identity Governance API
-      - ForgeRock Autonomous Identity API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - ForgeRock Identity Cloud REST API
-      - ForgeRock Access Management API
-      - ForgeRock Identity Management API
-      - ForgeRock Identity Gateway API
-      - ForgeRock Directory Services API
-      - ForgeRock Identity Governance API
-      - ForgeRock Autonomous Identity API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - ForgeRock Identity Cloud REST API
-      - ForgeRock Access Management API
-      - ForgeRock Identity Management API
-      - ForgeRock Identity Gateway API
-      - ForgeRock Directory Services API
       - ForgeRock Identity Governance API
       - ForgeRock Autonomous Identity API
 policies:
   - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+    description: Clients should implement exponential backoff with jitter on 429/5xx and honor Retry-After when present.
+  - name: Self-Hosted Throttling
+    description: ForgeRock AM exposes a throttling filter (rate-limit policy) configured by the operator; tune by realm and authorization context rather than relying on platform defaults.
+  - name: Tenant-Tier Scaling
+    description: PingOne hosted limits scale with the customer subscription tier; raise via Ping support after demonstrating sustained legitimate need.
+  - name: Idempotency for IDM Provisioning
+    description: For lifecycle/sync flows, design jobs to be idempotent and resumable so retries on 429/5xx do not create duplicate identities or audit churn.
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
