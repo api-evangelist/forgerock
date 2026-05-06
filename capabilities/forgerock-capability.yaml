@@ -1,0 +1,1089 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Access Management API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management,
+    and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization
+    decisions, and realm management.
+  tags:
+  - Forgerock
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: forgerock
+    baseUri: https://am.example.com/am
+    description: ForgeRock Access Management API HTTP API.
+    authentication:
+      type: apikey
+      in: header
+      name: iPlanetDirectoryPro
+      value: '{{FORGEROCK_TOKEN}}'
+    resources:
+    - name: json-realms-root-realms-realm-authenticate
+      path: /json/realms/root/realms/{realm}/authenticate
+      operations:
+      - name: authenticate
+        method: POST
+        description: ForgeRock Authenticate a user
+        inputParameters:
+        - name: authIndexType
+          in: query
+          type: string
+          description: Type of authentication index
+        - name: authIndexValue
+          in: query
+          type: string
+          description: Name of the authentication tree or module
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-sessions
+      path: /json/realms/root/realms/{realm}/sessions
+      operations:
+      - name: querysessions
+        method: GET
+        description: ForgeRock Query sessions
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter for sessions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: sessionaction
+        method: POST
+        description: ForgeRock Perform a session action
+        inputParameters:
+        - name: _action
+          in: query
+          type: string
+          required: true
+          description: The session action to perform
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-policies
+      path: /json/realms/root/realms/{realm}/policies
+      operations:
+      - name: listpolicies
+        method: GET
+        description: ForgeRock List authorization policies
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter expression
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpolicyorevaluate
+        method: POST
+        description: ForgeRock Create a policy or evaluate policies
+        inputParameters:
+        - name: _action
+          in: query
+          type: string
+          description: Action to perform (evaluate or evaluateTree)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-policies-policynam
+      path: /json/realms/root/realms/{realm}/policies/{policyName}
+      operations:
+      - name: getpolicy
+        method: GET
+        description: ForgeRock Get a policy
+        inputParameters:
+        - name: policyName
+          in: path
+          type: string
+          required: true
+          description: The policy name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepolicy
+        method: PUT
+        description: ForgeRock Update a policy
+        inputParameters:
+        - name: policyName
+          in: path
+          type: string
+          required: true
+          description: The policy name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletepolicy
+        method: DELETE
+        description: ForgeRock Delete a policy
+        inputParameters:
+        - name: policyName
+          in: path
+          type: string
+          required: true
+          description: The policy name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-resourcetypes
+      path: /json/realms/root/realms/{realm}/resourcetypes
+      operations:
+      - name: listresourcetypes
+        method: GET
+        description: ForgeRock List resource types
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createresourcetype
+        method: POST
+        description: ForgeRock Create a resource type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-resourcetypes-reso
+      path: /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}
+      operations:
+      - name: getresourcetype
+        method: GET
+        description: ForgeRock Get a resource type
+        inputParameters:
+        - name: resourceTypeId
+          in: path
+          type: string
+          required: true
+          description: The resource type UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateresourcetype
+        method: PUT
+        description: ForgeRock Update a resource type
+        inputParameters:
+        - name: resourceTypeId
+          in: path
+          type: string
+          required: true
+          description: The resource type UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteresourcetype
+        method: DELETE
+        description: ForgeRock Delete a resource type
+        inputParameters:
+        - name: resourceTypeId
+          in: path
+          type: string
+          required: true
+          description: The resource type UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-global-config-realms
+      path: /json/global-config/realms
+      operations:
+      - name: listrealms
+        method: GET
+        description: ForgeRock List realms
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter for realms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrealm
+        method: POST
+        description: ForgeRock Create a realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-global-config-realms-realmname
+      path: /json/global-config/realms/{realmName}
+      operations:
+      - name: getrealm
+        method: GET
+        description: ForgeRock Get a realm
+        inputParameters:
+        - name: realmName
+          in: path
+          type: string
+          required: true
+          description: The realm name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updaterealm
+        method: PUT
+        description: ForgeRock Update a realm
+        inputParameters:
+        - name: realmName
+          in: path
+          type: string
+          required: true
+          description: The realm name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleterealm
+        method: DELETE
+        description: ForgeRock Delete a realm
+        inputParameters:
+        - name: realmName
+          in: path
+          type: string
+          required: true
+          description: The realm name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-scripts
+      path: /json/realms/root/realms/{realm}/scripts
+      operations:
+      - name: listscripts
+        method: GET
+        description: ForgeRock List scripts
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: json-realms-root-realms-realm-scripts-scriptid
+      path: /json/realms/root/realms/{realm}/scripts/{scriptId}
+      operations:
+      - name: getscript
+        method: GET
+        description: ForgeRock Get a script
+        inputParameters:
+        - name: scriptId
+          in: path
+          type: string
+          required: true
+          description: The script UUID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth2-realms-root-realms-realm-authorize
+      path: /oauth2/realms/root/realms/{realm}/authorize
+      operations:
+      - name: oauth2authorize
+        method: GET
+        description: ForgeRock OAuth 2.0 authorization endpoint
+        inputParameters:
+        - name: client_id
+          in: query
+          type: string
+          required: true
+        - name: response_type
+          in: query
+          type: string
+          required: true
+        - name: redirect_uri
+          in: query
+          type: string
+          required: true
+        - name: scope
+          in: query
+          type: string
+        - name: state
+          in: query
+          type: string
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth2-realms-root-realms-realm-access-token
+      path: /oauth2/realms/root/realms/{realm}/access_token
+      operations:
+      - name: oauth2token
+        method: POST
+        description: ForgeRock OAuth 2.0 token endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth2-realms-root-realms-realm-tokeninfo
+      path: /oauth2/realms/root/realms/{realm}/tokeninfo
+      operations:
+      - name: oauth2tokeninfo
+        method: GET
+        description: ForgeRock OAuth 2.0 token introspection
+        inputParameters:
+        - name: access_token
+          in: query
+          type: string
+          required: true
+          description: The access token to introspect
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth2-realms-root-realms-realm-userinfo
+      path: /oauth2/realms/root/realms/{realm}/userinfo
+      operations:
+      - name: oidcuserinfo
+        method: GET
+        description: ForgeRock OpenID Connect UserInfo endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: well-known-openid-configuration
+      path: /.well-known/openid-configuration
+      operations:
+      - name: oidcdiscovery
+        method: GET
+        description: ForgeRock OpenID Connect discovery
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: forgerock-rest
+    description: REST adapter for ForgeRock Access Management API.
+    resources:
+    - path: /json/realms/root/realms/{realm}/authenticate
+      name: authenticate
+      operations:
+      - method: POST
+        name: authenticate
+        description: ForgeRock Authenticate a user
+        call: forgerock.authenticate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/sessions
+      name: querysessions
+      operations:
+      - method: GET
+        name: querysessions
+        description: ForgeRock Query sessions
+        call: forgerock.querysessions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/sessions
+      name: sessionaction
+      operations:
+      - method: POST
+        name: sessionaction
+        description: ForgeRock Perform a session action
+        call: forgerock.sessionaction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/policies
+      name: listpolicies
+      operations:
+      - method: GET
+        name: listpolicies
+        description: ForgeRock List authorization policies
+        call: forgerock.listpolicies
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/policies
+      name: createpolicyorevaluate
+      operations:
+      - method: POST
+        name: createpolicyorevaluate
+        description: ForgeRock Create a policy or evaluate policies
+        call: forgerock.createpolicyorevaluate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/policies/{policyName}
+      name: getpolicy
+      operations:
+      - method: GET
+        name: getpolicy
+        description: ForgeRock Get a policy
+        call: forgerock.getpolicy
+        with:
+          policyName: rest.policyName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/policies/{policyName}
+      name: updatepolicy
+      operations:
+      - method: PUT
+        name: updatepolicy
+        description: ForgeRock Update a policy
+        call: forgerock.updatepolicy
+        with:
+          policyName: rest.policyName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/policies/{policyName}
+      name: deletepolicy
+      operations:
+      - method: DELETE
+        name: deletepolicy
+        description: ForgeRock Delete a policy
+        call: forgerock.deletepolicy
+        with:
+          policyName: rest.policyName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/resourcetypes
+      name: listresourcetypes
+      operations:
+      - method: GET
+        name: listresourcetypes
+        description: ForgeRock List resource types
+        call: forgerock.listresourcetypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/resourcetypes
+      name: createresourcetype
+      operations:
+      - method: POST
+        name: createresourcetype
+        description: ForgeRock Create a resource type
+        call: forgerock.createresourcetype
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}
+      name: getresourcetype
+      operations:
+      - method: GET
+        name: getresourcetype
+        description: ForgeRock Get a resource type
+        call: forgerock.getresourcetype
+        with:
+          resourceTypeId: rest.resourceTypeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}
+      name: updateresourcetype
+      operations:
+      - method: PUT
+        name: updateresourcetype
+        description: ForgeRock Update a resource type
+        call: forgerock.updateresourcetype
+        with:
+          resourceTypeId: rest.resourceTypeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}
+      name: deleteresourcetype
+      operations:
+      - method: DELETE
+        name: deleteresourcetype
+        description: ForgeRock Delete a resource type
+        call: forgerock.deleteresourcetype
+        with:
+          resourceTypeId: rest.resourceTypeId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/global-config/realms
+      name: listrealms
+      operations:
+      - method: GET
+        name: listrealms
+        description: ForgeRock List realms
+        call: forgerock.listrealms
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/global-config/realms
+      name: createrealm
+      operations:
+      - method: POST
+        name: createrealm
+        description: ForgeRock Create a realm
+        call: forgerock.createrealm
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/global-config/realms/{realmName}
+      name: getrealm
+      operations:
+      - method: GET
+        name: getrealm
+        description: ForgeRock Get a realm
+        call: forgerock.getrealm
+        with:
+          realmName: rest.realmName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/global-config/realms/{realmName}
+      name: updaterealm
+      operations:
+      - method: PUT
+        name: updaterealm
+        description: ForgeRock Update a realm
+        call: forgerock.updaterealm
+        with:
+          realmName: rest.realmName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/global-config/realms/{realmName}
+      name: deleterealm
+      operations:
+      - method: DELETE
+        name: deleterealm
+        description: ForgeRock Delete a realm
+        call: forgerock.deleterealm
+        with:
+          realmName: rest.realmName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/scripts
+      name: listscripts
+      operations:
+      - method: GET
+        name: listscripts
+        description: ForgeRock List scripts
+        call: forgerock.listscripts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /json/realms/root/realms/{realm}/scripts/{scriptId}
+      name: getscript
+      operations:
+      - method: GET
+        name: getscript
+        description: ForgeRock Get a script
+        call: forgerock.getscript
+        with:
+          scriptId: rest.scriptId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /oauth2/realms/root/realms/{realm}/authorize
+      name: oauth2authorize
+      operations:
+      - method: GET
+        name: oauth2authorize
+        description: ForgeRock OAuth 2.0 authorization endpoint
+        call: forgerock.oauth2authorize
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /oauth2/realms/root/realms/{realm}/access_token
+      name: oauth2token
+      operations:
+      - method: POST
+        name: oauth2token
+        description: ForgeRock OAuth 2.0 token endpoint
+        call: forgerock.oauth2token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /oauth2/realms/root/realms/{realm}/tokeninfo
+      name: oauth2tokeninfo
+      operations:
+      - method: GET
+        name: oauth2tokeninfo
+        description: ForgeRock OAuth 2.0 token introspection
+        call: forgerock.oauth2tokeninfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /oauth2/realms/root/realms/{realm}/userinfo
+      name: oidcuserinfo
+      operations:
+      - method: GET
+        name: oidcuserinfo
+        description: ForgeRock OpenID Connect UserInfo endpoint
+        call: forgerock.oidcuserinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /.well-known/openid-configuration
+      name: oidcdiscovery
+      operations:
+      - method: GET
+        name: oidcdiscovery
+        description: ForgeRock OpenID Connect discovery
+        call: forgerock.oidcdiscovery
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: forgerock-mcp
+    transport: http
+    description: MCP adapter for ForgeRock Access Management API for AI agent use.
+    tools:
+    - name: authenticate
+      description: ForgeRock Authenticate a user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: forgerock.authenticate
+      with:
+        authIndexType: tools.authIndexType
+        authIndexValue: tools.authIndexValue
+      inputParameters:
+      - name: authIndexType
+        type: string
+        description: Type of authentication index
+      - name: authIndexValue
+        type: string
+        description: Name of the authentication tree or module
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: querysessions
+      description: ForgeRock Query sessions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.querysessions
+      with:
+        _queryFilter: tools._queryFilter
+      inputParameters:
+      - name: _queryFilter
+        type: string
+        description: CREST query filter for sessions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sessionaction
+      description: ForgeRock Perform a session action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: forgerock.sessionaction
+      with:
+        _action: tools._action
+      inputParameters:
+      - name: _action
+        type: string
+        description: The session action to perform
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpolicies
+      description: ForgeRock List authorization policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.listpolicies
+      with:
+        _queryFilter: tools._queryFilter
+      inputParameters:
+      - name: _queryFilter
+        type: string
+        description: CREST query filter expression
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createpolicyorevaluate
+      description: ForgeRock Create a policy or evaluate policies
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: forgerock.createpolicyorevaluate
+      with:
+        _action: tools._action
+      inputParameters:
+      - name: _action
+        type: string
+        description: Action to perform (evaluate or evaluateTree)
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpolicy
+      description: ForgeRock Get a policy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.getpolicy
+      with:
+        policyName: tools.policyName
+      inputParameters:
+      - name: policyName
+        type: string
+        description: The policy name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatepolicy
+      description: ForgeRock Update a policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: forgerock.updatepolicy
+      with:
+        policyName: tools.policyName
+      inputParameters:
+      - name: policyName
+        type: string
+        description: The policy name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletepolicy
+      description: ForgeRock Delete a policy
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: forgerock.deletepolicy
+      with:
+        policyName: tools.policyName
+      inputParameters:
+      - name: policyName
+        type: string
+        description: The policy name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listresourcetypes
+      description: ForgeRock List resource types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.listresourcetypes
+      with:
+        _queryFilter: tools._queryFilter
+      inputParameters:
+      - name: _queryFilter
+        type: string
+        description: CREST query filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createresourcetype
+      description: ForgeRock Create a resource type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: forgerock.createresourcetype
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getresourcetype
+      description: ForgeRock Get a resource type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.getresourcetype
+      with:
+        resourceTypeId: tools.resourceTypeId
+      inputParameters:
+      - name: resourceTypeId
+        type: string
+        description: The resource type UUID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateresourcetype
+      description: ForgeRock Update a resource type
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: forgerock.updateresourcetype
+      with:
+        resourceTypeId: tools.resourceTypeId
+      inputParameters:
+      - name: resourceTypeId
+        type: string
+        description: The resource type UUID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteresourcetype
+      description: ForgeRock Delete a resource type
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: forgerock.deleteresourcetype
+      with:
+        resourceTypeId: tools.resourceTypeId
+      inputParameters:
+      - name: resourceTypeId
+        type: string
+        description: The resource type UUID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listrealms
+      description: ForgeRock List realms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.listrealms
+      with:
+        _queryFilter: tools._queryFilter
+      inputParameters:
+      - name: _queryFilter
+        type: string
+        description: CREST query filter for realms
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createrealm
+      description: ForgeRock Create a realm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: forgerock.createrealm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getrealm
+      description: ForgeRock Get a realm
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.getrealm
+      with:
+        realmName: tools.realmName
+      inputParameters:
+      - name: realmName
+        type: string
+        description: The realm name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updaterealm
+      description: ForgeRock Update a realm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: forgerock.updaterealm
+      with:
+        realmName: tools.realmName
+      inputParameters:
+      - name: realmName
+        type: string
+        description: The realm name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleterealm
+      description: ForgeRock Delete a realm
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: forgerock.deleterealm
+      with:
+        realmName: tools.realmName
+      inputParameters:
+      - name: realmName
+        type: string
+        description: The realm name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listscripts
+      description: ForgeRock List scripts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.listscripts
+      with:
+        _queryFilter: tools._queryFilter
+      inputParameters:
+      - name: _queryFilter
+        type: string
+        description: CREST query filter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getscript
+      description: ForgeRock Get a script
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.getscript
+      with:
+        scriptId: tools.scriptId
+      inputParameters:
+      - name: scriptId
+        type: string
+        description: The script UUID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oauth2authorize
+      description: ForgeRock OAuth 2.0 authorization endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.oauth2authorize
+      with:
+        client_id: tools.client_id
+        response_type: tools.response_type
+        redirect_uri: tools.redirect_uri
+        scope: tools.scope
+        state: tools.state
+      inputParameters:
+      - name: client_id
+        type: string
+        description: client_id
+        required: true
+      - name: response_type
+        type: string
+        description: response_type
+        required: true
+      - name: redirect_uri
+        type: string
+        description: redirect_uri
+        required: true
+      - name: scope
+        type: string
+        description: scope
+      - name: state
+        type: string
+        description: state
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oauth2token
+      description: ForgeRock OAuth 2.0 token endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: forgerock.oauth2token
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oauth2tokeninfo
+      description: ForgeRock OAuth 2.0 token introspection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.oauth2tokeninfo
+      with:
+        access_token: tools.access_token
+      inputParameters:
+      - name: access_token
+        type: string
+        description: The access token to introspect
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oidcuserinfo
+      description: ForgeRock OpenID Connect UserInfo endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.oidcuserinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oidcdiscovery
+      description: ForgeRock OpenID Connect discovery
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: forgerock.oidcdiscovery
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_TOKEN: FORGEROCK_TOKEN
