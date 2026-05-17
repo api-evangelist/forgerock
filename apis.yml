@@ -32,9 +32,9 @@ apis:
         url: openapi/forgerock-identity-cloud-openapi.yml
       - type: OpenAPI
         url: https://backstage.forgerock.com/docs/idcloud/latest/openapi/
-      - type: API Reference
+      - type: APIReference
         url: https://apidocs.id.forgerock.io/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
       - type: Authentication
         url: https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
@@ -55,13 +55,13 @@ apis:
         url: https://backstage.forgerock.com/docs/am/7.3/
       - type: OpenAPI
         url: openapi/forgerock-access-management-openapi.yml
-      - type: API Reference
+      - type: APIReference
         url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
       - type: Authentication
         url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
-      - type: Change Log
+      - type: ChangeLog
         url: https://backstage.forgerock.com/docs/am/7/release-notes/
   - name: ForgeRock Identity Management API
     description: REST API for CRUD operations on managed objects and identity lifecycle management. Supports provisioning, synchronization, reconciliation, and workflow-driven identity operations.
@@ -79,9 +79,9 @@ apis:
         url: openapi/forgerock-identity-management-openapi.yml
       - type: REST API Guide
         url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
-      - type: Change Log
+      - type: ChangeLog
         url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
   - name: ForgeRock Identity Gateway API
     description: API for reverse proxy functionality, policy enforcement, and request transformation. Integrates web applications, APIs, and microservices with the ForgeRock Identity Platform.
@@ -99,7 +99,7 @@ apis:
         url: openapi/forgerock-identity-gateway-openapi.yml
       - type: Reference
         url: https://backstage.forgerock.com/docs/ig/7.3/reference/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
   - name: ForgeRock Directory Services API
     description: LDAP and REST API for directory operations and data management. Provides HDAP endpoints for accessing directory data as JSON resources.
@@ -117,7 +117,7 @@ apis:
         url: openapi/forgerock-directory-services-openapi.yml
       - type: REST API
         url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
       - type: Reference
         url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
@@ -135,7 +135,7 @@ apis:
         url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
       - type: OpenAPI
         url: openapi/forgerock-identity-governance-openapi.yml
-      - type: API Reference
+      - type: APIReference
         url: https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
   - name: ForgeRock Autonomous Identity API
     description: REST API for the Autonomous Identity analytics platform that uses AI-driven analysis to determine confidence scores, predictions, and recommendations for entitlement assignments.
@@ -160,21 +160,21 @@ common:
     url: https://backstage.forgerock.com
   - type: Documentation
     url: https://backstage.forgerock.com/docs
-  - type: Getting Started
+  - type: GettingStarted
     url: https://community.forgerock.com/c/getting-started-guides/36
   - type: Authentication
     url: https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
   - type: Blog
     url: https://www.forgerock.com/blog
-  - type: Status
+  - type: StatusPage
     url: https://status.id.forgerock.io
   - type: Support
     url: https://backstage.forgerock.com/support
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.forgerock.com/terms
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.forgerock.com/privacy-policy
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/ForgeRock
   - type: Community
     url: https://community.forgerock.com/
@@ -182,7 +182,7 @@ common:
     url: https://www.forgerock.com
   - type: Login
     url: https://backstage.forgerock.com/account
-  - type: Sign Up
+  - type: SignUp
     url: https://backstage.forgerock.com/account/register
   - type: SDKs
     url: https://docs.pingidentity.com/sdks/latest/index.html
