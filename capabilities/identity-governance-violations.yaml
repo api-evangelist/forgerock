@@ -1,0 +1,161 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Governance API — Violations
+  description: 'ForgeRock Identity Governance API — Violations. 3 operations. Lead operation: ForgeRock List policy violations.
+    Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Violations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-governance-violations
+    baseUri: https://{deployment}/iga
+    description: ForgeRock Identity Governance API — Violations business capability. Self-contained, no shared references.
+    resources:
+    - name: governance-violation
+      path: /governance/violation
+      operations:
+      - name: listviolations
+        method: GET
+        description: ForgeRock List policy violations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: governance-violation-violationId
+      path: /governance/violation/{violationId}
+      operations:
+      - name: getviolation
+        method: GET
+        description: ForgeRock Get a policy violation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: violationId
+          in: path
+          type: string
+          description: The violation identifier
+          required: true
+      - name: violationaction
+        method: POST
+        description: ForgeRock Resolve a policy violation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: violationId
+          in: path
+          type: string
+          description: The violation identifier
+          required: true
+        - name: _action
+          in: query
+          type: string
+          description: The action to perform
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-governance-violations-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Governance API — Violations. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/governance/violation
+      name: governance-violation
+      description: REST surface for governance-violation.
+      operations:
+      - method: GET
+        name: listviolations
+        description: ForgeRock List policy violations
+        call: identity-governance-violations.listviolations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/governance/violation/{violationid}
+      name: governance-violation-violationid
+      description: REST surface for governance-violation-violationId.
+      operations:
+      - method: GET
+        name: getviolation
+        description: ForgeRock Get a policy violation
+        call: identity-governance-violations.getviolation
+        with:
+          violationId: rest.violationId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: violationaction
+        description: ForgeRock Resolve a policy violation
+        call: identity-governance-violations.violationaction
+        with:
+          violationId: rest.violationId
+          _action: rest._action
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-governance-violations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Governance API — Violations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-list-policy-violations
+      description: ForgeRock List policy violations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-governance-violations.listviolations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-policy-violation
+      description: ForgeRock Get a policy violation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-governance-violations.getviolation
+      with:
+        violationId: tools.violationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-resolve-policy-violation
+      description: ForgeRock Resolve a policy violation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-governance-violations.violationaction
+      with:
+        violationId: tools.violationId
+        _action: tools._action
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

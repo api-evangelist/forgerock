@@ -1,0 +1,233 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Access Management API — Realms
+  description: 'ForgeRock Access Management API — Realms. 5 operations. Lead operation: ForgeRock List realms. Self-contained
+    Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Realms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: access-management-realms
+    baseUri: https://{deployment}/am
+    description: ForgeRock Access Management API — Realms business capability. Self-contained, no shared references.
+    resources:
+    - name: json-global-config-realms
+      path: /json/global-config/realms
+      operations:
+      - name: listrealms
+        method: GET
+        description: ForgeRock List realms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter for realms
+      - name: createrealm
+        method: POST
+        description: ForgeRock Create a realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: json-global-config-realms-realmName
+      path: /json/global-config/realms/{realmName}
+      operations:
+      - name: getrealm
+        method: GET
+        description: ForgeRock Get a realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realmName
+          in: path
+          type: string
+          description: The realm name
+          required: true
+      - name: updaterealm
+        method: PUT
+        description: ForgeRock Update a realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realmName
+          in: path
+          type: string
+          description: The realm name
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleterealm
+        method: DELETE
+        description: ForgeRock Delete a realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realmName
+          in: path
+          type: string
+          description: The realm name
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: access-management-realms-rest
+    port: 8080
+    description: REST adapter for ForgeRock Access Management API — Realms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/json/global-config/realms
+      name: json-global-config-realms
+      description: REST surface for json-global-config-realms.
+      operations:
+      - method: GET
+        name: listrealms
+        description: ForgeRock List realms
+        call: access-management-realms.listrealms
+        with:
+          _queryFilter: rest._queryFilter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrealm
+        description: ForgeRock Create a realm
+        call: access-management-realms.createrealm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/json/global-config/realms/{realmname}
+      name: json-global-config-realms-realmname
+      description: REST surface for json-global-config-realms-realmName.
+      operations:
+      - method: GET
+        name: getrealm
+        description: ForgeRock Get a realm
+        call: access-management-realms.getrealm
+        with:
+          realmName: rest.realmName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updaterealm
+        description: ForgeRock Update a realm
+        call: access-management-realms.updaterealm
+        with:
+          realmName: rest.realmName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleterealm
+        description: ForgeRock Delete a realm
+        call: access-management-realms.deleterealm
+        with:
+          realmName: rest.realmName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: access-management-realms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Access Management API — Realms. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-list-realms
+      description: ForgeRock List realms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: access-management-realms.listrealms
+      with:
+        _queryFilter: tools._queryFilter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-create-realm
+      description: ForgeRock Create a realm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: access-management-realms.createrealm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-realm
+      description: ForgeRock Get a realm
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: access-management-realms.getrealm
+      with:
+        realmName: tools.realmName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-update-realm
+      description: ForgeRock Update a realm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: access-management-realms.updaterealm
+      with:
+        realmName: tools.realmName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-delete-realm
+      description: ForgeRock Delete a realm
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: access-management-realms.deleterealm
+      with:
+        realmName: tools.realmName
+      outputParameters:
+      - type: object
+        mapping: $.

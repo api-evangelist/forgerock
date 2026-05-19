@@ -1,0 +1,259 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Management API — Workflow
+  description: 'ForgeRock Identity Management API — Workflow. 6 operations. Lead operation: ForgeRock List workflow process
+    definitions. Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Workflow
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-management-workflow
+    baseUri: https://{deployment}/openidm
+    description: ForgeRock Identity Management API — Workflow business capability. Self-contained, no shared references.
+    resources:
+    - name: workflow-processdefinition
+      path: /workflow/processdefinition
+      operations:
+      - name: listprocessdefinitions
+        method: GET
+        description: ForgeRock List workflow process definitions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflow-processinstance
+      path: /workflow/processinstance
+      operations:
+      - name: listprocessinstances
+        method: GET
+        description: ForgeRock List workflow process instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createprocessinstance
+        method: POST
+        description: ForgeRock Start a workflow process
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _action
+          in: query
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workflow-taskinstance
+      path: /workflow/taskinstance
+      operations:
+      - name: listtaskinstances
+        method: GET
+        description: ForgeRock List workflow task instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workflow-taskinstance-taskId
+      path: /workflow/taskinstance/{taskId}
+      operations:
+      - name: gettaskinstance
+        method: GET
+        description: ForgeRock Get a task instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task instance identifier
+          required: true
+      - name: completetaskinstance
+        method: PUT
+        description: ForgeRock Complete a task instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          description: The task instance identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-management-workflow-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Management API — Workflow. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/workflow/processdefinition
+      name: workflow-processdefinition
+      description: REST surface for workflow-processdefinition.
+      operations:
+      - method: GET
+        name: listprocessdefinitions
+        description: ForgeRock List workflow process definitions
+        call: identity-management-workflow.listprocessdefinitions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/processinstance
+      name: workflow-processinstance
+      description: REST surface for workflow-processinstance.
+      operations:
+      - method: GET
+        name: listprocessinstances
+        description: ForgeRock List workflow process instances
+        call: identity-management-workflow.listprocessinstances
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createprocessinstance
+        description: ForgeRock Start a workflow process
+        call: identity-management-workflow.createprocessinstance
+        with:
+          _action: rest._action
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/taskinstance
+      name: workflow-taskinstance
+      description: REST surface for workflow-taskinstance.
+      operations:
+      - method: GET
+        name: listtaskinstances
+        description: ForgeRock List workflow task instances
+        call: identity-management-workflow.listtaskinstances
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workflow/taskinstance/{taskid}
+      name: workflow-taskinstance-taskid
+      description: REST surface for workflow-taskinstance-taskId.
+      operations:
+      - method: GET
+        name: gettaskinstance
+        description: ForgeRock Get a task instance
+        call: identity-management-workflow.gettaskinstance
+        with:
+          taskId: rest.taskId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: completetaskinstance
+        description: ForgeRock Complete a task instance
+        call: identity-management-workflow.completetaskinstance
+        with:
+          taskId: rest.taskId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-management-workflow-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Management API — Workflow. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-list-workflow-process-definitions
+      description: ForgeRock List workflow process definitions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-management-workflow.listprocessdefinitions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-list-workflow-process-instances
+      description: ForgeRock List workflow process instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-management-workflow.listprocessinstances
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-start-workflow-process
+      description: ForgeRock Start a workflow process
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-management-workflow.createprocessinstance
+      with:
+        _action: tools._action
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-list-workflow-task-instances
+      description: ForgeRock List workflow task instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-management-workflow.listtaskinstances
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-task-instance
+      description: ForgeRock Get a task instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-management-workflow.gettaskinstance
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-complete-task-instance
+      description: ForgeRock Complete a task instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: identity-management-workflow.completetaskinstance
+      with:
+        taskId: tools.taskId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

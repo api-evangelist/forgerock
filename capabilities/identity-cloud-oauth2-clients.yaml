@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Cloud REST API — OAuth2 Clients
+  description: 'ForgeRock Identity Cloud REST API — OAuth2 Clients. 2 operations. Lead operation: ForgeRock OAuth 2.0 token
+    endpoint. Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - OAuth2 Clients
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-cloud-oauth2-clients
+    baseUri: https://{tenant}.forgeblocks.com
+    description: ForgeRock Identity Cloud REST API — OAuth2 Clients business capability. Self-contained, no shared references.
+    resources:
+    - name: am-oauth2-realms-root-realms-realm-access_token
+      path: /am/oauth2/realms/root/realms/{realm}/access_token
+      operations:
+      - name: getaccesstoken
+        method: POST
+        description: ForgeRock OAuth 2.0 token endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: am-oauth2-realms-root-realms-realm-authorize
+      path: /am/oauth2/realms/root/realms/{realm}/authorize
+      operations:
+      - name: authorizeoauth2
+        method: GET
+        description: ForgeRock OAuth 2.0 authorization endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: client_id
+          in: query
+          type: string
+          description: The OAuth 2.0 client identifier
+          required: true
+        - name: response_type
+          in: query
+          type: string
+          description: The OAuth 2.0 response type
+          required: true
+        - name: redirect_uri
+          in: query
+          type: string
+          description: The URI to redirect to after authorization
+          required: true
+        - name: scope
+          in: query
+          type: string
+          description: Space-delimited list of requested scopes
+        - name: state
+          in: query
+          type: string
+          description: Opaque value to maintain state between request and callback
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-cloud-oauth2-clients-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Cloud REST API — OAuth2 Clients. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/am/oauth2/realms/root/realms/{realm}/access-token
+      name: am-oauth2-realms-root-realms-realm-access-token
+      description: REST surface for am-oauth2-realms-root-realms-realm-access_token.
+      operations:
+      - method: POST
+        name: getaccesstoken
+        description: ForgeRock OAuth 2.0 token endpoint
+        call: identity-cloud-oauth2-clients.getaccesstoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/am/oauth2/realms/root/realms/{realm}/authorize
+      name: am-oauth2-realms-root-realms-realm-authorize
+      description: REST surface for am-oauth2-realms-root-realms-realm-authorize.
+      operations:
+      - method: GET
+        name: authorizeoauth2
+        description: ForgeRock OAuth 2.0 authorization endpoint
+        call: identity-cloud-oauth2-clients.authorizeoauth2
+        with:
+          client_id: rest.client_id
+          response_type: rest.response_type
+          redirect_uri: rest.redirect_uri
+          scope: rest.scope
+          state: rest.state
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-cloud-oauth2-clients-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Cloud REST API — OAuth2 Clients. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: forgerock-oauth-2-0-token-endpoint
+      description: ForgeRock OAuth 2.0 token endpoint
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-cloud-oauth2-clients.getaccesstoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-oauth-2-0-authorization-endpoint
+      description: ForgeRock OAuth 2.0 authorization endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-cloud-oauth2-clients.authorizeoauth2
+      with:
+        client_id: tools.client_id
+        response_type: tools.response_type
+        redirect_uri: tools.redirect_uri
+        scope: tools.scope
+        state: tools.state
+      outputParameters:
+      - type: object
+        mapping: $.

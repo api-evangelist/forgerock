@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Governance API — Access Requests
+  description: 'ForgeRock Identity Governance API — Access Requests. 4 operations. Lead operation: ForgeRock List access requests.
+    Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Access Requests
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-governance-access-requests
+    baseUri: https://{deployment}/iga
+    description: ForgeRock Identity Governance API — Access Requests business capability. Self-contained, no shared references.
+    resources:
+    - name: governance-request
+      path: /governance/request
+      operations:
+      - name: listaccessrequests
+        method: GET
+        description: ForgeRock List access requests
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createaccessrequest
+        method: POST
+        description: ForgeRock Create an access request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: governance-request-requestId
+      path: /governance/request/{requestId}
+      operations:
+      - name: getaccessrequest
+        method: GET
+        description: ForgeRock Get an access request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: requestId
+          in: path
+          type: string
+          description: The access request identifier
+          required: true
+      - name: accessrequestaction
+        method: POST
+        description: ForgeRock Perform an access request action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: requestId
+          in: path
+          type: string
+          description: The access request identifier
+          required: true
+        - name: _action
+          in: query
+          type: string
+          description: The action to perform
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-governance-access-requests-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Governance API — Access Requests. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/governance/request
+      name: governance-request
+      description: REST surface for governance-request.
+      operations:
+      - method: GET
+        name: listaccessrequests
+        description: ForgeRock List access requests
+        call: identity-governance-access-requests.listaccessrequests
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccessrequest
+        description: ForgeRock Create an access request
+        call: identity-governance-access-requests.createaccessrequest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/governance/request/{requestid}
+      name: governance-request-requestid
+      description: REST surface for governance-request-requestId.
+      operations:
+      - method: GET
+        name: getaccessrequest
+        description: ForgeRock Get an access request
+        call: identity-governance-access-requests.getaccessrequest
+        with:
+          requestId: rest.requestId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: accessrequestaction
+        description: ForgeRock Perform an access request action
+        call: identity-governance-access-requests.accessrequestaction
+        with:
+          requestId: rest.requestId
+          _action: rest._action
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-governance-access-requests-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Governance API — Access Requests. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: forgerock-list-access-requests
+      description: ForgeRock List access requests
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-governance-access-requests.listaccessrequests
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-create-access-request
+      description: ForgeRock Create an access request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-governance-access-requests.createaccessrequest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-access-request
+      description: ForgeRock Get an access request
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-governance-access-requests.getaccessrequest
+      with:
+        requestId: tools.requestId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-perform-access-request-action
+      description: ForgeRock Perform an access request action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-governance-access-requests.accessrequestaction
+      with:
+        requestId: tools.requestId
+        _action: tools._action
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

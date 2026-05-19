@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Governance API — Certifications
+  description: 'ForgeRock Identity Governance API — Certifications. 4 operations. Lead operation: ForgeRock List certification
+    campaigns. Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Certifications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-governance-certifications
+    baseUri: https://{deployment}/iga
+    description: ForgeRock Identity Governance API — Certifications business capability. Self-contained, no shared references.
+    resources:
+    - name: governance-certification
+      path: /governance/certification
+      operations:
+      - name: listcertifications
+        method: GET
+        description: ForgeRock List certification campaigns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcertification
+        method: POST
+        description: ForgeRock Create a certification campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: governance-certification-certificationId
+      path: /governance/certification/{certificationId}
+      operations:
+      - name: getcertification
+        method: GET
+        description: ForgeRock Get a certification campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patchcertification
+        method: PATCH
+        description: ForgeRock Update a certification campaign
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-governance-certifications-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Governance API — Certifications. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/governance/certification
+      name: governance-certification
+      description: REST surface for governance-certification.
+      operations:
+      - method: GET
+        name: listcertifications
+        description: ForgeRock List certification campaigns
+        call: identity-governance-certifications.listcertifications
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcertification
+        description: ForgeRock Create a certification campaign
+        call: identity-governance-certifications.createcertification
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/governance/certification/{certificationid}
+      name: governance-certification-certificationid
+      description: REST surface for governance-certification-certificationId.
+      operations:
+      - method: GET
+        name: getcertification
+        description: ForgeRock Get a certification campaign
+        call: identity-governance-certifications.getcertification
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchcertification
+        description: ForgeRock Update a certification campaign
+        call: identity-governance-certifications.patchcertification
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-governance-certifications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Governance API — Certifications. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: forgerock-list-certification-campaigns
+      description: ForgeRock List certification campaigns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-governance-certifications.listcertifications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-create-certification-campaign
+      description: ForgeRock Create a certification campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-governance-certifications.createcertification
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-certification-campaign
+      description: ForgeRock Get a certification campaign
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-governance-certifications.getcertification
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-update-certification-campaign
+      description: ForgeRock Update a certification campaign
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: identity-governance-certifications.patchcertification
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

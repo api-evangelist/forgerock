@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Gateway API — Monitoring
+  description: 'ForgeRock Identity Gateway API — Monitoring. 3 operations. Lead operation: ForgeRock Check IG health. Self-contained
+    Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Monitoring
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-gateway-monitoring
+    baseUri: https://{deployment}/ig
+    description: ForgeRock Identity Gateway API — Monitoring business capability. Self-contained, no shared references.
+    resources:
+    - name: openig-api-system-health
+      path: /openig/api/system/health
+      operations:
+      - name: gethealthstatus
+        method: GET
+        description: ForgeRock Check IG health
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: openig-api-system-monitoring
+      path: /openig/api/system/monitoring
+      operations:
+      - name: getmonitoringsummary
+        method: GET
+        description: ForgeRock Get monitoring summary
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: openig-api-system-monitoring-endpointId
+      path: /openig/api/system/monitoring/{endpointId}
+      operations:
+      - name: getendpointmonitoring
+        method: GET
+        description: ForgeRock Get endpoint monitoring
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: endpointId
+          in: path
+          type: string
+          description: The endpoint or route identifier to monitor
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-gateway-monitoring-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Gateway API — Monitoring. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/openig/api/system/health
+      name: openig-api-system-health
+      description: REST surface for openig-api-system-health.
+      operations:
+      - method: GET
+        name: gethealthstatus
+        description: ForgeRock Check IG health
+        call: identity-gateway-monitoring.gethealthstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/openig/api/system/monitoring
+      name: openig-api-system-monitoring
+      description: REST surface for openig-api-system-monitoring.
+      operations:
+      - method: GET
+        name: getmonitoringsummary
+        description: ForgeRock Get monitoring summary
+        call: identity-gateway-monitoring.getmonitoringsummary
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/openig/api/system/monitoring/{endpointid}
+      name: openig-api-system-monitoring-endpointid
+      description: REST surface for openig-api-system-monitoring-endpointId.
+      operations:
+      - method: GET
+        name: getendpointmonitoring
+        description: ForgeRock Get endpoint monitoring
+        call: identity-gateway-monitoring.getendpointmonitoring
+        with:
+          endpointId: rest.endpointId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-gateway-monitoring-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Gateway API — Monitoring. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-check-ig-health
+      description: ForgeRock Check IG health
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-gateway-monitoring.gethealthstatus
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-monitoring-summary
+      description: ForgeRock Get monitoring summary
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-gateway-monitoring.getmonitoringsummary
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-endpoint-monitoring
+      description: ForgeRock Get endpoint monitoring
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-gateway-monitoring.getendpointmonitoring
+      with:
+        endpointId: tools.endpointId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,121 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Access Management API — Sessions
+  description: 'ForgeRock Access Management API — Sessions. 2 operations. Lead operation: ForgeRock Query sessions. Self-contained
+    Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Sessions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: access-management-sessions
+    baseUri: https://{deployment}/am
+    description: ForgeRock Access Management API — Sessions business capability. Self-contained, no shared references.
+    resources:
+    - name: json-realms-root-realms-realm-sessions
+      path: /json/realms/root/realms/{realm}/sessions
+      operations:
+      - name: querysessions
+        method: GET
+        description: ForgeRock Query sessions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _queryFilter
+          in: query
+          type: string
+          description: CREST query filter for sessions
+      - name: sessionaction
+        method: POST
+        description: ForgeRock Perform a session action
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: _action
+          in: query
+          type: string
+          description: The session action to perform
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: access-management-sessions-rest
+    port: 8080
+    description: REST adapter for ForgeRock Access Management API — Sessions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/json/realms/root/realms/{realm}/sessions
+      name: json-realms-root-realms-realm-sessions
+      description: REST surface for json-realms-root-realms-realm-sessions.
+      operations:
+      - method: GET
+        name: querysessions
+        description: ForgeRock Query sessions
+        call: access-management-sessions.querysessions
+        with:
+          _queryFilter: rest._queryFilter
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: sessionaction
+        description: ForgeRock Perform a session action
+        call: access-management-sessions.sessionaction
+        with:
+          _action: rest._action
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: access-management-sessions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Access Management API — Sessions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-query-sessions
+      description: ForgeRock Query sessions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: access-management-sessions.querysessions
+      with:
+        _queryFilter: tools._queryFilter
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-perform-session-action
+      description: ForgeRock Perform a session action
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: access-management-sessions.sessionaction
+      with:
+        _action: tools._action
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

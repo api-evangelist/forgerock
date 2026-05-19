@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Identity Management API — Scheduler
+  description: 'ForgeRock Identity Management API — Scheduler. 5 operations. Lead operation: ForgeRock List scheduled jobs.
+    Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Scheduler
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: identity-management-scheduler
+    baseUri: https://{deployment}/openidm
+    description: ForgeRock Identity Management API — Scheduler business capability. Self-contained, no shared references.
+    resources:
+    - name: scheduler-job
+      path: /scheduler/job
+      operations:
+      - name: listscheduledjobs
+        method: GET
+        description: ForgeRock List scheduled jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createscheduledjob
+        method: POST
+        description: ForgeRock Create a scheduled job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: scheduler-job-jobId
+      path: /scheduler/job/{jobId}
+      operations:
+      - name: getscheduledjob
+        method: GET
+        description: ForgeRock Get a scheduled job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: The job identifier
+          required: true
+      - name: updatescheduledjob
+        method: PUT
+        description: ForgeRock Update a scheduled job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: The job identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletescheduledjob
+        method: DELETE
+        description: ForgeRock Delete a scheduled job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          description: The job identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: identity-management-scheduler-rest
+    port: 8080
+    description: REST adapter for ForgeRock Identity Management API — Scheduler. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/scheduler/job
+      name: scheduler-job
+      description: REST surface for scheduler-job.
+      operations:
+      - method: GET
+        name: listscheduledjobs
+        description: ForgeRock List scheduled jobs
+        call: identity-management-scheduler.listscheduledjobs
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscheduledjob
+        description: ForgeRock Create a scheduled job
+        call: identity-management-scheduler.createscheduledjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scheduler/job/{jobid}
+      name: scheduler-job-jobid
+      description: REST surface for scheduler-job-jobId.
+      operations:
+      - method: GET
+        name: getscheduledjob
+        description: ForgeRock Get a scheduled job
+        call: identity-management-scheduler.getscheduledjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatescheduledjob
+        description: ForgeRock Update a scheduled job
+        call: identity-management-scheduler.updatescheduledjob
+        with:
+          jobId: rest.jobId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletescheduledjob
+        description: ForgeRock Delete a scheduled job
+        call: identity-management-scheduler.deletescheduledjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: identity-management-scheduler-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Identity Management API — Scheduler. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-list-scheduled-jobs
+      description: ForgeRock List scheduled jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-management-scheduler.listscheduledjobs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-create-scheduled-job
+      description: ForgeRock Create a scheduled job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: identity-management-scheduler.createscheduledjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-scheduled-job
+      description: ForgeRock Get a scheduled job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: identity-management-scheduler.getscheduledjob
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-update-scheduled-job
+      description: ForgeRock Update a scheduled job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: identity-management-scheduler.updatescheduledjob
+      with:
+        jobId: tools.jobId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-delete-scheduled-job
+      description: ForgeRock Delete a scheduled job
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: identity-management-scheduler.deletescheduledjob
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.

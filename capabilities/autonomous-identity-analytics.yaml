@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Autonomous Identity API — Analytics
+  description: 'ForgeRock Autonomous Identity API — Analytics. 2 operations. Lead operation: ForgeRock List analytics reports.
+    Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Analytics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: autonomous-identity-analytics
+    baseUri: https://{deployment}/autoid
+    description: ForgeRock Autonomous Identity API — Analytics business capability. Self-contained, no shared references.
+    resources:
+    - name: api-analytics-reports
+      path: /api/analytics/reports
+      operations:
+      - name: listanalyticsreports
+        method: GET
+        description: ForgeRock List analytics reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-analytics-status
+      path: /api/analytics/status
+      operations:
+      - name: getanalyticsstatus
+        method: GET
+        description: ForgeRock Get analytics pipeline status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: autonomous-identity-analytics-rest
+    port: 8080
+    description: REST adapter for ForgeRock Autonomous Identity API — Analytics. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/analytics/reports
+      name: api-analytics-reports
+      description: REST surface for api-analytics-reports.
+      operations:
+      - method: GET
+        name: listanalyticsreports
+        description: ForgeRock List analytics reports
+        call: autonomous-identity-analytics.listanalyticsreports
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/analytics/status
+      name: api-analytics-status
+      description: REST surface for api-analytics-status.
+      operations:
+      - method: GET
+        name: getanalyticsstatus
+        description: ForgeRock Get analytics pipeline status
+        call: autonomous-identity-analytics.getanalyticsstatus
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: autonomous-identity-analytics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Autonomous Identity API — Analytics. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: forgerock-list-analytics-reports
+      description: ForgeRock List analytics reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autonomous-identity-analytics.listanalyticsreports
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-get-analytics-pipeline-status
+      description: ForgeRock Get analytics pipeline status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autonomous-identity-analytics.getanalyticsstatus
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,266 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Directory Services API — Groups
+  description: 'ForgeRock Directory Services API — Groups. 6 operations. Lead operation: List directory groups. Self-contained
+    Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: directory-services-groups
+    baseUri: https://{deployment}/ds
+    description: ForgeRock Directory Services API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: api-groups
+      path: /api/groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: List directory groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: Create a directory group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-groups-groupId
+      path: /api/groups/{groupId}
+      operations:
+      - name: getgroup
+        method: GET
+        description: Get a directory group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: The group identifier (maps to LDAP cn)
+          required: true
+      - name: updategroup
+        method: PUT
+        description: Replace a directory group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: The group identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: patchgroup
+        method: PATCH
+        description: Patch a directory group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: The group identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegroup
+        method: DELETE
+        description: Delete a directory group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: The group identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: directory-services-groups-rest
+    port: 8080
+    description: REST adapter for ForgeRock Directory Services API — Groups. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/groups
+      name: api-groups
+      description: REST surface for api-groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: List directory groups
+        call: directory-services-groups.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: Create a directory group
+        call: directory-services-groups.creategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/groups/{groupid}
+      name: api-groups-groupid
+      description: REST surface for api-groups-groupId.
+      operations:
+      - method: GET
+        name: getgroup
+        description: Get a directory group
+        call: directory-services-groups.getgroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updategroup
+        description: Replace a directory group
+        call: directory-services-groups.updategroup
+        with:
+          groupId: rest.groupId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchgroup
+        description: Patch a directory group
+        call: directory-services-groups.patchgroup
+        with:
+          groupId: rest.groupId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegroup
+        description: Delete a directory group
+        call: directory-services-groups.deletegroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: directory-services-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Directory Services API — Groups. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-directory-groups
+      description: List directory groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: directory-services-groups.listgroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-directory-group
+      description: Create a directory group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: directory-services-groups.creategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-directory-group
+      description: Get a directory group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: directory-services-groups.getgroup
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replace-directory-group
+      description: Replace a directory group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: directory-services-groups.updategroup
+      with:
+        groupId: tools.groupId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-directory-group
+      description: Patch a directory group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: directory-services-groups.patchgroup
+      with:
+        groupId: tools.groupId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-directory-group
+      description: Delete a directory group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: directory-services-groups.deletegroup
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.

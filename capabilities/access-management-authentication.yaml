@@ -1,0 +1,92 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Access Management API — Authentication
+  description: 'ForgeRock Access Management API — Authentication. 1 operations. Lead operation: ForgeRock Authenticate a user.
+    Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: access-management-authentication
+    baseUri: https://{deployment}/am
+    description: ForgeRock Access Management API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: json-realms-root-realms-realm-authenticate
+      path: /json/realms/root/realms/{realm}/authenticate
+      operations:
+      - name: authenticate
+        method: POST
+        description: ForgeRock Authenticate a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: authIndexType
+          in: query
+          type: string
+          description: Type of authentication index
+        - name: authIndexValue
+          in: query
+          type: string
+          description: Name of the authentication tree or module
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: access-management-authentication-rest
+    port: 8080
+    description: REST adapter for ForgeRock Access Management API — Authentication. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/json/realms/root/realms/{realm}/authenticate
+      name: json-realms-root-realms-realm-authenticate
+      description: REST surface for json-realms-root-realms-realm-authenticate.
+      operations:
+      - method: POST
+        name: authenticate
+        description: ForgeRock Authenticate a user
+        call: access-management-authentication.authenticate
+        with:
+          authIndexType: rest.authIndexType
+          authIndexValue: rest.authIndexValue
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: access-management-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Access Management API — Authentication. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: forgerock-authenticate-user
+      description: ForgeRock Authenticate a user
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: access-management-authentication.authenticate
+      with:
+        authIndexType: tools.authIndexType
+        authIndexValue: tools.authIndexValue
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Directory Services API — Entries
+  description: 'ForgeRock Directory Services API — Entries. 1 operations. Lead operation: List directory entries. Self-contained
+    Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Entries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: directory-services-entries
+    baseUri: https://{deployment}/ds
+    description: ForgeRock Directory Services API — Entries business capability. Self-contained, no shared references.
+    resources:
+    - name: api-collection
+      path: /api/{collection}
+      operations:
+      - name: listentries
+        method: GET
+        description: List directory entries
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: collection
+          in: path
+          type: string
+          description: The HDAP collection name
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: directory-services-entries-rest
+    port: 8080
+    description: REST adapter for ForgeRock Directory Services API — Entries. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/{collection}
+      name: api-collection
+      description: REST surface for api-collection.
+      operations:
+      - method: GET
+        name: listentries
+        description: List directory entries
+        call: directory-services-entries.listentries
+        with:
+          collection: rest.collection
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: directory-services-entries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Directory Services API — Entries. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-directory-entries
+      description: List directory entries
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: directory-services-entries.listentries
+      with:
+        collection: tools.collection
+      outputParameters:
+      - type: object
+        mapping: $.

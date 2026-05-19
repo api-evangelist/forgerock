@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Autonomous Identity API — Company View
+  description: 'ForgeRock Autonomous Identity API — Company View. 1 operations. Lead operation: ForgeRock Get company view
+    analytics. Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - Company View
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: autonomous-identity-company-view
+    baseUri: https://{deployment}/autoid
+    description: ForgeRock Autonomous Identity API — Company View business capability. Self-contained, no shared references.
+    resources:
+    - name: api-companyview
+      path: /api/companyview
+      operations:
+      - name: getcompanyview
+        method: GET
+        description: ForgeRock Get company view analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: autonomous-identity-company-view-rest
+    port: 8080
+    description: REST adapter for ForgeRock Autonomous Identity API — Company View. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/companyview
+      name: api-companyview
+      description: REST surface for api-companyview.
+      operations:
+      - method: GET
+        name: getcompanyview
+        description: ForgeRock Get company view analytics
+        call: autonomous-identity-company-view.getcompanyview
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: autonomous-identity-company-view-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Autonomous Identity API — Company View. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: forgerock-get-company-view-analytics
+      description: ForgeRock Get company view analytics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: autonomous-identity-company-view.getcompanyview
+      outputParameters:
+      - type: object
+        mapping: $.

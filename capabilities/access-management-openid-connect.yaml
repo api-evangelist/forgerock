@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ForgeRock Access Management API — OpenID Connect
+  description: 'ForgeRock Access Management API — OpenID Connect. 2 operations. Lead operation: ForgeRock OpenID Connect discovery.
+    Self-contained Naftiko capability covering one Forgerock business surface.'
+  tags:
+  - Forgerock
+  - OpenID Connect
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FORGEROCK_API_KEY: FORGEROCK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: access-management-openid-connect
+    baseUri: https://{deployment}/am
+    description: ForgeRock Access Management API — OpenID Connect business capability. Self-contained, no shared references.
+    resources:
+    - name: .well-known-openid-configuration
+      path: /.well-known/openid-configuration
+      operations:
+      - name: oidcdiscovery
+        method: GET
+        description: ForgeRock OpenID Connect discovery
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: oauth2-realms-root-realms-realm-userinfo
+      path: /oauth2/realms/root/realms/{realm}/userinfo
+      operations:
+      - name: oidcuserinfo
+        method: GET
+        description: ForgeRock OpenID Connect UserInfo endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.FORGEROCK_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: access-management-openid-connect-rest
+    port: 8080
+    description: REST adapter for ForgeRock Access Management API — OpenID Connect. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/well-known/openid-configuration
+      name: well-known-openid-configuration
+      description: REST surface for .well-known-openid-configuration.
+      operations:
+      - method: GET
+        name: oidcdiscovery
+        description: ForgeRock OpenID Connect discovery
+        call: access-management-openid-connect.oidcdiscovery
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/oauth2/realms/root/realms/{realm}/userinfo
+      name: oauth2-realms-root-realms-realm-userinfo
+      description: REST surface for oauth2-realms-root-realms-realm-userinfo.
+      operations:
+      - method: GET
+        name: oidcuserinfo
+        description: ForgeRock OpenID Connect UserInfo endpoint
+        call: access-management-openid-connect.oidcuserinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: access-management-openid-connect-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ForgeRock Access Management API — OpenID Connect. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: forgerock-openid-connect-discovery
+      description: ForgeRock OpenID Connect discovery
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: access-management-openid-connect.oidcdiscovery
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: forgerock-openid-connect-userinfo-endpoint
+      description: ForgeRock OpenID Connect UserInfo endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: access-management-openid-connect.oidcuserinfo
+      outputParameters:
+      - type: object
+        mapping: $.
