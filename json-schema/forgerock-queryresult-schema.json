@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QueryResult",
+  "title": "QueryResult",
+  "type": "object",
+  "description": "CREST query result",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ManagedObject"
+      }
+    },
+    "resultCount": {
+      "type": "integer"
+    },
+    "pagedResultsCookie": {
+      "type": "string"
+    },
+    "totalPagedResultsPolicy": {
+      "type": "string"
+    },
+    "totalPagedResults": {
+      "type": "integer"
+    },
+    "remainingPagedResults": {
+      "type": "integer"
+    }
+  }
+}

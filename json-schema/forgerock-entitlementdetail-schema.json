@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntitlementDetail",
+  "title": "EntitlementDetail",
+  "type": "object",
+  "description": "Detailed entitlement with analytics data",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string",
+      "description": "Entitlement name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "application": {
+      "type": "string",
+      "description": "Source application name"
+    },
+    "totalUsers": {
+      "type": "integer",
+      "description": "Number of users with this entitlement"
+    },
+    "averageConfidenceScore": {
+      "type": "number",
+      "description": "Average confidence score across all assignments"
+    },
+    "confidenceDistribution": {
+      "type": "object",
+      "description": "Distribution of confidence scores",
+      "properties": {
+        "high": {
+          "type": "integer",
+          "description": "Assignments with confidence >= 80%"
+        },
+        "medium": {
+          "type": "integer",
+          "description": "Assignments with confidence 50-79%"
+        },
+        "low": {
+          "type": "integer",
+          "description": "Assignments with confidence < 50%"
+        }
+      }
+    },
+    "drivingAttributes": {
+      "type": "array",
+      "description": "User attributes that most influence this entitlement assignment",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

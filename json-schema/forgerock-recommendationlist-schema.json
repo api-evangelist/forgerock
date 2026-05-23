@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecommendationList",
+  "title": "RecommendationList",
+  "type": "object",
+  "description": "Entitlement recommendations",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "entitlementId": {
+            "type": "string"
+          },
+          "entitlementName": {
+            "type": "string"
+          },
+          "application": {
+            "type": "string"
+          },
+          "confidenceScore": {
+            "type": "number",
+            "description": "Predicted confidence score"
+          },
+          "drivingAttributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "totalResults": {
+      "type": "integer"
+    }
+  }
+}

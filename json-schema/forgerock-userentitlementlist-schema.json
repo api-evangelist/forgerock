@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserEntitlementList",
+  "title": "UserEntitlementList",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entitlementId": {
+            "type": "string"
+          },
+          "entitlementName": {
+            "type": "string"
+          },
+          "application": {
+            "type": "string"
+          },
+          "confidenceScore": {
+            "type": "number"
+          },
+          "drivingAttributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "justification": {
+            "type": "string",
+            "description": "AI-generated justification for the assignment"
+          }
+        }
+      }
+    },
+    "totalResults": {
+      "type": "integer"
+    }
+  }
+}

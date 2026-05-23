@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Application",
+  "title": "Application",
+  "type": "object",
+  "description": "An onboarded application",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "totalEntitlements": {
+      "type": "integer"
+    },
+    "totalUsers": {
+      "type": "integer"
+    },
+    "averageConfidenceScore": {
+      "type": "number"
+    }
+  }
+}

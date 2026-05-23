@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchedulerJob",
+  "title": "SchedulerJob",
+  "type": "object",
+  "description": "A scheduled job configuration",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the job is enabled"
+    },
+    "type": {
+      "type": "string",
+      "description": "Job type",
+      "enum": [
+        "cron",
+        "simple"
+      ]
+    },
+    "schedule": {
+      "type": "string",
+      "description": "Cron expression for cron-type jobs"
+    },
+    "misfirePolicy": {
+      "type": "string",
+      "description": "Policy for handling missed executions",
+      "enum": [
+        "fireAndProceed",
+        "doNothing"
+      ]
+    },
+    "invokeService": {
+      "type": "string",
+      "description": "The service to invoke"
+    },
+    "invokeContext": {
+      "type": "object",
+      "description": "Context for the service invocation",
+      "properties": {
+        "action": {
+          "type": "string"
+        },
+        "mapping": {
+          "type": "string"
+        }
+      }
+    },
+    "invokeLogLevel": {
+      "type": "string",
+      "enum": [
+        "info",
+        "debug",
+        "trace"
+      ]
+    }
+  }
+}

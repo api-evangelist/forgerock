@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PolicyEvaluationRequest",
+  "title": "PolicyEvaluationRequest",
+  "type": "object",
+  "description": "Policy evaluation request",
+  "properties": {
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Resources to evaluate"
+    },
+    "application": {
+      "type": "string",
+      "description": "Policy set name"
+    },
+    "subject": {
+      "type": "object",
+      "description": "Subject for evaluation",
+      "properties": {
+        "ssoToken": {
+          "type": "string"
+        },
+        "claims": {
+          "type": "object"
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "description": "Environment conditions",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

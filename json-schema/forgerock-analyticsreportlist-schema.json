@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AnalyticsReportList",
+  "title": "AnalyticsReportList",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "runDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "type": "string"
+          },
+          "totalEntitlementsProcessed": {
+            "type": "integer"
+          },
+          "totalUsersProcessed": {
+            "type": "integer"
+          },
+          "averageConfidenceScore": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "totalResults": {
+      "type": "integer"
+    }
+  }
+}

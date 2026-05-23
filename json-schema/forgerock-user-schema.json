@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/User",
+  "title": "User",
+  "type": "object",
+  "description": "A directory user entry mapped from LDAP to JSON via HDAP",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "User identifier (mapped from LDAP uid)"
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Entry revision for MVCC",
+      "readOnly": true
+    },
+    "userName": {
+      "type": "string",
+      "description": "Login username"
+    },
+    "givenName": {
+      "type": "string",
+      "description": "First name"
+    },
+    "sn": {
+      "type": "string",
+      "description": "Surname / last name"
+    },
+    "cn": {
+      "type": "string",
+      "description": "Common name (full name)"
+    },
+    "mail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "telephoneNumber": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "description": {
+      "type": "string",
+      "description": "User description"
+    },
+    "memberOf": {
+      "type": "array",
+      "description": "Groups this user belongs to",
+      "readOnly": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "userPassword": {
+      "type": "string",
+      "format": "password",
+      "description": "Password (write-only, stored hashed)",
+      "writeOnly": true
+    }
+  }
+}

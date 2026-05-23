@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Realm",
+  "title": "Realm",
+  "type": "object",
+  "description": "An AM realm configuration",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Realm name"
+    },
+    "parentPath": {
+      "type": "string",
+      "description": "Parent realm path"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the realm is active"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "DNS aliases for the realm"
+    }
+  }
+}

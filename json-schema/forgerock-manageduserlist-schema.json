@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedUserList",
+  "title": "ManagedUserList",
+  "type": "object",
+  "description": "Paginated list of managed users",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ManagedUser"
+      }
+    },
+    "resultCount": {
+      "type": "integer",
+      "description": "Number of results in this page"
+    },
+    "pagedResultsCookie": {
+      "type": "string",
+      "description": "Cookie for fetching the next page"
+    },
+    "totalPagedResultsPolicy": {
+      "type": "string",
+      "description": "Policy for total result count"
+    },
+    "totalPagedResults": {
+      "type": "integer",
+      "description": "Total number of results (-1 if unknown)"
+    },
+    "remainingPagedResults": {
+      "type": "integer",
+      "description": "Remaining results after this page"
+    }
+  }
+}

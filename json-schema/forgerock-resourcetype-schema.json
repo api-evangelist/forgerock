@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ResourceType",
+  "title": "ResourceType",
+  "type": "object",
+  "description": "A resource type definition",
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URL patterns for this resource type"
+    },
+    "actions": {
+      "type": "object",
+      "description": "Available actions and their default values",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    }
+  }
+}

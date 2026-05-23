@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SessionActionResult",
+  "title": "SessionActionResult",
+  "type": "object",
+  "description": "Result of a session action",
+  "properties": {
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the session is valid (for validate action)"
+    },
+    "uid": {
+      "type": "string"
+    },
+    "realm": {
+      "type": "string"
+    }
+  }
+}

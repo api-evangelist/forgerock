@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Group",
+  "title": "Group",
+  "type": "object",
+  "description": "A directory group entry",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Group identifier (mapped from LDAP cn)"
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Entry revision",
+      "readOnly": true
+    },
+    "cn": {
+      "type": "string",
+      "description": "Group common name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Group description"
+    },
+    "members": {
+      "type": "array",
+      "description": "Group member identifiers",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

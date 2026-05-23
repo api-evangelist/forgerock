@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompanyView",
+  "title": "CompanyView",
+  "type": "object",
+  "description": "Company-wide analytics summary",
+  "properties": {
+    "totalUsers": {
+      "type": "integer"
+    },
+    "totalEntitlements": {
+      "type": "integer"
+    },
+    "totalApplications": {
+      "type": "integer"
+    },
+    "averageConfidenceScore": {
+      "type": "number"
+    },
+    "confidenceDistribution": {
+      "type": "object",
+      "properties": {
+        "high": {
+          "type": "integer"
+        },
+        "medium": {
+          "type": "integer"
+        },
+        "low": {
+          "type": "integer"
+        }
+      }
+    },
+    "riskSummary": {
+      "type": "object",
+      "properties": {
+        "highRiskUsers": {
+          "type": "integer",
+          "description": "Users with many low-confidence assignments"
+        },
+        "highRiskEntitlements": {
+          "type": "integer",
+          "description": "Entitlements with low average confidence"
+        },
+        "outlierAssignments": {
+          "type": "integer",
+          "description": "Assignments that differ from peer groups"
+        }
+      }
+    }
+  }
+}

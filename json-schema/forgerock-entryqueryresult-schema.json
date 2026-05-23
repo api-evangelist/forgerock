@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntryQueryResult",
+  "title": "EntryQueryResult",
+  "type": "object",
+  "description": "Generic HDAP query result",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "_rev": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "resultCount": {
+      "type": "integer"
+    },
+    "pagedResultsCookie": {
+      "type": "string"
+    },
+    "totalPagedResults": {
+      "type": "integer"
+    }
+  }
+}

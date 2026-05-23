@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EntitlementUserList",
+  "title": "EntitlementUserList",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "confidenceScore": {
+            "type": "number",
+            "description": "Confidence score (0-100)"
+          },
+          "drivingAttributes": {
+            "type": "object",
+            "description": "Attributes driving the confidence score",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "totalResults": {
+      "type": "integer"
+    }
+  }
+}

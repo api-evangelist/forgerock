@@ -1,0 +1,369 @@
+{
+  "provider": "ForgeRock",
+  "providerId": "forgerock",
+  "kind": "json-structure",
+  "description": "Structural overview of the ForgeRock API surface; extracted from openapi/.",
+  "schemaCount": 16,
+  "operationCount": 29,
+  "schemas": [
+    {
+      "name": "ManagedObject",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "QueryResult",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ReconciliationResult",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ReconciliationList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AuditEntry",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "AuditQueryResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SchedulerJob",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "SchedulerJobList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ProcessDefinition",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ProcessDefinitionList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ProcessInstance",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ProcessInstanceList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "TaskInstance",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "TaskInstanceList",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PatchOperations",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/managed/{objectType}",
+      "operationId": "listManagedObjects",
+      "summary": "ForgeRock List managed objects",
+      "tags": [
+        "Managed Objects"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/managed/{objectType}",
+      "operationId": "createManagedObject",
+      "summary": "ForgeRock Create a managed object",
+      "tags": [
+        "Managed Objects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/managed/{objectType}/{objectId}",
+      "operationId": "getManagedObject",
+      "summary": "ForgeRock Get a managed object",
+      "tags": [
+        "Managed Objects"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/managed/{objectType}/{objectId}",
+      "operationId": "updateManagedObject",
+      "summary": "ForgeRock Replace a managed object",
+      "tags": [
+        "Managed Objects"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/managed/{objectType}/{objectId}",
+      "operationId": "deleteManagedObject",
+      "summary": "ForgeRock Delete a managed object",
+      "tags": [
+        "Managed Objects"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/managed/{objectType}/{objectId}",
+      "operationId": "patchManagedObject",
+      "summary": "ForgeRock Patch a managed object",
+      "tags": [
+        "Managed Objects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/system/{systemName}/{objectType}",
+      "operationId": "listSystemObjects",
+      "summary": "ForgeRock List system objects",
+      "tags": [
+        "System Objects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/system/{systemName}/{objectType}/{objectId}",
+      "operationId": "getSystemObject",
+      "summary": "ForgeRock Get a system object",
+      "tags": [
+        "System Objects"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/config",
+      "operationId": "listConfigurations",
+      "summary": "ForgeRock List configuration objects",
+      "tags": [
+        "Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/config/{configId}",
+      "operationId": "getConfiguration",
+      "summary": "ForgeRock Get a configuration object",
+      "tags": [
+        "Configuration"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/config/{configId}",
+      "operationId": "updateConfiguration",
+      "summary": "ForgeRock Update a configuration object",
+      "tags": [
+        "Configuration"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/config/{configId}",
+      "operationId": "deleteConfiguration",
+      "summary": "ForgeRock Delete a configuration object",
+      "tags": [
+        "Configuration"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/recon/{mappingName}",
+      "operationId": "triggerReconciliation",
+      "summary": "ForgeRock Trigger reconciliation",
+      "tags": [
+        "Reconciliation"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/recon",
+      "operationId": "listReconciliations",
+      "summary": "ForgeRock List reconciliation runs",
+      "tags": [
+        "Reconciliation"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/recon/{reconId}",
+      "operationId": "getReconciliation",
+      "summary": "ForgeRock Get reconciliation details",
+      "tags": [
+        "Reconciliation"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sync",
+      "operationId": "triggerSync",
+      "summary": "ForgeRock Trigger on-demand synchronization",
+      "tags": [
+        "Synchronization"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/audit/{auditTopic}",
+      "operationId": "queryAuditLogs",
+      "summary": "ForgeRock Query audit log entries",
+      "tags": [
+        "Audit"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/audit/{auditTopic}/{auditId}",
+      "operationId": "getAuditLogEntry",
+      "summary": "ForgeRock Get an audit log entry",
+      "tags": [
+        "Audit"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/scheduler/job",
+      "operationId": "listScheduledJobs",
+      "summary": "ForgeRock List scheduled jobs",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/scheduler/job",
+      "operationId": "createScheduledJob",
+      "summary": "ForgeRock Create a scheduled job",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/scheduler/job/{jobId}",
+      "operationId": "getScheduledJob",
+      "summary": "ForgeRock Get a scheduled job",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/scheduler/job/{jobId}",
+      "operationId": "updateScheduledJob",
+      "summary": "ForgeRock Update a scheduled job",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/scheduler/job/{jobId}",
+      "operationId": "deleteScheduledJob",
+      "summary": "ForgeRock Delete a scheduled job",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/workflow/processdefinition",
+      "operationId": "listProcessDefinitions",
+      "summary": "ForgeRock List workflow process definitions",
+      "tags": [
+        "Workflow"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/workflow/processinstance",
+      "operationId": "listProcessInstances",
+      "summary": "ForgeRock List workflow process instances",
+      "tags": [
+        "Workflow"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/workflow/processinstance",
+      "operationId": "createProcessInstance",
+      "summary": "ForgeRock Start a workflow process",
+      "tags": [
+        "Workflow"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/workflow/taskinstance",
+      "operationId": "listTaskInstances",
+      "summary": "ForgeRock List workflow task instances",
+      "tags": [
+        "Workflow"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/workflow/taskinstance/{taskId}",
+      "operationId": "getTaskInstance",
+      "summary": "ForgeRock Get a task instance",
+      "tags": [
+        "Workflow"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/workflow/taskinstance/{taskId}",
+      "operationId": "completeTaskInstance",
+      "summary": "ForgeRock Complete a task instance",
+      "tags": [
+        "Workflow"
+      ]
+    }
+  ]
+}

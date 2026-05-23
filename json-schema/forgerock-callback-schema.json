@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Callback",
+  "title": "Callback",
+  "type": "object",
+  "description": "An authentication callback",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The callback type",
+      "examples": [
+        "NameCallback",
+        "PasswordCallback",
+        "ChoiceCallback",
+        "TextOutputCallback"
+      ]
+    },
+    "output": {
+      "type": "array",
+      "description": "Output values from the server",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "description": "The output value"
+          }
+        }
+      }
+    },
+    "input": {
+      "type": "array",
+      "description": "Input values to be provided by the client",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "description": "The input value"
+          }
+        }
+      }
+    }
+  }
+}

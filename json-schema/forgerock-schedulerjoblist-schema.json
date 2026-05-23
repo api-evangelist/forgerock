@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SchedulerJobList",
+  "title": "SchedulerJobList",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SchedulerJob"
+      }
+    },
+    "resultCount": {
+      "type": "integer"
+    }
+  }
+}

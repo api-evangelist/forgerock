@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GovernanceRole",
+  "title": "GovernanceRole",
+  "type": "object",
+  "description": "A governance role",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "entitlements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

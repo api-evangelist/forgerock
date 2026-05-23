@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Violation",
+  "title": "Violation",
+  "type": "object",
+  "description": "A segregation of duties or compliance policy violation",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "policyName": {
+      "type": "string",
+      "description": "Name of the violated policy"
+    },
+    "userId": {
+      "type": "string",
+      "description": "User in violation"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "conflictingEntitlements": {
+      "type": "array",
+      "description": "Entitlements that conflict",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "remediated",
+        "exception"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "detectedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthenticationRequest",
+  "title": "AuthenticationRequest",
+  "type": "object",
+  "description": "Authentication callback response payload",
+  "properties": {
+    "authId": {
+      "type": "string",
+      "description": "Authentication session identifier from the previous step"
+    },
+    "callbacks": {
+      "type": "array",
+      "description": "Completed callback responses",
+      "items": {
+        "$ref": "#/components/schemas/Callback"
+      }
+    }
+  }
+}

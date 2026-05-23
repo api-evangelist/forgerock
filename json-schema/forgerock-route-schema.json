@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Route",
+  "title": "Route",
+  "type": "object",
+  "description": "An IG route configuration",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Route identifier (derived from route name)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable route name"
+    },
+    "condition": {
+      "type": "string",
+      "description": "Expression that determines when this route handles a request (e.g., \"${find(request.uri.path, '/myapp')}\")"
+    },
+    "handler": {
+      "description": "The handler that processes requests matching this route",
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Reference to a named handler"
+        },
+        {
+          "type": "object",
+          "description": "Inline handler configuration",
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Handler type name"
+            },
+            "config": {
+              "type": "object",
+              "description": "Handler configuration"
+            }
+          }
+        }
+      ]
+    },
+    "baseURI": {
+      "type": "string",
+      "format": "uri",
+      "description": "Base URI for the protected application"
+    },
+    "heap": {
+      "type": "array",
+      "description": "Heap objects declared for this route",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "config": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "auditService": {
+      "type": "object",
+      "description": "Audit service configuration for this route"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReconciliationResult",
+  "title": "ReconciliationResult",
+  "type": "object",
+  "description": "Reconciliation run result",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Reconciliation run identifier"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state",
+      "enum": [
+        "SUCCESS",
+        "FAILED",
+        "ACTIVE",
+        "CANCELED"
+      ]
+    },
+    "stage": {
+      "type": "string"
+    },
+    "mapping": {
+      "type": "string",
+      "description": "The mapping name"
+    },
+    "started": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "ended": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "progress": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "object",
+          "properties": {
+            "existing": {
+              "type": "object",
+              "properties": {
+                "processed": {
+                  "type": "integer"
+                },
+                "total": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "existing": {
+              "type": "object",
+              "properties": {
+                "processed": {
+                  "type": "integer"
+                },
+                "total": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "situationSummary": {
+      "type": "object",
+      "description": "Summary of situations found during reconciliation",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "statusSummary": {
+      "type": "object",
+      "description": "Summary of action outcomes",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    }
+  }
+}

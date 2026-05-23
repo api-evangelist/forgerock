@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuthenticationResponse",
+  "title": "AuthenticationResponse",
+  "type": "object",
+  "description": "Authentication step or success result",
+  "properties": {
+    "authId": {
+      "type": "string"
+    },
+    "tokenId": {
+      "type": "string",
+      "description": "SSO token on successful authentication"
+    },
+    "successUrl": {
+      "type": "string"
+    },
+    "realm": {
+      "type": "string"
+    },
+    "callbacks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

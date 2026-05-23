@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OAuthErrorResponse",
+  "title": "OAuthErrorResponse",
+  "type": "object",
+  "description": "OAuth 2.0 error response",
+  "properties": {
+    "error": {
+      "type": "string",
+      "description": "Error code"
+    },
+    "error_description": {
+      "type": "string",
+      "description": "Human-readable error description"
+    }
+  }
+}

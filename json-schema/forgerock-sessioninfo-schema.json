@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SessionInfo",
+  "title": "SessionInfo",
+  "type": "object",
+  "description": "Session information",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "universalId": {
+      "type": "string"
+    },
+    "realm": {
+      "type": "string"
+    },
+    "latestAccessTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "maxIdleExpirationTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "maxSessionExpirationTime": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

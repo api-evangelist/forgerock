@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProcessInstance",
+  "title": "ProcessInstance",
+  "type": "object",
+  "description": "A running workflow process instance",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "processDefinitionId": {
+      "type": "string"
+    },
+    "businessKey": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "startUserId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

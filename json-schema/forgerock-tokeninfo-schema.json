@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenInfo",
+  "title": "TokenInfo",
+  "type": "object",
+  "description": "Token introspection result",
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "grant_type": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "realm": {
+      "type": "string"
+    },
+    "token_type": {
+      "type": "string"
+    },
+    "expires_in": {
+      "type": "integer"
+    },
+    "client_id": {
+      "type": "string"
+    }
+  }
+}

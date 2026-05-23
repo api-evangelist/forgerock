@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rule",
+  "title": "Rule",
+  "type": "object",
+  "description": "An entitlement assignment rule from the AI model",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "entitlement": {
+      "type": "string",
+      "description": "Entitlement this rule applies to"
+    },
+    "application": {
+      "type": "string"
+    },
+    "conditions": {
+      "type": "array",
+      "description": "Attribute conditions that define this rule",
+      "items": {
+        "type": "object",
+        "properties": {
+          "attribute": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "equals",
+              "contains",
+              "startsWith"
+            ]
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "confidenceScore": {
+      "type": "number",
+      "description": "Confidence score for assignments matching this rule"
+    },
+    "coverageCount": {
+      "type": "integer",
+      "description": "Number of users matching this rule"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedRoleList",
+  "title": "ManagedRoleList",
+  "type": "object",
+  "description": "Paginated list of managed roles",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ManagedRole"
+      }
+    },
+    "resultCount": {
+      "type": "integer"
+    },
+    "pagedResultsCookie": {
+      "type": "string"
+    },
+    "totalPagedResults": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedUser",
+  "title": "ManagedUser",
+  "type": "object",
+  "description": "A managed user identity object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier",
+      "readOnly": true
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Object revision for concurrency control",
+      "readOnly": true
+    },
+    "userName": {
+      "type": "string",
+      "description": "Unique login username"
+    },
+    "givenName": {
+      "type": "string",
+      "description": "First name"
+    },
+    "sn": {
+      "type": "string",
+      "description": "Last name (surname)"
+    },
+    "mail": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "telephoneNumber": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "Password (write-only)",
+      "writeOnly": true
+    },
+    "accountStatus": {
+      "type": "string",
+      "description": "Account status",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    },
+    "effectiveRoles": {
+      "type": "array",
+      "description": "Computed effective roles",
+      "readOnly": true,
+      "items": {
+        "type": "object"
+      }
+    },
+    "effectiveAssignments": {
+      "type": "array",
+      "description": "Computed effective assignments",
+      "readOnly": true,
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

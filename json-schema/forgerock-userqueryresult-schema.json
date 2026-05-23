@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserQueryResult",
+  "title": "UserQueryResult",
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/User"
+      }
+    },
+    "resultCount": {
+      "type": "integer"
+    },
+    "pagedResultsCookie": {
+      "type": "string"
+    },
+    "totalPagedResults": {
+      "type": "integer"
+    }
+  }
+}

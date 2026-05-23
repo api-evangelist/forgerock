@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessRequest",
+  "title": "AccessRequest",
+  "type": "object",
+  "description": "An access request",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "requestType": {
+      "type": "string",
+      "description": "Type of request",
+      "enum": [
+        "grant",
+        "revoke"
+      ]
+    },
+    "userId": {
+      "type": "string",
+      "description": "User requesting or being requested for"
+    },
+    "resourceType": {
+      "type": "string",
+      "description": "Type of resource requested",
+      "enum": [
+        "application",
+        "entitlement",
+        "role"
+      ]
+    },
+    "resourceId": {
+      "type": "string",
+      "description": "Identifier of the requested resource"
+    },
+    "justification": {
+      "type": "string",
+      "description": "Business justification"
+    },
+    "status": {
+      "type": "string",
+      "description": "Request status",
+      "enum": [
+        "pending",
+        "approved",
+        "denied",
+        "cancelled",
+        "fulfilled",
+        "failed"
+      ]
+    },
+    "approver": {
+      "type": "string"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    }
+  }
+}

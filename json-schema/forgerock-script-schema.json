@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Script",
+  "title": "Script",
+  "type": "object",
+  "description": "An AM script",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "script": {
+      "type": "string",
+      "description": "Base64-encoded script content"
+    },
+    "language": {
+      "type": "string",
+      "enum": [
+        "JAVASCRIPT",
+        "GROOVY"
+      ]
+    },
+    "context": {
+      "type": "string",
+      "description": "The script context type",
+      "enum": [
+        "AUTHENTICATION_TREE_DECISION_NODE",
+        "POLICY_CONDITION",
+        "OIDC_CLAIMS",
+        "SOCIAL_IDP_PROFILE_TRANSFORMATION"
+      ]
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "creationDate": {
+      "type": "integer"
+    },
+    "lastModifiedBy": {
+      "type": "string"
+    },
+    "lastModifiedDate": {
+      "type": "integer"
+    }
+  }
+}

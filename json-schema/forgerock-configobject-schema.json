@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ConfigObject",
+  "title": "ConfigObject",
+  "type": "object",
+  "description": "A live configuration object in the IG runtime",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "description": "Object type (Router, Handler, Filter, etc.)"
+    },
+    "name": {
+      "type": "string"
+    },
+    "config": {
+      "type": "object",
+      "description": "Object configuration"
+    }
+  }
+}

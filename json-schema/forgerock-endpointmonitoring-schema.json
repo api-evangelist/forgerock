@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EndpointMonitoring",
+  "title": "EndpointMonitoring",
+  "type": "object",
+  "description": "Monitoring data for a specific endpoint",
+  "properties": {
+    "requestCount": {
+      "type": "integer"
+    },
+    "responseCount": {
+      "type": "integer"
+    },
+    "averageResponseTime": {
+      "type": "number",
+      "format": "double"
+    },
+    "percentiles": {
+      "type": "object",
+      "properties": {
+        "p50": {
+          "type": "number",
+          "format": "double"
+        },
+        "p95": {
+          "type": "number",
+          "format": "double"
+        },
+        "p99": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "statusCodeCounts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    }
+  }
+}

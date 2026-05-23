@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PatchOperations",
+  "title": "PatchOperations",
+  "type": "array",
+  "description": "JSON Patch operations",
+  "items": {
+    "type": "object",
+    "required": [
+      "operation",
+      "field"
+    ],
+    "properties": {
+      "operation": {
+        "type": "string",
+        "enum": [
+          "add",
+          "remove",
+          "replace"
+        ]
+      },
+      "field": {
+        "type": "string"
+      },
+      "value": {}
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AnalyticsStatus",
+  "title": "AnalyticsStatus",
+  "type": "object",
+  "description": "Analytics pipeline status",
+  "properties": {
+    "pipelineStatus": {
+      "type": "string",
+      "enum": [
+        "idle",
+        "running",
+        "completed",
+        "failed"
+      ]
+    },
+    "lastRunTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lastRunDuration": {
+      "type": "string",
+      "description": "Duration of the last pipeline run"
+    },
+    "trainingStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "training",
+        "completed",
+        "failed"
+      ]
+    },
+    "predictionStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "running",
+        "completed",
+        "failed"
+      ]
+    },
+    "recommendationStatus": {
+      "type": "string",
+      "enum": [
+        "not_started",
+        "running",
+        "completed",
+        "failed"
+      ]
+    }
+  }
+}

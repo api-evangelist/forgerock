@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerInfo",
+  "title": "ServerInfo",
+  "type": "object",
+  "description": "Server configuration information",
+  "properties": {
+    "cookieName": {
+      "type": "string",
+      "description": "Name of the SSO cookie"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cookie domains"
+    },
+    "protectedUserAttributes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forgotPassword": {
+      "type": "string"
+    },
+    "selfRegistration": {
+      "type": "string"
+    },
+    "lang": {
+      "type": "string"
+    },
+    "successfulUserRegistrationDestination": {
+      "type": "string"
+    },
+    "socialImplementations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

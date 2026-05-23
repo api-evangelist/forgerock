@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Certification",
+  "title": "Certification",
+  "type": "object",
+  "description": "An access certification campaign",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "Campaign name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Campaign description"
+    },
+    "type": {
+      "type": "string",
+      "description": "Certification type",
+      "enum": [
+        "identity",
+        "roleDefinition",
+        "roleMembership",
+        "entitlementOwner"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "Campaign status",
+      "enum": [
+        "draft",
+        "active",
+        "closed",
+        "expired",
+        "cancelled"
+      ]
+    },
+    "stages": {
+      "type": "array",
+      "description": "Review stages with deadlines and reviewers",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "reviewers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "entitlementFilter": {
+      "type": "object",
+      "description": "Filter to select which entitlements to include"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "closedDate": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    }
+  }
+}

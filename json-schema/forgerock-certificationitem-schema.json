@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificationItem",
+  "title": "CertificationItem",
+  "type": "object",
+  "description": "An individual item within a certification campaign",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string",
+      "description": "User being reviewed"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "entitlementName": {
+      "type": "string",
+      "description": "Entitlement under review"
+    },
+    "applicationName": {
+      "type": "string",
+      "description": "Application the entitlement belongs to"
+    },
+    "decision": {
+      "type": "string",
+      "description": "Current review decision",
+      "enum": [
+        "certify",
+        "revoke",
+        "exception",
+        "abstain",
+        "pending"
+      ]
+    },
+    "comment": {
+      "type": "string"
+    },
+    "reviewer": {
+      "type": "string",
+      "description": "Assigned reviewer"
+    },
+    "reviewDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

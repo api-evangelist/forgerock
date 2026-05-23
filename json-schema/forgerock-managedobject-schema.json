@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ManagedObject",
+  "title": "ManagedObject",
+  "type": "object",
+  "description": "A managed identity object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "description": "Unique identifier",
+      "readOnly": true
+    },
+    "_rev": {
+      "type": "string",
+      "description": "Object revision for concurrency control",
+      "readOnly": true
+    }
+  },
+  "additionalProperties": true
+}

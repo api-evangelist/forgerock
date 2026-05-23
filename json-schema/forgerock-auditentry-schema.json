@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditEntry",
+  "title": "AuditEntry",
+  "type": "object",
+  "description": "An audit log entry",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "eventName": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "transactionId": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "trackingIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "runAs": {
+      "type": "string"
+    },
+    "objectId": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "before": {
+      "type": "object"
+    },
+    "after": {
+      "type": "object"
+    },
+    "changedFields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SUCCESS",
+        "FAILURE"
+      ]
+    }
+  }
+}

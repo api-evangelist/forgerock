@@ -1,0 +1,21 @@
+name: ForgeRock Domain Vocabulary
+provider: ForgeRock
+providerId: forgerock
+description: Tag-derived vocabulary for the ForgeRock API surface; sourced from openapi/ tags.
+terms:
+- term: Audit
+  description: Access audit log records
+- term: Configuration
+  description: Read and update IDM configuration
+- term: Managed Objects
+  description: CRUD operations on managed identity objects
+- term: Reconciliation
+  description: Trigger and manage reconciliation operations
+- term: Scheduler
+  description: Manage scheduled tasks and jobs
+- term: Synchronization
+  description: Trigger on-demand synchronization
+- term: System Objects
+  description: Access objects in connected remote systems
+- term: Workflow
+  description: Manage BPMN workflow processes and tasks

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ErrorResponse",
+  "title": "ErrorResponse",
+  "type": "object",
+  "description": "Standard CREST error response",
+  "properties": {
+    "code": {
+      "type": "integer"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}
