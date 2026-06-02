@@ -2,13 +2,13 @@
   "repo": "forgerock",
   "feeds": [
     {
-      "source": "https://www.forgerock.com/blog",
-      "feed_url": "",
+      "source": "https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html",
+      "feed_url": "https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "method": "none"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-01T23:35:02Z",
   "post_count": 0
 }
