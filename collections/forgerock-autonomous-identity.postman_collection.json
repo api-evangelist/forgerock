@@ -1,0 +1,1942 @@
+{
+  "item": [
+    {
+      "id": "6345c338-943d-4c87-bb77-190ae80ffcf9",
+      "name": "Analytics",
+      "description": {
+        "content": "Analytics pipeline status and results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b3457c5-e90e-4891-9fe9-80ed9fe4cb2e",
+          "name": "ForgeRock Get analytics pipeline status",
+          "request": {
+            "name": "ForgeRock Get analytics pipeline status",
+            "description": {
+              "content": "Retrieve the current status of the analytics pipeline, including training status, last run time, and pipeline health.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "analytics",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "186d421c-ea5b-4a4a-80d0-351af00509bc",
+              "name": "Analytics pipeline status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "analytics",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pipelineStatus\": \"failed\",\n  \"lastRunTime\": \"1991-02-28T12:44:22.025Z\",\n  \"lastRunDuration\": \"string\",\n  \"trainingStatus\": \"failed\",\n  \"predictionStatus\": \"running\",\n  \"recommendationStatus\": \"not_started\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e3fc5d7-2b2a-4a4e-b2bb-12d6ae01b48f",
+          "name": "ForgeRock List analytics reports",
+          "request": {
+            "name": "ForgeRock List analytics reports",
+            "description": {
+              "content": "List available analytics reports from completed pipeline runs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "analytics",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1618d13f-4f2d-49c6-85bc-c23ccefc2f30",
+              "name": "List of analytics reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "analytics",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"runDate\": \"1953-06-22T12:04:00.681Z\",\n      \"status\": \"string\",\n      \"totalEntitlementsProcessed\": 8973,\n      \"totalUsersProcessed\": 8766,\n      \"averageConfidenceScore\": 8880.79164957888\n    },\n    {\n      \"id\": \"string\",\n      \"runDate\": \"1948-01-26T22:59:15.451Z\",\n      \"status\": \"string\",\n      \"totalEntitlementsProcessed\": 6307,\n      \"totalUsersProcessed\": 1212,\n      \"averageConfidenceScore\": 7075.6751777288455\n    }\n  ],\n  \"totalResults\": 4162\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4c9be85a-3b92-4995-ba74-ea4c14d54c50",
+      "name": "Applications",
+      "description": {
+        "content": "Query onboarded application data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4183471c-7333-498f-8967-937f308989ac",
+          "name": "ForgeRock List applications",
+          "request": {
+            "name": "ForgeRock List applications",
+            "description": {
+              "content": "Query onboarded applications in the Autonomous Identity platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "applications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dd6aafa-5451-4eb7-9da3-203dda1f638a",
+              "name": "List of applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "applications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"totalEntitlements\": 507,\n      \"totalUsers\": 5084,\n      \"averageConfidenceScore\": 1484.6983769570154\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"totalEntitlements\": 3992,\n      \"totalUsers\": 2968,\n      \"averageConfidenceScore\": 8061.6478533701575\n    }\n  ],\n  \"totalResults\": 1219\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d34a984-e827-48dd-b1d8-138eb091175f",
+          "name": "ForgeRock Get an application",
+          "request": {
+            "name": "ForgeRock Get an application",
+            "description": {
+              "content": "Retrieve details of a specific onboarded application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "applications",
+                ":applicationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "applicationId",
+                  "description": "(Required) The application identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "442c914e-ea4e-40ef-b08d-f6b529898791",
+              "name": "Application details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The application identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"totalEntitlements\": 5638,\n  \"totalUsers\": 5846,\n  \"averageConfidenceScore\": 5859.999650889979\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aef6928b-24d2-4a19-ae28-f1f302111c82",
+              "name": "Application not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "applications",
+                    ":applicationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "applicationId",
+                      "description": "(Required) The application identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7284,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "634cf494-4cd9-4d10-826a-e59f2bcd016c",
+      "name": "Company View",
+      "description": {
+        "content": "Company-wide analytics and dashboards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e62a1bdc-473c-476f-95d8-b6989e7d5baa",
+          "name": "ForgeRock Get company view analytics",
+          "request": {
+            "name": "ForgeRock Get company view analytics",
+            "description": {
+              "content": "Retrieve company-wide analytics including confidence score distributions, entitlement statistics, and risk metrics across the entire organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "companyview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed112c3f-44f7-4b2e-ab2e-dddfb07c1d5f",
+              "name": "Company-wide analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "companyview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalUsers\": 7046,\n  \"totalEntitlements\": 9543,\n  \"totalApplications\": 3441,\n  \"averageConfidenceScore\": 5270.369977771338,\n  \"confidenceDistribution\": {\n    \"high\": 2298,\n    \"medium\": 8486,\n    \"low\": 454\n  },\n  \"riskSummary\": {\n    \"highRiskUsers\": 5863,\n    \"highRiskEntitlements\": 2576,\n    \"outlierAssignments\": 5316\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e550b4ed-e3bd-4f85-beab-6cf3357f9d8c",
+      "name": "Entitlements",
+      "description": {
+        "content": "Query entitlements and confidence scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e142332d-d9d3-423c-bb71-21a49a2189da",
+          "name": "ForgeRock List entitlements",
+          "request": {
+            "name": "ForgeRock List entitlements",
+            "description": {
+              "content": "Query entitlements across all onboarded applications. Returns entitlement details with aggregated confidence score statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application name"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Minimum confidence score threshold (0-100)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ecb7312-f1a3-42f5-8362-2bd1bfaa2840",
+              "name": "List of entitlements with confidence data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"application\": \"string\",\n      \"totalUsers\": 8947,\n      \"averageConfidenceScore\": 4031.741264548937,\n      \"confidenceDistribution\": {\n        \"high\": 4168,\n        \"medium\": 541,\n        \"low\": 3447\n      },\n      \"drivingAttributes\": [\n        {\n          \"attribute\": \"string\",\n          \"weight\": 6865.696893326607\n        },\n        {\n          \"attribute\": \"string\",\n          \"weight\": 7977.406956533477\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"application\": \"string\",\n      \"totalUsers\": 822,\n      \"averageConfidenceScore\": 706.2250478436239,\n      \"confidenceDistribution\": {\n        \"high\": 4830,\n        \"medium\": 9046,\n        \"low\": 6175\n      },\n      \"drivingAttributes\": [\n        {\n          \"attribute\": \"string\",\n          \"weight\": 9817.028237300052\n        },\n        {\n          \"attribute\": \"string\",\n          \"weight\": 4203.564561080526\n        }\n      ]\n    }\n  ],\n  \"totalResults\": 3248,\n  \"offset\": 6812\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3ff1bd4-34f9-4809-9550-e41bf7077332",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7284,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8536b44-8838-42af-b81a-53a431a350f6",
+          "name": "ForgeRock Get entitlement details",
+          "request": {
+            "name": "ForgeRock Get entitlement details",
+            "description": {
+              "content": "Retrieve detailed information about a specific entitlement including confidence score distribution, assigned users, and driving attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements",
+                ":entitlementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "332977c0-3cd0-4697-8d50-007910c8de60",
+              "name": "Entitlement details with analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"application\": \"string\",\n  \"totalUsers\": 879,\n  \"averageConfidenceScore\": 7367.928734659864,\n  \"confidenceDistribution\": {\n    \"high\": 4775,\n    \"medium\": 264,\n    \"low\": 8972\n  },\n  \"drivingAttributes\": [\n    {\n      \"attribute\": \"string\",\n      \"weight\": 4359.673970354786\n    },\n    {\n      \"attribute\": \"string\",\n      \"weight\": 2141.5335749737806\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb6b995a-6f01-4004-9745-147d778ca79f",
+              "name": "Entitlement not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7284,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23fd4918-4a67-4aa3-ab53-a9f2460b529d",
+          "name": "ForgeRock List users with entitlement",
+          "request": {
+            "name": "ForgeRock List users with entitlement",
+            "description": {
+              "content": "List all users assigned to a specific entitlement with their individual confidence scores and driving attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements",
+                ":entitlementId",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Filter by minimum confidence score"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b77e721b-1798-44c6-accc-761d2bbf61e5",
+              "name": "List of users with confidence scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"confidenceScore\": 9763.857085109117,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"confidenceScore\": 5878.701726685202,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"totalResults\": 2698\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "642c26f3-81fd-47f9-a432-895002d5af41",
+          "name": "ForgeRock Get entitlement recommendations",
+          "request": {
+            "name": "ForgeRock Get entitlement recommendations",
+            "description": {
+              "content": "Retrieve recommendations for users who do not have the entitlement but should, based on their attribute data and the AI model's predictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements",
+                ":entitlementId",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Minimum confidence score for recommendations"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f40ce11-ba4d-4f29-a081-72458fdfb064",
+              "name": "Recommendations for the entitlement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 2898.6215454245544,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 7976.4977086006575,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"totalResults\": 6697\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "512bb868-e118-4d9d-997f-5605f311a2e4",
+      "name": "Rules",
+      "description": {
+        "content": "Access entitlement assignment rules and justifications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a006728-b283-4dc6-8f19-ba52af8f84c1",
+          "name": "ForgeRock List assignment rules",
+          "request": {
+            "name": "ForgeRock List assignment rules",
+            "description": {
+              "content": "Query entitlement assignment rules derived from the AI model. Rules explain why specific entitlements are assigned based on user attribute combinations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "entitlement",
+                  "value": "<string>",
+                  "description": "Filter by entitlement name"
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dbeb9cd-faff-493d-81e6-c042114e1027",
+              "name": "List of rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "entitlement",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"entitlement\": \"string\",\n      \"application\": \"string\",\n      \"conditions\": [\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"equals\",\n          \"value\": \"string\"\n        },\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"contains\",\n          \"value\": \"string\"\n        }\n      ],\n      \"confidenceScore\": 3787.986560716765,\n      \"coverageCount\": 5819\n    },\n    {\n      \"id\": \"string\",\n      \"entitlement\": \"string\",\n      \"application\": \"string\",\n      \"conditions\": [\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"contains\",\n          \"value\": \"string\"\n        }\n      ],\n      \"confidenceScore\": 2178.2619989605887,\n      \"coverageCount\": 3923\n    }\n  ],\n  \"totalResults\": 2387\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c09b8ba3-c5b2-4009-91a7-fd2b132ca3a8",
+          "name": "ForgeRock Get a rule",
+          "request": {
+            "name": "ForgeRock Get a rule",
+            "description": {
+              "content": "Retrieve details of a specific assignment rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) The rule identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c24b8b5-da19-4e5d-86a2-a02c5805b270",
+              "name": "Rule details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The rule identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entitlement\": \"string\",\n  \"application\": \"string\",\n  \"conditions\": [\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"equals\",\n      \"value\": \"string\"\n    },\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"equals\",\n      \"value\": \"string\"\n    }\n  ],\n  \"confidenceScore\": 5568.796496230264,\n  \"coverageCount\": 9646\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eed22d3f-3c68-474d-8173-3ce4958b0c6e",
+              "name": "Rule not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The rule identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7284,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6e98e008-41ff-4598-9e69-63a420658fd4",
+      "name": "Users",
+      "description": {
+        "content": "Query user entitlement data and recommendations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1dd407eb-a6cc-42cc-abb3-15fdcc7f924a",
+          "name": "ForgeRock List user entitlements",
+          "request": {
+            "name": "ForgeRock List user entitlements",
+            "description": {
+              "content": "Retrieve all entitlements assigned to a specific user with their confidence scores and justification data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users",
+                ":userId",
+                "entitlements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Filter by minimum confidence score"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The user identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18b0c8a2-3a95-4d75-bfd9-946f455be791",
+              "name": "List of user entitlements with confidence scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    ":userId",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The user identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 6149.2535213641595,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"justification\": \"string\"\n    },\n    {\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 7591.9748756283225,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"justification\": \"string\"\n    }\n  ],\n  \"totalResults\": 7726\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "adc427d9-e494-4f48-9118-0aa80fe7a890",
+          "name": "ForgeRock Get user recommendations",
+          "request": {
+            "name": "ForgeRock Get user recommendations",
+            "description": {
+              "content": "Get recommended entitlements for a user based on their attributes and the AI model's predictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users",
+                ":userId",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The user identifier"
+                },
+                {
+                  "description": "The Autonomous Identity deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5dcb7c64-90dd-4e2b-9738-92259385ba65",
+              "name": "Entitlement recommendations for the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    ":userId",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The user identifier"
+                    },
+                    {
+                      "description": "The Autonomous Identity deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 2898.6215454245544,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 7976.4977086006575,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"totalResults\": 6697\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Autonomous Identity deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "autoid.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/autoid",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42b7bd97-83ba-4450-b9a6-e82f0424bca4",
+    "name": "ForgeRock Autonomous Identity API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the ForgeRock Autonomous Identity analytics platform. Uses AI-driven analysis powered by Apache Spark to determine confidence scores, predictions, and recommendations for entitlement assignments. Provides endpoints for accessing entitlements, rules, applications, company views, and analytics data.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

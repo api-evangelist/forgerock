@@ -1,0 +1,409 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Autonomous Identity API",
+    "version": "2022.11.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/entitlements",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Minimum confidence score threshold (0-100)"
+              }
+            ]
+          },
+          "docs": "Query entitlements across all onboarded applications. Returns entitlement details with aggregated confidence score statistics."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get entitlement details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/entitlements/:entitlementId",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific entitlement including confidence score distribution, assigned users, and driving attributes."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List users with entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/entitlements/:entitlementId/users",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by minimum confidence score"
+              }
+            ]
+          },
+          "docs": "List all users assigned to a specific entitlement with their individual confidence scores and driving attributes."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get entitlement recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/entitlements/:entitlementId/recommendations",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Minimum confidence score for recommendations"
+              }
+            ]
+          },
+          "docs": "Retrieve recommendations for users who do not have the entitlement but should, based on their attribute data and the AI model's predictions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List assignment rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/rules",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "entitlement",
+                "value": "",
+                "type": "query",
+                "description": "Filter by entitlement name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name"
+              }
+            ]
+          },
+          "docs": "Query entitlement assignment rules derived from the AI model. Rules explain why specific entitlements are assigned based on user attribute combinations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The rule identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific assignment rule."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/applications",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Query onboarded applications in the Autonomous Identity platform."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The application identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific onboarded application."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List user entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/users/:userId/entitlements",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by minimum confidence score"
+              }
+            ]
+          },
+          "docs": "Retrieve all entitlements assigned to a specific user with their confidence scores and justification data."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get user recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/users/:userId/recommendations",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Get recommended entitlements for a user based on their attributes and the AI model's predictions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Company View",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Get company view analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/companyview"
+          },
+          "docs": "Retrieve company-wide analytics including confidence score distributions, entitlement statistics, and risk metrics across the entire organization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Get analytics pipeline status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/analytics/status"
+          },
+          "docs": "Retrieve the current status of the analytics pipeline, including training status, last run time, and pipeline health."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List analytics reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/autoid/api/analytics/reports",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "List available analytics reports from completed pipeline runs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

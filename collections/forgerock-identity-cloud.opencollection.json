@@ -1,0 +1,555 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Identity Cloud REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Authenticate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.forgeblocks.com/am/json/realms/root/realms/:realm/authenticate",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              },
+              {
+                "name": "authIndexType",
+                "value": "",
+                "type": "query",
+                "description": "The type of authentication index to use (e.g., service, module)"
+              },
+              {
+                "name": "authIndexValue",
+                "value": "",
+                "type": "query",
+                "description": "The value of the authentication index (e.g., the tree/journey name)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates or continues an authentication journey (tree) in the specified realm. Returns callbacks that the client must respond to, or a tokenId on successful completion of the journey."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Perform session actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.forgeblocks.com/am/json/realms/root/realms/:realm/sessions",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform on the session"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform actions on sessions such as getting session info, refreshing idle timeout, or logging out. The action is specified via the _action query parameter."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Managed Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List managed users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_user",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for paginated results"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort by (prefix with - for descending)"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query managed user objects in the specified realm. Supports filtering, sorting, and pagination through query parameters."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_user",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new managed user object in the specified realm. The user object must include required properties such as userName."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_user/:userId",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific managed user object by its identifier from the specified realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Replace a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_user/:userId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire managed user object. The request body must contain the complete user representation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Patch a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_user/:userId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a managed user object using JSON Patch operations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_user/:userId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              }
+            ]
+          },
+          "docs": "Delete a managed user object from the specified realm."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Managed Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List managed roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_role",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for paginated results"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query managed role objects in the specified realm. Supports filtering, sorting, and pagination."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a managed role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_role",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new managed role object in the specified realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a managed role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.forgeblocks.com/openidm/managed/:realm_role/:roleId",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed role"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific managed role object by its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Server Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Get server information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.forgeblocks.com/am/json/realms/root/realms/:realm/serverinfo/*",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              }
+            ]
+          },
+          "docs": "Retrieve server information including supported features, cookie name, and realm configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OAuth2 Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 authorization endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.forgeblocks.com/am/oauth2/realms/root/realms/:realm/authorize",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 client identifier"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 response type"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The URI to redirect to after authorization"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Space-delimited list of requested scopes"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Opaque value to maintain state between request and callback"
+              }
+            ]
+          },
+          "docs": "Initiates an OAuth 2.0 authorization flow. Redirects the user agent to the authorization server for authentication and consent."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 token endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.forgeblocks.com/am/oauth2/realms/root/realms/:realm/access_token",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange an authorization code, refresh token, or client credentials for an access token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

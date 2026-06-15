@@ -1,0 +1,2763 @@
+{
+  "item": [
+    {
+      "id": "168ecd05-9221-418c-9d81-3c139d0cc770",
+      "name": "Access Requests",
+      "description": {
+        "content": "Request and approve access to resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68ff5b52-0194-4702-84a1-c1696d33d1b0",
+          "name": "ForgeRock List access requests",
+          "request": {
+            "name": "ForgeRock List access requests",
+            "description": {
+              "content": "Query access requests. Users can request access to applications, entitlements, or roles, and managers can request revocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Sort fields"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c607be9-ca88-4cf7-8574-5b86e690a8fb",
+              "name": "List of access requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"requestType\": \"grant\",\n      \"userId\": \"string\",\n      \"resourceType\": \"role\",\n      \"resourceId\": \"string\",\n      \"justification\": \"string\",\n      \"status\": \"pending\",\n      \"approver\": \"string\",\n      \"createdDate\": \"1965-09-13T23:39:49.691Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"requestType\": \"grant\",\n      \"userId\": \"string\",\n      \"resourceType\": \"entitlement\",\n      \"resourceId\": \"string\",\n      \"justification\": \"string\",\n      \"status\": \"denied\",\n      \"approver\": \"string\",\n      \"createdDate\": \"2014-03-15T08:07:18.294Z\"\n    }\n  ],\n  \"resultCount\": 7089,\n  \"totalPagedResults\": 5876\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19cb1f42-52f0-4403-874c-2583d80e12d3",
+          "name": "ForgeRock Create an access request",
+          "request": {
+            "name": "ForgeRock Create an access request",
+            "description": {
+              "content": "Submit a new access request for a user to gain access to a resource (application, entitlement, or role).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestType\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"justification\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approver\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42cece63-3657-4434-8dd5-6c42df4badd8",
+              "name": "Access request created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestType\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"justification\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approver\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"requestType\": \"grant\",\n  \"userId\": \"string\",\n  \"resourceType\": \"role\",\n  \"resourceId\": \"string\",\n  \"justification\": \"string\",\n  \"status\": \"cancelled\",\n  \"approver\": \"string\",\n  \"createdDate\": \"1962-08-18T21:24:05.949Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "613bb08e-17c7-44e2-bf7b-37c5cab65509",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestType\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"justification\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approver\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0ed7305-66b4-41ce-8d02-326e7c86e0fa",
+          "name": "ForgeRock Get an access request",
+          "request": {
+            "name": "ForgeRock Get an access request",
+            "description": {
+              "content": "Retrieve details of a specific access request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) The access request identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "45e018d3-9f19-4101-9ce9-bae0bdb471d1",
+              "name": "Access request details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The access request identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"requestType\": \"grant\",\n  \"userId\": \"string\",\n  \"resourceType\": \"role\",\n  \"resourceId\": \"string\",\n  \"justification\": \"string\",\n  \"status\": \"cancelled\",\n  \"approver\": \"string\",\n  \"createdDate\": \"1962-08-18T21:24:05.949Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7e40899-b061-467d-a3fb-a4bb2c706a24",
+              "name": "Request not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The access request identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9bbaa6b-f261-474f-99f0-68dbe73ecc4a",
+          "name": "ForgeRock Perform an access request action",
+          "request": {
+            "name": "ForgeRock Perform an access request action",
+            "description": {
+              "content": "Approve, deny, or cancel an access request via the _action query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) The access request identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad0a2f95-7e25-45a3-89f2-72fea23ebd08",
+              "name": "Action completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The access request identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"requestType\": \"grant\",\n  \"userId\": \"string\",\n  \"resourceType\": \"role\",\n  \"resourceId\": \"string\",\n  \"justification\": \"string\",\n  \"status\": \"cancelled\",\n  \"approver\": \"string\",\n  \"createdDate\": \"1962-08-18T21:24:05.949Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "266cf131-761f-4746-b76d-c0043292cda5",
+      "name": "Access Reviews",
+      "description": {
+        "content": "Conduct and manage access review items",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f129fe3f-52a1-4724-8ec6-2e16648358b4",
+          "name": "ForgeRock List certification items",
+          "request": {
+            "name": "ForgeRock List certification items",
+            "description": {
+              "content": "List individual review items within a certification campaign. Each item represents a user-entitlement assignment to be reviewed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ae62dcf-1ad5-435a-a62f-35dbe996bbda",
+              "name": "List of certification review items",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementName\": \"string\",\n      \"applicationName\": \"string\",\n      \"decision\": \"pending\",\n      \"comment\": \"string\",\n      \"reviewer\": \"string\",\n      \"reviewDate\": \"2006-01-27T04:56:54.924Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementName\": \"string\",\n      \"applicationName\": \"string\",\n      \"decision\": \"revoke\",\n      \"comment\": \"string\",\n      \"reviewer\": \"string\",\n      \"reviewDate\": \"1976-06-07T08:59:53.096Z\"\n    }\n  ],\n  \"resultCount\": 9436,\n  \"totalPagedResults\": 6007\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4cb13a1-7450-4841-872a-4610b640fa03",
+          "name": "ForgeRock Get a certification item",
+          "request": {
+            "name": "ForgeRock Get a certification item",
+            "description": {
+              "content": "Retrieve details of a specific certification review item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId",
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The certification item identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d07a511e-f99b-43d4-8fef-35cac18f6d21",
+              "name": "Certification item details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The certification item identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"userName\": \"string\",\n  \"entitlementName\": \"string\",\n  \"applicationName\": \"string\",\n  \"decision\": \"abstain\",\n  \"comment\": \"string\",\n  \"reviewer\": \"string\",\n  \"reviewDate\": \"1986-08-18T21:04:11.864Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84d0b2b5-4e68-4f5f-be39-3024e42b33e7",
+              "name": "Item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The certification item identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4326c271-6c49-4013-8ec2-85f9f81b06dc",
+          "name": "ForgeRock Review a certification item",
+          "request": {
+            "name": "ForgeRock Review a certification item",
+            "description": {
+              "content": "Submit a review decision for a certification item. Decisions include certify (approve), revoke, or exception.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId",
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The certification item identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"decision\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"exceptionDuration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3ab8a93-0d1d-4af3-a4a8-6a169e8fa2fa",
+              "name": "Review submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId",
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The certification item identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"decision\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"exceptionDuration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"userId\": \"string\",\n  \"userName\": \"string\",\n  \"entitlementName\": \"string\",\n  \"applicationName\": \"string\",\n  \"decision\": \"abstain\",\n  \"comment\": \"string\",\n  \"reviewer\": \"string\",\n  \"reviewDate\": \"1986-08-18T21:04:11.864Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6d2d949e-cf4d-4132-9c34-95c7719f1c1c",
+      "name": "Certifications",
+      "description": {
+        "content": "Manage access certification campaigns",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53d52e98-0014-4f45-b661-0d8f9277ecba",
+          "name": "ForgeRock List certification campaigns",
+          "request": {
+            "name": "ForgeRock List certification campaigns",
+            "description": {
+              "content": "Query certification campaigns. Certifications enable authorized users to review and certify access assignments to ensure compliance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Sort fields"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c854423e-6119-420f-a843-d2b408268976",
+              "name": "List of certification campaigns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"identity\",\n      \"status\": \"closed\",\n      \"stages\": [\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1999-01-18T02:13:33.779Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1981-02-21T16:54:04.974Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"entitlementFilter\": {},\n      \"createdDate\": \"1961-04-19T04:50:29.612Z\",\n      \"closedDate\": \"2001-09-11T12:49:54.579Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"roleDefinition\",\n      \"status\": \"active\",\n      \"stages\": [\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1966-08-02T03:49:17.255Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1964-09-19T19:17:59.971Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"entitlementFilter\": {},\n      \"createdDate\": \"1988-01-19T15:08:43.250Z\",\n      \"closedDate\": \"2010-06-17T12:17:34.237Z\"\n    }\n  ],\n  \"resultCount\": 294,\n  \"totalPagedResults\": 7303\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ad282a5-74ab-485f-8f12-7503247e788d",
+              "name": "Insufficient privileges",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1557fc3a-6834-40e4-8810-67d80e24f286",
+          "name": "ForgeRock Create a certification campaign",
+          "request": {
+            "name": "ForgeRock Create a certification campaign",
+            "description": {
+              "content": "Create a new access certification campaign. Supports identity certification, role definition certification, and role membership certification types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6cd41e78-bf10-4e04-940d-e8ce2a0b86d9",
+              "name": "Certification campaign created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"identity\",\n  \"status\": \"active\",\n  \"stages\": [\n    {\n      \"name\": \"string\",\n      \"deadline\": \"1968-02-05T13:34:47.150Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2026-03-10T13:28:37.688Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"1955-01-02T20:25:10.061Z\",\n  \"closedDate\": \"2006-05-12T09:31:34.252Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88a7d957-574c-43c4-a6ea-536e6cd1711b",
+              "name": "Invalid certification configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bb308a0-dc5b-47a3-a00f-778bd6d7517d",
+          "name": "ForgeRock Get a certification campaign",
+          "request": {
+            "name": "ForgeRock Get a certification campaign",
+            "description": {
+              "content": "Retrieve details of a specific certification campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55ca2ddb-0395-474b-ad19-bb143a070f33",
+              "name": "Certification campaign details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"identity\",\n  \"status\": \"active\",\n  \"stages\": [\n    {\n      \"name\": \"string\",\n      \"deadline\": \"1968-02-05T13:34:47.150Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2026-03-10T13:28:37.688Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"1955-01-02T20:25:10.061Z\",\n  \"closedDate\": \"2006-05-12T09:31:34.252Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcfc5e1a-f5ce-43a2-85d8-adeb6efb8251",
+              "name": "Certification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a7b2e3a-19fd-4629-83dd-60f6c5f7dd60",
+          "name": "ForgeRock Update a certification campaign",
+          "request": {
+            "name": "ForgeRock Update a certification campaign",
+            "description": {
+              "content": "Partially update a certification campaign (e.g., close or cancel it).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b0845fb-01a6-4b02-be67-c48763b8a71a",
+              "name": "Certification updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"identity\",\n  \"status\": \"active\",\n  \"stages\": [\n    {\n      \"name\": \"string\",\n      \"deadline\": \"1968-02-05T13:34:47.150Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2026-03-10T13:28:37.688Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"1955-01-02T20:25:10.061Z\",\n  \"closedDate\": \"2006-05-12T09:31:34.252Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9feb12da-e00f-4e33-b766-ecb01f11570b",
+      "name": "Entitlements",
+      "description": {
+        "content": "Manage entitlements from onboarded applications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0137a38-9f48-48b4-989c-9bad157abb3e",
+          "name": "ForgeRock List entitlements",
+          "request": {
+            "name": "ForgeRock List entitlements",
+            "description": {
+              "content": "Query the entitlements catalog. Entitlements are aggregated from onboarded target applications into a centralized repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "entitlement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Sort fields"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "664666b3-82d7-43e9-87a8-f71333768175",
+              "name": "List of entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "entitlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"applicationName\": \"string\",\n      \"applicationId\": \"string\",\n      \"type\": \"string\",\n      \"owner\": \"string\",\n      \"riskLevel\": \"medium\"\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"applicationName\": \"string\",\n      \"applicationId\": \"string\",\n      \"type\": \"string\",\n      \"owner\": \"string\",\n      \"riskLevel\": \"high\"\n    }\n  ],\n  \"resultCount\": 1331,\n  \"totalPagedResults\": 3636\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9aa8492-7f87-4e8d-8e52-18658a02c84b",
+          "name": "ForgeRock Get an entitlement",
+          "request": {
+            "name": "ForgeRock Get an entitlement",
+            "description": {
+              "content": "Retrieve details of a specific entitlement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "entitlement",
+                ":entitlementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9287f77a-8811-4b2d-a126-10328f04815a",
+              "name": "Entitlement details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "entitlement",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"applicationName\": \"string\",\n  \"applicationId\": \"string\",\n  \"type\": \"string\",\n  \"owner\": \"string\",\n  \"riskLevel\": \"high\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7c6ce72-bcb4-47b9-af7b-47e8d52e0884",
+              "name": "Entitlement not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "entitlement",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "791bbc19-af77-4774-b031-daaa42beffd1",
+      "name": "Roles",
+      "description": {
+        "content": "Manage identity governance roles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31f99732-be04-46fe-8f36-cb710ff6c76c",
+          "name": "ForgeRock List governance roles",
+          "request": {
+            "name": "ForgeRock List governance roles",
+            "description": {
+              "content": "Query governance roles used in access policies and certifications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "role"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee70bb2e-240a-4867-ac61-793d83bd2e9c",
+              "name": "List of governance roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"owner\": \"string\",\n      \"members\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entitlements\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"owner\": \"string\",\n      \"members\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entitlements\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"resultCount\": 4735\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2e824938-8f14-48f6-9b22-aae19b983c74",
+      "name": "Violations",
+      "description": {
+        "content": "Manage policy violations and segregation of duties",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b2427676-b730-406a-b9d7-a57e41e6da1b",
+          "name": "ForgeRock List policy violations",
+          "request": {
+            "name": "ForgeRock List policy violations",
+            "description": {
+              "content": "Query segregation of duties (SoD) and compliance policy violations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "violation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88af3b75-16d0-4731-ad0e-39a47d5a9e78",
+              "name": "List of violations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"policyName\": \"string\",\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"conflictingEntitlements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"active\",\n      \"severity\": \"medium\",\n      \"detectedDate\": \"2003-09-19T21:35:48.996Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"policyName\": \"string\",\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"conflictingEntitlements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"remediated\",\n      \"severity\": \"critical\",\n      \"detectedDate\": \"1959-01-27T01:37:46.392Z\"\n    }\n  ],\n  \"resultCount\": 6024,\n  \"totalPagedResults\": 5931\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9f88bcd-ccb4-4b1c-bd4e-2f48dfb19747",
+          "name": "ForgeRock Get a policy violation",
+          "request": {
+            "name": "ForgeRock Get a policy violation",
+            "description": {
+              "content": "Retrieve details of a specific policy violation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "violation",
+                ":violationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) The violation identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d03b4282-6f97-4283-907d-92b3b750a883",
+              "name": "Violation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) The violation identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"policyName\": \"string\",\n  \"userId\": \"string\",\n  \"userName\": \"string\",\n  \"conflictingEntitlements\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"remediated\",\n  \"severity\": \"low\",\n  \"detectedDate\": \"1957-05-21T11:58:35.168Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3413e6c-42ba-4767-a356-4c387a8d42c2",
+              "name": "Violation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) The violation identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5260,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74ea987b-6eec-4b55-ac1c-bc591acce924",
+          "name": "ForgeRock Resolve a policy violation",
+          "request": {
+            "name": "ForgeRock Resolve a policy violation",
+            "description": {
+              "content": "Perform an action on a violation such as remediate, allow (exception), or escalate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "violation",
+                ":violationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) The violation identifier"
+                },
+                {
+                  "description": "The Identity Governance deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"exceptionDuration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ca67d74f-0c89-4355-8c2f-2e5a9ab5e303",
+              "name": "Violation action completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) The violation identifier"
+                    },
+                    {
+                      "description": "The Identity Governance deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"exceptionDuration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"policyName\": \"string\",\n  \"userId\": \"string\",\n  \"userName\": \"string\",\n  \"conflictingEntitlements\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"remediated\",\n  \"severity\": \"low\",\n  \"detectedDate\": \"1957-05-21T11:58:35.168Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The Identity Governance deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "iga.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/iga",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "854f910e-da69-40bf-a14b-c8913f71b33c",
+    "name": "ForgeRock Identity Governance API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Identity Governance providing access reviews, certifications, role management, entitlement management, access requests, and compliance workflows. Enables organizations to review and certify access assignments, manage entitlements from onboarded applications, and enforce compliance policies.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

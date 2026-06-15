@@ -1,0 +1,1963 @@
+{
+  "item": [
+    {
+      "id": "e02be756-3b5e-4828-bc83-2457ca599481",
+      "name": "Monitoring",
+      "description": {
+        "content": "Health check and monitoring endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d4fa62a-2463-4c41-bf6b-a485fdcf260f",
+          "name": "ForgeRock Get monitoring summary",
+          "request": {
+            "name": "ForgeRock Get monitoring summary",
+            "description": {
+              "content": "Retrieve a monitoring summary of the IG instance, including request counts, response times, and status code distributions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "monitoring"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7fc8125-1d32-4c21-8318-b381881fc832",
+              "name": "Monitoring summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "monitoring"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRequestCount\": 2256,\n  \"totalResponseCount\": 8094,\n  \"averageResponseTime\": 6941.268445039576,\n  \"statusCodeCounts\": {\n    \"key_0\": 9472\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8fae261-42f2-4c13-883c-aa8ab09688c8",
+          "name": "ForgeRock Get endpoint monitoring",
+          "request": {
+            "name": "ForgeRock Get endpoint monitoring",
+            "description": {
+              "content": "Retrieve monitoring data for a specific endpoint or route, including request counts and response time percentiles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "monitoring",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) The endpoint or route identifier to monitor"
+                },
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ecb0ead-a8b5-4500-a6c6-71bf21bb0d53",
+              "name": "Endpoint monitoring data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "monitoring",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The endpoint or route identifier to monitor"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestCount\": 9348,\n  \"responseCount\": 456,\n  \"averageResponseTime\": 5143.359528267354,\n  \"percentiles\": {\n    \"p50\": 4856.076281544292,\n    \"p95\": 4208.632269117101,\n    \"p99\": 9603.84070833377\n  },\n  \"statusCodeCounts\": {\n    \"key_0\": 1429,\n    \"key_1\": 1512,\n    \"key_2\": 9880,\n    \"key_3\": 7366\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b79c3209-37ff-41d0-969e-c4737a563567",
+              "name": "Endpoint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "monitoring",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The endpoint or route identifier to monitor"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "301397f0-efbe-4a1b-a37f-574181f335e0",
+          "name": "ForgeRock Check IG health",
+          "request": {
+            "name": "ForgeRock Check IG health",
+            "description": {
+              "content": "Returns the health status of the IG instance. Used for load balancer health checks and monitoring.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4fb0e97-9f2c-4916-b621-c5825c7d49d3",
+              "name": "IG is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACTIVE\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bd0ea8c-1fea-48dc-8701-1ab17a7f6e04",
+              "name": "IG is not healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"FAILED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a8a4e2f2-c546-4397-bb5a-c8f358770551",
+      "name": "Objects",
+      "description": {
+        "content": "Inspect live IG configuration objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e1b15b0-f449-46d0-86f9-00aec4846aad",
+          "name": "ForgeRock List configuration objects",
+          "request": {
+            "name": "ForgeRock List configuration objects",
+            "description": {
+              "content": "List all live configuration objects in the IG runtime, including routes, handlers, filters, and decorators currently loaded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff68c393-750f-4c85-ac16-813342473941",
+              "name": "List of configuration objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"resultCount\": 8431\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a20fb05-7f30-4129-b924-3f5e249f3cd0",
+              "name": "Forbidden - administrative access required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "805f5912-06d9-4977-b4cd-416056682a46",
+          "name": "ForgeRock Get a configuration object",
+          "request": {
+            "name": "ForgeRock Get a configuration object",
+            "description": {
+              "content": "Retrieve details of a specific live configuration object from the IG runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                ":objectType",
+                ":objectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) Type of the configuration object"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectId",
+                  "description": "(Required) Identifier of the configuration object"
+                },
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b99539bc-7bcd-4eca-9c4c-c867e3c50739",
+              "name": "Configuration object details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) Type of the configuration object"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) Identifier of the configuration object"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"config\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2ebc007-9bfa-494e-a7b7-309915958de3",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) Type of the configuration object"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) Identifier of the configuration object"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "05aabc4f-1514-40d2-9419-5ed70202bf8f",
+      "name": "Routes",
+      "description": {
+        "content": "Manage IG route configurations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3d18ff6c-4f7e-4358-a724-ab4812312118",
+          "name": "ForgeRock List routes",
+          "request": {
+            "name": "ForgeRock List routes",
+            "description": {
+              "content": "List all routes currently loaded in the IG router, including their names, conditions, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter for routes"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7891aeb1-88b9-4c92-a126-cb9fbc4b1889",
+              "name": "List of routes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"http://cOmrZVwqXsRIxnuwPDEOkxGYlV.nyheQ11dJrVAgDDDEJW2oKWphJDt7wGUyAFa2brBk6QyVZQUZAp7VgFtxDGqFOAdN\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"http://TWhFKzmeEYZPXPaQJXZovGRvn.apfm+VzmeGZo-rb46.fhRDYMSCNSqalbmw-5LSVsM7,62zc8AX\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    }\n  ],\n  \"resultCount\": 2142\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62e61d4c-b5da-4f7a-b334-ac69784cdc55",
+          "name": "ForgeRock Create a route",
+          "request": {
+            "name": "ForgeRock Create a route",
+            "description": {
+              "content": "Deploy a new route configuration to the IG router. The route is immediately active upon creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3b71526-3b30-4eaf-b31b-41b531103eba",
+              "name": "Route created and deployed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://QSLxtWnsxsPR.inRTDt-oOk.td1yqGerDO8\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8e5912d-b118-4f9b-8fcd-af167277549d",
+              "name": "Invalid route configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f053b3e6-cc98-4ed9-a386-449668ae8c0c",
+          "name": "ForgeRock Get a route",
+          "request": {
+            "name": "ForgeRock Get a route",
+            "description": {
+              "content": "Retrieve a specific route configuration by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) The route identifier"
+                },
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "368665f8-cddb-48d0-ac47-53c8a785ae54",
+              "name": "The route configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://QSLxtWnsxsPR.inRTDt-oOk.td1yqGerDO8\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31c699f9-480c-41fe-85dc-91eb98eb13c7",
+              "name": "Route not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbc571b4-1032-4b9d-b8cf-77c538cf3fe4",
+          "name": "ForgeRock Update a route",
+          "request": {
+            "name": "ForgeRock Update a route",
+            "description": {
+              "content": "Replace a route configuration. The updated route is immediately active.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) The route identifier"
+                },
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc5ef100-83de-43f7-b8f6-40709c099e71",
+              "name": "Route updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://QSLxtWnsxsPR.inRTDt-oOk.td1yqGerDO8\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd9a2bd9-0c7f-46ef-b03b-3a0405961789",
+              "name": "Route not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57702e9b-e8ea-43ed-902e-99a8fbae380d",
+          "name": "ForgeRock Delete a route",
+          "request": {
+            "name": "ForgeRock Delete a route",
+            "description": {
+              "content": "Remove a route from the IG router. The route is immediately deactivated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) The route identifier"
+                },
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0544e743-2b6f-4f09-a3b5-272351e57ce2",
+              "name": "Route deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://QSLxtWnsxsPR.inRTDt-oOk.td1yqGerDO8\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9e34dd3-ea04-4f93-a86b-0fc5b4880acd",
+              "name": "Route not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1239,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "27acceab-7762-417d-b906-c0c09c32458a",
+      "name": "Studio",
+      "description": {
+        "content": "IG Studio route design endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6abb7524-871d-41bd-960c-0aa30dfbcbd4",
+          "name": "ForgeRock List studio routes",
+          "request": {
+            "name": "ForgeRock List studio routes",
+            "description": {
+              "content": "List routes available in the IG Studio interface for visual editing and management.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "studio",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a356ad3a-705b-4324-af01-70d281fcb2d9",
+              "name": "List of routes in Studio",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "studio",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"http://cOmrZVwqXsRIxnuwPDEOkxGYlV.nyheQ11dJrVAgDDDEJW2oKWphJDt7wGUyAFa2brBk6QyVZQUZAp7VgFtxDGqFOAdN\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"http://TWhFKzmeEYZPXPaQJXZovGRvn.apfm+VzmeGZo-rb46.fhRDYMSCNSqalbmw-5LSVsM7,62zc8AX\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    }\n  ],\n  \"resultCount\": 2142\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3ea599a-faa8-4100-8659-a7cf00125784",
+          "name": "ForgeRock Create a route via Studio",
+          "request": {
+            "name": "ForgeRock Create a route via Studio",
+            "description": {
+              "content": "Create a new route through the IG Studio API with a simplified configuration format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "studio",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The IG deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d21e9fe-a286-4c40-87f5-168e39e3926a",
+              "name": "Route created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "studio",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The IG deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://QSLxtWnsxsPR.inRTDt-oOk.td1yqGerDO8\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The IG deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "ig.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/ig",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8f6f8c52-6d26-484a-96f9-c1c7c5458c6e",
+    "name": "ForgeRock Identity Gateway API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Identity Gateway (IG) providing route management, monitoring, and administration. IG acts as a reverse proxy that enforces security and access control for web applications, APIs, and microservices, integrating them with the ForgeRock Identity Platform.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

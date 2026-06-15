@@ -1,0 +1,843 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Authenticate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/authenticate",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "authIndexType",
+                "value": "",
+                "type": "query",
+                "description": "Type of authentication index"
+              },
+              {
+                "name": "authIndexValue",
+                "value": "",
+                "type": "query",
+                "description": "Name of the authentication tree or module"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates or continues an authentication session using a specified authentication tree (journey) or module. On each step, the server returns callbacks that the client must respond to. On success, returns a tokenId (SSO token)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Query sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/sessions",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter for sessions"
+              }
+            ]
+          },
+          "docs": "Query active sessions in the specified realm. Requires administrative privileges."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Perform a session action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/sessions",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The session action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform an action on a session such as validate, logout, getSessionInfo, or refresh."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List authorization policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query authorization policies in the specified realm. Supports CREST query filters."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a policy or evaluate policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Action to perform (evaluate or evaluateTree)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authorization policy, or evaluate policies using the _action=evaluate or _action=evaluateTree query parameter."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies/:policyName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "The policy name"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific authorization policy by name."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies/:policyName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "The policy name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an existing authorization policy."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies/:policyName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "The policy name"
+              }
+            ]
+          },
+          "docs": "Delete an authorization policy by name."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Resource Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List resource types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter"
+              }
+            ]
+          },
+          "docs": "Query resource types used in authorization policies."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new resource type for use in authorization policies."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The resource type UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific resource type by its UUID."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The resource type UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an existing resource type."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The resource type UUID"
+              }
+            ]
+          },
+          "docs": "Delete a resource type by UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Realms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List realms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/global-config/realms",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter for realms"
+              }
+            ]
+          },
+          "docs": "Query all configured realms in the AM deployment."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/global-config/realms",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new realm in the AM deployment."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/global-config/realms/:realmName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ]
+          },
+          "docs": "Retrieve configuration for a specific realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/json/global-config/realms/:realmName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update configuration for an existing realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/json/global-config/realms/:realmName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ]
+          },
+          "docs": "Delete a realm from the AM deployment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/scripts",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter"
+              }
+            ]
+          },
+          "docs": "Query scripts configured in the specified realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/scripts/:scriptId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "scriptId",
+                "value": "",
+                "type": "path",
+                "description": "The script UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific script by its UUID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OAuth2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 authorization endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/authorize",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Initiates an OAuth 2.0 authorization code or implicit grant flow. Redirects the user agent to authenticate and consent."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 token endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/access_token",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange credentials for access tokens. Supports authorization_code, client_credentials, refresh_token, password, and device_code grants."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 token introspection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/tokeninfo",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "The access token to introspect"
+              }
+            ]
+          },
+          "docs": "Retrieve information about an access token including its scope, expiration, and associated client."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OpenID Connect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock OpenID Connect UserInfo endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/userinfo",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns claims about the authenticated end-user. Requires a valid access token with the openid scope."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OpenID Connect discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/.well-known/openid-configuration"
+          },
+          "docs": "Returns the OpenID Connect Provider configuration metadata, including supported endpoints, scopes, claims, and signing algorithms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

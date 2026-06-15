@@ -1,0 +1,3390 @@
+{
+  "item": [
+    {
+      "id": "1f84d9a8-658a-4bed-88af-e8050a6682b1",
+      "name": "Authentication",
+      "description": {
+        "content": "Authenticate users through authentication trees (journeys)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d58c5561-aae8-46c6-8dfa-4088aafddd7b",
+          "name": "ForgeRock Authenticate a user",
+          "request": {
+            "name": "ForgeRock Authenticate a user",
+            "description": {
+              "content": "Initiates or continues an authentication journey (tree) in the specified realm. Returns callbacks that the client must respond to, or a tokenId on successful completion of the journey.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "authenticate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "authIndexType",
+                  "value": "<string>",
+                  "description": "The type of authentication index to use (e.g., service, module)"
+                },
+                {
+                  "disabled": false,
+                  "key": "authIndexValue",
+                  "value": "<string>",
+                  "description": "The value of the authentication index (e.g., the tree/journey name)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "097bc514-33d5-40de-b353-7f1df51217ca",
+              "name": "Authentication step response containing callbacks or a successful authentication result with tokenId",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "authIndexType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authIndexValue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authId\": \"string\",\n  \"tokenId\": \"string\",\n  \"successUrl\": \"string\",\n  \"realm\": \"string\",\n  \"callbacks\": [\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47ef423b-16ba-474c-b243-6a4a56da023a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "authIndexType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authIndexValue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e60a8029-527d-4158-95d3-885cd41f9100",
+      "name": "Managed Roles",
+      "description": {
+        "content": "CRUD operations on managed role objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4687f1b2-da81-4bff-afb2-18c8c8571c1a",
+          "name": "ForgeRock List managed roles",
+          "request": {
+            "name": "ForgeRock List managed roles",
+            "description": {
+              "content": "Query managed role objects in the specified realm. Supports filtering, sorting, and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_role"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Offset for paginated results"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47461997-1bd1-4d6d-bd16-1510a905edbd",
+              "name": "List of managed roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"condition\": \"string\",\n      \"temporalConstraints\": [\n        {\n          \"duration\": \"string\"\n        },\n        {\n          \"duration\": \"string\"\n        }\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"condition\": \"string\",\n      \"temporalConstraints\": [\n        {\n          \"duration\": \"string\"\n        },\n        {\n          \"duration\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"resultCount\": 7609,\n  \"pagedResultsCookie\": \"string\",\n  \"totalPagedResults\": 2487\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74595266-d549-4590-ae47-0aa082832c98",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b744444-f24f-42e5-8133-9432d493044e",
+          "name": "ForgeRock Create a managed role",
+          "request": {
+            "name": "ForgeRock Create a managed role",
+            "description": {
+              "content": "Create a new managed role object in the specified realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_role"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ebcd39fc-f4a7-4176-b1db-d3af1ae37762",
+              "name": "Managed role created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"condition\": \"string\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"string\"\n    },\n    {\n      \"duration\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1e7f839-b41d-4326-8dcf-578fd8676a94",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06576c30-026f-49e5-b184-f27cb1581f70",
+          "name": "ForgeRock Get a managed role",
+          "request": {
+            "name": "ForgeRock Get a managed role",
+            "description": {
+              "content": "Retrieve a specific managed role object by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_role",
+                ":roleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roleId",
+                  "description": "(Required) The unique identifier of the managed role"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2642c31-ede4-4e44-aa1c-11e29e80abd8",
+              "name": "The managed role object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_role",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) The unique identifier of the managed role"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"condition\": \"string\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"string\"\n    },\n    {\n      \"duration\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01c15993-42dd-45f2-af6d-bd235db3b081",
+              "name": "Role not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_role",
+                    ":roleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roleId",
+                      "description": "(Required) The unique identifier of the managed role"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4d429f99-c36b-4f4d-8c8b-bedc77a4ba48",
+      "name": "Managed Users",
+      "description": {
+        "content": "CRUD operations on managed user objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a0f7a59-15f0-430e-af28-cef9cfeaa18a",
+          "name": "ForgeRock List managed users",
+          "request": {
+            "name": "ForgeRock List managed users",
+            "description": {
+              "content": "Query managed user objects in the specified realm. Supports filtering, sorting, and pagination through query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Offset for paginated results"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort by (prefix with - for descending)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "741f8e33-7a7e-451e-b64d-5a91a9e42348",
+              "name": "List of managed users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"userName\": \"string\",\n      \"givenName\": \"string\",\n      \"sn\": \"string\",\n      \"mail\": \"GuUo6@tEUXsVv.lr\",\n      \"telephoneNumber\": \"string\",\n      \"accountStatus\": \"inactive\"\n    },\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"userName\": \"string\",\n      \"givenName\": \"string\",\n      \"sn\": \"string\",\n      \"mail\": \"kJy@yTGRtJIrGBSYBde.vz\",\n      \"telephoneNumber\": \"string\",\n      \"accountStatus\": \"inactive\"\n    }\n  ],\n  \"resultCount\": 2329,\n  \"pagedResultsCookie\": \"string\",\n  \"totalPagedResultsPolicy\": \"string\",\n  \"totalPagedResults\": 6879,\n  \"remainingPagedResults\": 6975\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "505b9cf3-5167-40f5-8480-e868536d75a0",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9090cfb4-6545-4796-ad26-adbd919cd9c2",
+          "name": "ForgeRock Create a managed user",
+          "request": {
+            "name": "ForgeRock Create a managed user",
+            "description": {
+              "content": "Create a new managed user object in the specified realm. The user object must include required properties such as userName.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4cf10e0-f33b-40f8-9e4e-ffe179fe4fce",
+              "name": "Managed user created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"WYe1S9T2yEpX@qPGNqVblTKDVChU.urg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"inactive\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5010072f-be0a-498e-9bd2-f30c4911ca62",
+              "name": "Bad request - invalid user data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e2274e7-fa72-4642-b575-d3a1d5e83f92",
+              "name": "Conflict - user already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "de83672a-7637-47a9-81c3-dcaee1f61bf2",
+          "name": "ForgeRock Get a managed user",
+          "request": {
+            "name": "ForgeRock Get a managed user",
+            "description": {
+              "content": "Retrieve a specific managed user object by its identifier from the specified realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed30d46f-0ed1-444b-a860-926a731d9bef",
+              "name": "The managed user object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"WYe1S9T2yEpX@qPGNqVblTKDVChU.urg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"inactive\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1977c2d-0c25-436d-80df-a7feff0ee653",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78466b48-ff84-4ced-b0e7-332598e2d508",
+          "name": "ForgeRock Replace a managed user",
+          "request": {
+            "name": "ForgeRock Replace a managed user",
+            "description": {
+              "content": "Replace an entire managed user object. The request body must contain the complete user representation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision identifier for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "04d7961c-8e7d-4c1d-b5ab-5a31103c2efd",
+              "name": "Managed user updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"WYe1S9T2yEpX@qPGNqVblTKDVChU.urg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"inactive\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a1a5501-ec90-4c77-af6f-33844bd45a3e",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcda7812-a88c-4086-890d-a5ec95256a5a",
+              "name": "Precondition failed - revision mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ab8265b-3dd8-48d8-b152-fe8810989a5f",
+          "name": "ForgeRock Patch a managed user",
+          "request": {
+            "name": "ForgeRock Patch a managed user",
+            "description": {
+              "content": "Partially update a managed user object using JSON Patch operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision identifier for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db1f0d51-4e5f-4551-bad0-8e94c702305d",
+              "name": "Managed user patched successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"WYe1S9T2yEpX@qPGNqVblTKDVChU.urg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"inactive\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09c7a704-1151-4418-97b6-2b9a1432e955",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96f111ca-bf12-4874-a048-dd622cebeb27",
+          "name": "ForgeRock Delete a managed user",
+          "request": {
+            "name": "ForgeRock Delete a managed user",
+            "description": {
+              "content": "Delete a managed user object from the specified realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision identifier for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9694395f-2770-412c-bc33-cc7387423e7d",
+              "name": "Managed user deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"WYe1S9T2yEpX@qPGNqVblTKDVChU.urg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"inactive\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1693bade-4f31-4af2-af58-170c55d7d9f6",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ee551875-2d41-44c5-93cd-1d9ee50f2a9d",
+      "name": "OAuth2 Clients",
+      "description": {
+        "content": "Manage OAuth 2.0 client registrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "161fc9ff-7db4-4961-aae6-95a1191849dd",
+          "name": "ForgeRock OAuth 2.0 authorization endpoint",
+          "request": {
+            "name": "ForgeRock OAuth 2.0 authorization endpoint",
+            "description": {
+              "content": "Initiates an OAuth 2.0 authorization flow. Redirects the user agent to the authorization server for authentication and consent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "oauth2",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 client identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 response type"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "(Required) The URI to redirect to after authorization"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Space-delimited list of requested scopes"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Opaque value to maintain state between request and callback"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53a0fcc6-4ea7-4d28-9837-87675f45fef4",
+              "name": "Redirect to login or consent page",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "57240983-2f44-4a70-8e08-a8f5fd4a18da",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90b23b02-e19f-4b2d-8919-b05157ece51d",
+          "name": "ForgeRock OAuth 2.0 token endpoint",
+          "request": {
+            "name": "ForgeRock OAuth 2.0 token endpoint",
+            "description": {
+              "content": "Exchange an authorization code, refresh token, or client credentials for an access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "oauth2",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth 2.0 grant type"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>",
+                  "description": "Authorization code (for authorization_code grant)"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<string>",
+                  "description": "Redirect URI (must match the authorization request)"
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>",
+                  "description": "Refresh token (for refresh_token grant)"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>",
+                  "description": "Requested scopes"
+                },
+                {
+                  "disabled": false,
+                  "key": "username",
+                  "value": "<string>",
+                  "description": "Resource owner username (for password grant)"
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "Resource owner password (for password grant)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad9f66f8-f022-48d3-b20e-236205b0e485",
+              "name": "Token response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The OAuth 2.0 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Authorization code (for authorization_code grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Redirect URI (must match the authorization request)",
+                        "type": "text/plain"
+                      },
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token (for refresh_token grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requested scopes",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Resource owner username (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Resource owner password (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 1082,\n  \"refresh_token\": \"string\",\n  \"scope\": \"string\",\n  \"id_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67e47611-44e5-43ac-a76e-f06c8cb77165",
+              "name": "Invalid grant or request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The OAuth 2.0 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Authorization code (for authorization_code grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Redirect URI (must match the authorization request)",
+                        "type": "text/plain"
+                      },
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token (for refresh_token grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requested scopes",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Resource owner username (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Resource owner password (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "288cdd28-dd96-4ece-b130-315c48549e2c",
+              "name": "Invalid client credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The OAuth 2.0 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Authorization code (for authorization_code grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Redirect URI (must match the authorization request)",
+                        "type": "text/plain"
+                      },
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Refresh token (for refresh_token grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Requested scopes",
+                        "type": "text/plain"
+                      },
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Resource owner username (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "username",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Resource owner password (for password grant)",
+                        "type": "text/plain"
+                      },
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7f3a2cc8-b9bc-4c81-a4b0-848ab0417c0c",
+      "name": "Server Info",
+      "description": {
+        "content": "Retrieve server information and configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0ae3c08c-694d-4b93-a987-0af90b5ba687",
+          "name": "ForgeRock Get server information",
+          "request": {
+            "name": "ForgeRock Get server information",
+            "description": {
+              "content": "Retrieve server information including supported features, cookie name, and realm configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "serverinfo",
+                "*"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0781d091-da5a-4558-8a60-73ec87039c15",
+              "name": "Server information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "serverinfo",
+                    "*"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cookieName\": \"string\",\n  \"domains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"protectedUserAttributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"forgotPassword\": \"string\",\n  \"selfRegistration\": \"string\",\n  \"lang\": \"string\",\n  \"successfulUserRegistrationDestination\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "33d74829-79ea-4661-b293-8bb68a163639",
+      "name": "Sessions",
+      "description": {
+        "content": "Manage authenticated sessions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "430a7b86-9511-46ad-ac8e-fbbacde5915c",
+          "name": "ForgeRock Perform session actions",
+          "request": {
+            "name": "ForgeRock Perform session actions",
+            "description": {
+              "content": "Perform actions on sessions such as getting session info, refreshing idle timeout, or logging out. The action is specified via the _action query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform on the session"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The tenant identifier for your Identity Cloud environment",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f7ebd599-6b99-485a-ab6e-fa0195473f3b",
+              "name": "Session action completed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"universalId\": \"string\",\n  \"realm\": \"string\",\n  \"latestAccessTime\": \"2020-05-04T10:38:35.000Z\",\n  \"maxIdleExpirationTime\": \"1973-04-20T10:24:35.821Z\",\n  \"maxSessionExpirationTime\": \"1948-02-15T10:43:17.964Z\",\n  \"properties\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ec4eaf9-c6c9-4317-881c-2fce37209b90",
+              "name": "Session is invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The tenant identifier for your Identity Cloud environment",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4310,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The tenant identifier for your Identity Cloud environment",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "mycompany",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.forgeblocks.com",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The realm name prefix for managed objects (e.g., alpha, bravo)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "alpha",
+      "key": "realm"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a18945d0-cc16-46a4-ae34-bd7eb9ab7617",
+    "name": "ForgeRock Identity Cloud REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing identities, authentication, and authorization in ForgeRock Identity Cloud (PingOne Advanced Identity Cloud). Provides access management and identity management endpoints for Advanced Identity Cloud tenant environments, including authentication journeys, session management, managed object CRUD, OAuth 2.0 and OpenID Connect flows.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

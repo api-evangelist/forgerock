@@ -1,0 +1,824 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Identity Management API",
+    "version": "7.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List managed objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/managed/:objectType",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields (prefix with - for descending)"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query managed objects of the specified type. Supports CREST query filters, pagination, sorting, and field selection."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/openidm/managed/:objectType",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Must be set to create for server-assigned IDs"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new managed object of the specified type. The server assigns the _id if not provided via the _action=create query parameter."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/managed/:objectType/:objectId",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific managed object by type and identifier."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Replace a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/openidm/managed/:objectType/:objectId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire managed object or create one with a client-assigned identifier."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Patch a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{deployment}/openidm/managed/:objectType/:objectId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a managed object using JSON Patch operations (add, remove, replace, increment)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/openidm/managed/:objectType/:objectId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              }
+            ]
+          },
+          "docs": "Delete a managed object by type and identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List system objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/system/:systemName/:objectType",
+            "params": [
+              {
+                "name": "systemName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the connected system"
+              },
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "Object type in the connected system (e.g., account, group)"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query objects from a connected remote system (connector). The system name and object type correspond to the connector configuration and its object types."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a system object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/system/:systemName/:objectType/:objectId",
+            "params": [
+              {
+                "name": "systemName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the connected system"
+              },
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "Object type in the connected system"
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "Object identifier in the remote system"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific object from a connected remote system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List configuration objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/config"
+          },
+          "docs": "List all IDM configuration objects stored in the repository."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/config/:configId",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path",
+                "description": "Configuration object identifier (e.g., managed, sync, audit)"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific configuration object by its identifier (e.g., managed, sync, router, audit)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/openidm/config/:configId",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path",
+                "description": "Configuration object identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire configuration object."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/openidm/config/:configId",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path",
+                "description": "Configuration object identifier"
+              }
+            ]
+          },
+          "docs": "Delete a configuration object by identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reconciliation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Trigger reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/openidm/recon/:mappingName",
+            "params": [
+              {
+                "name": "mappingName",
+                "value": "",
+                "type": "path",
+                "description": "The sync mapping name (e.g., systemLdapAccounts_managedUser)"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Must be recon"
+              }
+            ]
+          },
+          "docs": "Trigger a reconciliation operation for the specified mapping. The mapping defines the source and target systems and the synchronization rules."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List reconciliation runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/recon",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields (prefix with - for descending)"
+              }
+            ]
+          },
+          "docs": "Query reconciliation run records. Returns details about past and in-progress reconciliation operations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get reconciliation details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/recon/:reconId",
+            "params": [
+              {
+                "name": "reconId",
+                "value": "",
+                "type": "path",
+                "description": "The reconciliation run identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details about a specific reconciliation run."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Synchronization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Trigger on-demand synchronization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/openidm/sync",
+            "params": [
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Must be performAction"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger a synchronization action for a specific object change. Useful for performing immediate sync of individual objects."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Query audit log entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/audit/:auditTopic",
+            "params": [
+              {
+                "name": "auditTopic",
+                "value": "",
+                "type": "path",
+                "description": "The audit topic to query"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields (prefix with - for descending)"
+              }
+            ]
+          },
+          "docs": "Query audit log records for the specified topic (e.g., access, activity, authentication, config, recon, sync)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an audit log entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/audit/:auditTopic/:auditId",
+            "params": [
+              {
+                "name": "auditTopic",
+                "value": "",
+                "type": "path",
+                "description": "The audit topic"
+              },
+              {
+                "name": "auditId",
+                "value": "",
+                "type": "path",
+                "description": "The audit entry identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific audit log entry by topic and identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List scheduled jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/scheduler/job",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query all configured scheduled jobs."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/openidm/scheduler/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new scheduled job with a cron expression or interval."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/scheduler/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific scheduled job configuration."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/openidm/scheduler/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a scheduled job configuration."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/openidm/scheduler/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job identifier"
+              }
+            ]
+          },
+          "docs": "Delete a scheduled job by identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List workflow process definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/workflow/processdefinition",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query available BPMN workflow process definitions deployed to IDM."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List workflow process instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/workflow/processinstance",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query active workflow process instances."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Start a workflow process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/openidm/workflow/processinstance",
+            "params": [
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new workflow process instance from a deployed process definition."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List workflow task instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/workflow/taskinstance",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query active user tasks from running workflow processes."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a task instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/openidm/workflow/taskinstance/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task instance identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific workflow task instance."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Complete a task instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/openidm/workflow/taskinstance/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task instance identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Complete a workflow user task and provide output variables."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,515 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Identity Governance API",
+    "version": "7.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Certifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List certification campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/certification",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields"
+              }
+            ]
+          },
+          "docs": "Query certification campaigns. Certifications enable authorized users to review and certify access assignments to ensure compliance."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a certification campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/iga/governance/certification",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new access certification campaign. Supports identity certification, role definition certification, and role membership certification types."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a certification campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/certification/:certificationId",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific certification campaign."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a certification campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{deployment}/iga/governance/certification/:certificationId",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a certification campaign (e.g., close or cancel it)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access Reviews",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List certification items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/certification/:certificationId/items",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "List individual review items within a certification campaign. Each item represents a user-entitlement assignment to be reviewed."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a certification item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/certification/:certificationId/items/:itemId",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The certification item identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific certification review item."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Review a certification item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{deployment}/iga/governance/certification/:certificationId/items/:itemId",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path",
+                "description": "The certification item identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a review decision for a certification item. Decisions include certify (approve), revoke, or exception."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List access requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/request",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields"
+              }
+            ]
+          },
+          "docs": "Query access requests. Users can request access to applications, entitlements, or roles, and managers can request revocation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/iga/governance/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new access request for a user to gain access to a resource (application, entitlement, or role)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/request/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The access request identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific access request."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Perform an access request action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/iga/governance/request/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The access request identifier"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve, deny, or cancel an access request via the _action query parameter."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/entitlement",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields"
+              }
+            ]
+          },
+          "docs": "Query the entitlements catalog. Entitlements are aggregated from onboarded target applications into a centralized repository."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/entitlement/:entitlementId",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific entitlement."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List governance roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/role",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Query governance roles used in access policies and certifications."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Violations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List policy violations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/violation",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Query segregation of duties (SoD) and compliance policy violations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a policy violation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/iga/governance/violation/:violationId",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "The violation identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific policy violation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Resolve a policy violation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/iga/governance/violation/:violationId",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "The violation identifier"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform an action on a violation such as remediate, allow (exception), or escalate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Identity Gateway API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List configuration objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/objects",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter"
+              }
+            ]
+          },
+          "docs": "List all live configuration objects in the IG runtime, including routes, handlers, filters, and decorators currently loaded."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/objects/:objectType/:objectId",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "Type of the configuration object"
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the configuration object"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific live configuration object from the IG runtime."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/objects/router-handler/routes",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter for routes"
+              }
+            ]
+          },
+          "docs": "List all routes currently loaded in the IG router, including their names, conditions, and status."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/ig/openig/api/system/objects/router-handler/routes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy a new route configuration to the IG router. The route is immediately active upon creation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/objects/router-handler/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific route configuration by its identifier."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/ig/openig/api/system/objects/router-handler/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a route configuration. The updated route is immediately active."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/ig/openig/api/system/objects/router-handler/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route identifier"
+              }
+            ]
+          },
+          "docs": "Remove a route from the IG router. The route is immediately deactivated."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Get monitoring summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/monitoring"
+          },
+          "docs": "Retrieve a monitoring summary of the IG instance, including request counts, response times, and status code distributions."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get endpoint monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/monitoring/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The endpoint or route identifier to monitor"
+              }
+            ]
+          },
+          "docs": "Retrieve monitoring data for a specific endpoint or route, including request counts and response time percentiles."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Check IG health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/system/health"
+          },
+          "docs": "Returns the health status of the IG instance. Used for load balancer health checks and monitoring."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Studio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List studio routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/ig/openig/api/studio/routes"
+          },
+          "docs": "List routes available in the IG Studio interface for visual editing and management."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a route via Studio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/ig/openig/api/studio/routes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new route through the IG Studio API with a simplified configuration format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
