@@ -200,23 +200,23 @@ common:
     url: https://www.forgerock.com
   - type: Login
     url: https://backstage.forgerock.com/account
-  - type: SignUp
+  - type: Signup
     url: https://backstage.forgerock.com/account/register
   - type: SDKs
     url: https://docs.pingidentity.com/sdks/latest/index.html
-  - type: JSON-LD Context
+  - type: JSONLDContext
     url: json-ld/forgerock-context.jsonld
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-managed-user-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-session-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-policy-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-oauth2-token-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-managed-role-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-entitlement-schema.json
-  - type: JSON Schema
+  - type: JSONSchema
     url: json-schema/forgerock-directory-entry-schema.json
