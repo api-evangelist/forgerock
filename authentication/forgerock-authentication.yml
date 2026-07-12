@@ -1,0 +1,47 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/forgerock-access-management-openapi.yml, openapi/forgerock-autonomous-identity-openapi.yml,
+  openapi/forgerock-directory-services-openapi.yml, openapi/forgerock-identity-cloud-openapi.yml,
+  openapi/forgerock-identity-gateway-openapi.yml, openapi/forgerock-identity-governance-openapi.yml,
+  openapi/forgerock-identity-management-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ssoToken
+  type: apiKey
+  in: header
+  parameter: iPlanetDirectoryPro
+  description: AM SSO token obtained from authentication
+  sources:
+  - openapi/forgerock-access-management-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 access token
+  sources:
+  - openapi/forgerock-access-management-openapi.yml
+  - openapi/forgerock-autonomous-identity-openapi.yml
+  - openapi/forgerock-directory-services-openapi.yml
+  - openapi/forgerock-identity-cloud-openapi.yml
+  - openapi/forgerock-identity-gateway-openapi.yml
+  - openapi/forgerock-identity-governance-openapi.yml
+  - openapi/forgerock-identity-management-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication (for directory bind)
+  sources:
+  - openapi/forgerock-directory-services-openapi.yml
+  - openapi/forgerock-identity-management-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: API key for tenant read-only operations. Used together with x-api-secret header.
+  sources:
+  - openapi/forgerock-identity-cloud-openapi.yml

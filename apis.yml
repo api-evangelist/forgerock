@@ -172,6 +172,12 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+  - type: VulnerabilityDisclosure
+    url: security/forgerock-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/forgerock-domain-security.yml
+  - type: Authentication
+    url: authentication/forgerock-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/forgerock
   - type: Portal
