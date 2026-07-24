@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Rules API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Rules
+  description: Access entitlement assignment rules and justifications
+paths:
+  /api/rules:
+    get:
+      operationId: listRules
+      summary: ForgeRock List assignment rules
+      description: Query entitlement assignment rules derived from the AI model. Rules explain why specific entitlements are assigned based on user attribute combinations.
+      tags:
+      - Rules
+      parameters:
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Offset'
+      - name: entitlement
+        in: query
+        description: Filter by entitlement name
+        schema:
+          type: string
+      - name: application
+        in: query
+        description: Filter by application name
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of rules
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuleList'
+  /api/rules/{ruleId}:
+    get:
+      operationId: getRule
+      summary: ForgeRock Get a rule
+      description: Retrieve details of a specific assignment rule.
+      tags:
+      - Rules
+      parameters:
+      - name: ruleId
+        in: path
+        required: true
+        description: The rule identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Rule details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+        '404':
+          description: Rule not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageSize:
+      name: maxResults
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    Rule:
+      type: object
+      description: An entitlement assignment rule from the AI model
+      properties:
+        id:
+          type: string
+        entitlement:
+          type: string
+          description: Entitlement this rule applies to
+        application:
+          type: string
+        conditions:
+          type: array
+          description: Attribute conditions that define this rule
+          items:
+            type: object
+            properties:
+              attribute:
+                type: string
+              operator:
+                type: string
+                enum:
+                - equals
+                - contains
+                - startsWith
+              value:
+                type: string
+        confidenceScore:
+          type: number
+          description: Confidence score for assignments matching this rule
+        coverageCount:
+          type: integer
+          description: Number of users matching this rule
+    RuleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        totalResults:
+          type: integer
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

@@ -1,0 +1,223 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Resource Types API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Resource Types
+  description: Manage resource types for authorization
+paths:
+  /json/realms/root/realms/{realm}/resourcetypes:
+    get:
+      operationId: listResourceTypes
+      summary: ForgeRock List resource types
+      description: Query resource types used in authorization policies.
+      tags:
+      - Resource Types
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: _queryFilter
+        in: query
+        description: CREST query filter
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of resource types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceTypeList'
+    post:
+      operationId: createResourceType
+      summary: ForgeRock Create a resource type
+      description: Create a new resource type for use in authorization policies.
+      tags:
+      - Resource Types
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceType'
+      responses:
+        '201':
+          description: Resource type created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+  /json/realms/root/realms/{realm}/resourcetypes/{resourceTypeId}:
+    get:
+      operationId: getResourceType
+      summary: ForgeRock Get a resource type
+      description: Retrieve a specific resource type by its UUID.
+      tags:
+      - Resource Types
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: resourceTypeId
+        in: path
+        required: true
+        description: The resource type UUID
+        schema:
+          type: string
+          format: uuid
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: The resource type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+        '404':
+          description: Resource type not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateResourceType
+      summary: ForgeRock Update a resource type
+      description: Replace an existing resource type.
+      tags:
+      - Resource Types
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: resourceTypeId
+        in: path
+        required: true
+        description: The resource type UUID
+        schema:
+          type: string
+          format: uuid
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceType'
+      responses:
+        '200':
+          description: Resource type updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+    delete:
+      operationId: deleteResourceType
+      summary: ForgeRock Delete a resource type
+      description: Delete a resource type by UUID.
+      tags:
+      - Resource Types
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: resourceTypeId
+        in: path
+        required: true
+        description: The resource type UUID
+        schema:
+          type: string
+          format: uuid
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Resource type deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceType'
+components:
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+  schemas:
+    ResourceType:
+      type: object
+      description: A resource type definition
+      properties:
+        uuid:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        patterns:
+          type: array
+          items:
+            type: string
+          description: URL patterns for this resource type
+        actions:
+          type: object
+          description: Available actions and their default values
+          additionalProperties:
+            type: boolean
+    ResourceTypeList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+        resultCount:
+          type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

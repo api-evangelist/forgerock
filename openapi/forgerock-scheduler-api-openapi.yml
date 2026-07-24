@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Scheduler API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Scheduler
+  description: Manage scheduled tasks and jobs
+paths:
+  /scheduler/job:
+    get:
+      operationId: listScheduledJobs
+      summary: ForgeRock List scheduled jobs
+      description: Query all configured scheduled jobs.
+      tags:
+      - Scheduler
+      parameters:
+      - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of scheduled jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJobList'
+    post:
+      operationId: createScheduledJob
+      summary: ForgeRock Create a scheduled job
+      description: Create a new scheduled job with a cron expression or interval.
+      tags:
+      - Scheduler
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchedulerJob'
+      responses:
+        '201':
+          description: Job created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+  /scheduler/job/{jobId}:
+    get:
+      operationId: getScheduledJob
+      summary: ForgeRock Get a scheduled job
+      description: Retrieve a specific scheduled job configuration.
+      tags:
+      - Scheduler
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The job identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The scheduled job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateScheduledJob
+      summary: ForgeRock Update a scheduled job
+      description: Replace a scheduled job configuration.
+      tags:
+      - Scheduler
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The job identifier
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchedulerJob'
+      responses:
+        '200':
+          description: Job updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+    delete:
+      operationId: deleteScheduledJob
+      summary: ForgeRock Delete a scheduled job
+      description: Delete a scheduled job by identifier.
+      tags:
+      - Scheduler
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        description: The job identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+components:
+  schemas:
+    SchedulerJob:
+      type: object
+      description: A scheduled job configuration
+      properties:
+        _id:
+          type: string
+          readOnly: true
+        enabled:
+          type: boolean
+          description: Whether the job is enabled
+        type:
+          type: string
+          description: Job type
+          enum:
+          - cron
+          - simple
+        schedule:
+          type: string
+          description: Cron expression for cron-type jobs
+        misfirePolicy:
+          type: string
+          description: Policy for handling missed executions
+          enum:
+          - fireAndProceed
+          - doNothing
+        invokeService:
+          type: string
+          description: The service to invoke
+        invokeContext:
+          type: object
+          description: Context for the service invocation
+          properties:
+            action:
+              type: string
+            mapping:
+              type: string
+        invokeLogLevel:
+          type: string
+          enum:
+          - info
+          - debug
+          - trace
+    SchedulerJobList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerJob'
+        resultCount:
+          type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+  parameters:
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

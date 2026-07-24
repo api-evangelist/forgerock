@@ -1,0 +1,368 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Users API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Users
+  description: Query user entitlement data and recommendations
+paths:
+  /api/users/{userId}/entitlements:
+    get:
+      operationId: listUserEntitlements
+      summary: ForgeRock List user entitlements
+      description: Retrieve all entitlements assigned to a specific user with their confidence scores and justification data.
+      tags:
+      - Users
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The user identifier
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Offset'
+      - name: confidenceThreshold
+        in: query
+        description: Filter by minimum confidence score
+        schema:
+          type: number
+      responses:
+        '200':
+          description: List of user entitlements with confidence scores
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserEntitlementList'
+  /api/users/{userId}/recommendations:
+    get:
+      operationId: getUserRecommendations
+      summary: ForgeRock Get user recommendations
+      description: Get recommended entitlements for a user based on their attributes and the AI model's predictions.
+      tags:
+      - Users
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The user identifier
+        schema:
+          type: string
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: Entitlement recommendations for the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationList'
+  /api/users:
+    get:
+      operationId: listUsers
+      summary: List directory users
+      description: Query user entries in the directory. Supports CREST query filters which are translated to LDAP search operations with appropriate filter expressions.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/QueryFilter'
+      - $ref: '#/components/parameters/PageSize_2'
+      - $ref: '#/components/parameters/PagedResultsCookie'
+      - $ref: '#/components/parameters/SortKeys'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of user entries
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQueryResult'
+        '400':
+          description: Invalid query filter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createUser
+      summary: Create a directory user
+      description: Create a new user entry in the directory. The JSON resource is mapped to an LDAP entry with appropriate object classes and attributes.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        description: The user entry to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/users/{userId}:
+    post:
+      operationId: userAction
+      summary: Perform a user action
+      description: Perform actions on a user entry such as password reset or password change via _action query parameter.
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/UserId'
+      - name: _action
+        in: query
+        required: true
+        description: The action to perform
+        schema:
+          type: string
+          enum:
+          - resetPassword
+          - modifyPassword
+      requestBody:
+        description: Action-specific request body
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                  description: Current password (for modifyPassword)
+                newPassword:
+                  type: string
+                  description: New password
+      responses:
+        '200':
+          description: Action completed
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields
+      schema:
+        type: string
+    PageSize:
+      name: maxResults
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The user identifier (maps to LDAP uid or _id)
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to return
+      schema:
+        type: string
+    PageSize_2:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    RecommendationList:
+      type: object
+      description: Entitlement recommendations
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              userName:
+                type: string
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+                description: Predicted confidence score
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
+        totalResults:
+          type: integer
+    UserEntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
+              justification:
+                type: string
+                description: AI-generated justification for the assignment
+        totalResults:
+          type: integer
+    UserQueryResult:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+    User:
+      type: object
+      description: A directory user entry mapped from LDAP to JSON via HDAP
+      properties:
+        _id:
+          type: string
+          description: User identifier (mapped from LDAP uid)
+        _rev:
+          type: string
+          description: Entry revision for MVCC
+          readOnly: true
+        userName:
+          type: string
+          description: Login username
+        givenName:
+          type: string
+          description: First name
+        sn:
+          type: string
+          description: Surname / last name
+        cn:
+          type: string
+          description: Common name (full name)
+        mail:
+          type: string
+          format: email
+          description: Email address
+        telephoneNumber:
+          type: string
+          description: Phone number
+        description:
+          type: string
+          description: User description
+        memberOf:
+          type: array
+          description: Groups this user belongs to
+          readOnly: true
+          items:
+            type: string
+        userPassword:
+          type: string
+          format: password
+          description: Password (write-only, stored hashed)
+          writeOnly: true
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

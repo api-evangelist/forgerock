@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Objects API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Objects
+  description: Inspect live IG configuration objects
+paths:
+  /openig/api/system/objects:
+    get:
+      operationId: listObjects
+      summary: ForgeRock List configuration objects
+      description: List all live configuration objects in the IG runtime, including routes, handlers, filters, and decorators currently loaded.
+      tags:
+      - Objects
+      parameters:
+      - name: _queryFilter
+        in: query
+        description: CREST query filter
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of configuration objects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectList'
+        '403':
+          description: Forbidden - administrative access required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /openig/api/system/objects/{objectType}/{objectId}:
+    get:
+      operationId: getObject
+      summary: ForgeRock Get a configuration object
+      description: Retrieve details of a specific live configuration object from the IG runtime.
+      tags:
+      - Objects
+      parameters:
+      - name: objectType
+        in: path
+        required: true
+        description: Type of the configuration object
+        schema:
+          type: string
+          enum:
+          - Router
+          - Route
+          - Handler
+          - Filter
+          - Chain
+      - name: objectId
+        in: path
+        required: true
+        description: Identifier of the configuration object
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Configuration object details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ObjectList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigObject'
+        resultCount:
+          type: integer
+    ConfigObject:
+      type: object
+      description: A live configuration object in the IG runtime
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          description: Object type (Router, Handler, Filter, etc.)
+        name:
+          type: string
+        config:
+          type: object
+          description: Object configuration
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

@@ -1,0 +1,279 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Workflow API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Workflow
+  description: Manage BPMN workflow processes and tasks
+paths:
+  /workflow/processdefinition:
+    get:
+      operationId: listProcessDefinitions
+      summary: ForgeRock List workflow process definitions
+      description: Query available BPMN workflow process definitions deployed to IDM.
+      tags:
+      - Workflow
+      parameters:
+      - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of process definitions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessDefinitionList'
+  /workflow/processinstance:
+    get:
+      operationId: listProcessInstances
+      summary: ForgeRock List workflow process instances
+      description: Query active workflow process instances.
+      tags:
+      - Workflow
+      parameters:
+      - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of process instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessInstanceList'
+    post:
+      operationId: createProcessInstance
+      summary: ForgeRock Start a workflow process
+      description: Start a new workflow process instance from a deployed process definition.
+      tags:
+      - Workflow
+      parameters:
+      - name: _action
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                _key:
+                  type: string
+                  description: Process definition key
+                variables:
+                  type: object
+                  description: Process variables
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Process instance started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessInstance'
+  /workflow/taskinstance:
+    get:
+      operationId: listTaskInstances
+      summary: ForgeRock List workflow task instances
+      description: Query active user tasks from running workflow processes.
+      tags:
+      - Workflow
+      parameters:
+      - $ref: '#/components/parameters/QueryFilter'
+      responses:
+        '200':
+          description: List of task instances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInstanceList'
+  /workflow/taskinstance/{taskId}:
+    get:
+      operationId: getTaskInstance
+      summary: ForgeRock Get a task instance
+      description: Retrieve details of a specific workflow task instance.
+      tags:
+      - Workflow
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The task instance identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The task instance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInstance'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: completeTaskInstance
+      summary: ForgeRock Complete a task instance
+      description: Complete a workflow user task and provide output variables.
+      tags:
+      - Workflow
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: The task instance identifier
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Task completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskInstance'
+components:
+  parameters:
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+  schemas:
+    TaskInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskInstance'
+        resultCount:
+          type: integer
+    ProcessDefinition:
+      type: object
+      description: A BPMN workflow process definition
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        version:
+          type: integer
+        category:
+          type: string
+        deploymentId:
+          type: string
+    ProcessDefinitionList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessDefinition'
+        resultCount:
+          type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ProcessInstance:
+      type: object
+      description: A running workflow process instance
+      properties:
+        _id:
+          type: string
+        processDefinitionId:
+          type: string
+        businessKey:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        startUserId:
+          type: string
+        status:
+          type: string
+    ProcessInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessInstance'
+        resultCount:
+          type: integer
+    TaskInstance:
+      type: object
+      description: A workflow user task instance
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assignee:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        processDefinitionId:
+          type: string
+        processInstanceId:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

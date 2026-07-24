@@ -1,0 +1,341 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Managed Objects API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Managed Objects
+  description: CRUD operations on managed identity objects
+paths:
+  /managed/{objectType}:
+    get:
+      operationId: listManagedObjects
+      summary: ForgeRock List managed objects
+      description: Query managed objects of the specified type. Supports CREST query filters, pagination, sorting, and field selection.
+      tags:
+      - Managed Objects
+      parameters:
+      - $ref: '#/components/parameters/ObjectType'
+      - $ref: '#/components/parameters/QueryFilter'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PagedResultsOffset'
+      - $ref: '#/components/parameters/SortKeys'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Query results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createManagedObject
+      summary: ForgeRock Create a managed object
+      description: Create a new managed object of the specified type. The server assigns the _id if not provided via the _action=create query parameter.
+      tags:
+      - Managed Objects
+      parameters:
+      - $ref: '#/components/parameters/ObjectType'
+      - name: _action
+        in: query
+        description: Must be set to create for server-assigned IDs
+        schema:
+          type: string
+          enum:
+          - create
+      requestBody:
+        required: true
+        description: The managed object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedObject'
+      responses:
+        '201':
+          description: Object created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '400':
+          description: Invalid object data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Object already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /managed/{objectType}/{objectId}:
+    get:
+      operationId: getManagedObject
+      summary: ForgeRock Get a managed object
+      description: Retrieve a specific managed object by type and identifier.
+      tags:
+      - Managed Objects
+      parameters:
+      - $ref: '#/components/parameters/ObjectType'
+      - $ref: '#/components/parameters/ObjectId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The managed object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateManagedObject
+      summary: ForgeRock Replace a managed object
+      description: Replace an entire managed object or create one with a client-assigned identifier.
+      tags:
+      - Managed Objects
+      parameters:
+      - $ref: '#/components/parameters/ObjectType'
+      - $ref: '#/components/parameters/ObjectId'
+      - name: If-Match
+        in: header
+        description: Revision for optimistic concurrency control
+        schema:
+          type: string
+          default: '*'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedObject'
+      responses:
+        '200':
+          description: Object updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '201':
+          description: Object created with client-assigned ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '412':
+          description: Revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchManagedObject
+      summary: ForgeRock Patch a managed object
+      description: Partially update a managed object using JSON Patch operations (add, remove, replace, increment).
+      tags:
+      - Managed Objects
+      parameters:
+      - $ref: '#/components/parameters/ObjectType'
+      - $ref: '#/components/parameters/ObjectId'
+      - name: If-Match
+        in: header
+        description: Revision for optimistic concurrency control
+        schema:
+          type: string
+          default: '*'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Object patched
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteManagedObject
+      summary: ForgeRock Delete a managed object
+      description: Delete a managed object by type and identifier.
+      tags:
+      - Managed Objects
+      parameters:
+      - $ref: '#/components/parameters/ObjectType'
+      - $ref: '#/components/parameters/ObjectId'
+      - name: If-Match
+        in: header
+        description: Revision for optimistic concurrency control
+        schema:
+          type: string
+          default: '*'
+      responses:
+        '200':
+          description: Object deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    ObjectType:
+      name: objectType
+      in: path
+      required: true
+      description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    ObjectId:
+      name: objectId
+      in: path
+      required: true
+      description: The unique identifier of the managed object
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated fields to include in the response
+      schema:
+        type: string
+  schemas:
+    ManagedObject:
+      type: object
+      description: A managed identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+            - increment
+          field:
+            type: string
+          value: {}
+    QueryResult:
+      type: object
+      description: CREST query result
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedObject'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResultsPolicy:
+          type: string
+        totalPagedResults:
+          type: integer
+        remainingPagedResults:
+          type: integer
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

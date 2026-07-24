@@ -1,0 +1,177 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests System Objects API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: System Objects
+  description: Access objects in connected remote systems
+paths:
+  /system/{systemName}/{objectType}:
+    get:
+      operationId: listSystemObjects
+      summary: ForgeRock List system objects
+      description: Query objects from a connected remote system (connector). The system name and object type correspond to the connector configuration and its object types.
+      tags:
+      - System Objects
+      parameters:
+      - name: systemName
+        in: path
+        required: true
+        description: Name of the connected system
+        schema:
+          type: string
+      - name: objectType
+        in: path
+        required: true
+        description: Object type in the connected system (e.g., account, group)
+        schema:
+          type: string
+      - $ref: '#/components/parameters/QueryFilter'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Query results from the remote system
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '404':
+          description: System or object type not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /system/{systemName}/{objectType}/{objectId}:
+    get:
+      operationId: getSystemObject
+      summary: ForgeRock Get a system object
+      description: Retrieve a specific object from a connected remote system.
+      tags:
+      - System Objects
+      parameters:
+      - name: systemName
+        in: path
+        required: true
+        description: Name of the connected system
+        schema:
+          type: string
+      - name: objectType
+        in: path
+        required: true
+        description: Object type in the connected system
+        schema:
+          type: string
+      - name: objectId
+        in: path
+        required: true
+        description: Object identifier in the remote system
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The system object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedObject'
+        '404':
+          description: Object not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated fields to include in the response
+      schema:
+        type: string
+  schemas:
+    ManagedObject:
+      type: object
+      description: A managed identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    QueryResult:
+      type: object
+      description: CREST query result
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedObject'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResultsPolicy:
+          type: string
+        totalPagedResults:
+          type: integer
+        remainingPagedResults:
+          type: integer
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

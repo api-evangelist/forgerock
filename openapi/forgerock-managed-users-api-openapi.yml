@@ -1,0 +1,386 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Managed Users API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Managed Users
+  description: CRUD operations on managed user objects
+paths:
+  /openidm/managed/{realm}_user:
+    get:
+      operationId: listManagedUsers
+      summary: ForgeRock List managed users
+      description: Query managed user objects in the specified realm. Supports filtering, sorting, and pagination through query parameters.
+      tags:
+      - Managed Users
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - $ref: '#/components/parameters/QueryFilter'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PagedResultsOffset'
+      - $ref: '#/components/parameters/SortKeys'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of managed users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUserList'
+        '403':
+          description: Forbidden - insufficient permissions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createManagedUser
+      summary: ForgeRock Create a managed user
+      description: Create a new managed user object in the specified realm. The user object must include required properties such as userName.
+      tags:
+      - Managed Users
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      requestBody:
+        required: true
+        description: The managed user object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedUser'
+      responses:
+        '201':
+          description: Managed user created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '400':
+          description: Bad request - invalid user data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict - user already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /openidm/managed/{realm}_user/{userId}:
+    get:
+      operationId: getManagedUser
+      summary: ForgeRock Get a managed user
+      description: Retrieve a specific managed user object by its identifier from the specified realm.
+      tags:
+      - Managed Users
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - $ref: '#/components/parameters/UserId'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: The managed user object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateManagedUser
+      summary: ForgeRock Replace a managed user
+      description: Replace an entire managed user object. The request body must contain the complete user representation.
+      tags:
+      - Managed Users
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - $ref: '#/components/parameters/UserId'
+      - name: If-Match
+        in: header
+        description: Revision identifier for optimistic concurrency control
+        schema:
+          type: string
+          default: '*'
+      requestBody:
+        required: true
+        description: The complete managed user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedUser'
+      responses:
+        '200':
+          description: Managed user updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '412':
+          description: Precondition failed - revision mismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchManagedUser
+      summary: ForgeRock Patch a managed user
+      description: Partially update a managed user object using JSON Patch operations.
+      tags:
+      - Managed Users
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - $ref: '#/components/parameters/UserId'
+      - name: If-Match
+        in: header
+        description: Revision identifier for optimistic concurrency control
+        schema:
+          type: string
+          default: '*'
+      requestBody:
+        required: true
+        description: JSON Patch operations to apply
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Managed user patched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deleteManagedUser
+      summary: ForgeRock Delete a managed user
+      description: Delete a managed user object from the specified realm.
+      tags:
+      - Managed Users
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - $ref: '#/components/parameters/UserId'
+      - name: If-Match
+        in: header
+        description: Revision identifier for optimistic concurrency control
+        schema:
+          type: string
+          default: '*'
+      responses:
+        '200':
+          description: Managed user deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedUser'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated list of fields to sort by (prefix with - for descending)
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the managed user
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+  schemas:
+    ManagedUser:
+      type: object
+      description: A managed user identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+        userName:
+          type: string
+          description: Unique login username
+        givenName:
+          type: string
+          description: First name
+        sn:
+          type: string
+          description: Last name (surname)
+        mail:
+          type: string
+          format: email
+          description: Email address
+        telephoneNumber:
+          type: string
+          description: Phone number
+        password:
+          type: string
+          format: password
+          description: Password (write-only)
+          writeOnly: true
+        accountStatus:
+          type: string
+          description: Account status
+          enum:
+          - active
+          - inactive
+        effectiveRoles:
+          type: array
+          description: Computed effective roles
+          readOnly: true
+          items:
+            type: object
+        effectiveAssignments:
+          type: array
+          description: Computed effective assignments
+          readOnly: true
+          items:
+            type: object
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            description: The patch operation type
+            enum:
+            - add
+            - remove
+            - replace
+            - increment
+          field:
+            type: string
+            description: JSON pointer to the field to patch
+          value:
+            description: The value for add, replace, or increment operations
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
+    ManagedUserList:
+      type: object
+      description: Paginated list of managed users
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedUser'
+        resultCount:
+          type: integer
+          description: Number of results in this page
+        pagedResultsCookie:
+          type: string
+          description: Cookie for fetching the next page
+        totalPagedResultsPolicy:
+          type: string
+          description: Policy for total result count
+        totalPagedResults:
+          type: integer
+          description: Total number of results (-1 if unknown)
+        remainingPagedResults:
+          type: integer
+          description: Remaining results after this page
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

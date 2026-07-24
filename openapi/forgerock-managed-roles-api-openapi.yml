@@ -1,0 +1,214 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Managed Roles API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Managed Roles
+  description: CRUD operations on managed role objects
+paths:
+  /openidm/managed/{realm}_role:
+    get:
+      operationId: listManagedRoles
+      summary: ForgeRock List managed roles
+      description: Query managed role objects in the specified realm. Supports filtering, sorting, and pagination.
+      tags:
+      - Managed Roles
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - $ref: '#/components/parameters/QueryFilter'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PagedResultsOffset'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: List of managed roles
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedRoleList'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createManagedRole
+      summary: ForgeRock Create a managed role
+      description: Create a new managed role object in the specified realm.
+      tags:
+      - Managed Roles
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      requestBody:
+        required: true
+        description: The managed role object to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedRole'
+      responses:
+        '201':
+          description: Managed role created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedRole'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /openidm/managed/{realm}_role/{roleId}:
+    get:
+      operationId: getManagedRole
+      summary: ForgeRock Get a managed role
+      description: Retrieve a specific managed role object by its identifier.
+      tags:
+      - Managed Roles
+      parameters:
+      - $ref: '#/components/parameters/RealmName'
+      - name: roleId
+        in: path
+        required: true
+        description: The unique identifier of the managed role
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The managed role object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ManagedRole'
+        '404':
+          description: Role not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ManagedRoleList:
+      type: object
+      description: Paginated list of managed roles
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedRole'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+    ManagedRole:
+      type: object
+      description: A managed role object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision
+          readOnly: true
+        name:
+          type: string
+          description: Role name
+        description:
+          type: string
+          description: Role description
+        condition:
+          type: string
+          description: Conditional role membership filter expression
+        temporalConstraints:
+          type: array
+          description: Time-based constraints for role activation
+          items:
+            type: object
+            properties:
+              duration:
+                type: string
+                description: ISO 8601 time interval
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
+  parameters:
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

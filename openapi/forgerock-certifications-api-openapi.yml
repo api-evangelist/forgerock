@@ -1,0 +1,261 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Certifications API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Certifications
+  description: Manage access certification campaigns
+paths:
+  /governance/certification:
+    get:
+      operationId: listCertifications
+      summary: ForgeRock List certification campaigns
+      description: Query certification campaigns. Certifications enable authorized users to review and certify access assignments to ensure compliance.
+      tags:
+      - Certifications
+      parameters:
+      - $ref: '#/components/parameters/QueryFilter'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PagedResultsOffset'
+      - $ref: '#/components/parameters/SortKeys'
+      responses:
+        '200':
+          description: List of certification campaigns
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificationList'
+        '403':
+          description: Insufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createCertification
+      summary: ForgeRock Create a certification campaign
+      description: Create a new access certification campaign. Supports identity certification, role definition certification, and role membership certification types.
+      tags:
+      - Certifications
+      requestBody:
+        required: true
+        description: Certification campaign definition
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Certification'
+      responses:
+        '201':
+          description: Certification campaign created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certification'
+        '400':
+          description: Invalid certification configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /governance/certification/{certificationId}:
+    get:
+      operationId: getCertification
+      summary: ForgeRock Get a certification campaign
+      description: Retrieve details of a specific certification campaign.
+      tags:
+      - Certifications
+      parameters:
+      - $ref: '#/components/parameters/CertificationId'
+      responses:
+        '200':
+          description: Certification campaign details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certification'
+        '404':
+          description: Certification not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    patch:
+      operationId: patchCertification
+      summary: ForgeRock Update a certification campaign
+      description: Partially update a certification campaign (e.g., close or cancel it).
+      tags:
+      - Certifications
+      parameters:
+      - $ref: '#/components/parameters/CertificationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchOperations'
+      responses:
+        '200':
+          description: Certification updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certification'
+components:
+  parameters:
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
+    CertificationId:
+      name: certificationId
+      in: path
+      required: true
+      description: The certification campaign identifier
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    CertificationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certification'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+    Certification:
+      type: object
+      description: An access certification campaign
+      properties:
+        _id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: Campaign name
+        description:
+          type: string
+          description: Campaign description
+        type:
+          type: string
+          description: Certification type
+          enum:
+          - identity
+          - roleDefinition
+          - roleMembership
+          - entitlementOwner
+        status:
+          type: string
+          description: Campaign status
+          enum:
+          - draft
+          - active
+          - closed
+          - expired
+          - cancelled
+        stages:
+          type: array
+          description: Review stages with deadlines and reviewers
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              deadline:
+                type: string
+                format: date-time
+              reviewers:
+                type: array
+                items:
+                  type: string
+        entitlementFilter:
+          type: object
+          description: Filter to select which entitlements to include
+        createdDate:
+          type: string
+          format: date-time
+          readOnly: true
+        closedDate:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchOperations:
+      type: array
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

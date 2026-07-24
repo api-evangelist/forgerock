@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Scripts API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Scripts
+  description: Manage AM scripts
+paths:
+  /json/realms/root/realms/{realm}/scripts:
+    get:
+      operationId: listScripts
+      summary: ForgeRock List scripts
+      description: Query scripts configured in the specified realm.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: _queryFilter
+        in: query
+        description: CREST query filter
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of scripts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScriptList'
+  /json/realms/root/realms/{realm}/scripts/{scriptId}:
+    get:
+      operationId: getScript
+      summary: ForgeRock Get a script
+      description: Retrieve a specific script by its UUID.
+      tags:
+      - Scripts
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: scriptId
+        in: path
+        required: true
+        description: The script UUID
+        schema:
+          type: string
+          format: uuid
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: The script
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Script'
+        '404':
+          description: Script not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+  schemas:
+    Script:
+      type: object
+      description: An AM script
+      properties:
+        _id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+        script:
+          type: string
+          description: Base64-encoded script content
+        language:
+          type: string
+          enum:
+          - JAVASCRIPT
+          - GROOVY
+        context:
+          type: string
+          description: The script context type
+          enum:
+          - AUTHENTICATION_TREE_DECISION_NODE
+          - POLICY_CONDITION
+          - OIDC_CLAIMS
+          - SOCIAL_IDP_PROFILE_TRANSFORMATION
+        createdBy:
+          type: string
+        creationDate:
+          type: integer
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ScriptList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+        resultCount:
+          type: integer
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

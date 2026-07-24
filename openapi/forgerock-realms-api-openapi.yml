@@ -1,0 +1,204 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Realms API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Realms
+  description: Manage AM realms
+paths:
+  /json/global-config/realms:
+    get:
+      operationId: listRealms
+      summary: ForgeRock List realms
+      description: Query all configured realms in the AM deployment.
+      tags:
+      - Realms
+      parameters:
+      - name: _queryFilter
+        in: query
+        description: CREST query filter for realms
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of realms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RealmList'
+    post:
+      operationId: createRealm
+      summary: ForgeRock Create a realm
+      description: Create a new realm in the AM deployment.
+      tags:
+      - Realms
+      parameters:
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realm'
+      responses:
+        '201':
+          description: Realm created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+  /json/global-config/realms/{realmName}:
+    get:
+      operationId: getRealm
+      summary: ForgeRock Get a realm
+      description: Retrieve configuration for a specific realm.
+      tags:
+      - Realms
+      parameters:
+      - name: realmName
+        in: path
+        required: true
+        description: The realm name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Realm configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+        '404':
+          description: Realm not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updateRealm
+      summary: ForgeRock Update a realm
+      description: Update configuration for an existing realm.
+      tags:
+      - Realms
+      parameters:
+      - name: realmName
+        in: path
+        required: true
+        description: The realm name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Realm'
+      responses:
+        '200':
+          description: Realm updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+    delete:
+      operationId: deleteRealm
+      summary: ForgeRock Delete a realm
+      description: Delete a realm from the AM deployment.
+      tags:
+      - Realms
+      parameters:
+      - name: realmName
+        in: path
+        required: true
+        description: The realm name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Realm deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Realm'
+components:
+  schemas:
+    RealmList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Realm'
+        resultCount:
+          type: integer
+    Realm:
+      type: object
+      description: An AM realm configuration
+      properties:
+        name:
+          type: string
+          description: Realm name
+        parentPath:
+          type: string
+          description: Parent realm path
+        active:
+          type: boolean
+          description: Whether the realm is active
+        aliases:
+          type: array
+          items:
+            type: string
+          description: DNS aliases for the realm
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+  parameters:
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token

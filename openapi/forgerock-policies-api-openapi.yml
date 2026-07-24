@@ -1,0 +1,328 @@
+openapi: 3.1.0
+info:
+  title: ForgeRock Access Management Access Requests Policies API
+  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
+  version: 7.3.0
+  contact:
+    name: ForgeRock
+    url: https://www.forgerock.com
+  license:
+    name: Proprietary
+    url: https://www.forgerock.com/terms
+  x-provider: forgerock
+  x-api: access-management
+servers:
+- url: https://{deployment}/am
+  description: ForgeRock Access Management server
+  variables:
+    deployment:
+      default: am.example.com
+      description: The AM deployment hostname
+security:
+- ssoToken: []
+- bearerAuth: []
+tags:
+- name: Policies
+  description: Manage authorization policies
+paths:
+  /json/realms/root/realms/{realm}/policies:
+    get:
+      operationId: listPolicies
+      summary: ForgeRock List authorization policies
+      description: Query authorization policies in the specified realm. Supports CREST query filters.
+      tags:
+      - Policies
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: _queryFilter
+        in: query
+        description: CREST query filter expression
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: List of policies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolicyList'
+        '403':
+          description: Insufficient privileges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      operationId: createPolicyOrEvaluate
+      summary: ForgeRock Create a policy or evaluate policies
+      description: Create a new authorization policy, or evaluate policies using the _action=evaluate or _action=evaluateTree query parameter.
+      tags:
+      - Policies
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: _action
+        in: query
+        description: Action to perform (evaluate or evaluateTree)
+        schema:
+          type: string
+          enum:
+          - evaluate
+          - evaluateTree
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        description: Policy definition or evaluation request
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/Policy'
+              - $ref: '#/components/schemas/PolicyEvaluationRequest'
+      responses:
+        '200':
+          description: Policy evaluation result
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PolicyDecision'
+        '201':
+          description: Policy created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '400':
+          description: Invalid policy or evaluation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /json/realms/root/realms/{realm}/policies/{policyName}:
+    get:
+      operationId: getPolicy
+      summary: ForgeRock Get a policy
+      description: Retrieve a specific authorization policy by name.
+      tags:
+      - Policies
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: policyName
+        in: path
+        required: true
+        description: The policy name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: The policy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    put:
+      operationId: updatePolicy
+      summary: ForgeRock Update a policy
+      description: Replace an existing authorization policy.
+      tags:
+      - Policies
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: policyName
+        in: path
+        required: true
+        description: The policy name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      requestBody:
+        required: true
+        description: The complete policy definition
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          description: Policy updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    delete:
+      operationId: deletePolicy
+      summary: ForgeRock Delete a policy
+      description: Delete an authorization policy by name.
+      tags:
+      - Policies
+      parameters:
+      - $ref: '#/components/parameters/RealmPath'
+      - name: policyName
+        in: path
+        required: true
+        description: The policy name
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ApiVersion'
+      responses:
+        '200':
+          description: Policy deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+        '404':
+          description: Policy not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    PolicyEvaluationRequest:
+      type: object
+      description: Policy evaluation request
+      properties:
+        resources:
+          type: array
+          items:
+            type: string
+          description: Resources to evaluate
+        application:
+          type: string
+          description: Policy set name
+        subject:
+          type: object
+          description: Subject for evaluation
+          properties:
+            ssoToken:
+              type: string
+            claims:
+              type: object
+        environment:
+          type: object
+          description: Environment conditions
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    Policy:
+      type: object
+      description: An authorization policy
+      properties:
+        name:
+          type: string
+          description: Policy name
+        active:
+          type: boolean
+          description: Whether the policy is active
+        description:
+          type: string
+        applicationName:
+          type: string
+          description: The policy set this policy belongs to
+        actionValues:
+          type: object
+          description: Action-value pairs
+          additionalProperties:
+            type: boolean
+        resources:
+          type: array
+          description: Resources this policy applies to
+          items:
+            type: string
+        subject:
+          type: object
+          description: Subject conditions
+        condition:
+          type: object
+          description: Environment conditions
+        resourceTypeUuid:
+          type: string
+          description: UUID of the resource type
+    PolicyList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    PolicyDecision:
+      type: object
+      description: Authorization decision for a resource
+      properties:
+        resource:
+          type: string
+        actions:
+          type: object
+          additionalProperties:
+            type: boolean
+        attributes:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        advices:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+  securitySchemes:
+    ssoToken:
+      type: apiKey
+      in: header
+      name: iPlanetDirectoryPro
+      description: AM SSO token obtained from authentication
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token
