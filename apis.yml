@@ -1,3 +1,16 @@
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.18'
 name: ForgeRock
 description: >-
@@ -17,161 +30,2331 @@ tags:
 created: '2024'
 modified: '2026-05-19'
 apis:
-  - name: ForgeRock Identity Cloud REST API
-    description: >-
-      REST API for managing identities, authentication, and authorization in ForgeRock Identity Cloud, providing access
-      management and identity management endpoints for Advanced Identity Cloud tenant environments.
-    baseURL: https://{tenant}.forgeblocks.com
-    humanURL: https://backstage.forgerock.com/docs/idcloud/latest
-    tags:
-      - Access Management
-      - Authentication
-      - Cloud
-      - Identity
-      - REST
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/idcloud/latest/
-      - type: OpenAPI
-        url: openapi/forgerock-identity-cloud-openapi.yml
-      - type: OpenAPI
-        url: https://backstage.forgerock.com/docs/idcloud/latest/openapi/
-      - type: APIReference
-        url: https://apidocs.id.forgerock.io/
-      - type: GettingStarted
-        url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
-      - type: Authentication
-        url: https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
-      - type: SDKs
-        url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
-  - name: ForgeRock Access Management API
-    description: >-
-      API for authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID
-      Connect flows for secure token-based access.
-    baseURL: https://{deployment}/am
-    humanURL: https://backstage.forgerock.com/docs/am/7.3
-    tags:
-      - Access Management
-      - Authentication
-      - Authorization
-      - OAuth
-      - Sessions
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/am/7.3/
-      - type: OpenAPI
-        url: openapi/forgerock-access-management-openapi.yml
-      - type: APIReference
-        url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
-      - type: Authentication
-        url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
-      - type: GettingStarted
-        url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
-      - type: ChangeLog
-        url: https://backstage.forgerock.com/docs/am/7/release-notes/
-  - name: ForgeRock Identity Management API
-    description: >-
-      REST API for CRUD operations on managed objects and identity lifecycle management. Supports provisioning,
-      synchronization, reconciliation, and workflow-driven identity operations.
-    baseURL: https://{deployment}/openidm
-    humanURL: https://backstage.forgerock.com/docs/idm/7.4
-    tags:
-      - Identity Management
-      - Lifecycle Management
-      - Provisioning
-      - Synchronization
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/idm/7.4/
-      - type: OpenAPI
-        url: openapi/forgerock-identity-management-openapi.yml
-      - type: REST API Guide
-        url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
-      - type: GettingStarted
-        url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
-      - type: ChangeLog
-        url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
-  - name: ForgeRock Identity Gateway API
-    description: >-
-      API for reverse proxy functionality, policy enforcement, and request transformation. Integrates web applications,
-      APIs, and microservices with the ForgeRock Identity Platform.
-    baseURL: https://{deployment}/ig
-    humanURL: https://backstage.forgerock.com/docs/ig/7.3
-    tags:
-      - API Security
-      - Gateway
-      - Policy Enforcement
-      - Reverse Proxy
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/ig/7.3/
-      - type: OpenAPI
-        url: openapi/forgerock-identity-gateway-openapi.yml
-      - type: Reference
-        url: https://backstage.forgerock.com/docs/ig/7.3/reference/
-      - type: GettingStarted
-        url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
-  - name: ForgeRock Directory Services API
-    description: >-
-      LDAP and REST API for directory operations and data management. Provides HDAP endpoints for accessing directory
-      data as JSON resources.
-    baseURL: https://{deployment}/ds
-    humanURL: https://backstage.forgerock.com/docs/ds/7.4
-    tags:
-      - Data Storage
-      - Directory
-      - HDAP
-      - LDAP
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/ds/7.4/
-      - type: OpenAPI
-        url: openapi/forgerock-directory-services-openapi.yml
-      - type: REST API
-        url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
-      - type: GettingStarted
-        url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
-      - type: Reference
-        url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
-  - name: ForgeRock Identity Governance API
-    description: >-
-      REST API for identity governance operations including access reviews, certifications, role management, and policy
-      enforcement. Provides endpoints for managing entitlements and compliance workflows.
-    baseURL: https://{deployment}/iga
-    humanURL: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
-    tags:
-      - Access Reviews
-      - Compliance
-      - Entitlements
-      - Identity Governance
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
-      - type: OpenAPI
-        url: openapi/forgerock-identity-governance-openapi.yml
-      - type: APIReference
-        url: https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
-  - name: ForgeRock Autonomous Identity API
-    description: >-
-      REST API for the Autonomous Identity analytics platform that uses AI-driven analysis to determine confidence
-      scores, predictions, and recommendations for entitlement assignments.
-    baseURL: https://{deployment}/autoid
-    humanURL: https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
-    tags:
-      - Analytics
-      - Artificial Intelligence
-      - Autonomous Identity
-      - Entitlements
-    properties:
-      - type: Documentation
-        url: https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
-      - type: OpenAPI
-        url: openapi/forgerock-autonomous-identity-openapi.yml
+- aid: forgerock:forgerock-access-requests-api
+  name: ForgeRock Access Requests API
+  description: Request and approve access to resources
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Access Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-access-requests-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-access-reviews-api
+  name: ForgeRock Access Reviews API
+  description: Conduct and manage access review items
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Access Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-access-reviews-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-analytics-api
+  name: ForgeRock Analytics API
+  description: Analytics pipeline status and results
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-analytics-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-applications-api
+  name: ForgeRock Applications API
+  description: Query onboarded application data
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-applications-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-audit-api
+  name: ForgeRock Audit API
+  description: Access audit log records
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Audit
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-audit-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-authentication-api
+  name: ForgeRock Authentication API
+  description: Authenticate users via authentication trees and modules
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-certifications-api
+  name: ForgeRock Certifications API
+  description: Manage access certification campaigns
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Certifications
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-certifications-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-company-view-api
+  name: ForgeRock Company View API
+  description: Company-wide analytics and dashboards
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Company View
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-company-view-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-configuration-api
+  name: ForgeRock Configuration API
+  description: Read and update IDM configuration
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-entitlements-api
+  name: ForgeRock Entitlements API
+  description: Query entitlements and confidence scores
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Entitlements
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-entitlements-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-entries-api
+  name: ForgeRock Entries API
+  description: Generic LDAP entry operations via HDAP
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-entries-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-groups-api
+  name: ForgeRock Groups API
+  description: Manage group entries in the directory
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-groups-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-health-api
+  name: ForgeRock Health API
+  description: Health and status monitoring
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-health-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-managed-objects-api
+  name: ForgeRock Managed Objects API
+  description: CRUD operations on managed identity objects
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Managed Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-managed-objects-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-managed-roles-api
+  name: ForgeRock Managed Roles API
+  description: CRUD operations on managed role objects
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Managed Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-managed-roles-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-managed-users-api
+  name: ForgeRock Managed Users API
+  description: CRUD operations on managed user objects
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Managed Users
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-managed-users-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-monitoring-api
+  name: ForgeRock Monitoring API
+  description: Health check and monitoring endpoints
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-monitoring-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-oauth2-api
+  name: ForgeRock OAuth2 API
+  description: OAuth 2.0 token and authorization endpoints
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - OAuth2
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-oauth2-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-oauth2-clients-api
+  name: ForgeRock OAuth2 Clients API
+  description: Manage OAuth 2.0 client registrations
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - OAuth2 Clients
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-oauth2-clients-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-objects-api
+  name: ForgeRock Objects API
+  description: Inspect live IG configuration objects
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-objects-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-openid-connect-api
+  name: ForgeRock OpenID Connect API
+  description: OpenID Connect discovery and userinfo
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - OpenID Connect
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-openid-connect-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-policies-api
+  name: ForgeRock Policies API
+  description: Manage authorization policies
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Policies
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-policies-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-realms-api
+  name: ForgeRock Realms API
+  description: Manage AM realms
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Realms
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-realms-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-reconciliation-api
+  name: ForgeRock Reconciliation API
+  description: Trigger and manage reconciliation operations
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Reconciliation
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-reconciliation-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-resource-types-api
+  name: ForgeRock Resource Types API
+  description: Manage resource types for authorization
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Resource Types
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-resource-types-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-roles-api
+  name: ForgeRock Roles API
+  description: Manage identity governance roles
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-roles-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-routes-api
+  name: ForgeRock Routes API
+  description: Manage IG route configurations
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Routes
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-routes-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-rules-api
+  name: ForgeRock Rules API
+  description: Access entitlement assignment rules and justifications
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-rules-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-scheduler-api
+  name: ForgeRock Scheduler API
+  description: Manage scheduled tasks and jobs
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Scheduler
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-scheduler-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-scripts-api
+  name: ForgeRock Scripts API
+  description: Manage AM scripts
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Scripts
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-scripts-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-server-info-api
+  name: ForgeRock Server Info API
+  description: Retrieve server information and configuration
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Server Info
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-server-info-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-sessions-api
+  name: ForgeRock Sessions API
+  description: Query, validate, and manage authenticated sessions
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-studio-api
+  name: ForgeRock Studio API
+  description: IG Studio route design endpoints
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Studio
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-studio-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-synchronization-api
+  name: ForgeRock Synchronization API
+  description: Trigger on-demand synchronization
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Synchronization
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-synchronization-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-system-objects-api
+  name: ForgeRock System Objects API
+  description: Access objects in connected remote systems
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - System Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-system-objects-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-users-api
+  name: ForgeRock Users API
+  description: Query user entitlement data and recommendations
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-users-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-violations-api
+  name: ForgeRock Violations API
+  description: Manage policy violations and segregation of duties
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Violations
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-violations-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-workflow-api
+  name: ForgeRock Workflow API
+  description: Manage BPMN workflow processes and tasks
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-workflow-api-openapi.yml
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idcloud/latest/
+  - type: APIReference
+    url: https://apidocs.id.forgerock.io/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idcloud/latest/home.html
+  - type: Authentication
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html
+  - type: SDKs
+    url: https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/am/7.3/
+  - type: APIReference
+    url: https://backstage.forgerock.com/docs/am/7.3/apidocs/
+  - type: Authentication
+    url: https://backstage.forgerock.com/docs/am/7/authentication-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/am/7/release-notes/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/idm/7.4/
+  - type: REST API Guide
+    url: https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/idm/7.4/getting-started/
+  - type: ChangeLog
+    url: https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ig/7.3/
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ig/7.3/reference/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ig/7/gateway-guide/
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/ds/7.4/
+  - type: REST API
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/
+  - type: GettingStarted
+    url: https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html
+  - type: Reference
+    url: https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html
+  - type: Documentation
+    url: https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html
+  - type: APIReference
+    url: >-
+      https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html
+  - type: Documentation
+    url: >-
+      https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/forgerock/overview
   - type: AgenticAccess
     url: agentic-access/forgerock-agentic-access.yml
   - type: VulnerabilityDisclosure
