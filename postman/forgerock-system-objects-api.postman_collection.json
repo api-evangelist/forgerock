@@ -1,0 +1,469 @@
+{
+  "info": {
+    "_postman_id": "ed79094d-ed99-41d0-83c5-50d72acf0811",
+    "name": "ForgeRock Access Management Access Requests System Objects API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:31.000Z",
+    "updatedAt": "2026-07-28T01:42:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ed79094d-ed99-41d0-83c5-50d72acf0811"
+  },
+  "item": [
+    {
+      "name": "system",
+      "item": [
+        {
+          "name": "{systemName}",
+          "item": [
+            {
+              "name": "{objectType}",
+              "item": [
+                {
+                  "name": "{objectId}",
+                  "item": [
+                    {
+                      "name": "ForgeRock Get a system object",
+                      "id": "4f51dcac-94a9-404a-a50a-866204449157",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/system/:systemName/:objectType/:objectId?_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "system",
+                            ":systemName",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "bce6603d-8dd5-44e7-bc14-f91c8a73b013",
+                              "key": "systemName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the connected system"
+                            },
+                            {
+                              "id": "fd778b89-2880-42ba-bfc4-0b4c55a200c3",
+                              "key": "objectType",
+                              "value": "<string>",
+                              "description": "(Required) Object type in the connected system"
+                            },
+                            {
+                              "id": "66d03bf8-e345-4b4e-b57f-a186e3179d02",
+                              "key": "objectId",
+                              "value": "<string>",
+                              "description": "(Required) Object identifier in the remote system"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific object from a connected remote system."
+                      },
+                      "response": [
+                        {
+                          "id": "c5944ff2-ab1c-46b3-99b7-6055604e122e",
+                          "name": "The system object",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/system/:systemName/:objectType/:objectId?_fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "system",
+                                ":systemName",
+                                ":objectType",
+                                ":objectId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated fields to include in the response",
+                                  "key": "_fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "systemName"
+                                },
+                                {
+                                  "key": "objectType"
+                                },
+                                {
+                                  "key": "objectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"in_e_\": -49820829\n}",
+                          "createdAt": "2026-07-28T01:42:31.000Z",
+                          "updatedAt": "2026-07-28T01:42:31.000Z",
+                          "uid": "35240-c5944ff2-ab1c-46b3-99b7-6055604e122e"
+                        },
+                        {
+                          "id": "9a24dbf4-1de0-4d72-96a7-ec10da859b25",
+                          "name": "Object not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/system/:systemName/:objectType/:objectId?_fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "system",
+                                ":systemName",
+                                ":objectType",
+                                ":objectId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated fields to include in the response",
+                                  "key": "_fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "systemName"
+                                },
+                                {
+                                  "key": "objectType"
+                                },
+                                {
+                                  "key": "objectId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:42:31.000Z",
+                          "updatedAt": "2026-07-28T01:42:31.000Z",
+                          "uid": "35240-9a24dbf4-1de0-4d72-96a7-ec10da859b25"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:31.000Z",
+                      "updatedAt": "2026-07-28T01:42:31.000Z",
+                      "uid": "35240-4f51dcac-94a9-404a-a50a-866204449157"
+                    }
+                  ],
+                  "id": "53d1487f-63f3-4558-ac4e-b12e115eb4e5",
+                  "createdAt": "2026-07-28T01:42:31.000Z",
+                  "updatedAt": "2026-07-28T01:42:31.000Z",
+                  "uid": "35240-53d1487f-63f3-4558-ac4e-b12e115eb4e5"
+                },
+                {
+                  "name": "ForgeRock List system objects",
+                  "id": "d4174d17-c5c1-4266-8699-65aaf6a1217f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/system/:systemName/:objectType?_queryFilter=<string>&_pageSize=<integer>&_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "system",
+                        ":systemName",
+                        ":objectType"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated fields to include in the response",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c08b1900-995a-47d7-935c-cfbde1d185eb",
+                          "key": "systemName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the connected system"
+                        },
+                        {
+                          "id": "709b346c-6fb2-49c9-a3d2-8b38bd8ee58c",
+                          "key": "objectType",
+                          "value": "<string>",
+                          "description": "(Required) Object type in the connected system (e.g., account, group)"
+                        }
+                      ]
+                    },
+                    "description": "Query objects from a connected remote system (connector). The system name and object type correspond to the connector configuration and its object types."
+                  },
+                  "response": [
+                    {
+                      "id": "56966c3f-e58a-4f5e-99ff-26d0e99f2292",
+                      "name": "Query results from the remote system",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/system/:systemName/:objectType?_queryFilter=<string>&_pageSize=<integer>&_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "system",
+                            ":systemName",
+                            ":objectType"
+                          ],
+                          "query": [
+                            {
+                              "description": "CREST query filter expression",
+                              "key": "_queryFilter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "_pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-separated fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "systemName"
+                            },
+                            {
+                              "key": "objectType"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\",\n      \"inaa4\": -47132464,\n      \"fugiat7\": -23739746\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"pagedResultsCookie\": \"<string>\",\n  \"totalPagedResultsPolicy\": \"<string>\",\n  \"totalPagedResults\": \"<integer>\",\n  \"remainingPagedResults\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:42:31.000Z",
+                      "updatedAt": "2026-07-28T01:42:31.000Z",
+                      "uid": "35240-56966c3f-e58a-4f5e-99ff-26d0e99f2292"
+                    },
+                    {
+                      "id": "ec840679-b87a-4b09-aa3e-00e88bcb8375",
+                      "name": "System or object type not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/system/:systemName/:objectType?_queryFilter=<string>&_pageSize=<integer>&_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "system",
+                            ":systemName",
+                            ":objectType"
+                          ],
+                          "query": [
+                            {
+                              "description": "CREST query filter expression",
+                              "key": "_queryFilter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results per page",
+                              "key": "_pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-separated fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "systemName"
+                            },
+                            {
+                              "key": "objectType"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:42:31.000Z",
+                      "updatedAt": "2026-07-28T01:42:31.000Z",
+                      "uid": "35240-ec840679-b87a-4b09-aa3e-00e88bcb8375"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:31.000Z",
+                  "updatedAt": "2026-07-28T01:42:31.000Z",
+                  "uid": "35240-d4174d17-c5c1-4266-8699-65aaf6a1217f"
+                }
+              ],
+              "id": "1c76c5e0-adbd-4abb-ab7e-c2de54f94b00",
+              "createdAt": "2026-07-28T01:42:31.000Z",
+              "updatedAt": "2026-07-28T01:42:31.000Z",
+              "uid": "35240-1c76c5e0-adbd-4abb-ab7e-c2de54f94b00"
+            }
+          ],
+          "id": "3c7b0ba3-cb3a-4e48-8b85-c34c8a8176df",
+          "createdAt": "2026-07-28T01:42:31.000Z",
+          "updatedAt": "2026-07-28T01:42:31.000Z",
+          "uid": "35240-3c7b0ba3-cb3a-4e48-8b85-c34c8a8176df"
+        }
+      ],
+      "id": "afe7318d-0b70-4253-9c32-c2c37c9e4615",
+      "createdAt": "2026-07-28T01:42:31.000Z",
+      "updatedAt": "2026-07-28T01:42:31.000Z",
+      "uid": "35240-afe7318d-0b70-4253-9c32-c2c37c9e4615"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

@@ -1,0 +1,801 @@
+{
+  "info": {
+    "_postman_id": "0fea652d-426e-4ac6-bf67-4c270c26b52a",
+    "name": "ForgeRock Access Management Access Requests Resource Types API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:58.000Z",
+    "updatedAt": "2026-07-28T01:41:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0fea652d-426e-4ac6-bf67-4c270c26b52a"
+  },
+  "item": [
+    {
+      "name": "json",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "root",
+              "item": [
+                {
+                  "name": "realms",
+                  "item": [
+                    {
+                      "name": "{realm}",
+                      "item": [
+                        {
+                          "name": "resourcetypes",
+                          "item": [
+                            {
+                              "name": "{resourceTypeId}",
+                              "item": [
+                                {
+                                  "name": "ForgeRock Get a resource type",
+                                  "id": "bb9c974a-fc36-4624-8a8c-3e82fa321942",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "resourcetypes",
+                                        ":resourceTypeId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "2c2c0fa5-7be9-4148-979b-8cc64bed0b26",
+                                          "key": "realm",
+                                          "value": "root",
+                                          "description": "(Required) The realm name"
+                                        },
+                                        {
+                                          "id": "44fc96b9-c07a-48eb-8236-5f2dad339ee8",
+                                          "key": "resourceTypeId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The resource type UUID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve a specific resource type by its UUID."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "0a10d2c8-6df2-4f77-98f0-69e4f83b1ca8",
+                                      "name": "The resource type",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "resourcetypes",
+                                            ":resourceTypeId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "resourceTypeId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T01:41:58.000Z",
+                                      "updatedAt": "2026-07-28T01:41:58.000Z",
+                                      "uid": "35240-0a10d2c8-6df2-4f77-98f0-69e4f83b1ca8"
+                                    },
+                                    {
+                                      "id": "f953ed03-27dc-42ca-aae3-e21c226041ae",
+                                      "name": "Resource type not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "resourcetypes",
+                                            ":resourceTypeId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "resourceTypeId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:58.000Z",
+                                      "updatedAt": "2026-07-28T01:41:58.000Z",
+                                      "uid": "35240-f953ed03-27dc-42ca-aae3-e21c226041ae"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:58.000Z",
+                                  "updatedAt": "2026-07-28T01:41:58.000Z",
+                                  "uid": "35240-bb9c974a-fc36-4624-8a8c-3e82fa321942"
+                                },
+                                {
+                                  "name": "ForgeRock Update a resource type",
+                                  "id": "1edd8b26-3a10-49a1-8181-7a7016822b24",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "resourcetypes",
+                                        ":resourceTypeId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "26a46bf1-547b-4030-8360-f3a28b3f274b",
+                                          "key": "realm",
+                                          "value": "root",
+                                          "description": "(Required) The realm name"
+                                        },
+                                        {
+                                          "id": "776c5b64-d74b-4e44-be57-68a96d1f0014",
+                                          "key": "resourceTypeId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The resource type UUID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Replace an existing resource type."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "88b0f5ce-f3b8-4d08-9d0b-da5dcb0bb114",
+                                      "name": "Resource type updated",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "resourcetypes",
+                                            ":resourceTypeId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "resourceTypeId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T01:41:58.000Z",
+                                      "updatedAt": "2026-07-28T01:41:58.000Z",
+                                      "uid": "35240-88b0f5ce-f3b8-4d08-9d0b-da5dcb0bb114"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:58.000Z",
+                                  "updatedAt": "2026-07-28T01:41:58.000Z",
+                                  "uid": "35240-1edd8b26-3a10-49a1-8181-7a7016822b24"
+                                },
+                                {
+                                  "name": "ForgeRock Delete a resource type",
+                                  "id": "66102bfd-b208-4af7-9f7c-15daba3d2c0e",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "resourcetypes",
+                                        ":resourceTypeId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "f385a6a9-a77f-48d8-bfdc-e4730018ccaf",
+                                          "key": "realm",
+                                          "value": "root",
+                                          "description": "(Required) The realm name"
+                                        },
+                                        {
+                                          "id": "dd6e42e8-58aa-49b6-bfc0-e07dc6592451",
+                                          "key": "resourceTypeId",
+                                          "value": "<uuid>",
+                                          "description": "(Required) The resource type UUID"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Delete a resource type by UUID."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "132df97d-9638-4adc-af40-9d10ec15821c",
+                                      "name": "Resource type deleted",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "resourcetypes",
+                                            ":resourceTypeId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "resourceTypeId"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T01:41:58.000Z",
+                                      "updatedAt": "2026-07-28T01:41:58.000Z",
+                                      "uid": "35240-132df97d-9638-4adc-af40-9d10ec15821c"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:58.000Z",
+                                  "updatedAt": "2026-07-28T01:41:58.000Z",
+                                  "uid": "35240-66102bfd-b208-4af7-9f7c-15daba3d2c0e"
+                                }
+                              ],
+                              "id": "79eb4999-e1ea-4915-ab0a-c413882a84d6",
+                              "createdAt": "2026-07-28T01:41:58.000Z",
+                              "updatedAt": "2026-07-28T01:41:58.000Z",
+                              "uid": "35240-79eb4999-e1ea-4915-ab0a-c413882a84d6"
+                            },
+                            {
+                              "name": "ForgeRock List resource types",
+                              "id": "395b79d5-7383-408b-8503-c10867cd669b",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes?_queryFilter=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "resourcetypes"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "CREST query filter",
+                                      "key": "_queryFilter",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "569f17d7-666d-4ece-a682-bc4d18649a04",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Query resource types used in authorization policies."
+                              },
+                              "response": [
+                                {
+                                  "id": "79d3c102-dee0-40f1-bd8f-bddd1dcd1b56",
+                                  "name": "List of resource types",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes?_queryFilter=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "resourcetypes"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "CREST query filter",
+                                          "key": "_queryFilter",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"result\": [\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"patterns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": {\n        \"qui274\": \"<boolean>\"\n      }\n    },\n    {\n      \"uuid\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"patterns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"actions\": {\n        \"in_4d4\": \"<boolean>\",\n        \"nulla2f1\": \"<boolean>\"\n      }\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:58.000Z",
+                                  "updatedAt": "2026-07-28T01:41:58.000Z",
+                                  "uid": "35240-79d3c102-dee0-40f1-bd8f-bddd1dcd1b56"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:58.000Z",
+                              "updatedAt": "2026-07-28T01:41:58.000Z",
+                              "uid": "35240-395b79d5-7383-408b-8503-c10867cd669b"
+                            },
+                            {
+                              "name": "ForgeRock Create a resource type",
+                              "id": "99329518-9b0b-4360-9127-fbe0adf10e66",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "resourcetypes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "b72cf2af-cac8-4ad9-b432-b7c7c54d7f89",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new resource type for use in authorization policies."
+                              },
+                              "response": [
+                                {
+                                  "id": "3446eca1-1cf4-4ccf-b55d-35f49f0ac05d",
+                                  "name": "Resource type created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/resourcetypes",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "resourcetypes"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"uuid\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"patterns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"actions\": {\n    \"nullaf\": \"<boolean>\",\n    \"ea7\": \"<boolean>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:41:58.000Z",
+                                  "updatedAt": "2026-07-28T01:41:58.000Z",
+                                  "uid": "35240-3446eca1-1cf4-4ccf-b55d-35f49f0ac05d"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:58.000Z",
+                              "updatedAt": "2026-07-28T01:41:58.000Z",
+                              "uid": "35240-99329518-9b0b-4360-9127-fbe0adf10e66"
+                            }
+                          ],
+                          "id": "4ab1dad7-c8fc-42e2-9702-93ed85c09a00",
+                          "createdAt": "2026-07-28T01:41:58.000Z",
+                          "updatedAt": "2026-07-28T01:41:58.000Z",
+                          "uid": "35240-4ab1dad7-c8fc-42e2-9702-93ed85c09a00"
+                        }
+                      ],
+                      "id": "76b44049-cf5e-4481-95ae-29028951a85f",
+                      "createdAt": "2026-07-28T01:41:58.000Z",
+                      "updatedAt": "2026-07-28T01:41:58.000Z",
+                      "uid": "35240-76b44049-cf5e-4481-95ae-29028951a85f"
+                    }
+                  ],
+                  "id": "67262a5b-3453-4349-9216-60c13ed64207",
+                  "createdAt": "2026-07-28T01:41:58.000Z",
+                  "updatedAt": "2026-07-28T01:41:58.000Z",
+                  "uid": "35240-67262a5b-3453-4349-9216-60c13ed64207"
+                }
+              ],
+              "id": "ce2511e4-e9d9-4f62-b0ac-3f3dfbbb0116",
+              "createdAt": "2026-07-28T01:41:58.000Z",
+              "updatedAt": "2026-07-28T01:41:58.000Z",
+              "uid": "35240-ce2511e4-e9d9-4f62-b0ac-3f3dfbbb0116"
+            }
+          ],
+          "id": "8f92c798-6571-492d-ba14-86048fca814d",
+          "createdAt": "2026-07-28T01:41:58.000Z",
+          "updatedAt": "2026-07-28T01:41:58.000Z",
+          "uid": "35240-8f92c798-6571-492d-ba14-86048fca814d"
+        }
+      ],
+      "id": "ad7dcf2b-10a4-472d-9682-bc4458d122aa",
+      "createdAt": "2026-07-28T01:41:58.000Z",
+      "updatedAt": "2026-07-28T01:41:58.000Z",
+      "uid": "35240-ad7dcf2b-10a4-472d-9682-bc4458d122aa"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

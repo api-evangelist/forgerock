@@ -1,0 +1,730 @@
+{
+  "info": {
+    "_postman_id": "c105b3b0-a8a9-4457-aeb2-d3a9a95193fc",
+    "name": "ForgeRock Access Management Access Requests Workflow API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:33.000Z",
+    "updatedAt": "2026-07-28T01:42:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c105b3b0-a8a9-4457-aeb2-d3a9a95193fc"
+  },
+  "item": [
+    {
+      "name": "workflow",
+      "item": [
+        {
+          "name": "processdefinition",
+          "item": [
+            {
+              "name": "ForgeRock List workflow process definitions",
+              "id": "fc264b42-15f8-4c08-ba90-6c63ad68a9de",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workflow/processdefinition?_queryFilter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workflow",
+                    "processdefinition"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Query available BPMN workflow process definitions deployed to IDM."
+              },
+              "response": [
+                {
+                  "id": "2b6eda6b-7b49-4235-ace4-25752402eba9",
+                  "name": "List of process definitions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workflow/processdefinition?_queryFilter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflow",
+                        "processdefinition"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"key\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"category\": \"<string>\",\n      \"deploymentId\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"key\": \"<string>\",\n      \"version\": \"<integer>\",\n      \"category\": \"<string>\",\n      \"deploymentId\": \"<string>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-2b6eda6b-7b49-4235-ace4-25752402eba9"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:34.000Z",
+              "updatedAt": "2026-07-28T01:42:34.000Z",
+              "uid": "35240-fc264b42-15f8-4c08-ba90-6c63ad68a9de"
+            }
+          ],
+          "id": "bed1b6ce-affa-48d9-a081-d9a68a7ac767",
+          "createdAt": "2026-07-28T01:42:34.000Z",
+          "updatedAt": "2026-07-28T01:42:34.000Z",
+          "uid": "35240-bed1b6ce-affa-48d9-a081-d9a68a7ac767"
+        },
+        {
+          "name": "processinstance",
+          "item": [
+            {
+              "name": "ForgeRock List workflow process instances",
+              "id": "91ae4228-53a3-4dfe-9042-2e0eb294f2b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workflow/processinstance?_queryFilter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workflow",
+                    "processinstance"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Query active workflow process instances."
+              },
+              "response": [
+                {
+                  "id": "388d8322-cb97-4ce0-aa3b-a38d9cf865de",
+                  "name": "List of process instances",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workflow/processinstance?_queryFilter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflow",
+                        "processinstance"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"processDefinitionId\": \"<string>\",\n      \"businessKey\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"startUserId\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"processDefinitionId\": \"<string>\",\n      \"businessKey\": \"<string>\",\n      \"startTime\": \"<dateTime>\",\n      \"startUserId\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-388d8322-cb97-4ce0-aa3b-a38d9cf865de"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:34.000Z",
+              "updatedAt": "2026-07-28T01:42:34.000Z",
+              "uid": "35240-91ae4228-53a3-4dfe-9042-2e0eb294f2b6"
+            },
+            {
+              "name": "ForgeRock Start a workflow process",
+              "id": "917693f9-1a4a-47e1-abcb-715b2d48f456",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_key\": \"<string>\",\n  \"variables\": {\n    \"dolore_0\": \"ex\",\n    \"ameteb\": \"exercitation Excepteur deserunt nostrud tempor\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/workflow/processinstance?_action=create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workflow",
+                    "processinstance"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "_action",
+                      "value": "create"
+                    }
+                  ]
+                },
+                "description": "Start a new workflow process instance from a deployed process definition."
+              },
+              "response": [
+                {
+                  "id": "c8b1fdd9-22e4-4c5c-a873-979149f6852d",
+                  "name": "Process instance started",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_key\": \"<string>\",\n  \"variables\": {\n    \"dolore_0\": \"ex\",\n    \"ameteb\": \"exercitation Excepteur deserunt nostrud tempor\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workflow/processinstance?_action=create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflow",
+                        "processinstance"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "_action",
+                          "value": "create"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"processDefinitionId\": \"<string>\",\n  \"businessKey\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"startUserId\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-c8b1fdd9-22e4-4c5c-a873-979149f6852d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:34.000Z",
+              "updatedAt": "2026-07-28T01:42:34.000Z",
+              "uid": "35240-917693f9-1a4a-47e1-abcb-715b2d48f456"
+            }
+          ],
+          "id": "d1831430-0994-4dcb-b53c-1cc7a9b04764",
+          "createdAt": "2026-07-28T01:42:34.000Z",
+          "updatedAt": "2026-07-28T01:42:34.000Z",
+          "uid": "35240-d1831430-0994-4dcb-b53c-1cc7a9b04764"
+        },
+        {
+          "name": "taskinstance",
+          "item": [
+            {
+              "name": "{taskId}",
+              "item": [
+                {
+                  "name": "ForgeRock Get a task instance",
+                  "id": "6a96b97e-ed8d-48f7-9da4-6510199e8b5d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workflow/taskinstance/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflow",
+                        "taskinstance",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f01bc11e-cf92-4100-a49e-47107b041457",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) The task instance identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific workflow task instance."
+                  },
+                  "response": [
+                    {
+                      "id": "1fa43494-6cc2-4151-8874-001eb6818133",
+                      "name": "The task instance",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workflow/taskinstance/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workflow",
+                            "taskinstance",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"assignee\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"dueDate\": \"<dateTime>\",\n  \"processDefinitionId\": \"<string>\",\n  \"processInstanceId\": \"<string>\",\n  \"variables\": {\n    \"occaecat42\": 9087530,\n    \"esse9\": 50390191\n  }\n}",
+                      "createdAt": "2026-07-28T01:42:34.000Z",
+                      "updatedAt": "2026-07-28T01:42:34.000Z",
+                      "uid": "35240-1fa43494-6cc2-4151-8874-001eb6818133"
+                    },
+                    {
+                      "id": "864ce3ae-eb81-47d8-aa0c-c4d67b31fdb7",
+                      "name": "Task not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workflow/taskinstance/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workflow",
+                            "taskinstance",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:42:34.000Z",
+                      "updatedAt": "2026-07-28T01:42:34.000Z",
+                      "uid": "35240-864ce3ae-eb81-47d8-aa0c-c4d67b31fdb7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-6a96b97e-ed8d-48f7-9da4-6510199e8b5d"
+                },
+                {
+                  "name": "ForgeRock Complete a task instance",
+                  "id": "ae2dd55a-6572-4007-97b1-5127eab8b9ec",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"magna8f\": -268738,\n  \"quis_4\": 5876375.720912948,\n  \"autec\": false,\n  \"ullamco_7\": 27478632,\n  \"Duis_8\": \"nostrud dolor aliqua Ut exercitation\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workflow/taskinstance/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflow",
+                        "taskinstance",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d74604d9-0b60-4020-855d-db888624444a",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) The task instance identifier"
+                        }
+                      ]
+                    },
+                    "description": "Complete a workflow user task and provide output variables."
+                  },
+                  "response": [
+                    {
+                      "id": "c98037c2-a671-493c-b5b4-a3bbfedbd71f",
+                      "name": "Task completed",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"magna8f\": -268738,\n  \"quis_4\": 5876375.720912948,\n  \"autec\": false,\n  \"ullamco_7\": 27478632,\n  \"Duis_8\": \"nostrud dolor aliqua Ut exercitation\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workflow/taskinstance/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workflow",
+                            "taskinstance",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"assignee\": \"<string>\",\n  \"createTime\": \"<dateTime>\",\n  \"dueDate\": \"<dateTime>\",\n  \"processDefinitionId\": \"<string>\",\n  \"processInstanceId\": \"<string>\",\n  \"variables\": {\n    \"occaecat42\": 9087530,\n    \"esse9\": 50390191\n  }\n}",
+                      "createdAt": "2026-07-28T01:42:34.000Z",
+                      "updatedAt": "2026-07-28T01:42:34.000Z",
+                      "uid": "35240-c98037c2-a671-493c-b5b4-a3bbfedbd71f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-ae2dd55a-6572-4007-97b1-5127eab8b9ec"
+                }
+              ],
+              "id": "367fa8b4-90ff-41f7-a42e-dc9872766097",
+              "createdAt": "2026-07-28T01:42:34.000Z",
+              "updatedAt": "2026-07-28T01:42:34.000Z",
+              "uid": "35240-367fa8b4-90ff-41f7-a42e-dc9872766097"
+            },
+            {
+              "name": "ForgeRock List workflow task instances",
+              "id": "f90dc283-9bd7-46be-8f1f-8564d580f004",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workflow/taskinstance?_queryFilter=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workflow",
+                    "taskinstance"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Query active user tasks from running workflow processes."
+              },
+              "response": [
+                {
+                  "id": "8403c28d-ddac-44e5-a125-057408ca7e3b",
+                  "name": "List of task instances",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workflow/taskinstance?_queryFilter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workflow",
+                        "taskinstance"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"assignee\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"dueDate\": \"<dateTime>\",\n      \"processDefinitionId\": \"<string>\",\n      \"processInstanceId\": \"<string>\",\n      \"variables\": {\n        \"eud\": 40836695.52426553,\n        \"fugiat_0\": 2101347\n      }\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"assignee\": \"<string>\",\n      \"createTime\": \"<dateTime>\",\n      \"dueDate\": \"<dateTime>\",\n      \"processDefinitionId\": \"<string>\",\n      \"processInstanceId\": \"<string>\",\n      \"variables\": {\n        \"ex_a\": \"tempor in Duis\",\n        \"eu_6\": \"dolore adipisicing non tempor \"\n      }\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:42:34.000Z",
+                  "updatedAt": "2026-07-28T01:42:34.000Z",
+                  "uid": "35240-8403c28d-ddac-44e5-a125-057408ca7e3b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:42:34.000Z",
+              "updatedAt": "2026-07-28T01:42:34.000Z",
+              "uid": "35240-f90dc283-9bd7-46be-8f1f-8564d580f004"
+            }
+          ],
+          "id": "d33bdd95-82f3-43cf-b55e-c62ce20cf485",
+          "createdAt": "2026-07-28T01:42:34.000Z",
+          "updatedAt": "2026-07-28T01:42:34.000Z",
+          "uid": "35240-d33bdd95-82f3-43cf-b55e-c62ce20cf485"
+        }
+      ],
+      "id": "49998916-ed40-4fdc-9eb4-e2ea5e0ebdde",
+      "createdAt": "2026-07-28T01:42:34.000Z",
+      "updatedAt": "2026-07-28T01:42:34.000Z",
+      "uid": "35240-49998916-ed40-4fdc-9eb4-e2ea5e0ebdde"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

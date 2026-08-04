@@ -1,0 +1,403 @@
+{
+  "info": {
+    "_postman_id": "6c6bf557-6d1a-4d0d-9c09-497bd9390cd3",
+    "name": "ForgeRock Access Management Access Requests Objects API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:49.000Z",
+    "updatedAt": "2026-07-28T01:41:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c6bf557-6d1a-4d0d-9c09-497bd9390cd3"
+  },
+  "item": [
+    {
+      "name": "openig",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "system",
+              "item": [
+                {
+                  "name": "objects",
+                  "item": [
+                    {
+                      "name": "{objectType}",
+                      "item": [
+                        {
+                          "name": "{objectId}",
+                          "item": [
+                            {
+                              "name": "ForgeRock Get a configuration object",
+                              "id": "6a48643f-203e-4dcd-abb1-a3fd1f7ee7d9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/openig/api/system/objects/:objectType/:objectId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "openig",
+                                    "api",
+                                    "system",
+                                    "objects",
+                                    ":objectType",
+                                    ":objectId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ab81415f-a303-4c3d-849d-19f6073c01ab",
+                                      "key": "objectType",
+                                      "value": "Chain",
+                                      "description": "(Required) Type of the configuration object"
+                                    },
+                                    {
+                                      "id": "4629fb5a-8c83-44e8-92d6-8415e645c530",
+                                      "key": "objectId",
+                                      "value": "<string>",
+                                      "description": "(Required) Identifier of the configuration object"
+                                    }
+                                  ]
+                                },
+                                "description": "Retrieve details of a specific live configuration object from the IG runtime."
+                              },
+                              "response": [
+                                {
+                                  "id": "b471b43b-5876-4a17-9472-a00e91a371b4",
+                                  "name": "Configuration object details",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/openig/api/system/objects/:objectType/:objectId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "openig",
+                                        "api",
+                                        "system",
+                                        "objects",
+                                        ":objectType",
+                                        ":objectId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "objectType"
+                                        },
+                                        {
+                                          "key": "objectId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"config\": {}\n}",
+                                  "createdAt": "2026-07-28T01:41:50.000Z",
+                                  "updatedAt": "2026-07-28T01:41:50.000Z",
+                                  "uid": "35240-b471b43b-5876-4a17-9472-a00e91a371b4"
+                                },
+                                {
+                                  "id": "22f14046-3fe0-4ba4-baba-cdd5a6dd1e87",
+                                  "name": "Object not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/openig/api/system/objects/:objectType/:objectId",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "openig",
+                                        "api",
+                                        "system",
+                                        "objects",
+                                        ":objectType",
+                                        ":objectId"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "objectType"
+                                        },
+                                        {
+                                          "key": "objectId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:50.000Z",
+                                  "updatedAt": "2026-07-28T01:41:50.000Z",
+                                  "uid": "35240-22f14046-3fe0-4ba4-baba-cdd5a6dd1e87"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:50.000Z",
+                              "updatedAt": "2026-07-28T01:41:50.000Z",
+                              "uid": "35240-6a48643f-203e-4dcd-abb1-a3fd1f7ee7d9"
+                            }
+                          ],
+                          "id": "563677e6-df18-48ff-a1a6-b10afa4b4849",
+                          "createdAt": "2026-07-28T01:41:49.000Z",
+                          "updatedAt": "2026-07-28T01:41:49.000Z",
+                          "uid": "35240-563677e6-df18-48ff-a1a6-b10afa4b4849"
+                        }
+                      ],
+                      "id": "a7c1c054-9785-4aa5-a001-a32d3892c129",
+                      "createdAt": "2026-07-28T01:41:49.000Z",
+                      "updatedAt": "2026-07-28T01:41:49.000Z",
+                      "uid": "35240-a7c1c054-9785-4aa5-a001-a32d3892c129"
+                    },
+                    {
+                      "name": "ForgeRock List configuration objects",
+                      "id": "208d3918-f2d2-4bad-a7e2-b2c78a47f333",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openig/api/system/objects?_queryFilter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openig",
+                            "api",
+                            "system",
+                            "objects"
+                          ],
+                          "query": [
+                            {
+                              "description": "CREST query filter",
+                              "key": "_queryFilter",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "List all live configuration objects in the IG runtime, including routes, handlers, filters, and decorators currently loaded."
+                      },
+                      "response": [
+                        {
+                          "id": "5a9bc838-0cb9-4f80-babd-08a14c14f0a2",
+                          "name": "List of configuration objects",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/system/objects?_queryFilter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "system",
+                                "objects"
+                              ],
+                              "query": [
+                                {
+                                  "description": "CREST query filter",
+                                  "key": "_queryFilter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"config\": {}\n    },\n    {\n      \"_id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"config\": {}\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:41:50.000Z",
+                          "updatedAt": "2026-07-28T01:41:50.000Z",
+                          "uid": "35240-5a9bc838-0cb9-4f80-babd-08a14c14f0a2"
+                        },
+                        {
+                          "id": "eb9f7121-b657-4c4d-8d1b-32ea1f1e5943",
+                          "name": "Forbidden - administrative access required",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/system/objects?_queryFilter=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "system",
+                                "objects"
+                              ],
+                              "query": [
+                                {
+                                  "description": "CREST query filter",
+                                  "key": "_queryFilter",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:41:50.000Z",
+                          "updatedAt": "2026-07-28T01:41:50.000Z",
+                          "uid": "35240-eb9f7121-b657-4c4d-8d1b-32ea1f1e5943"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:41:50.000Z",
+                      "updatedAt": "2026-07-28T01:41:50.000Z",
+                      "uid": "35240-208d3918-f2d2-4bad-a7e2-b2c78a47f333"
+                    }
+                  ],
+                  "id": "6489d3b1-e3dc-4665-9a65-f83fd38b5dc7",
+                  "createdAt": "2026-07-28T01:41:49.000Z",
+                  "updatedAt": "2026-07-28T01:41:49.000Z",
+                  "uid": "35240-6489d3b1-e3dc-4665-9a65-f83fd38b5dc7"
+                }
+              ],
+              "id": "8de0e570-03f6-438e-b41d-3ca3c23a4a96",
+              "createdAt": "2026-07-28T01:41:49.000Z",
+              "updatedAt": "2026-07-28T01:41:49.000Z",
+              "uid": "35240-8de0e570-03f6-438e-b41d-3ca3c23a4a96"
+            }
+          ],
+          "id": "3618f021-1028-4f33-a856-a8d99a7a7c90",
+          "createdAt": "2026-07-28T01:41:49.000Z",
+          "updatedAt": "2026-07-28T01:41:49.000Z",
+          "uid": "35240-3618f021-1028-4f33-a856-a8d99a7a7c90"
+        }
+      ],
+      "id": "dc11140d-e3cb-4b07-a9c6-c3428917a54a",
+      "createdAt": "2026-07-28T01:41:49.000Z",
+      "updatedAt": "2026-07-28T01:41:49.000Z",
+      "uid": "35240-dc11140d-e3cb-4b07-a9c6-c3428917a54a"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

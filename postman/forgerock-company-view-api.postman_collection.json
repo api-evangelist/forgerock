@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "a3873400-6dcd-4c96-90eb-09d1d6cb4435",
+    "name": "ForgeRock Access Management Access Requests Company View API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:03.000Z",
+    "updatedAt": "2026-07-28T01:41:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a3873400-6dcd-4c96-90eb-09d1d6cb4435"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "companyview",
+          "item": [
+            {
+              "name": "ForgeRock Get company view analytics",
+              "id": "2d218bb1-6e98-43d5-9244-f1b7fad90191",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/companyview",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "companyview"
+                  ]
+                },
+                "description": "Retrieve company-wide analytics including confidence score distributions, entitlement statistics, and risk metrics across the entire organization."
+              },
+              "response": [
+                {
+                  "id": "f58f566a-f9cb-4fa8-8987-bedc3186b3dd",
+                  "name": "Company-wide analytics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/companyview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "companyview"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"totalUsers\": \"<integer>\",\n  \"totalEntitlements\": \"<integer>\",\n  \"totalApplications\": \"<integer>\",\n  \"averageConfidenceScore\": \"<number>\",\n  \"confidenceDistribution\": {\n    \"high\": \"<integer>\",\n    \"medium\": \"<integer>\",\n    \"low\": \"<integer>\"\n  },\n  \"riskSummary\": {\n    \"highRiskUsers\": \"<integer>\",\n    \"highRiskEntitlements\": \"<integer>\",\n    \"outlierAssignments\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-f58f566a-f9cb-4fa8-8987-bedc3186b3dd"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:03.000Z",
+              "updatedAt": "2026-07-28T01:41:03.000Z",
+              "uid": "35240-2d218bb1-6e98-43d5-9244-f1b7fad90191"
+            }
+          ],
+          "id": "a0d49a75-c92d-4afa-8b34-b813c6e5e4e0",
+          "createdAt": "2026-07-28T01:41:03.000Z",
+          "updatedAt": "2026-07-28T01:41:03.000Z",
+          "uid": "35240-a0d49a75-c92d-4afa-8b34-b813c6e5e4e0"
+        }
+      ],
+      "id": "dfcc220a-6b34-4be6-a0ee-d39897c73c8c",
+      "createdAt": "2026-07-28T01:41:03.000Z",
+      "updatedAt": "2026-07-28T01:41:03.000Z",
+      "uid": "35240-dfcc220a-6b34-4be6-a0ee-d39897c73c8c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

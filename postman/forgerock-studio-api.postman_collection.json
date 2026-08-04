@@ -1,0 +1,266 @@
+{
+  "info": {
+    "_postman_id": "40613a08-9720-4df4-9e2a-50f7daddc819",
+    "name": "ForgeRock Access Management Access Requests Studio API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:29.000Z",
+    "updatedAt": "2026-07-28T01:42:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-40613a08-9720-4df4-9e2a-50f7daddc819"
+  },
+  "item": [
+    {
+      "name": "openig",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "studio",
+              "item": [
+                {
+                  "name": "routes",
+                  "item": [
+                    {
+                      "name": "ForgeRock List studio routes",
+                      "id": "cd7103ce-303b-40c1-a736-347dd9355b66",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openig/api/studio/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openig",
+                            "api",
+                            "studio",
+                            "routes"
+                          ]
+                        },
+                        "description": "List routes available in the IG Studio interface for visual editing and management."
+                      },
+                      "response": [
+                        {
+                          "id": "259570eb-e5f1-4c79-a6ad-06c9d87c8ced",
+                          "name": "List of routes in Studio",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/studio/routes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "studio",
+                                "routes"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"condition\": \"<string>\",\n      \"handler\": \"<string>\",\n      \"baseURI\": \"<uri>\",\n      \"heap\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"condition\": \"<string>\",\n      \"handler\": \"<string>\",\n      \"baseURI\": \"<uri>\",\n      \"heap\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:42:29.000Z",
+                          "updatedAt": "2026-07-28T01:42:29.000Z",
+                          "uid": "35240-259570eb-e5f1-4c79-a6ad-06c9d87c8ced"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:29.000Z",
+                      "updatedAt": "2026-07-28T01:42:29.000Z",
+                      "uid": "35240-cd7103ce-303b-40c1-a736-347dd9355b66"
+                    },
+                    {
+                      "name": "ForgeRock Create a route via Studio",
+                      "id": "c519fbb5-7bf4-4036-bb89-b3e1b7f7b8b3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/openig/api/studio/routes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openig",
+                            "api",
+                            "studio",
+                            "routes"
+                          ]
+                        },
+                        "description": "Create a new route through the IG Studio API with a simplified configuration format."
+                      },
+                      "response": [
+                        {
+                          "id": "41fdcc9b-96a1-4c0e-8231-8ca91515a2cb",
+                          "name": "Route created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/studio/routes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "studio",
+                                "routes"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+                          "createdAt": "2026-07-28T01:42:29.000Z",
+                          "updatedAt": "2026-07-28T01:42:29.000Z",
+                          "uid": "35240-41fdcc9b-96a1-4c0e-8231-8ca91515a2cb"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:42:29.000Z",
+                      "updatedAt": "2026-07-28T01:42:29.000Z",
+                      "uid": "35240-c519fbb5-7bf4-4036-bb89-b3e1b7f7b8b3"
+                    }
+                  ],
+                  "id": "4284911a-9645-498f-a798-1615932b4ce8",
+                  "createdAt": "2026-07-28T01:42:29.000Z",
+                  "updatedAt": "2026-07-28T01:42:29.000Z",
+                  "uid": "35240-4284911a-9645-498f-a798-1615932b4ce8"
+                }
+              ],
+              "id": "7c80689a-f99c-4a82-ac67-ca688f0c2883",
+              "createdAt": "2026-07-28T01:42:29.000Z",
+              "updatedAt": "2026-07-28T01:42:29.000Z",
+              "uid": "35240-7c80689a-f99c-4a82-ac67-ca688f0c2883"
+            }
+          ],
+          "id": "5451a92f-7450-4d79-8f60-a61b0ceffac0",
+          "createdAt": "2026-07-28T01:42:29.000Z",
+          "updatedAt": "2026-07-28T01:42:29.000Z",
+          "uid": "35240-5451a92f-7450-4d79-8f60-a61b0ceffac0"
+        }
+      ],
+      "id": "ae62fb2e-df86-4aab-aa98-ef5e18a6407d",
+      "createdAt": "2026-07-28T01:42:29.000Z",
+      "updatedAt": "2026-07-28T01:42:29.000Z",
+      "uid": "35240-ae62fb2e-df86-4aab-aa98-ef5e18a6407d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

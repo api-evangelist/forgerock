@@ -1,0 +1,1171 @@
+{
+  "info": {
+    "_postman_id": "1fe243da-77a5-4520-8f01-a03d87d906c2",
+    "name": "ForgeRock Access Management Access Requests Policies API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:51.000Z",
+    "updatedAt": "2026-07-28T01:41:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1fe243da-77a5-4520-8f01-a03d87d906c2"
+  },
+  "item": [
+    {
+      "name": "json",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "root",
+              "item": [
+                {
+                  "name": "realms",
+                  "item": [
+                    {
+                      "name": "{realm}",
+                      "item": [
+                        {
+                          "name": "policies",
+                          "item": [
+                            {
+                              "name": "{policyName}",
+                              "item": [
+                                {
+                                  "name": "ForgeRock Get a policy",
+                                  "id": "d0f97648-91b0-484a-b9be-8619f7cc75b4",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies",
+                                        ":policyName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "9d91b904-c57b-4d91-b51b-c122d38c4b30",
+                                          "key": "realm",
+                                          "value": "root",
+                                          "description": "(Required) The realm name"
+                                        },
+                                        {
+                                          "id": "f4363cb6-1f1b-456f-aae2-e6f59ebd39b3",
+                                          "key": "policyName",
+                                          "value": "<string>",
+                                          "description": "(Required) The policy name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Retrieve a specific authorization policy by name."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "a92d03a3-2755-4746-b58b-5bb19b64ef49",
+                                      "name": "The policy",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "policies",
+                                            ":policyName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "policyName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:51.000Z",
+                                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                                      "uid": "35240-a92d03a3-2755-4746-b58b-5bb19b64ef49"
+                                    },
+                                    {
+                                      "id": "1afd2921-2fa0-40b2-a38a-0f7f2fd41d58",
+                                      "name": "Policy not found",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "policies",
+                                            ":policyName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "policyName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:51.000Z",
+                                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                                      "uid": "35240-1afd2921-2fa0-40b2-a38a-0f7f2fd41d58"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-d0f97648-91b0-484a-b9be-8619f7cc75b4"
+                                },
+                                {
+                                  "name": "ForgeRock Update a policy",
+                                  "id": "c78d84f1-9b8e-404c-942e-8a2d169575cb",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies",
+                                        ":policyName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "a1e4def7-37ac-4aab-bdc4-eaee6bafd17b",
+                                          "key": "realm",
+                                          "value": "root",
+                                          "description": "(Required) The realm name"
+                                        },
+                                        {
+                                          "id": "812e90db-cefc-416e-b8f4-6f3e7350d873",
+                                          "key": "policyName",
+                                          "value": "<string>",
+                                          "description": "(Required) The policy name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Replace an existing authorization policy."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ae3ab119-6c87-4528-9571-6ce437759374",
+                                      "name": "Policy updated",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "policies",
+                                            ":policyName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "policyName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:51.000Z",
+                                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                                      "uid": "35240-ae3ab119-6c87-4528-9571-6ce437759374"
+                                    },
+                                    {
+                                      "id": "6d3c73ee-6919-40f6-b516-d455580c58df",
+                                      "name": "Policy not found",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "policies",
+                                            ":policyName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "policyName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:51.000Z",
+                                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                                      "uid": "35240-6d3c73ee-6919-40f6-b516-d455580c58df"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-c78d84f1-9b8e-404c-942e-8a2d169575cb"
+                                },
+                                {
+                                  "name": "ForgeRock Delete a policy",
+                                  "id": "6874eeb6-9d82-4006-ab3d-0a68ed3f7fc8",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies",
+                                        ":policyName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e34b1ff7-1f4c-40b4-ad05-5c5791420495",
+                                          "key": "realm",
+                                          "value": "root",
+                                          "description": "(Required) The realm name"
+                                        },
+                                        {
+                                          "id": "95f5472a-4c77-459d-a175-e4f0414b06c9",
+                                          "key": "policyName",
+                                          "value": "<string>",
+                                          "description": "(Required) The policy name"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Delete an authorization policy by name."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "afdb1652-f684-4940-ad74-0d59b5441078",
+                                      "name": "Policy deleted",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "policies",
+                                            ":policyName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "policyName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:51.000Z",
+                                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                                      "uid": "35240-afdb1652-f684-4940-ad74-0d59b5441078"
+                                    },
+                                    {
+                                      "id": "e3ede959-8991-47bf-ac6f-8562464efdb0",
+                                      "name": "Policy not found",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CREST API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies/:policyName",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "policies",
+                                            ":policyName"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            },
+                                            {
+                                              "key": "policyName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Not Found",
+                                      "code": 404,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:51.000Z",
+                                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                                      "uid": "35240-e3ede959-8991-47bf-ac6f-8562464efdb0"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-6874eeb6-9d82-4006-ab3d-0a68ed3f7fc8"
+                                }
+                              ],
+                              "id": "ebef80f2-0632-4da4-ae55-104b0911cc62",
+                              "createdAt": "2026-07-28T01:41:51.000Z",
+                              "updatedAt": "2026-07-28T01:41:51.000Z",
+                              "uid": "35240-ebef80f2-0632-4da4-ae55-104b0911cc62"
+                            },
+                            {
+                              "name": "ForgeRock List authorization policies",
+                              "id": "12ab7f36-67a1-4b4a-8fac-9aaf9d5ad09c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_queryFilter=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "policies"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "CREST query filter expression",
+                                      "key": "_queryFilter",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d0642b3a-ae24-4073-94e4-e5c08ed0d3c0",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Query authorization policies in the specified realm. Supports CREST query filters."
+                              },
+                              "response": [
+                                {
+                                  "id": "db7d0c4c-105a-4727-8a0c-1a3159557b2d",
+                                  "name": "List of policies",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_queryFilter=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "CREST query filter expression",
+                                          "key": "_queryFilter",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"result\": [\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"actionValues\": {\n        \"esse_7f\": \"<boolean>\"\n      },\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"subject\": {},\n      \"condition\": {},\n      \"resourceTypeUuid\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"actionValues\": {\n        \"nisida\": \"<boolean>\"\n      },\n      \"resources\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"subject\": {},\n      \"condition\": {},\n      \"resourceTypeUuid\": \"<string>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-db7d0c4c-105a-4727-8a0c-1a3159557b2d"
+                                },
+                                {
+                                  "id": "71dc7fac-b345-4c84-8d5a-3c7e7b09b800",
+                                  "name": "Insufficient privileges",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_queryFilter=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "CREST query filter expression",
+                                          "key": "_queryFilter",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-71dc7fac-b345-4c84-8d5a-3c7e7b09b800"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:51.000Z",
+                              "updatedAt": "2026-07-28T01:41:51.000Z",
+                              "uid": "35240-12ab7f36-67a1-4b4a-8fac-9aaf9d5ad09c"
+                            },
+                            {
+                              "name": "ForgeRock Create a policy or evaluate policies",
+                              "id": "52ce6bff-4153-4bca-ae0a-a837d4172343",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_action=evaluate",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "policies"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Action to perform (evaluate or evaluateTree)",
+                                      "key": "_action",
+                                      "value": "evaluate"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "d4686ec8-62c9-47b8-bbfe-a7979ffb3638",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Create a new authorization policy, or evaluate policies using the _action=evaluate or _action=evaluateTree query parameter."
+                              },
+                              "response": [
+                                {
+                                  "id": "d1a82b6b-5831-416a-b10e-7e5fcbfbcfa2",
+                                  "name": "Policy evaluation result",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_action=evaluate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Action to perform (evaluate or evaluateTree)",
+                                          "key": "_action",
+                                          "value": "evaluate"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"resource\": \"<string>\",\n    \"actions\": {\n      \"sunt9c\": \"<boolean>\"\n    },\n    \"attributes\": {\n      \"aliquip1\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"advices\": {\n      \"enim3b\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  {\n    \"resource\": \"<string>\",\n    \"actions\": {\n      \"laborumaf1\": \"<boolean>\"\n    },\n    \"attributes\": {\n      \"quis_3c4\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"Duisb\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"advices\": {\n      \"quis_0c2\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"dolor_6\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  }\n]",
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-d1a82b6b-5831-416a-b10e-7e5fcbfbcfa2"
+                                },
+                                {
+                                  "id": "dcf20fcd-8752-4d66-ae03-328c01501166",
+                                  "name": "Policy created successfully",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_action=evaluate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Action to perform (evaluate or evaluateTree)",
+                                          "key": "_action",
+                                          "value": "evaluate"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-dcf20fcd-8752-4d66-ae03-328c01501166"
+                                },
+                                {
+                                  "id": "9cd12d60-1935-44c0-b13d-d280153253ab",
+                                  "name": "Invalid policy or evaluation request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"actionValues\": {\n    \"reprehenderit9\": \"<boolean>\",\n    \"proident_986\": \"<boolean>\",\n    \"reprehenderit_5af\": \"<boolean>\"\n  },\n  \"resources\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject\": {},\n  \"condition\": {},\n  \"resourceTypeUuid\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/policies?_action=evaluate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "policies"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Action to perform (evaluate or evaluateTree)",
+                                          "key": "_action",
+                                          "value": "evaluate"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:51.000Z",
+                                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                                  "uid": "35240-9cd12d60-1935-44c0-b13d-d280153253ab"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:51.000Z",
+                              "updatedAt": "2026-07-28T01:41:51.000Z",
+                              "uid": "35240-52ce6bff-4153-4bca-ae0a-a837d4172343"
+                            }
+                          ],
+                          "id": "3960c293-0749-446b-bc0a-5707326457b6",
+                          "createdAt": "2026-07-28T01:41:51.000Z",
+                          "updatedAt": "2026-07-28T01:41:51.000Z",
+                          "uid": "35240-3960c293-0749-446b-bc0a-5707326457b6"
+                        }
+                      ],
+                      "id": "355a155d-c3a8-4d89-93a3-5a1660163a8a",
+                      "createdAt": "2026-07-28T01:41:51.000Z",
+                      "updatedAt": "2026-07-28T01:41:51.000Z",
+                      "uid": "35240-355a155d-c3a8-4d89-93a3-5a1660163a8a"
+                    }
+                  ],
+                  "id": "a710b4d6-2266-46d5-8caf-cce2f519b255",
+                  "createdAt": "2026-07-28T01:41:51.000Z",
+                  "updatedAt": "2026-07-28T01:41:51.000Z",
+                  "uid": "35240-a710b4d6-2266-46d5-8caf-cce2f519b255"
+                }
+              ],
+              "id": "eb288a22-2049-4642-ac2f-5258f4b3d3d6",
+              "createdAt": "2026-07-28T01:41:51.000Z",
+              "updatedAt": "2026-07-28T01:41:51.000Z",
+              "uid": "35240-eb288a22-2049-4642-ac2f-5258f4b3d3d6"
+            }
+          ],
+          "id": "9bac810a-d1e7-43a6-a0c7-61980e846e2d",
+          "createdAt": "2026-07-28T01:41:51.000Z",
+          "updatedAt": "2026-07-28T01:41:51.000Z",
+          "uid": "35240-9bac810a-d1e7-43a6-a0c7-61980e846e2d"
+        }
+      ],
+      "id": "97209063-1dcc-4d09-99ae-598fde7ce3f0",
+      "createdAt": "2026-07-28T01:41:51.000Z",
+      "updatedAt": "2026-07-28T01:41:51.000Z",
+      "uid": "35240-97209063-1dcc-4d09-99ae-598fde7ce3f0"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

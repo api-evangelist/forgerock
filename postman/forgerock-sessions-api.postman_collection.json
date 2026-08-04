@@ -1,0 +1,800 @@
+{
+  "info": {
+    "_postman_id": "36c0c17b-7794-4c12-bcca-40e20aeaed00",
+    "name": "ForgeRock Access Management Access Requests Sessions API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:42:28.000Z",
+    "updatedAt": "2026-07-28T01:42:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-36c0c17b-7794-4c12-bcca-40e20aeaed00"
+  },
+  "item": [
+    {
+      "name": "json",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "root",
+              "item": [
+                {
+                  "name": "realms",
+                  "item": [
+                    {
+                      "name": "{realm}",
+                      "item": [
+                        {
+                          "name": "sessions",
+                          "item": [
+                            {
+                              "name": "ForgeRock Query sessions",
+                              "id": "1a276ed1-9d43-4cd1-884d-541da1b5ffc9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/sessions?_queryFilter=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "sessions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "CREST query filter for sessions",
+                                      "key": "_queryFilter",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "16ce774f-1ee5-426b-b72a-e0e7bb65c53f",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Query active sessions in the specified realm. Requires administrative privileges."
+                              },
+                              "response": [
+                                {
+                                  "id": "34f80f32-b05d-4e66-8a0c-f17b8f4c80f1",
+                                  "name": "List of active sessions",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/sessions?_queryFilter=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "sessions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "CREST query filter for sessions",
+                                          "key": "_queryFilter",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"result\": [\n    {\n      \"username\": \"<string>\",\n      \"universalId\": \"<string>\",\n      \"realm\": \"<string>\",\n      \"latestAccessTime\": \"<dateTime>\",\n      \"maxIdleExpirationTime\": \"<dateTime>\",\n      \"maxSessionExpirationTime\": \"<dateTime>\"\n    },\n    {\n      \"username\": \"<string>\",\n      \"universalId\": \"<string>\",\n      \"realm\": \"<string>\",\n      \"latestAccessTime\": \"<dateTime>\",\n      \"maxIdleExpirationTime\": \"<dateTime>\",\n      \"maxSessionExpirationTime\": \"<dateTime>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                                  "createdAt": "2026-07-28T01:42:28.000Z",
+                                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                                  "uid": "35240-34f80f32-b05d-4e66-8a0c-f17b8f4c80f1"
+                                },
+                                {
+                                  "id": "4706228f-0ed4-441f-a0c9-35fdfbc54043",
+                                  "name": "Insufficient privileges",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/sessions?_queryFilter=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "sessions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "CREST query filter for sessions",
+                                          "key": "_queryFilter",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:42:28.000Z",
+                                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                                  "uid": "35240-4706228f-0ed4-441f-a0c9-35fdfbc54043"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:42:28.000Z",
+                              "updatedAt": "2026-07-28T01:42:28.000Z",
+                              "uid": "35240-1a276ed1-9d43-4cd1-884d-541da1b5ffc9"
+                            },
+                            {
+                              "name": "ForgeRock Perform a session action",
+                              "id": "bf97a21b-a139-4f08-84aa-98b1a803425c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/sessions?_action=refresh",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "sessions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The session action to perform",
+                                      "key": "_action",
+                                      "value": "refresh"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "54ce4490-2d49-43ed-94e2-9bcfb6875789",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Perform an action on a session such as validate, logout, getSessionInfo, or refresh."
+                              },
+                              "response": [
+                                {
+                                  "id": "b35ccdb7-6370-4248-979c-f6812777f655",
+                                  "name": "Session action result",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/sessions?_action=refresh",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "sessions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The session action to perform",
+                                          "key": "_action",
+                                          "value": "refresh"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"valid\": \"<boolean>\",\n  \"uid\": \"<string>\",\n  \"realm\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:42:28.000Z",
+                                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                                  "uid": "35240-b35ccdb7-6370-4248-979c-f6812777f655"
+                                },
+                                {
+                                  "id": "48792ef3-51e1-4bcc-a00f-f2ce17fa54ce",
+                                  "name": "Invalid or expired session",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/sessions?_action=refresh",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "sessions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The session action to perform",
+                                          "key": "_action",
+                                          "value": "refresh"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:42:28.000Z",
+                                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                                  "uid": "35240-48792ef3-51e1-4bcc-a00f-f2ce17fa54ce"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:42:28.000Z",
+                              "updatedAt": "2026-07-28T01:42:28.000Z",
+                              "uid": "35240-bf97a21b-a139-4f08-84aa-98b1a803425c"
+                            }
+                          ],
+                          "id": "9151eec2-7ab4-4dc7-b7e5-b084b77d9404",
+                          "createdAt": "2026-07-28T01:42:28.000Z",
+                          "updatedAt": "2026-07-28T01:42:28.000Z",
+                          "uid": "35240-9151eec2-7ab4-4dc7-b7e5-b084b77d9404"
+                        }
+                      ],
+                      "id": "180341a0-894b-4e39-a306-0d40346b29ff",
+                      "createdAt": "2026-07-28T01:42:28.000Z",
+                      "updatedAt": "2026-07-28T01:42:28.000Z",
+                      "uid": "35240-180341a0-894b-4e39-a306-0d40346b29ff"
+                    }
+                  ],
+                  "id": "bfd906ce-a407-4c5f-a10f-ecff9c6f8e48",
+                  "createdAt": "2026-07-28T01:42:28.000Z",
+                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                  "uid": "35240-bfd906ce-a407-4c5f-a10f-ecff9c6f8e48"
+                }
+              ],
+              "id": "62c0c303-ca38-4c93-88e8-b7157bfc1a5f",
+              "createdAt": "2026-07-28T01:42:28.000Z",
+              "updatedAt": "2026-07-28T01:42:28.000Z",
+              "uid": "35240-62c0c303-ca38-4c93-88e8-b7157bfc1a5f"
+            }
+          ],
+          "id": "f9592e67-8183-4664-825b-dd03f39e0e56",
+          "createdAt": "2026-07-28T01:42:28.000Z",
+          "updatedAt": "2026-07-28T01:42:28.000Z",
+          "uid": "35240-f9592e67-8183-4664-825b-dd03f39e0e56"
+        }
+      ],
+      "id": "62bc5b83-b2c2-4442-9487-309430d14415",
+      "createdAt": "2026-07-28T01:42:28.000Z",
+      "updatedAt": "2026-07-28T01:42:28.000Z",
+      "uid": "35240-62bc5b83-b2c2-4442-9487-309430d14415"
+    },
+    {
+      "name": "am",
+      "item": [
+        {
+          "name": "json",
+          "item": [
+            {
+              "name": "realms",
+              "item": [
+                {
+                  "name": "root",
+                  "item": [
+                    {
+                      "name": "realms",
+                      "item": [
+                        {
+                          "name": "{realm}",
+                          "item": [
+                            {
+                              "name": "sessions",
+                              "item": [
+                                {
+                                  "name": "ForgeRock Perform session actions",
+                                  "id": "bebceef4-0023-449a-b038-bce11f1292c1",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/am/json/realms/root/realms/:realm/sessions?_action=validate",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "am",
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "sessions"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) The action to perform on the session",
+                                          "key": "_action",
+                                          "value": "validate"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "99369b62-be1c-47a4-8f6b-3b6193e82455",
+                                          "key": "realm",
+                                          "value": "alpha",
+                                          "description": "(Required) The realm name (e.g., alpha, bravo)"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Perform actions on sessions such as getting session info, refreshing idle timeout, or logging out. The action is specified via the _action query parameter."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ac7a801a-ecdd-41a3-b029-ca4141ac95ed",
+                                      "name": "Session action completed successfully",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/am/json/realms/root/realms/:realm/sessions?_action=validate",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "am",
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "sessions"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) The action to perform on the session",
+                                              "key": "_action",
+                                              "value": "validate"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"username\": \"<string>\",\n  \"universalId\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"latestAccessTime\": \"<dateTime>\",\n  \"maxIdleExpirationTime\": \"<dateTime>\",\n  \"maxSessionExpirationTime\": \"<dateTime>\",\n  \"properties\": {\n    \"sunt_9a6\": \"<string>\",\n    \"culpa_a9\": \"<string>\",\n    \"deserunt0bf\": \"<string>\",\n    \"ullamco__c8\": \"<string>\"\n  }\n}",
+                                      "createdAt": "2026-07-28T01:42:28.000Z",
+                                      "updatedAt": "2026-07-28T01:42:28.000Z",
+                                      "uid": "35240-ac7a801a-ecdd-41a3-b029-ca4141ac95ed"
+                                    },
+                                    {
+                                      "id": "b90b2649-1776-41c9-8645-20f5add02f11",
+                                      "name": "Session is invalid or expired",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/am/json/realms/root/realms/:realm/sessions?_action=validate",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "am",
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "sessions"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) The action to perform on the session",
+                                              "key": "_action",
+                                              "value": "validate"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:42:28.000Z",
+                                      "updatedAt": "2026-07-28T01:42:28.000Z",
+                                      "uid": "35240-b90b2649-1776-41c9-8645-20f5add02f11"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:42:28.000Z",
+                                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                                  "uid": "35240-bebceef4-0023-449a-b038-bce11f1292c1"
+                                }
+                              ],
+                              "id": "68f5255b-fd9f-48ae-894f-51242d9df7d1",
+                              "createdAt": "2026-07-28T01:42:28.000Z",
+                              "updatedAt": "2026-07-28T01:42:28.000Z",
+                              "uid": "35240-68f5255b-fd9f-48ae-894f-51242d9df7d1"
+                            }
+                          ],
+                          "id": "18d8a426-1d46-4bc6-a564-0772a3f58590",
+                          "createdAt": "2026-07-28T01:42:28.000Z",
+                          "updatedAt": "2026-07-28T01:42:28.000Z",
+                          "uid": "35240-18d8a426-1d46-4bc6-a564-0772a3f58590"
+                        }
+                      ],
+                      "id": "5eaeda55-6b8e-4f43-a634-267e9bdfb52f",
+                      "createdAt": "2026-07-28T01:42:28.000Z",
+                      "updatedAt": "2026-07-28T01:42:28.000Z",
+                      "uid": "35240-5eaeda55-6b8e-4f43-a634-267e9bdfb52f"
+                    }
+                  ],
+                  "id": "8d40cb0c-845d-4c37-969c-4c8a66829df6",
+                  "createdAt": "2026-07-28T01:42:28.000Z",
+                  "updatedAt": "2026-07-28T01:42:28.000Z",
+                  "uid": "35240-8d40cb0c-845d-4c37-969c-4c8a66829df6"
+                }
+              ],
+              "id": "6ebb178a-1acd-44cf-851c-1e86fbd81af7",
+              "createdAt": "2026-07-28T01:42:28.000Z",
+              "updatedAt": "2026-07-28T01:42:28.000Z",
+              "uid": "35240-6ebb178a-1acd-44cf-851c-1e86fbd81af7"
+            }
+          ],
+          "id": "e0d4f8f2-c051-418d-abb9-8485bccbce03",
+          "createdAt": "2026-07-28T01:42:28.000Z",
+          "updatedAt": "2026-07-28T01:42:28.000Z",
+          "uid": "35240-e0d4f8f2-c051-418d-abb9-8485bccbce03"
+        }
+      ],
+      "id": "8d859b4d-64f5-4643-8e0c-8edcad083aa2",
+      "createdAt": "2026-07-28T01:42:28.000Z",
+      "updatedAt": "2026-07-28T01:42:28.000Z",
+      "uid": "35240-8d859b4d-64f5-4643-8e0c-8edcad083aa2"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

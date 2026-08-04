@@ -1,0 +1,672 @@
+{
+  "info": {
+    "_postman_id": "f8c45a3e-0fa5-48ae-9ec0-9030f16ae8e2",
+    "name": "ForgeRock Access Management Access Requests Certifications API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:02.000Z",
+    "updatedAt": "2026-07-28T01:41:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f8c45a3e-0fa5-48ae-9ec0-9030f16ae8e2"
+  },
+  "item": [
+    {
+      "name": "governance",
+      "item": [
+        {
+          "name": "certification",
+          "item": [
+            {
+              "name": "{certificationId}",
+              "item": [
+                {
+                  "name": "ForgeRock Get a certification campaign",
+                  "id": "3dc8e1ef-8b58-4a3f-a7af-60de7e9661e8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/certification/:certificationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "certification",
+                        ":certificationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fa86b7be-65cf-4f98-a4ef-bb669b067af9",
+                          "key": "certificationId",
+                          "value": "<string>",
+                          "description": "(Required) The certification campaign identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific certification campaign."
+                  },
+                  "response": [
+                    {
+                      "id": "253bf3bf-72ad-46d5-87f6-44b8fcf9745a",
+                      "name": "Certification campaign details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/governance/certification/:certificationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "governance",
+                            "certification",
+                            ":certificationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certificationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"roleMembership\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"<dateTime>\",\n  \"closedDate\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:41:03.000Z",
+                      "updatedAt": "2026-07-28T01:41:03.000Z",
+                      "uid": "35240-253bf3bf-72ad-46d5-87f6-44b8fcf9745a"
+                    },
+                    {
+                      "id": "d1ee8769-30fb-42fa-ab4a-d76afd7f949b",
+                      "name": "Certification not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/governance/certification/:certificationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "governance",
+                            "certification",
+                            ":certificationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certificationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:03.000Z",
+                      "updatedAt": "2026-07-28T01:41:03.000Z",
+                      "uid": "35240-d1ee8769-30fb-42fa-ab4a-d76afd7f949b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-3dc8e1ef-8b58-4a3f-a7af-60de7e9661e8"
+                },
+                {
+                  "name": "ForgeRock Update a certification campaign",
+                  "id": "d8c1c34e-c87d-47a4-b2cc-0e90c67a327f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"operation\": \"add\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"add\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/certification/:certificationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "certification",
+                        ":certificationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "43c7a999-038b-4b04-b309-f5545477a2b6",
+                          "key": "certificationId",
+                          "value": "<string>",
+                          "description": "(Required) The certification campaign identifier"
+                        }
+                      ]
+                    },
+                    "description": "Partially update a certification campaign (e.g., close or cancel it)."
+                  },
+                  "response": [
+                    {
+                      "id": "4f254f2c-08e3-4de6-88f8-53b69259fdfb",
+                      "name": "Certification updated",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"operation\": \"add\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"add\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/governance/certification/:certificationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "governance",
+                            "certification",
+                            ":certificationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certificationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"roleMembership\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"<dateTime>\",\n  \"closedDate\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T01:41:03.000Z",
+                      "updatedAt": "2026-07-28T01:41:03.000Z",
+                      "uid": "35240-4f254f2c-08e3-4de6-88f8-53b69259fdfb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-d8c1c34e-c87d-47a4-b2cc-0e90c67a327f"
+                }
+              ],
+              "id": "9fe73e1f-056f-4e13-9b64-826170a063b6",
+              "createdAt": "2026-07-28T01:41:03.000Z",
+              "updatedAt": "2026-07-28T01:41:03.000Z",
+              "uid": "35240-9fe73e1f-056f-4e13-9b64-826170a063b6"
+            },
+            {
+              "name": "ForgeRock List certification campaigns",
+              "id": "f75db075-7bc6-4936-830a-97b3110d0e1d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/governance/certification?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Sort fields",
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Query certification campaigns. Certifications enable authorized users to review and certify access assignments to ensure compliance."
+              },
+              "response": [
+                {
+                  "id": "984ccd9d-1a43-443e-a472-69653fdc0de0",
+                  "name": "List of certification campaigns",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/certification?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "certification"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "_pagedResultsOffset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Sort fields",
+                          "key": "_sortKeys",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"entitlementOwner\",\n      \"status\": \"expired\",\n      \"stages\": [\n        {\n          \"name\": \"<string>\",\n          \"deadline\": \"<dateTime>\",\n          \"reviewers\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"deadline\": \"<dateTime>\",\n          \"reviewers\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"entitlementFilter\": {},\n      \"createdDate\": \"<dateTime>\",\n      \"closedDate\": \"<dateTime>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"type\": \"roleMembership\",\n      \"status\": \"active\",\n      \"stages\": [\n        {\n          \"name\": \"<string>\",\n          \"deadline\": \"<dateTime>\",\n          \"reviewers\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"deadline\": \"<dateTime>\",\n          \"reviewers\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"entitlementFilter\": {},\n      \"createdDate\": \"<dateTime>\",\n      \"closedDate\": \"<dateTime>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-984ccd9d-1a43-443e-a472-69653fdc0de0"
+                },
+                {
+                  "id": "1f97d5a2-ffcf-4f59-8c6b-8d97d14273dc",
+                  "name": "Insufficient privileges",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/certification?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "certification"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "_pagedResultsOffset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Sort fields",
+                          "key": "_sortKeys",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-1f97d5a2-ffcf-4f59-8c6b-8d97d14273dc"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:03.000Z",
+              "updatedAt": "2026-07-28T01:41:03.000Z",
+              "uid": "35240-f75db075-7bc6-4936-830a-97b3110d0e1d"
+            },
+            {
+              "name": "ForgeRock Create a certification campaign",
+              "id": "fcc6cd0d-8dd3-45e5-a0b4-35e1913724f6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"roleMembership\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"<dateTime>\",\n  \"closedDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/governance/certification",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "governance",
+                    "certification"
+                  ]
+                },
+                "description": "Create a new access certification campaign. Supports identity certification, role definition certification, and role membership certification types."
+              },
+              "response": [
+                {
+                  "id": "492f83c5-0f34-472e-8465-10b84b890d03",
+                  "name": "Certification campaign created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"roleMembership\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"<dateTime>\",\n  \"closedDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/certification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "certification"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"roleMembership\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"<dateTime>\",\n  \"closedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-492f83c5-0f34-472e-8465-10b84b890d03"
+                },
+                {
+                  "id": "f4852744-03b0-4b31-8d76-e492437d9aae",
+                  "name": "Invalid certification configuration",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"roleMembership\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"<dateTime>\",\n  \"closedDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/certification",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "certification"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:03.000Z",
+                  "updatedAt": "2026-07-28T01:41:03.000Z",
+                  "uid": "35240-f4852744-03b0-4b31-8d76-e492437d9aae"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:03.000Z",
+              "updatedAt": "2026-07-28T01:41:03.000Z",
+              "uid": "35240-fcc6cd0d-8dd3-45e5-a0b4-35e1913724f6"
+            }
+          ],
+          "id": "8b3ff5c8-63c6-41e0-bc96-6e1052c67500",
+          "createdAt": "2026-07-28T01:41:03.000Z",
+          "updatedAt": "2026-07-28T01:41:03.000Z",
+          "uid": "35240-8b3ff5c8-63c6-41e0-bc96-6e1052c67500"
+        }
+      ],
+      "id": "4a8a9d43-7d92-4271-9355-327913bce472",
+      "createdAt": "2026-07-28T01:41:03.000Z",
+      "updatedAt": "2026-07-28T01:41:03.000Z",
+      "uid": "35240-4a8a9d43-7d92-4271-9355-327913bce472"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

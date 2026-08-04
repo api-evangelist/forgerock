@@ -1,0 +1,309 @@
+{
+  "info": {
+    "_postman_id": "ca1753ef-c003-4f6d-b62e-26e3ab17a872",
+    "name": "ForgeRock Access Management Access Requests Applications API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:40:59.000Z",
+    "updatedAt": "2026-07-28T01:41:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ca1753ef-c003-4f6d-b62e-26e3ab17a872"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "applications",
+          "item": [
+            {
+              "name": "{applicationId}",
+              "item": [
+                {
+                  "name": "ForgeRock Get an application",
+                  "id": "f4428002-cab8-4d5c-bf51-5db1259313fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/applications/:applicationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "applications",
+                        ":applicationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "852c5ce5-baa2-491f-839f-39a99f218440",
+                          "key": "applicationId",
+                          "value": "<string>",
+                          "description": "(Required) The application identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific onboarded application."
+                  },
+                  "response": [
+                    {
+                      "id": "5e6f904c-caa2-4304-8e9f-5b846a05fa0b",
+                      "name": "Application details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/applications/:applicationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "applications",
+                            ":applicationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"totalEntitlements\": \"<integer>\",\n  \"totalUsers\": \"<integer>\",\n  \"averageConfidenceScore\": \"<number>\"\n}",
+                      "createdAt": "2026-07-28T01:41:00.000Z",
+                      "updatedAt": "2026-07-28T01:41:00.000Z",
+                      "uid": "35240-5e6f904c-caa2-4304-8e9f-5b846a05fa0b"
+                    },
+                    {
+                      "id": "62cd46cf-7ceb-450d-aac2-83b0de96c759",
+                      "name": "Application not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/applications/:applicationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "applications",
+                            ":applicationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "applicationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:00.000Z",
+                      "updatedAt": "2026-07-28T01:41:00.000Z",
+                      "uid": "35240-62cd46cf-7ceb-450d-aac2-83b0de96c759"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:00.000Z",
+                  "updatedAt": "2026-07-28T01:41:00.000Z",
+                  "uid": "35240-f4428002-cab8-4d5c-bf51-5db1259313fa"
+                }
+              ],
+              "id": "e76493a0-e29d-4aac-9dbb-271488aea2c1",
+              "createdAt": "2026-07-28T01:41:00.000Z",
+              "updatedAt": "2026-07-28T01:41:00.000Z",
+              "uid": "35240-e76493a0-e29d-4aac-9dbb-271488aea2c1"
+            },
+            {
+              "name": "ForgeRock List applications",
+              "id": "8142e294-0805-49b5-bccb-a39b5f875257",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/applications?maxResults=25&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "applications"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "Query onboarded applications in the Autonomous Identity platform."
+              },
+              "response": [
+                {
+                  "id": "f8198a13-cf7e-46a4-ab98-fe1443f2c141",
+                  "name": "List of applications",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/applications?maxResults=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "applications"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "maxResults",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"totalEntitlements\": \"<integer>\",\n      \"totalUsers\": \"<integer>\",\n      \"averageConfidenceScore\": \"<number>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"totalEntitlements\": \"<integer>\",\n      \"totalUsers\": \"<integer>\",\n      \"averageConfidenceScore\": \"<number>\"\n    }\n  ],\n  \"totalResults\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:00.000Z",
+                  "updatedAt": "2026-07-28T01:41:00.000Z",
+                  "uid": "35240-f8198a13-cf7e-46a4-ab98-fe1443f2c141"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:00.000Z",
+              "updatedAt": "2026-07-28T01:41:00.000Z",
+              "uid": "35240-8142e294-0805-49b5-bccb-a39b5f875257"
+            }
+          ],
+          "id": "7345cc9a-fe82-4884-9c3e-e16dde6dd036",
+          "createdAt": "2026-07-28T01:41:00.000Z",
+          "updatedAt": "2026-07-28T01:41:00.000Z",
+          "uid": "35240-7345cc9a-fe82-4884-9c3e-e16dde6dd036"
+        }
+      ],
+      "id": "311f138d-d4e9-4367-9007-b32e4036d196",
+      "createdAt": "2026-07-28T01:41:00.000Z",
+      "updatedAt": "2026-07-28T01:41:00.000Z",
+      "uid": "35240-311f138d-d4e9-4367-9007-b32e4036d196"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

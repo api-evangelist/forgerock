@@ -1,0 +1,446 @@
+{
+  "info": {
+    "_postman_id": "1fc8a364-5b95-42fc-b478-d2477fe4aa0a",
+    "name": "ForgeRock Access Management Access Requests Monitoring API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:46.000Z",
+    "updatedAt": "2026-07-28T01:41:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1fc8a364-5b95-42fc-b478-d2477fe4aa0a"
+  },
+  "item": [
+    {
+      "name": "openig",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "system",
+              "item": [
+                {
+                  "name": "monitoring",
+                  "item": [
+                    {
+                      "name": "{endpointId}",
+                      "item": [
+                        {
+                          "name": "ForgeRock Get endpoint monitoring",
+                          "id": "d64f5823-cc50-4aca-8d2e-717f13fc1dae",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/system/monitoring/:endpointId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "system",
+                                "monitoring",
+                                ":endpointId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "73d3d71f-8802-47a6-a9d5-ddbf20311b0b",
+                                  "key": "endpointId",
+                                  "value": "<string>",
+                                  "description": "(Required) The endpoint or route identifier to monitor"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve monitoring data for a specific endpoint or route, including request counts and response time percentiles."
+                          },
+                          "response": [
+                            {
+                              "id": "e2ccbcad-421d-4f1d-96c6-ac0c375f4886",
+                              "name": "Endpoint monitoring data",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "iPlanetDirectoryPro",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/openig/api/system/monitoring/:endpointId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "openig",
+                                    "api",
+                                    "system",
+                                    "monitoring",
+                                    ":endpointId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "endpointId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"requestCount\": \"<integer>\",\n  \"responseCount\": \"<integer>\",\n  \"averageResponseTime\": \"<double>\",\n  \"percentiles\": {\n    \"p50\": \"<double>\",\n    \"p95\": \"<double>\",\n    \"p99\": \"<double>\"\n  },\n  \"statusCodeCounts\": {\n    \"sunt5\": \"<integer>\",\n    \"sit_e\": \"<integer>\"\n  }\n}",
+                              "createdAt": "2026-07-28T01:41:47.000Z",
+                              "updatedAt": "2026-07-28T01:41:47.000Z",
+                              "uid": "35240-e2ccbcad-421d-4f1d-96c6-ac0c375f4886"
+                            },
+                            {
+                              "id": "5652fc69-bad0-4bb0-8959-b1192fdaa389",
+                              "name": "Endpoint not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "iPlanetDirectoryPro",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/openig/api/system/monitoring/:endpointId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "openig",
+                                    "api",
+                                    "system",
+                                    "monitoring",
+                                    ":endpointId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "endpointId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:41:47.000Z",
+                              "updatedAt": "2026-07-28T01:41:47.000Z",
+                              "uid": "35240-5652fc69-bad0-4bb0-8959-b1192fdaa389"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:41:47.000Z",
+                          "updatedAt": "2026-07-28T01:41:47.000Z",
+                          "uid": "35240-d64f5823-cc50-4aca-8d2e-717f13fc1dae"
+                        }
+                      ],
+                      "id": "ae8d9a45-24af-4ef1-84bb-aac1f644d7d2",
+                      "createdAt": "2026-07-28T01:41:47.000Z",
+                      "updatedAt": "2026-07-28T01:41:47.000Z",
+                      "uid": "35240-ae8d9a45-24af-4ef1-84bb-aac1f644d7d2"
+                    },
+                    {
+                      "name": "ForgeRock Get monitoring summary",
+                      "id": "cd55bf9c-8e10-4c40-ad4a-0571b743cf51",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openig/api/system/monitoring",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openig",
+                            "api",
+                            "system",
+                            "monitoring"
+                          ]
+                        },
+                        "description": "Retrieve a monitoring summary of the IG instance, including request counts, response times, and status code distributions."
+                      },
+                      "response": [
+                        {
+                          "id": "63b6e802-28c6-4972-800d-a56fa1ad33f7",
+                          "name": "Monitoring summary",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/system/monitoring",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "system",
+                                "monitoring"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"totalRequestCount\": \"<integer>\",\n  \"totalResponseCount\": \"<integer>\",\n  \"averageResponseTime\": \"<double>\",\n  \"statusCodeCounts\": {\n    \"inc07\": \"<integer>\",\n    \"ipsum_88\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:41:47.000Z",
+                          "updatedAt": "2026-07-28T01:41:47.000Z",
+                          "uid": "35240-63b6e802-28c6-4972-800d-a56fa1ad33f7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:41:47.000Z",
+                      "updatedAt": "2026-07-28T01:41:47.000Z",
+                      "uid": "35240-cd55bf9c-8e10-4c40-ad4a-0571b743cf51"
+                    }
+                  ],
+                  "id": "590478a5-2f31-4c5c-a6cf-6575c24e05a1",
+                  "createdAt": "2026-07-28T01:41:47.000Z",
+                  "updatedAt": "2026-07-28T01:41:47.000Z",
+                  "uid": "35240-590478a5-2f31-4c5c-a6cf-6575c24e05a1"
+                },
+                {
+                  "name": "health",
+                  "item": [
+                    {
+                      "name": "ForgeRock Check IG health",
+                      "id": "92f86f4e-60a9-44ba-9ab0-7f7db82ed02e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openig/api/system/health",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openig",
+                            "api",
+                            "system",
+                            "health"
+                          ]
+                        },
+                        "description": "Returns the health status of the IG instance. Used for load balancer health checks and monitoring."
+                      },
+                      "response": [
+                        {
+                          "id": "4ccde6d0-6d4e-421b-acf1-8c450ceed1c3",
+                          "name": "IG is healthy",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/system/health",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "system",
+                                "health"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"ACTIVE\",\n  \"version\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:41:47.000Z",
+                          "updatedAt": "2026-07-28T01:41:47.000Z",
+                          "uid": "35240-4ccde6d0-6d4e-421b-acf1-8c450ceed1c3"
+                        },
+                        {
+                          "id": "6a57214c-635f-4e53-bdc5-fd146b3cf86a",
+                          "name": "IG is not healthy",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openig/api/system/health",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openig",
+                                "api",
+                                "system",
+                                "health"
+                              ]
+                            }
+                          },
+                          "status": "Service Unavailable",
+                          "code": 503,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"MAINTENANCE\"\n}",
+                          "createdAt": "2026-07-28T01:41:47.000Z",
+                          "updatedAt": "2026-07-28T01:41:47.000Z",
+                          "uid": "35240-6a57214c-635f-4e53-bdc5-fd146b3cf86a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:41:47.000Z",
+                      "updatedAt": "2026-07-28T01:41:47.000Z",
+                      "uid": "35240-92f86f4e-60a9-44ba-9ab0-7f7db82ed02e"
+                    }
+                  ],
+                  "id": "ddadcdf5-01a3-4489-8ba9-e422bdfe1a72",
+                  "createdAt": "2026-07-28T01:41:47.000Z",
+                  "updatedAt": "2026-07-28T01:41:47.000Z",
+                  "uid": "35240-ddadcdf5-01a3-4489-8ba9-e422bdfe1a72"
+                }
+              ],
+              "id": "c4ade624-d55d-4540-984e-b021fb4a74ae",
+              "createdAt": "2026-07-28T01:41:47.000Z",
+              "updatedAt": "2026-07-28T01:41:47.000Z",
+              "uid": "35240-c4ade624-d55d-4540-984e-b021fb4a74ae"
+            }
+          ],
+          "id": "72a442c3-a1e7-4199-b2d8-324cc1c4a0b4",
+          "createdAt": "2026-07-28T01:41:47.000Z",
+          "updatedAt": "2026-07-28T01:41:47.000Z",
+          "uid": "35240-72a442c3-a1e7-4199-b2d8-324cc1c4a0b4"
+        }
+      ],
+      "id": "899db92c-bb51-4f50-b8f7-84211833da99",
+      "createdAt": "2026-07-28T01:41:47.000Z",
+      "updatedAt": "2026-07-28T01:41:47.000Z",
+      "uid": "35240-899db92c-bb51-4f50-b8f7-84211833da99"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

@@ -1,0 +1,836 @@
+{
+  "info": {
+    "_postman_id": "878b1337-710a-41f2-a1cf-66a6f88e2136",
+    "name": "ForgeRock Access Management Access Requests Groups API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:14.000Z",
+    "updatedAt": "2026-07-28T01:41:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-878b1337-710a-41f2-a1cf-66a6f88e2136"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "groups",
+          "item": [
+            {
+              "name": "{groupId}",
+              "item": [
+                {
+                  "name": "Get a directory group",
+                  "id": "3568c85a-de3f-47eb-9b4f-c14254ec3509",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups/:groupId?_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups",
+                        ":groupId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of fields to return",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "6ac363fa-dcfe-486a-a00a-db3dfb2dedb8",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) The group identifier (maps to LDAP cn)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific group entry by its identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "f56ff214-b05e-4c3a-a3ad-3558c19fd9fc",
+                      "name": "The group entry",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/groups/:groupId?_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to return",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:41:14.000Z",
+                      "updatedAt": "2026-07-28T01:41:14.000Z",
+                      "uid": "35240-f56ff214-b05e-4c3a-a3ad-3558c19fd9fc"
+                    },
+                    {
+                      "id": "502ee83e-77f0-46f3-93c7-ccdc73672f48",
+                      "name": "Group not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/groups/:groupId?_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of fields to return",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:14.000Z",
+                      "updatedAt": "2026-07-28T01:41:14.000Z",
+                      "uid": "35240-502ee83e-77f0-46f3-93c7-ccdc73672f48"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-3568c85a-de3f-47eb-9b4f-c14254ec3509"
+                },
+                {
+                  "name": "Replace a directory group",
+                  "id": "5b4e18d0-842a-44ec-804d-f4221409ca68",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cda9dcca-7c4a-4ce6-bf80-7eb816fa7fed",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) The group identifier"
+                        }
+                      ]
+                    },
+                    "description": "Replace an entire group entry."
+                  },
+                  "response": [
+                    {
+                      "id": "4858f190-21c3-4116-8aa0-20d6906c6938",
+                      "name": "Group updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:41:14.000Z",
+                      "updatedAt": "2026-07-28T01:41:14.000Z",
+                      "uid": "35240-4858f190-21c3-4116-8aa0-20d6906c6938"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-5b4e18d0-842a-44ec-804d-f4221409ca68"
+                },
+                {
+                  "name": "Patch a directory group",
+                  "id": "ce58dda4-fe8e-4816-a399-db362ec90374",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"operation\": \"remove\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"replace\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9ea6e8eb-9a50-4519-bcc9-c2de520194af",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) The group identifier"
+                        }
+                      ]
+                    },
+                    "description": "Partially update a group entry. Commonly used to add or remove group members."
+                  },
+                  "response": [
+                    {
+                      "id": "bbe9dae5-f4bc-4898-98d5-d6a0b596d677",
+                      "name": "Group patched",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"operation\": \"remove\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"replace\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:41:14.000Z",
+                      "updatedAt": "2026-07-28T01:41:14.000Z",
+                      "uid": "35240-bbe9dae5-f4bc-4898-98d5-d6a0b596d677"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-ce58dda4-fe8e-4816-a399-db362ec90374"
+                },
+                {
+                  "name": "Delete a directory group",
+                  "id": "33d4ec57-0554-4128-ada9-515c197e2357",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4e8e178e-1320-4fb3-a663-2d5f8a50c8fa",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) The group identifier"
+                        }
+                      ]
+                    },
+                    "description": "Delete a group entry from the directory."
+                  },
+                  "response": [
+                    {
+                      "id": "cac5d11c-e95a-4af7-8222-37c008a050df",
+                      "name": "Group deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T01:41:14.000Z",
+                      "updatedAt": "2026-07-28T01:41:14.000Z",
+                      "uid": "35240-cac5d11c-e95a-4af7-8222-37c008a050df"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-33d4ec57-0554-4128-ada9-515c197e2357"
+                }
+              ],
+              "id": "06452351-8a1e-44ae-b4f2-5f29dae2f9e6",
+              "createdAt": "2026-07-28T01:41:14.000Z",
+              "updatedAt": "2026-07-28T01:41:14.000Z",
+              "uid": "35240-06452351-8a1e-44ae-b4f2-5f29dae2f9e6"
+            },
+            {
+              "name": "List directory groups",
+              "id": "a3fa012b-452d-4890-990b-fc27da64862d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/groups?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsCookie=<string>&_fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Cookie from a previous page for server-side paging",
+                      "key": "_pagedResultsCookie",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return",
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Query group entries in the directory. Groups are mapped from LDAP groupOfUniqueNames or groupOfNames entries."
+              },
+              "response": [
+                {
+                  "id": "12ef92ef-76b0-4bad-a099-d0531c8426af",
+                  "name": "List of groups",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsCookie=<string>&_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cookie from a previous page for server-side paging",
+                          "key": "_pagedResultsCookie",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\",\n      \"cn\": \"<string>\",\n      \"description\": \"<string>\",\n      \"members\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\",\n      \"cn\": \"<string>\",\n      \"description\": \"<string>\",\n      \"members\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"pagedResultsCookie\": \"<string>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-12ef92ef-76b0-4bad-a099-d0531c8426af"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:14.000Z",
+              "updatedAt": "2026-07-28T01:41:14.000Z",
+              "uid": "35240-a3fa012b-452d-4890-990b-fc27da64862d"
+            },
+            {
+              "name": "Create a directory group",
+              "id": "bce43b84-6e51-405c-a2bf-9e5cd54b6218",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/groups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "groups"
+                  ]
+                },
+                "description": "Create a new group entry in the directory."
+              },
+              "response": [
+                {
+                  "id": "40b36072-85b7-4d2a-bd30-6d22f700a687",
+                  "name": "Group created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-40b36072-85b7-4d2a-bd30-6d22f700a687"
+                },
+                {
+                  "id": "a91dcfbc-9551-4d8a-b802-16059b57a029",
+                  "name": "Group already exists",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/groups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "groups"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:14.000Z",
+                  "updatedAt": "2026-07-28T01:41:14.000Z",
+                  "uid": "35240-a91dcfbc-9551-4d8a-b802-16059b57a029"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:14.000Z",
+              "updatedAt": "2026-07-28T01:41:14.000Z",
+              "uid": "35240-bce43b84-6e51-405c-a2bf-9e5cd54b6218"
+            }
+          ],
+          "id": "ea2c712d-d239-4901-9cb1-80d435eb1207",
+          "createdAt": "2026-07-28T01:41:14.000Z",
+          "updatedAt": "2026-07-28T01:41:14.000Z",
+          "uid": "35240-ea2c712d-d239-4901-9cb1-80d435eb1207"
+        }
+      ],
+      "id": "b135d9b3-560f-4029-b9bb-e47bcf047887",
+      "createdAt": "2026-07-28T01:41:14.000Z",
+      "updatedAt": "2026-07-28T01:41:14.000Z",
+      "uid": "35240-b135d9b3-560f-4029-b9bb-e47bcf047887"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

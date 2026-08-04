@@ -1,0 +1,349 @@
+{
+  "info": {
+    "_postman_id": "3d4c0d72-4f07-4dcf-a0b8-81f47b44d778",
+    "name": "ForgeRock Access Management Access Requests OpenID Connect API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:50.000Z",
+    "updatedAt": "2026-07-28T01:41:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3d4c0d72-4f07-4dcf-a0b8-81f47b44d778"
+  },
+  "item": [
+    {
+      "name": "oauth2",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "root",
+              "item": [
+                {
+                  "name": "realms",
+                  "item": [
+                    {
+                      "name": "{realm}",
+                      "item": [
+                        {
+                          "name": "userinfo",
+                          "item": [
+                            {
+                              "name": "ForgeRock OpenID Connect UserInfo endpoint",
+                              "id": "0b97bbc9-0a29-4634-81f4-863d6a7a94f9",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "auth": {
+                                  "type": "bearer",
+                                  "bearer": [
+                                    {
+                                      "key": "token",
+                                      "value": "{{bearerToken}}",
+                                      "type": "string"
+                                    }
+                                  ]
+                                },
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/oauth2/realms/root/realms/:realm/userinfo",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "oauth2",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "userinfo"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "3d1ddb1a-8c14-412c-97c9-0e970d4a0cc9",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns claims about the authenticated end-user. Requires a valid access token with the openid scope."
+                              },
+                              "response": [
+                                {
+                                  "id": "016d9ae1-2a90-47b8-9e85-0813a8a5bbb0",
+                                  "name": "User info claims",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/oauth2/realms/root/realms/:realm/userinfo",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "oauth2",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "userinfo"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"sub\": \"<string>\",\n  \"name\": \"<string>\",\n  \"given_name\": \"<string>\",\n  \"family_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"email_verified\": \"<boolean>\",\n  \"phone_number\": \"<string>\",\n  \"address\": {\n    \"formatted\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-07-28T01:41:50.000Z",
+                                  "updatedAt": "2026-07-28T01:41:50.000Z",
+                                  "uid": "35240-016d9ae1-2a90-47b8-9e85-0813a8a5bbb0"
+                                },
+                                {
+                                  "id": "640a3ac2-9a2c-4574-87de-5e3987d9bcb2",
+                                  "name": "Invalid or missing access token",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/oauth2/realms/root/realms/:realm/userinfo",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "oauth2",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "userinfo"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\",\n  \"error_description\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:50.000Z",
+                                  "updatedAt": "2026-07-28T01:41:50.000Z",
+                                  "uid": "35240-640a3ac2-9a2c-4574-87de-5e3987d9bcb2"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:50.000Z",
+                              "updatedAt": "2026-07-28T01:41:50.000Z",
+                              "uid": "35240-0b97bbc9-0a29-4634-81f4-863d6a7a94f9"
+                            }
+                          ],
+                          "id": "c81a08bc-82a1-4fe3-b1cb-84e97d7e6865",
+                          "createdAt": "2026-07-28T01:41:50.000Z",
+                          "updatedAt": "2026-07-28T01:41:50.000Z",
+                          "uid": "35240-c81a08bc-82a1-4fe3-b1cb-84e97d7e6865"
+                        }
+                      ],
+                      "id": "9da92663-ec9a-4561-89e0-de2ad508a5b3",
+                      "createdAt": "2026-07-28T01:41:50.000Z",
+                      "updatedAt": "2026-07-28T01:41:50.000Z",
+                      "uid": "35240-9da92663-ec9a-4561-89e0-de2ad508a5b3"
+                    }
+                  ],
+                  "id": "12722160-051f-4d1d-b6ca-3cb383c36086",
+                  "createdAt": "2026-07-28T01:41:50.000Z",
+                  "updatedAt": "2026-07-28T01:41:50.000Z",
+                  "uid": "35240-12722160-051f-4d1d-b6ca-3cb383c36086"
+                }
+              ],
+              "id": "952a9e8f-e651-4342-a6f6-fa1909d66bf5",
+              "createdAt": "2026-07-28T01:41:50.000Z",
+              "updatedAt": "2026-07-28T01:41:50.000Z",
+              "uid": "35240-952a9e8f-e651-4342-a6f6-fa1909d66bf5"
+            }
+          ],
+          "id": "a2677247-5f25-4ce2-94fa-9c1fb0bafbd1",
+          "createdAt": "2026-07-28T01:41:50.000Z",
+          "updatedAt": "2026-07-28T01:41:50.000Z",
+          "uid": "35240-a2677247-5f25-4ce2-94fa-9c1fb0bafbd1"
+        }
+      ],
+      "id": "596cafe0-8f2d-4209-abd1-6fc1a2f97657",
+      "createdAt": "2026-07-28T01:41:50.000Z",
+      "updatedAt": "2026-07-28T01:41:50.000Z",
+      "uid": "35240-596cafe0-8f2d-4209-abd1-6fc1a2f97657"
+    },
+    {
+      "name": ".well-known",
+      "item": [
+        {
+          "name": "openid-configuration",
+          "item": [
+            {
+              "name": "ForgeRock OpenID Connect discovery",
+              "id": "80bfa54b-6c69-4dfd-9b34-005dbd77c9a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ]
+                },
+                "description": "Returns the OpenID Connect Provider configuration metadata, including supported endpoints, scopes, claims, and signing algorithms."
+              },
+              "response": [
+                {
+                  "id": "005eaf1b-4e9b-45f2-b7fb-b30a25982e38",
+                  "name": "OpenID Connect configuration",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/.well-known/openid-configuration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ".well-known",
+                        "openid-configuration"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"issuer\": \"<uri>\",\n  \"authorization_endpoint\": \"<uri>\",\n  \"token_endpoint\": \"<uri>\",\n  \"userinfo_endpoint\": \"<uri>\",\n  \"jwks_uri\": \"<uri>\",\n  \"registration_endpoint\": \"<uri>\",\n  \"scopes_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grant_types_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subject_types_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"id_token_signing_alg_values_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"token_endpoint_auth_methods_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"claims_supported\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T01:41:50.000Z",
+                  "updatedAt": "2026-07-28T01:41:50.000Z",
+                  "uid": "35240-005eaf1b-4e9b-45f2-b7fb-b30a25982e38"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:50.000Z",
+              "updatedAt": "2026-07-28T01:41:50.000Z",
+              "uid": "35240-80bfa54b-6c69-4dfd-9b34-005dbd77c9a9"
+            }
+          ],
+          "id": "3431e1fd-a02f-4bca-aa2e-e210ef6a7a98",
+          "createdAt": "2026-07-28T01:41:50.000Z",
+          "updatedAt": "2026-07-28T01:41:50.000Z",
+          "uid": "35240-3431e1fd-a02f-4bca-aa2e-e210ef6a7a98"
+        }
+      ],
+      "id": "4138bb82-ebfe-4016-9fe5-0354c1d3b318",
+      "createdAt": "2026-07-28T01:41:50.000Z",
+      "updatedAt": "2026-07-28T01:41:50.000Z",
+      "uid": "35240-4138bb82-ebfe-4016-9fe5-0354c1d3b318"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

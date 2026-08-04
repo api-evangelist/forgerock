@@ -1,0 +1,1381 @@
+{
+  "info": {
+    "_postman_id": "c76c2fa9-0ca4-4423-94e3-cefc55572686",
+    "name": "ForgeRock Access Management Access Requests Managed Objects API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:43.000Z",
+    "updatedAt": "2026-07-28T01:41:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c76c2fa9-0ca4-4423-94e3-cefc55572686"
+  },
+  "item": [
+    {
+      "name": "managed",
+      "item": [
+        {
+          "name": "{objectType}",
+          "item": [
+            {
+              "name": "{objectId}",
+              "item": [
+                {
+                  "name": "ForgeRock Get a managed object",
+                  "id": "4c157d38-f8a0-4f19-99d0-53e1bbde55ee",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType/:objectId?_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType",
+                        ":objectId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated fields to include in the response",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "84818b17-2abf-485e-8681-33fea1af7ca8",
+                          "key": "objectType",
+                          "value": "<string>",
+                          "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                        },
+                        {
+                          "id": "c2081b5a-1bae-41c1-a55c-e1091b756c9b",
+                          "key": "objectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the managed object"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a specific managed object by type and identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "a2359eab-6639-49c4-a819-5eeded1d2cd2",
+                      "name": "The managed object",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId?_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-a2359eab-6639-49c4-a819-5eeded1d2cd2"
+                    },
+                    {
+                      "id": "5668eb23-e2f0-4d40-9433-b7de83cc0749",
+                      "name": "Object not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId?_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-5668eb23-e2f0-4d40-9433-b7de83cc0749"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-4c157d38-f8a0-4f19-99d0-53e1bbde55ee"
+                },
+                {
+                  "name": "ForgeRock Replace a managed object",
+                  "id": "3f3a6f68-d46d-41c0-b480-b7c64131e4b9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Revision for optimistic concurrency control",
+                        "key": "If-Match",
+                        "value": "*"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType",
+                        ":objectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "89cac559-8c74-4e20-9dca-e5d595e5c14a",
+                          "key": "objectType",
+                          "value": "<string>",
+                          "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                        },
+                        {
+                          "id": "9b91c75a-3590-4ec3-a926-4efc7b5044bf",
+                          "key": "objectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the managed object"
+                        }
+                      ]
+                    },
+                    "description": "Replace an entire managed object or create one with a client-assigned identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "9275cdb8-70ac-494d-be45-293cd6669d62",
+                      "name": "Object updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-9275cdb8-70ac-494d-be45-293cd6669d62"
+                    },
+                    {
+                      "id": "eccb7b8b-7544-4066-ba13-07be407b6c86",
+                      "name": "Object created with client-assigned ID",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-eccb7b8b-7544-4066-ba13-07be407b6c86"
+                    },
+                    {
+                      "id": "2cf0a407-f031-4376-92aa-4fc87b0e6654",
+                      "name": "Revision mismatch",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Precondition Failed",
+                      "code": 412,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-2cf0a407-f031-4376-92aa-4fc87b0e6654"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-3f3a6f68-d46d-41c0-b480-b7c64131e4b9"
+                },
+                {
+                  "name": "ForgeRock Patch a managed object",
+                  "id": "487f111c-9ac4-4b95-9947-4e856feb65cd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "description": "Revision for optimistic concurrency control",
+                        "key": "If-Match",
+                        "value": "*"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"operation\": \"increment\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"replace\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType",
+                        ":objectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a162b849-aa69-4b27-b40b-892c3e9217aa",
+                          "key": "objectType",
+                          "value": "<string>",
+                          "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                        },
+                        {
+                          "id": "df8da361-ab11-43c6-b0b1-e0910422e10d",
+                          "key": "objectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the managed object"
+                        }
+                      ]
+                    },
+                    "description": "Partially update a managed object using JSON Patch operations (add, remove, replace, increment)."
+                  },
+                  "response": [
+                    {
+                      "id": "c787480f-ad8a-457b-893c-6c3480321b05",
+                      "name": "Object patched",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"operation\": \"increment\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"replace\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-c787480f-ad8a-457b-893c-6c3480321b05"
+                    },
+                    {
+                      "id": "876b14c3-0547-4129-8de8-5ed33e07f85c",
+                      "name": "Object not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"operation\": \"increment\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"replace\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-876b14c3-0547-4129-8de8-5ed33e07f85c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-487f111c-9ac4-4b95-9947-4e856feb65cd"
+                },
+                {
+                  "name": "ForgeRock Delete a managed object",
+                  "id": "38394315-f320-4569-9a3b-ade4b93656e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Revision for optimistic concurrency control",
+                        "key": "If-Match",
+                        "value": "*"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType",
+                        ":objectId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f9aa262c-b59c-4464-9650-4b805dfe9380",
+                          "key": "objectType",
+                          "value": "<string>",
+                          "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                        },
+                        {
+                          "id": "dd0892b6-2af6-4a9b-b3dc-636abdc5d29b",
+                          "key": "objectId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the managed object"
+                        }
+                      ]
+                    },
+                    "description": "Delete a managed object by type and identifier."
+                  },
+                  "response": [
+                    {
+                      "id": "6ef5ece5-cdd5-4a91-9b43-71d7b971b7ee",
+                      "name": "Object deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-6ef5ece5-cdd5-4a91-9b43-71d7b971b7ee"
+                    },
+                    {
+                      "id": "09c7db06-0b62-4f64-aa20-1edb7bde897b",
+                      "name": "Object not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Revision for optimistic concurrency control",
+                            "key": "If-Match",
+                            "value": "*"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/managed/:objectType/:objectId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "managed",
+                            ":objectType",
+                            ":objectId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "objectType"
+                            },
+                            {
+                              "key": "objectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:43.000Z",
+                      "updatedAt": "2026-07-28T01:41:43.000Z",
+                      "uid": "35240-09c7db06-0b62-4f64-aa20-1edb7bde897b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-38394315-f320-4569-9a3b-ade4b93656e0"
+                }
+              ],
+              "id": "3d73c4ca-7654-4e8e-a3f1-313f8df101cf",
+              "createdAt": "2026-07-28T01:41:43.000Z",
+              "updatedAt": "2026-07-28T01:41:43.000Z",
+              "uid": "35240-3d73c4ca-7654-4e8e-a3f1-313f8df101cf"
+            },
+            {
+              "name": "ForgeRock List managed objects",
+              "id": "6e79cada-8f89-48da-8dc1-68a10d630f56",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/managed/:objectType?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>&_fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated sort fields (prefix with - for descending)",
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated fields to include in the response",
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "4711ac78-84eb-4095-85c8-969f35ccbe53",
+                      "key": "objectType",
+                      "value": "<string>",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    }
+                  ]
+                },
+                "description": "Query managed objects of the specified type. Supports CREST query filters, pagination, sorting, and field selection."
+              },
+              "response": [
+                {
+                  "id": "b87f3261-6ef4-449a-a06f-719edec041fe",
+                  "name": "Query results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>&_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "_pagedResultsOffset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated sort fields (prefix with - for descending)",
+                          "key": "_sortKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated fields to include in the response",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "objectType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\",\n      \"ipsum_53f\": -28563940\n    },\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"pagedResultsCookie\": \"<string>\",\n  \"totalPagedResultsPolicy\": \"<string>\",\n  \"totalPagedResults\": \"<integer>\",\n  \"remainingPagedResults\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-b87f3261-6ef4-449a-a06f-719edec041fe"
+                },
+                {
+                  "id": "25bd5de1-5ba7-4128-be60-21bcd098fd1b",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>&_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "_pagedResultsOffset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated sort fields (prefix with - for descending)",
+                          "key": "_sortKeys",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated fields to include in the response",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "objectType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-25bd5de1-5ba7-4128-be60-21bcd098fd1b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:43.000Z",
+              "updatedAt": "2026-07-28T01:41:43.000Z",
+              "uid": "35240-6e79cada-8f89-48da-8dc1-68a10d630f56"
+            },
+            {
+              "name": "ForgeRock Create a managed object",
+              "id": "8adafcde-3686-4064-8253-15e42f70bbf9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/managed/:objectType?_action=create",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "query": [
+                    {
+                      "description": "Must be set to create for server-assigned IDs",
+                      "key": "_action",
+                      "value": "create"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "de8375b5-ecd5-4f2d-9b88-dbf37d541026",
+                      "key": "objectType",
+                      "value": "<string>",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    }
+                  ]
+                },
+                "description": "Create a new managed object of the specified type. The server assigns the _id if not provided via the _action=create query parameter."
+              },
+              "response": [
+                {
+                  "id": "dbe08401-4dd5-4fb5-8354-a2fd4fa7ddaa",
+                  "name": "Object created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType?_action=create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType"
+                      ],
+                      "query": [
+                        {
+                          "description": "Must be set to create for server-assigned IDs",
+                          "key": "_action",
+                          "value": "create"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "objectType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-dbe08401-4dd5-4fb5-8354-a2fd4fa7ddaa"
+                },
+                {
+                  "id": "15a4988a-6088-4474-a424-4272529ebcc6",
+                  "name": "Invalid object data",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType?_action=create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType"
+                      ],
+                      "query": [
+                        {
+                          "description": "Must be set to create for server-assigned IDs",
+                          "key": "_action",
+                          "value": "create"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "objectType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-15a4988a-6088-4474-a424-4272529ebcc6"
+                },
+                {
+                  "id": "10351228-71bb-46f9-b69d-337a649002cb",
+                  "name": "Object already exists",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"ametb7\": true\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/managed/:objectType?_action=create",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "managed",
+                        ":objectType"
+                      ],
+                      "query": [
+                        {
+                          "description": "Must be set to create for server-assigned IDs",
+                          "key": "_action",
+                          "value": "create"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "objectType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:43.000Z",
+                  "updatedAt": "2026-07-28T01:41:43.000Z",
+                  "uid": "35240-10351228-71bb-46f9-b69d-337a649002cb"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:43.000Z",
+              "updatedAt": "2026-07-28T01:41:43.000Z",
+              "uid": "35240-8adafcde-3686-4064-8253-15e42f70bbf9"
+            }
+          ],
+          "id": "5e0a657a-c3c9-4f2e-9006-610fa478494c",
+          "createdAt": "2026-07-28T01:41:43.000Z",
+          "updatedAt": "2026-07-28T01:41:43.000Z",
+          "uid": "35240-5e0a657a-c3c9-4f2e-9006-610fa478494c"
+        }
+      ],
+      "id": "7cafa755-4694-409e-bdfc-297177fcb950",
+      "createdAt": "2026-07-28T01:41:43.000Z",
+      "updatedAt": "2026-07-28T01:41:43.000Z",
+      "uid": "35240-7cafa755-4694-409e-bdfc-297177fcb950"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

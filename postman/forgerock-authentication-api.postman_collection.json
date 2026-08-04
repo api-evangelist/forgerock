@@ -1,0 +1,646 @@
+{
+  "info": {
+    "_postman_id": "8e1482c6-7780-46ad-b3f6-6b7e9497feea",
+    "name": "ForgeRock Access Management Access Requests Authentication API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:01.000Z",
+    "updatedAt": "2026-07-28T01:41:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8e1482c6-7780-46ad-b3f6-6b7e9497feea"
+  },
+  "item": [
+    {
+      "name": "json",
+      "item": [
+        {
+          "name": "realms",
+          "item": [
+            {
+              "name": "root",
+              "item": [
+                {
+                  "name": "realms",
+                  "item": [
+                    {
+                      "name": "{realm}",
+                      "item": [
+                        {
+                          "name": "authenticate",
+                          "item": [
+                            {
+                              "name": "ForgeRock Authenticate a user",
+                              "id": "31df830a-24c8-41df-b844-bda15b4f776a",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CREST API version protocol header",
+                                    "key": "Accept-API-Version",
+                                    "value": "resource=2.0,protocol=1.0"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/json/realms/root/realms/:realm/authenticate?authIndexType=service&authIndexValue=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "json",
+                                    "realms",
+                                    "root",
+                                    "realms",
+                                    ":realm",
+                                    "authenticate"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Type of authentication index",
+                                      "key": "authIndexType",
+                                      "value": "service"
+                                    },
+                                    {
+                                      "description": "Name of the authentication tree or module",
+                                      "key": "authIndexValue",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "1d6c67ac-efa3-4213-8b99-3992541d3581",
+                                      "key": "realm",
+                                      "value": "root",
+                                      "description": "(Required) The realm name"
+                                    }
+                                  ]
+                                },
+                                "description": "Initiates or continues an authentication session using a specified authentication tree (journey) or module. On each step, the server returns callbacks that the client must respond to. On success, returns a tokenId (SSO token)."
+                              },
+                              "response": [
+                                {
+                                  "id": "263e7d09-cde1-4b0d-bbf3-7ecef5e2d2f5",
+                                  "name": "Authentication step or success result",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/authenticate?authIndexType=service&authIndexValue=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "authenticate"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Type of authentication index",
+                                          "key": "authIndexType",
+                                          "value": "service"
+                                        },
+                                        {
+                                          "description": "Name of the authentication tree or module",
+                                          "key": "authIndexValue",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"authId\": \"<string>\",\n  \"tokenId\": \"<string>\",\n  \"successUrl\": \"<string>\",\n  \"realm\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:02.000Z",
+                                  "updatedAt": "2026-07-28T01:41:02.000Z",
+                                  "uid": "35240-263e7d09-cde1-4b0d-bbf3-7ecef5e2d2f5"
+                                },
+                                {
+                                  "id": "5de4288c-a7ed-4c83-b822-691ab170b604",
+                                  "name": "Authentication failed",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CREST API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "iPlanetDirectoryPro",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/json/realms/root/realms/:realm/authenticate?authIndexType=service&authIndexValue=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "authenticate"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Type of authentication index",
+                                          "key": "authIndexType",
+                                          "value": "service"
+                                        },
+                                        {
+                                          "description": "Name of the authentication tree or module",
+                                          "key": "authIndexValue",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "realm"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:41:02.000Z",
+                                  "updatedAt": "2026-07-28T01:41:02.000Z",
+                                  "uid": "35240-5de4288c-a7ed-4c83-b822-691ab170b604"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:41:02.000Z",
+                              "updatedAt": "2026-07-28T01:41:02.000Z",
+                              "uid": "35240-31df830a-24c8-41df-b844-bda15b4f776a"
+                            }
+                          ],
+                          "id": "21e56e6d-de35-4d2e-8dae-6439cf81d194",
+                          "createdAt": "2026-07-28T01:41:02.000Z",
+                          "updatedAt": "2026-07-28T01:41:02.000Z",
+                          "uid": "35240-21e56e6d-de35-4d2e-8dae-6439cf81d194"
+                        }
+                      ],
+                      "id": "c58029f8-7fb0-4e9b-b4d6-34d3c975cb82",
+                      "createdAt": "2026-07-28T01:41:02.000Z",
+                      "updatedAt": "2026-07-28T01:41:02.000Z",
+                      "uid": "35240-c58029f8-7fb0-4e9b-b4d6-34d3c975cb82"
+                    }
+                  ],
+                  "id": "1d3d4ed2-70a1-4ac3-9854-81dbbf5eeb59",
+                  "createdAt": "2026-07-28T01:41:02.000Z",
+                  "updatedAt": "2026-07-28T01:41:02.000Z",
+                  "uid": "35240-1d3d4ed2-70a1-4ac3-9854-81dbbf5eeb59"
+                }
+              ],
+              "id": "111aeea7-a726-4059-815c-7b15b0d0a201",
+              "createdAt": "2026-07-28T01:41:02.000Z",
+              "updatedAt": "2026-07-28T01:41:02.000Z",
+              "uid": "35240-111aeea7-a726-4059-815c-7b15b0d0a201"
+            }
+          ],
+          "id": "13d25b6b-89fb-43c2-b1d0-00407b27a498",
+          "createdAt": "2026-07-28T01:41:02.000Z",
+          "updatedAt": "2026-07-28T01:41:02.000Z",
+          "uid": "35240-13d25b6b-89fb-43c2-b1d0-00407b27a498"
+        }
+      ],
+      "id": "6ac94408-8833-41a1-9be9-0f9ca283add4",
+      "createdAt": "2026-07-28T01:41:02.000Z",
+      "updatedAt": "2026-07-28T01:41:02.000Z",
+      "uid": "35240-6ac94408-8833-41a1-9be9-0f9ca283add4"
+    },
+    {
+      "name": "am",
+      "item": [
+        {
+          "name": "json",
+          "item": [
+            {
+              "name": "realms",
+              "item": [
+                {
+                  "name": "root",
+                  "item": [
+                    {
+                      "name": "realms",
+                      "item": [
+                        {
+                          "name": "{realm}",
+                          "item": [
+                            {
+                              "name": "authenticate",
+                              "item": [
+                                {
+                                  "name": "ForgeRock Authenticate a user",
+                                  "id": "5daad6da-d2c0-41e0-a82c-8fe0310476c3",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) API version protocol header",
+                                        "key": "Accept-API-Version",
+                                        "value": "resource=2.0,protocol=1.0"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/am/json/realms/root/realms/:realm/authenticate?authIndexType=level&authIndexValue=<string>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "am",
+                                        "json",
+                                        "realms",
+                                        "root",
+                                        "realms",
+                                        ":realm",
+                                        "authenticate"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "The type of authentication index to use (e.g., service, module)",
+                                          "key": "authIndexType",
+                                          "value": "level"
+                                        },
+                                        {
+                                          "description": "The value of the authentication index (e.g., the tree/journey name)",
+                                          "key": "authIndexValue",
+                                          "value": "<string>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3b4d483d-5b53-4ec9-aa59-7494293201f2",
+                                          "key": "realm",
+                                          "value": "alpha",
+                                          "description": "(Required) The realm name (e.g., alpha, bravo)"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Initiates or continues an authentication journey (tree) in the specified realm. Returns callbacks that the client must respond to, or a tokenId on successful completion of the journey."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "fdc534aa-37b6-414f-89cc-bfbfd0d56f1b",
+                                      "name": "Authentication step response containing callbacks or a successful authentication result with tokenId",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/am/json/realms/root/realms/:realm/authenticate?authIndexType=level&authIndexValue=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "am",
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "authenticate"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "The type of authentication index to use (e.g., service, module)",
+                                              "key": "authIndexType",
+                                              "value": "level"
+                                            },
+                                            {
+                                              "description": "The value of the authentication index (e.g., the tree/journey name)",
+                                              "key": "authIndexValue",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"authId\": \"<string>\",\n  \"tokenId\": \"<string>\",\n  \"successUrl\": \"<string>\",\n  \"realm\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T01:41:02.000Z",
+                                      "updatedAt": "2026-07-28T01:41:02.000Z",
+                                      "uid": "35240-fdc534aa-37b6-414f-89cc-bfbfd0d56f1b"
+                                    },
+                                    {
+                                      "id": "3457800d-e60c-465f-81a0-87604826a295",
+                                      "name": "Authentication failed",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) API version protocol header",
+                                            "key": "Accept-API-Version",
+                                            "value": "resource=2.0,protocol=1.0"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "iPlanetDirectoryPro",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The output value\"\n          }\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {\n            \"description\": \"The input value\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/am/json/realms/root/realms/:realm/authenticate?authIndexType=level&authIndexValue=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "am",
+                                            "json",
+                                            "realms",
+                                            "root",
+                                            "realms",
+                                            ":realm",
+                                            "authenticate"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "The type of authentication index to use (e.g., service, module)",
+                                              "key": "authIndexType",
+                                              "value": "level"
+                                            },
+                                            {
+                                              "description": "The value of the authentication index (e.g., the tree/journey name)",
+                                              "key": "authIndexValue",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realm"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                      "createdAt": "2026-07-28T01:41:02.000Z",
+                                      "updatedAt": "2026-07-28T01:41:02.000Z",
+                                      "uid": "35240-3457800d-e60c-465f-81a0-87604826a295"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T01:41:02.000Z",
+                                  "updatedAt": "2026-07-28T01:41:02.000Z",
+                                  "uid": "35240-5daad6da-d2c0-41e0-a82c-8fe0310476c3"
+                                }
+                              ],
+                              "id": "effb67b3-8f8a-429f-b53a-35232c584e2b",
+                              "createdAt": "2026-07-28T01:41:02.000Z",
+                              "updatedAt": "2026-07-28T01:41:02.000Z",
+                              "uid": "35240-effb67b3-8f8a-429f-b53a-35232c584e2b"
+                            }
+                          ],
+                          "id": "411770cb-cf6b-4df2-8bb4-afae3f51235d",
+                          "createdAt": "2026-07-28T01:41:02.000Z",
+                          "updatedAt": "2026-07-28T01:41:02.000Z",
+                          "uid": "35240-411770cb-cf6b-4df2-8bb4-afae3f51235d"
+                        }
+                      ],
+                      "id": "7ad7bbc2-c992-4d9a-9a5c-a89ea0869685",
+                      "createdAt": "2026-07-28T01:41:02.000Z",
+                      "updatedAt": "2026-07-28T01:41:02.000Z",
+                      "uid": "35240-7ad7bbc2-c992-4d9a-9a5c-a89ea0869685"
+                    }
+                  ],
+                  "id": "bfcc0bca-608a-4913-af01-39ac8be423a5",
+                  "createdAt": "2026-07-28T01:41:02.000Z",
+                  "updatedAt": "2026-07-28T01:41:02.000Z",
+                  "uid": "35240-bfcc0bca-608a-4913-af01-39ac8be423a5"
+                }
+              ],
+              "id": "e1752d22-5ef9-4dd2-9be8-e5abbef06e06",
+              "createdAt": "2026-07-28T01:41:02.000Z",
+              "updatedAt": "2026-07-28T01:41:02.000Z",
+              "uid": "35240-e1752d22-5ef9-4dd2-9be8-e5abbef06e06"
+            }
+          ],
+          "id": "baa18bc0-9915-489a-bdb9-86ab9a343fd9",
+          "createdAt": "2026-07-28T01:41:02.000Z",
+          "updatedAt": "2026-07-28T01:41:02.000Z",
+          "uid": "35240-baa18bc0-9915-489a-bdb9-86ab9a343fd9"
+        }
+      ],
+      "id": "1f2c01e7-0ff1-4fb5-b100-0f10a787d358",
+      "createdAt": "2026-07-28T01:41:02.000Z",
+      "updatedAt": "2026-07-28T01:41:02.000Z",
+      "uid": "35240-1f2c01e7-0ff1-4fb5-b100-0f10a787d358"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

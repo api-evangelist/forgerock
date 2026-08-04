@@ -1,0 +1,194 @@
+{
+  "info": {
+    "_postman_id": "8144c174-69eb-4a66-b03c-1a83cfaec09a",
+    "name": "ForgeRock Access Management Access Requests Entries API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:13.000Z",
+    "updatedAt": "2026-07-28T01:41:13.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8144c174-69eb-4a66-b03c-1a83cfaec09a"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "{collection}",
+          "item": [
+            {
+              "name": "List directory entries",
+              "id": "af100e45-4658-463e-a62b-0a5fb9bc9f5b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/:collection?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsCookie=<string>&_fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    ":collection"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Cookie from a previous page for server-side paging",
+                      "key": "_pagedResultsCookie",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of fields to return",
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "f05c73d1-2922-44ef-ad6a-632d2a1fc7e7",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The HDAP collection name"
+                    }
+                  ]
+                },
+                "description": "Query entries from any HDAP-configured collection endpoint. The collection maps to an LDAP subtree with a defined JSON-to-LDAP mapping."
+              },
+              "response": [
+                {
+                  "id": "7a738bf4-b1a5-48fd-a586-83b4609441b7",
+                  "name": "Query results",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/:collection?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsCookie=<string>&_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        ":collection"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Cookie from a previous page for server-side paging",
+                          "key": "_pagedResultsCookie",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\"\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"pagedResultsCookie\": \"<string>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:13.000Z",
+                  "updatedAt": "2026-07-28T01:41:13.000Z",
+                  "uid": "35240-7a738bf4-b1a5-48fd-a586-83b4609441b7"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:13.000Z",
+              "updatedAt": "2026-07-28T01:41:13.000Z",
+              "uid": "35240-af100e45-4658-463e-a62b-0a5fb9bc9f5b"
+            }
+          ],
+          "id": "e34425cd-63ac-4574-923f-b382c1746389",
+          "createdAt": "2026-07-28T01:41:13.000Z",
+          "updatedAt": "2026-07-28T01:41:13.000Z",
+          "uid": "35240-e34425cd-63ac-4574-923f-b382c1746389"
+        }
+      ],
+      "id": "5ffe5de8-8e51-4d0c-9ebb-adabfb09d589",
+      "createdAt": "2026-07-28T01:41:13.000Z",
+      "updatedAt": "2026-07-28T01:41:13.000Z",
+      "uid": "35240-5ffe5de8-8e51-4d0c-9ebb-adabfb09d589"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

@@ -1,0 +1,576 @@
+{
+  "info": {
+    "_postman_id": "82de5c41-d201-4aa2-a715-1be0ace4a0a5",
+    "name": "ForgeRock Access Management Access Requests Managed Roles API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:44.000Z",
+    "updatedAt": "2026-07-28T01:41:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-82de5c41-d201-4aa2-a715-1be0ace4a0a5"
+  },
+  "item": [
+    {
+      "name": "openidm",
+      "item": [
+        {
+          "name": "managed",
+          "item": [
+            {
+              "name": "{realm}_role",
+              "item": [
+                {
+                  "name": "{roleId}",
+                  "item": [
+                    {
+                      "name": "ForgeRock Get a managed role",
+                      "id": "0d4beff6-8d1b-4593-8cb9-1dbad794d336",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role/:roleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openidm",
+                            "managed",
+                            "{{realm}}_role",
+                            ":roleId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b6e8f6d9-1526-4291-8ef8-3cddf5297735",
+                              "key": "roleId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the managed role"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific managed role object by its identifier."
+                      },
+                      "response": [
+                        {
+                          "id": "77b11074-f29e-4f63-9f45-fbe46a81dfa9",
+                          "name": "The managed role object",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role/:roleId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openidm",
+                                "managed",
+                                "{{realm}}_role",
+                                ":roleId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "roleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:41:44.000Z",
+                          "updatedAt": "2026-07-28T01:41:44.000Z",
+                          "uid": "35240-77b11074-f29e-4f63-9f45-fbe46a81dfa9"
+                        },
+                        {
+                          "id": "0cabad25-2aea-4441-9804-f59df27aa0a9",
+                          "name": "Role not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role/:roleId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openidm",
+                                "managed",
+                                "{{realm}}_role",
+                                ":roleId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "roleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:41:44.000Z",
+                          "updatedAt": "2026-07-28T01:41:44.000Z",
+                          "uid": "35240-0cabad25-2aea-4441-9804-f59df27aa0a9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:41:44.000Z",
+                      "updatedAt": "2026-07-28T01:41:44.000Z",
+                      "uid": "35240-0d4beff6-8d1b-4593-8cb9-1dbad794d336"
+                    }
+                  ],
+                  "id": "bf4b14cf-6d76-4ddc-ace8-629526fc989a",
+                  "createdAt": "2026-07-28T01:41:44.000Z",
+                  "updatedAt": "2026-07-28T01:41:44.000Z",
+                  "uid": "35240-bf4b14cf-6d76-4ddc-ace8-629526fc989a"
+                },
+                {
+                  "name": "ForgeRock List managed roles",
+                  "id": "f62fb340-541c-4a6b-bebb-a6401e76a558",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "openidm",
+                        "managed",
+                        "{{realm}}_role"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results to return per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Offset for paginated results",
+                          "key": "_pagedResultsOffset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to include in the response",
+                          "key": "_fields",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Query managed role objects in the specified realm. Supports filtering, sorting, and pagination."
+                  },
+                  "response": [
+                    {
+                      "id": "038b6da2-b8db-40df-a57b-c363477c83aa",
+                      "name": "List of managed roles",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openidm",
+                            "managed",
+                            "{{realm}}_role"
+                          ],
+                          "query": [
+                            {
+                              "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)",
+                              "key": "_queryFilter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results to return per page",
+                              "key": "_pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Offset for paginated results",
+                              "key": "_pagedResultsOffset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"condition\": \"<string>\",\n      \"temporalConstraints\": [\n        {\n          \"duration\": \"<string>\"\n        },\n        {\n          \"duration\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"_id\": \"<string>\",\n      \"_rev\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"condition\": \"<string>\",\n      \"temporalConstraints\": [\n        {\n          \"duration\": \"<string>\"\n        },\n        {\n          \"duration\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"pagedResultsCookie\": \"<string>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:41:44.000Z",
+                      "updatedAt": "2026-07-28T01:41:44.000Z",
+                      "uid": "35240-038b6da2-b8db-40df-a57b-c363477c83aa"
+                    },
+                    {
+                      "id": "2cc6b6e6-988b-4962-bbc7-7e7ad12a709d",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openidm",
+                            "managed",
+                            "{{realm}}_role"
+                          ],
+                          "query": [
+                            {
+                              "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)",
+                              "key": "_queryFilter",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Number of results to return per page",
+                              "key": "_pageSize",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Offset for paginated results",
+                              "key": "_pagedResultsOffset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Comma-separated list of fields to include in the response",
+                              "key": "_fields",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:44.000Z",
+                      "updatedAt": "2026-07-28T01:41:44.000Z",
+                      "uid": "35240-2cc6b6e6-988b-4962-bbc7-7e7ad12a709d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:44.000Z",
+                  "updatedAt": "2026-07-28T01:41:44.000Z",
+                  "uid": "35240-f62fb340-541c-4a6b-bebb-a6401e76a558"
+                },
+                {
+                  "name": "ForgeRock Create a managed role",
+                  "id": "573dbecd-b188-470e-bce3-4d33877b52c2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "openidm",
+                        "managed",
+                        "{{realm}}_role"
+                      ]
+                    },
+                    "description": "Create a new managed role object in the specified realm."
+                  },
+                  "response": [
+                    {
+                      "id": "6247115e-9e18-4202-9ecc-484a68f58a7d",
+                      "name": "Managed role created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openidm",
+                            "managed",
+                            "{{realm}}_role"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:41:44.000Z",
+                      "updatedAt": "2026-07-28T01:41:44.000Z",
+                      "uid": "35240-6247115e-9e18-4202-9ecc-484a68f58a7d"
+                    },
+                    {
+                      "id": "24ec7d7b-928e-4372-b3b8-3ae82a4de8cf",
+                      "name": "Bad request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"_id\": \"<string>\",\n  \"_rev\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"temporalConstraints\": [\n    {\n      \"duration\": \"<string>\"\n    },\n    {\n      \"duration\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/openidm/managed/{{realm}}_role",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openidm",
+                            "managed",
+                            "{{realm}}_role"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:44.000Z",
+                      "updatedAt": "2026-07-28T01:41:44.000Z",
+                      "uid": "35240-24ec7d7b-928e-4372-b3b8-3ae82a4de8cf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:44.000Z",
+                  "updatedAt": "2026-07-28T01:41:44.000Z",
+                  "uid": "35240-573dbecd-b188-470e-bce3-4d33877b52c2"
+                }
+              ],
+              "id": "6c00aa45-eafc-494f-8718-e04eae70bec3",
+              "createdAt": "2026-07-28T01:41:44.000Z",
+              "updatedAt": "2026-07-28T01:41:44.000Z",
+              "uid": "35240-6c00aa45-eafc-494f-8718-e04eae70bec3"
+            }
+          ],
+          "id": "63965dbd-5f88-4fd0-83ee-5586b775d961",
+          "createdAt": "2026-07-28T01:41:44.000Z",
+          "updatedAt": "2026-07-28T01:41:44.000Z",
+          "uid": "35240-63965dbd-5f88-4fd0-83ee-5586b775d961"
+        }
+      ],
+      "id": "bd8b1d51-868d-40ba-9f2e-35794401d44b",
+      "createdAt": "2026-07-28T01:41:44.000Z",
+      "updatedAt": "2026-07-28T01:41:44.000Z",
+      "uid": "35240-bd8b1d51-868d-40ba-9f2e-35794401d44b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    },
+    {
+      "key": "realm",
+      "value": "alpha"
+    }
+  ]
+}

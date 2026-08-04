@@ -1,0 +1,949 @@
+{
+  "info": {
+    "_postman_id": "4ccdf966-407b-48a4-bd79-f7ab5cea536d",
+    "name": "ForgeRock Access Management Access Requests Entitlements API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:12.000Z",
+    "updatedAt": "2026-07-28T01:41:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4ccdf966-407b-48a4-bd79-f7ab5cea536d"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "entitlements",
+          "item": [
+            {
+              "name": "{entitlementId}",
+              "item": [
+                {
+                  "name": "users",
+                  "item": [
+                    {
+                      "name": "ForgeRock List users with entitlement",
+                      "id": "2fb4a9ea-ba4d-407d-af88-59e7b733616c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/entitlements/:entitlementId/users?maxResults=25&offset=0&confidenceThreshold=<number>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "entitlements",
+                            ":entitlementId",
+                            "users"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "maxResults",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Offset for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Filter by minimum confidence score",
+                              "key": "confidenceThreshold",
+                              "value": "<number>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "2bb6a7f0-5e00-4163-9618-a5f82d3fefe4",
+                              "key": "entitlementId",
+                              "value": "<string>",
+                              "description": "(Required) The entitlement identifier"
+                            }
+                          ]
+                        },
+                        "description": "List all users assigned to a specific entitlement with their individual confidence scores and driving attributes."
+                      },
+                      "response": [
+                        {
+                          "id": "99ab640f-473c-4012-a5d0-a4a32348f4c5",
+                          "name": "List of users with confidence scores",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/entitlements/:entitlementId/users?maxResults=25&offset=0&confidenceThreshold=<number>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "entitlements",
+                                ":entitlementId",
+                                "users"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of results to return",
+                                  "key": "maxResults",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Filter by minimum confidence score",
+                                  "key": "confidenceThreshold",
+                                  "value": "<number>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entitlementId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": [\n    {\n      \"userId\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"confidenceScore\": \"<number>\",\n      \"drivingAttributes\": {\n        \"reprehenderit_1f\": \"<string>\",\n        \"ipsumf57\": \"<string>\"\n      }\n    },\n    {\n      \"userId\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"confidenceScore\": \"<number>\",\n      \"drivingAttributes\": {\n        \"dolorc67\": \"<string>\",\n        \"laborum9\": \"<string>\",\n        \"tempor1a\": \"<string>\",\n        \"elit_4c3\": \"<string>\"\n      }\n    }\n  ],\n  \"totalResults\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:41:12.000Z",
+                          "updatedAt": "2026-07-28T01:41:12.000Z",
+                          "uid": "35240-99ab640f-473c-4012-a5d0-a4a32348f4c5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:41:12.000Z",
+                      "updatedAt": "2026-07-28T01:41:12.000Z",
+                      "uid": "35240-2fb4a9ea-ba4d-407d-af88-59e7b733616c"
+                    }
+                  ],
+                  "id": "2062709a-14af-49f0-ab2e-bee8fa83ef0d",
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-2062709a-14af-49f0-ab2e-bee8fa83ef0d"
+                },
+                {
+                  "name": "recommendations",
+                  "item": [
+                    {
+                      "name": "ForgeRock Get entitlement recommendations",
+                      "id": "bfa20850-fa04-45aa-98b6-60576c6d7ae3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/entitlements/:entitlementId/recommendations?maxResults=25&offset=0&confidenceThreshold=<number>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "entitlements",
+                            ":entitlementId",
+                            "recommendations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results to return",
+                              "key": "maxResults",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Offset for pagination",
+                              "key": "offset",
+                              "value": "0"
+                            },
+                            {
+                              "description": "Minimum confidence score for recommendations",
+                              "key": "confidenceThreshold",
+                              "value": "<number>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "a9cad153-3b0b-4ab0-9726-3e4391f661fe",
+                              "key": "entitlementId",
+                              "value": "<string>",
+                              "description": "(Required) The entitlement identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve recommendations for users who do not have the entitlement but should, based on their attribute data and the AI model's predictions."
+                      },
+                      "response": [
+                        {
+                          "id": "475135d2-1044-4600-ab14-d3d14097b9e2",
+                          "name": "Recommendations for the entitlement",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "iPlanetDirectoryPro",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/entitlements/:entitlementId/recommendations?maxResults=25&offset=0&confidenceThreshold=<number>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "entitlements",
+                                ":entitlementId",
+                                "recommendations"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of results to return",
+                                  "key": "maxResults",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Offset for pagination",
+                                  "key": "offset",
+                                  "value": "0"
+                                },
+                                {
+                                  "description": "Minimum confidence score for recommendations",
+                                  "key": "confidenceThreshold",
+                                  "value": "<number>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "entitlementId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"result\": [\n    {\n      \"userId\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"entitlementId\": \"<string>\",\n      \"entitlementName\": \"<string>\",\n      \"application\": \"<string>\",\n      \"confidenceScore\": \"<number>\",\n      \"drivingAttributes\": {\n        \"commodo_a8\": \"<string>\"\n      }\n    },\n    {\n      \"userId\": \"<string>\",\n      \"userName\": \"<string>\",\n      \"entitlementId\": \"<string>\",\n      \"entitlementName\": \"<string>\",\n      \"application\": \"<string>\",\n      \"confidenceScore\": \"<number>\",\n      \"drivingAttributes\": {\n        \"mollit_9f2\": \"<string>\",\n        \"eiusmod_b7\": \"<string>\"\n      }\n    }\n  ],\n  \"totalResults\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T01:41:12.000Z",
+                          "updatedAt": "2026-07-28T01:41:12.000Z",
+                          "uid": "35240-475135d2-1044-4600-ab14-d3d14097b9e2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:41:12.000Z",
+                      "updatedAt": "2026-07-28T01:41:12.000Z",
+                      "uid": "35240-bfa20850-fa04-45aa-98b6-60576c6d7ae3"
+                    }
+                  ],
+                  "id": "4046c6b3-3ada-4763-9fff-879074db4276",
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-4046c6b3-3ada-4763-9fff-879074db4276"
+                },
+                {
+                  "name": "ForgeRock Get entitlement details",
+                  "id": "a7db2394-2f26-4f9f-861b-e47c35e91412",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/entitlements/:entitlementId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "entitlements",
+                        ":entitlementId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7204ddd8-e09c-4ee9-bccf-b0df79907144",
+                          "key": "entitlementId",
+                          "value": "<string>",
+                          "description": "(Required) The entitlement identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve detailed information about a specific entitlement including confidence score distribution, assigned users, and driving attributes."
+                  },
+                  "response": [
+                    {
+                      "id": "a3ae239e-664c-47e7-8151-8cbe331709f4",
+                      "name": "Entitlement details with analytics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/entitlements/:entitlementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "entitlements",
+                            ":entitlementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entitlementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"application\": \"<string>\",\n  \"totalUsers\": \"<integer>\",\n  \"averageConfidenceScore\": \"<number>\",\n  \"confidenceDistribution\": {\n    \"high\": \"<integer>\",\n    \"medium\": \"<integer>\",\n    \"low\": \"<integer>\"\n  },\n  \"drivingAttributes\": [\n    {\n      \"attribute\": \"<string>\",\n      \"weight\": \"<number>\"\n    },\n    {\n      \"attribute\": \"<string>\",\n      \"weight\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:41:12.000Z",
+                      "updatedAt": "2026-07-28T01:41:12.000Z",
+                      "uid": "35240-a3ae239e-664c-47e7-8151-8cbe331709f4"
+                    },
+                    {
+                      "id": "bd99072d-5f1a-4bb2-ae72-8d603ad86452",
+                      "name": "Entitlement not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/entitlements/:entitlementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "entitlements",
+                            ":entitlementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entitlementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:12.000Z",
+                      "updatedAt": "2026-07-28T01:41:12.000Z",
+                      "uid": "35240-bd99072d-5f1a-4bb2-ae72-8d603ad86452"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-a7db2394-2f26-4f9f-861b-e47c35e91412"
+                }
+              ],
+              "id": "2481e6c5-7482-4fae-aa63-10a29b9f1343",
+              "createdAt": "2026-07-28T01:41:12.000Z",
+              "updatedAt": "2026-07-28T01:41:12.000Z",
+              "uid": "35240-2481e6c5-7482-4fae-aa63-10a29b9f1343"
+            },
+            {
+              "name": "ForgeRock List entitlements",
+              "id": "41f1e562-fbb5-4108-91aa-da5d865a1077",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/entitlements?maxResults=25&offset=0&application=<string>&confidenceThreshold=<number>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "entitlements"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter by application name",
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Minimum confidence score threshold (0-100)",
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ]
+                },
+                "description": "Query entitlements across all onboarded applications. Returns entitlement details with aggregated confidence score statistics."
+              },
+              "response": [
+                {
+                  "id": "0cdd89b0-51c1-4e56-b74d-f1253a64f315",
+                  "name": "List of entitlements with confidence data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/entitlements?maxResults=25&offset=0&application=<string>&confidenceThreshold=<number>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "entitlements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "maxResults",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter by application name",
+                          "key": "application",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Minimum confidence score threshold (0-100)",
+                          "key": "confidenceThreshold",
+                          "value": "<number>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"totalUsers\": \"<integer>\",\n      \"averageConfidenceScore\": \"<number>\",\n      \"confidenceDistribution\": {\n        \"high\": \"<integer>\",\n        \"medium\": \"<integer>\",\n        \"low\": \"<integer>\"\n      },\n      \"drivingAttributes\": [\n        {\n          \"attribute\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"application\": \"<string>\",\n      \"totalUsers\": \"<integer>\",\n      \"averageConfidenceScore\": \"<number>\",\n      \"confidenceDistribution\": {\n        \"high\": \"<integer>\",\n        \"medium\": \"<integer>\",\n        \"low\": \"<integer>\"\n      },\n      \"drivingAttributes\": [\n        {\n          \"attribute\": \"<string>\",\n          \"weight\": \"<number>\"\n        },\n        {\n          \"attribute\": \"<string>\",\n          \"weight\": \"<number>\"\n        }\n      ]\n    }\n  ],\n  \"totalResults\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-0cdd89b0-51c1-4e56-b74d-f1253a64f315"
+                },
+                {
+                  "id": "14e4a7d4-7867-4c7d-b68c-d501052ace9f",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/entitlements?maxResults=25&offset=0&application=<string>&confidenceThreshold=<number>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "entitlements"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "maxResults",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter by application name",
+                          "key": "application",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Minimum confidence score threshold (0-100)",
+                          "key": "confidenceThreshold",
+                          "value": "<number>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-14e4a7d4-7867-4c7d-b68c-d501052ace9f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:12.000Z",
+              "updatedAt": "2026-07-28T01:41:12.000Z",
+              "uid": "35240-41f1e562-fbb5-4108-91aa-da5d865a1077"
+            }
+          ],
+          "id": "cbaa5a92-674e-43de-aeb7-720c3e3a308c",
+          "createdAt": "2026-07-28T01:41:12.000Z",
+          "updatedAt": "2026-07-28T01:41:12.000Z",
+          "uid": "35240-cbaa5a92-674e-43de-aeb7-720c3e3a308c"
+        }
+      ],
+      "id": "c6aeb123-8a39-4948-854c-019f1c6d860e",
+      "createdAt": "2026-07-28T01:41:12.000Z",
+      "updatedAt": "2026-07-28T01:41:12.000Z",
+      "uid": "35240-c6aeb123-8a39-4948-854c-019f1c6d860e"
+    },
+    {
+      "name": "governance",
+      "item": [
+        {
+          "name": "entitlement",
+          "item": [
+            {
+              "name": "{entitlementId}",
+              "item": [
+                {
+                  "name": "ForgeRock Get an entitlement",
+                  "id": "9cb9dce0-a886-49d8-95eb-bcd0379beadc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/entitlement/:entitlementId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "entitlement",
+                        ":entitlementId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e8d7f5e3-dff4-49d9-aa01-6819eb96e732",
+                          "key": "entitlementId",
+                          "value": "<string>",
+                          "description": "(Required) The entitlement identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific entitlement."
+                  },
+                  "response": [
+                    {
+                      "id": "30355a1c-cf6e-4f4c-a536-05de6d4f499d",
+                      "name": "Entitlement details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/governance/entitlement/:entitlementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "governance",
+                            "entitlement",
+                            ":entitlementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entitlementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"applicationName\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"owner\": \"<string>\",\n  \"riskLevel\": \"high\"\n}",
+                      "createdAt": "2026-07-28T01:41:12.000Z",
+                      "updatedAt": "2026-07-28T01:41:12.000Z",
+                      "uid": "35240-30355a1c-cf6e-4f4c-a536-05de6d4f499d"
+                    },
+                    {
+                      "id": "7a791e96-087c-4e90-94d0-057d86a0b4c1",
+                      "name": "Entitlement not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "iPlanetDirectoryPro",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/governance/entitlement/:entitlementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "governance",
+                            "entitlement",
+                            ":entitlementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "entitlementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:41:12.000Z",
+                      "updatedAt": "2026-07-28T01:41:12.000Z",
+                      "uid": "35240-7a791e96-087c-4e90-94d0-057d86a0b4c1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-9cb9dce0-a886-49d8-95eb-bcd0379beadc"
+                }
+              ],
+              "id": "43ed9b08-492e-4d30-945e-d08b5a1b01b7",
+              "createdAt": "2026-07-28T01:41:12.000Z",
+              "updatedAt": "2026-07-28T01:41:12.000Z",
+              "uid": "35240-43ed9b08-492e-4d30-945e-d08b5a1b01b7"
+            },
+            {
+              "name": "ForgeRock List entitlements",
+              "id": "1897f2bb-05be-43f6-b62e-6ec2a2af1770",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/governance/entitlement?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "governance",
+                    "entitlement"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Sort fields",
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Query the entitlements catalog. Entitlements are aggregated from onboarded target applications into a centralized repository."
+              },
+              "response": [
+                {
+                  "id": "365aa255-74ad-4034-bf3f-4eb72d297e70",
+                  "name": "List of entitlements",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/governance/entitlement?_queryFilter=<string>&_pageSize=<integer>&_pagedResultsOffset=<integer>&_sortKeys=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "governance",
+                        "entitlement"
+                      ],
+                      "query": [
+                        {
+                          "description": "CREST query filter expression",
+                          "key": "_queryFilter",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Number of results per page",
+                          "key": "_pageSize",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "_pagedResultsOffset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Sort fields",
+                          "key": "_sortKeys",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"applicationId\": \"<string>\",\n      \"type\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"riskLevel\": \"low\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"applicationName\": \"<string>\",\n      \"applicationId\": \"<string>\",\n      \"type\": \"<string>\",\n      \"owner\": \"<string>\",\n      \"riskLevel\": \"critical\"\n    }\n  ],\n  \"resultCount\": \"<integer>\",\n  \"totalPagedResults\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T01:41:12.000Z",
+                  "updatedAt": "2026-07-28T01:41:12.000Z",
+                  "uid": "35240-365aa255-74ad-4034-bf3f-4eb72d297e70"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:12.000Z",
+              "updatedAt": "2026-07-28T01:41:12.000Z",
+              "uid": "35240-1897f2bb-05be-43f6-b62e-6ec2a2af1770"
+            }
+          ],
+          "id": "0ff06313-a546-4f88-86c1-62ce4bf5e9e4",
+          "createdAt": "2026-07-28T01:41:12.000Z",
+          "updatedAt": "2026-07-28T01:41:12.000Z",
+          "uid": "35240-0ff06313-a546-4f88-86c1-62ce4bf5e9e4"
+        }
+      ],
+      "id": "507a0a13-dd11-4779-a11a-4ecc3a033ddb",
+      "createdAt": "2026-07-28T01:41:12.000Z",
+      "updatedAt": "2026-07-28T01:41:12.000Z",
+      "uid": "35240-507a0a13-dd11-4779-a11a-4ecc3a033ddb"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

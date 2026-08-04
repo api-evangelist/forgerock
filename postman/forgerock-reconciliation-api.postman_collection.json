@@ -1,0 +1,471 @@
+{
+  "info": {
+    "_postman_id": "81e4255f-dcc4-4eb4-af82-13fc0ab26b37",
+    "name": "ForgeRock Access Management Access Requests Reconciliation API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:57.000Z",
+    "updatedAt": "2026-07-28T01:41:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-81e4255f-dcc4-4eb4-af82-13fc0ab26b37"
+  },
+  "item": [
+    {
+      "name": "recon",
+      "item": [
+        {
+          "name": "{mappingName}",
+          "item": [
+            {
+              "name": "ForgeRock Trigger reconciliation",
+              "id": "66621050-216f-406b-b7c7-07b933442ea6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recon/:mappingName?_action=recon",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recon",
+                    ":mappingName"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Must be recon",
+                      "key": "_action",
+                      "value": "recon"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "e3d15a8a-5d1f-41bd-9b5d-32e41548ea00",
+                      "key": "mappingName",
+                      "value": "<string>",
+                      "description": "(Required) The sync mapping name (e.g., systemLdapAccounts_managedUser)"
+                    }
+                  ]
+                },
+                "description": "Trigger a reconciliation operation for the specified mapping. The mapping defines the source and target systems and the synchronization rules."
+              },
+              "response": [
+                {
+                  "id": "78e3bbaf-19de-42c0-9251-393c70d66ab0",
+                  "name": "Reconciliation initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recon/:mappingName?_action=recon",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recon",
+                        ":mappingName"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Must be recon",
+                          "key": "_action",
+                          "value": "recon"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "mappingName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"state\": \"CANCELED\",\n  \"stage\": \"<string>\",\n  \"mapping\": \"<string>\",\n  \"started\": \"<dateTime>\",\n  \"ended\": \"<dateTime>\",\n  \"progress\": {\n    \"source\": {\n      \"existing\": {\n        \"processed\": \"<integer>\",\n        \"total\": \"<string>\"\n      }\n    },\n    \"target\": {\n      \"existing\": {\n        \"processed\": \"<integer>\",\n        \"total\": \"<string>\"\n      }\n    }\n  },\n  \"situationSummary\": {\n    \"sit_70\": \"<integer>\",\n    \"ea_b98\": \"<integer>\",\n    \"magna25\": \"<integer>\",\n    \"dolor93d\": \"<integer>\"\n  },\n  \"statusSummary\": {\n    \"commodo_bcd\": \"<integer>\",\n    \"nulla2b\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:41:57.000Z",
+                  "updatedAt": "2026-07-28T01:41:57.000Z",
+                  "uid": "35240-78e3bbaf-19de-42c0-9251-393c70d66ab0"
+                },
+                {
+                  "id": "d9b387e6-ad97-4d2a-b631-41a0e1a5ffba",
+                  "name": "Mapping not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recon/:mappingName?_action=recon",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recon",
+                        ":mappingName"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Must be recon",
+                          "key": "_action",
+                          "value": "recon"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "mappingName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:57.000Z",
+                  "updatedAt": "2026-07-28T01:41:57.000Z",
+                  "uid": "35240-d9b387e6-ad97-4d2a-b631-41a0e1a5ffba"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:57.000Z",
+              "updatedAt": "2026-07-28T01:41:57.000Z",
+              "uid": "35240-66621050-216f-406b-b7c7-07b933442ea6"
+            }
+          ],
+          "id": "52778ace-bb18-4dd3-a5af-aa979cf91195",
+          "createdAt": "2026-07-28T01:41:57.000Z",
+          "updatedAt": "2026-07-28T01:41:57.000Z",
+          "uid": "35240-52778ace-bb18-4dd3-a5af-aa979cf91195"
+        },
+        {
+          "name": "{reconId}",
+          "item": [
+            {
+              "name": "ForgeRock Get reconciliation details",
+              "id": "b07fe59c-58da-4596-98c2-2e12e22cd0c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recon/:reconId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recon",
+                    ":reconId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d5aa448c-a493-40c2-ab5c-9e66f6cbc95c",
+                      "key": "reconId",
+                      "value": "<string>",
+                      "description": "(Required) The reconciliation run identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve details about a specific reconciliation run."
+              },
+              "response": [
+                {
+                  "id": "927d1424-e37c-4c5e-a097-27c67fcd10bb",
+                  "name": "Reconciliation details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recon/:reconId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recon",
+                        ":reconId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reconId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"_id\": \"<string>\",\n  \"state\": \"CANCELED\",\n  \"stage\": \"<string>\",\n  \"mapping\": \"<string>\",\n  \"started\": \"<dateTime>\",\n  \"ended\": \"<dateTime>\",\n  \"progress\": {\n    \"source\": {\n      \"existing\": {\n        \"processed\": \"<integer>\",\n        \"total\": \"<string>\"\n      }\n    },\n    \"target\": {\n      \"existing\": {\n        \"processed\": \"<integer>\",\n        \"total\": \"<string>\"\n      }\n    }\n  },\n  \"situationSummary\": {\n    \"sit_70\": \"<integer>\",\n    \"ea_b98\": \"<integer>\",\n    \"magna25\": \"<integer>\",\n    \"dolor93d\": \"<integer>\"\n  },\n  \"statusSummary\": {\n    \"commodo_bcd\": \"<integer>\",\n    \"nulla2b\": \"<integer>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:41:57.000Z",
+                  "updatedAt": "2026-07-28T01:41:57.000Z",
+                  "uid": "35240-927d1424-e37c-4c5e-a097-27c67fcd10bb"
+                },
+                {
+                  "id": "4151d12c-891d-4ca3-8752-4e737a0c4ae4",
+                  "name": "Reconciliation not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "iPlanetDirectoryPro",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/recon/:reconId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "recon",
+                        ":reconId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reconId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"reason\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:41:57.000Z",
+                  "updatedAt": "2026-07-28T01:41:57.000Z",
+                  "uid": "35240-4151d12c-891d-4ca3-8752-4e737a0c4ae4"
+                }
+              ],
+              "createdAt": "2026-07-28T01:41:57.000Z",
+              "updatedAt": "2026-07-28T01:41:57.000Z",
+              "uid": "35240-b07fe59c-58da-4596-98c2-2e12e22cd0c7"
+            }
+          ],
+          "id": "b3b7b0b5-7f81-4ceb-93b6-81c1611e2bef",
+          "createdAt": "2026-07-28T01:41:57.000Z",
+          "updatedAt": "2026-07-28T01:41:57.000Z",
+          "uid": "35240-b3b7b0b5-7f81-4ceb-93b6-81c1611e2bef"
+        },
+        {
+          "name": "ForgeRock List reconciliation runs",
+          "id": "d8682a58-53bc-4b55-91af-66271067fa62",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/recon?_queryFilter=<string>&_pageSize=<integer>&_sortKeys=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "recon"
+              ],
+              "query": [
+                {
+                  "description": "CREST query filter expression",
+                  "key": "_queryFilter",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Number of results per page",
+                  "key": "_pageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Comma-separated sort fields (prefix with - for descending)",
+                  "key": "_sortKeys",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Query reconciliation run records. Returns details about past and in-progress reconciliation operations."
+          },
+          "response": [
+            {
+              "id": "1db19fc3-8e19-4b1d-b577-bcb6438e6af9",
+              "name": "List of reconciliation records",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/recon?_queryFilter=<string>&_pageSize=<integer>&_sortKeys=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "recon"
+                  ],
+                  "query": [
+                    {
+                      "description": "CREST query filter expression",
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Number of results per page",
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Comma-separated sort fields (prefix with - for descending)",
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"<string>\",\n      \"state\": \"CANCELED\",\n      \"stage\": \"<string>\",\n      \"mapping\": \"<string>\",\n      \"started\": \"<dateTime>\",\n      \"ended\": \"<dateTime>\",\n      \"progress\": {\n        \"source\": {\n          \"existing\": {\n            \"processed\": \"<integer>\",\n            \"total\": \"<string>\"\n          }\n        },\n        \"target\": {\n          \"existing\": {\n            \"processed\": \"<integer>\",\n            \"total\": \"<string>\"\n          }\n        }\n      },\n      \"situationSummary\": {\n        \"non_f95\": \"<integer>\",\n        \"labore2\": \"<integer>\"\n      },\n      \"statusSummary\": {\n        \"dolore055\": \"<integer>\",\n        \"occaecat_9\": \"<integer>\",\n        \"reprehenderit8_9\": \"<integer>\",\n        \"esse7\": \"<integer>\"\n      }\n    },\n    {\n      \"_id\": \"<string>\",\n      \"state\": \"FAILED\",\n      \"stage\": \"<string>\",\n      \"mapping\": \"<string>\",\n      \"started\": \"<dateTime>\",\n      \"ended\": \"<dateTime>\",\n      \"progress\": {\n        \"source\": {\n          \"existing\": {\n            \"processed\": \"<integer>\",\n            \"total\": \"<string>\"\n          }\n        },\n        \"target\": {\n          \"existing\": {\n            \"processed\": \"<integer>\",\n            \"total\": \"<string>\"\n          }\n        }\n      },\n      \"situationSummary\": {\n        \"dolor_733\": \"<integer>\"\n      },\n      \"statusSummary\": {\n        \"incididunt1\": \"<integer>\"\n      }\n    }\n  ],\n  \"resultCount\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T01:41:57.000Z",
+              "updatedAt": "2026-07-28T01:41:57.000Z",
+              "uid": "35240-1db19fc3-8e19-4b1d-b577-bcb6438e6af9"
+            }
+          ],
+          "createdAt": "2026-07-28T01:41:57.000Z",
+          "updatedAt": "2026-07-28T01:41:57.000Z",
+          "uid": "35240-d8682a58-53bc-4b55-91af-66271067fa62"
+        }
+      ],
+      "id": "5220a6ab-19e1-4db6-9ad1-a573fa6b2f7e",
+      "createdAt": "2026-07-28T01:41:57.000Z",
+      "updatedAt": "2026-07-28T01:41:57.000Z",
+      "uid": "35240-5220a6ab-19e1-4db6-9ad1-a573fa6b2f7e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}

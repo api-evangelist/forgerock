@@ -1,0 +1,274 @@
+{
+  "info": {
+    "_postman_id": "85bd0124-4f94-4be1-9cd8-725a9f3d4c6e",
+    "name": "ForgeRock Access Management Access Requests Health API",
+    "description": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:41:42.000Z",
+    "updatedAt": "2026-07-28T01:41:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-85bd0124-4f94-4be1-9cd8-725a9f3d4c6e"
+  },
+  "item": [
+    {
+      "name": "alive",
+      "item": [
+        {
+          "name": "Health check",
+          "id": "eb7a1025-6a9c-462e-84f9-51e5107293c4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/alive",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "alive"
+              ]
+            },
+            "description": "Returns the health status of the DS instance. Used by load balancers and monitoring systems."
+          },
+          "response": [
+            {
+              "id": "fbc1d87e-dace-428b-a949-864a902acb43",
+              "name": "DS is healthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alive",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alive"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T01:41:42.000Z",
+              "updatedAt": "2026-07-28T01:41:42.000Z",
+              "uid": "35240-fbc1d87e-dace-428b-a949-864a902acb43"
+            },
+            {
+              "id": "1031cd1e-7276-4664-994a-b292a1c6fad2",
+              "name": "DS is not healthy",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/alive",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "alive"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:41:42.000Z",
+              "updatedAt": "2026-07-28T01:41:42.000Z",
+              "uid": "35240-1031cd1e-7276-4664-994a-b292a1c6fad2"
+            }
+          ],
+          "createdAt": "2026-07-28T01:41:42.000Z",
+          "updatedAt": "2026-07-28T01:41:42.000Z",
+          "uid": "35240-eb7a1025-6a9c-462e-84f9-51e5107293c4"
+        }
+      ],
+      "id": "488c0519-bab0-4e23-b6b6-55725fe55ec4",
+      "createdAt": "2026-07-28T01:41:42.000Z",
+      "updatedAt": "2026-07-28T01:41:42.000Z",
+      "uid": "35240-488c0519-bab0-4e23-b6b6-55725fe55ec4"
+    },
+    {
+      "name": "healthy",
+      "item": [
+        {
+          "name": "Detailed health check",
+          "id": "46a20cb6-9b02-4942-a305-bec217588989",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/healthy",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "healthy"
+              ]
+            },
+            "description": "Returns detailed health status of the DS instance including replication state."
+          },
+          "response": [
+            {
+              "id": "8765be04-ec12-4761-8299-f08f12ce0960",
+              "name": "DS is healthy and replicated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/healthy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "healthy"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"replicationStatus\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T01:41:42.000Z",
+              "updatedAt": "2026-07-28T01:41:42.000Z",
+              "uid": "35240-8765be04-ec12-4761-8299-f08f12ce0960"
+            },
+            {
+              "id": "a80efed9-d09d-4aa4-baf3-a007bfc7ec6b",
+              "name": "DS is unhealthy or degraded",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/healthy",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "healthy"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T01:41:42.000Z",
+              "updatedAt": "2026-07-28T01:41:42.000Z",
+              "uid": "35240-a80efed9-d09d-4aa4-baf3-a007bfc7ec6b"
+            }
+          ],
+          "createdAt": "2026-07-28T01:41:42.000Z",
+          "updatedAt": "2026-07-28T01:41:42.000Z",
+          "uid": "35240-46a20cb6-9b02-4942-a305-bec217588989"
+        }
+      ],
+      "id": "0505df9a-efda-4387-9f81-04fa38c35239",
+      "createdAt": "2026-07-28T01:41:42.000Z",
+      "updatedAt": "2026-07-28T01:41:42.000Z",
+      "uid": "35240-0505df9a-efda-4387-9f81-04fa38c35239"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "deployment",
+      "value": "am.example.com"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{deployment}}/am"
+    }
+  ]
+}
