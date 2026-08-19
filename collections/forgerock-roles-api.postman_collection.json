@@ -1,0 +1,184 @@
+{
+  "item": [
+    {
+      "id": "a37fa60a-a5b1-4166-8f14-f32dc827c7aa",
+      "name": "Roles",
+      "description": {
+        "content": "Manage identity governance roles",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2676ef5f-ea00-4a63-9de1-a34d1c73959e",
+          "name": "ForgeRock List governance roles",
+          "request": {
+            "name": "ForgeRock List governance roles",
+            "description": {
+              "content": "Query governance roles used in access policies and certifications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "role"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6fc4380-ab9c-4984-a9d8-3956c60f75f8",
+              "name": "List of governance roles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "role"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"owner\": \"string\",\n      \"members\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entitlements\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"owner\": \"string\",\n      \"members\": [\n        \"string\",\n        \"string\"\n      ],\n      \"entitlements\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"resultCount\": 6250\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d3e740fc-258d-445b-b200-4763fe4c39ca",
+    "name": "ForgeRock Access Management Access Requests Roles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

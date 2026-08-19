@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Applications API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/applications",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Query onboarded applications in the Autonomous Identity platform."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/applications/:applicationId",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path",
+                "description": "The application identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific onboarded application."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

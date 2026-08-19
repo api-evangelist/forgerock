@@ -1,0 +1,758 @@
+{
+  "item": [
+    {
+      "id": "3eeeebd7-dc21-44ea-b947-63ba98961ff9",
+      "name": "Sessions",
+      "description": {
+        "content": "Query, validate, and manage authenticated sessions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9b5363d-ae44-43d0-934c-0ac0b265b8b6",
+          "name": "ForgeRock Query sessions",
+          "request": {
+            "name": "ForgeRock Query sessions",
+            "description": {
+              "content": "Query active sessions in the specified realm. Requires administrative privileges.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter for sessions"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CREST API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d498d9e-dc53-4d84-b515-90356b4bcaf4",
+              "name": "List of active sessions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"username\": \"string\",\n      \"universalId\": \"string\",\n      \"realm\": \"string\",\n      \"latestAccessTime\": \"1947-11-12T00:31:37.641Z\",\n      \"maxIdleExpirationTime\": \"1971-07-29T06:18:44.107Z\",\n      \"maxSessionExpirationTime\": \"1985-10-30T16:19:45.961Z\"\n    },\n    {\n      \"username\": \"string\",\n      \"universalId\": \"string\",\n      \"realm\": \"string\",\n      \"latestAccessTime\": \"1959-08-01T17:16:24.703Z\",\n      \"maxIdleExpirationTime\": \"2026-02-16T14:06:29.246Z\",\n      \"maxSessionExpirationTime\": \"2000-07-28T12:04:30.444Z\"\n    }\n  ],\n  \"resultCount\": 3178,\n  \"totalPagedResults\": 8547\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10845eeb-6778-4bba-b0c2-f2b64203b80b",
+              "name": "Insufficient privileges",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2017,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "616786b4-98f5-4cd1-bc29-de43633d1005",
+          "name": "ForgeRock Perform a session action",
+          "request": {
+            "name": "ForgeRock Perform a session action",
+            "description": {
+              "content": "Perform an action on a session such as validate, logout, getSessionInfo, or refresh.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The session action to perform"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CREST API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5286fbd-1260-4080-8f2d-c15c11a9534a",
+              "name": "Session action result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"valid\": true,\n  \"uid\": \"string\",\n  \"realm\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1dc7f9d3-140a-4a06-80cd-3ec37d9a3531",
+              "name": "Invalid or expired session",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2017,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56e9ced5-2adc-4a67-98be-ea92a0ce2754",
+          "name": "ForgeRock Perform session actions",
+          "request": {
+            "name": "ForgeRock Perform session actions",
+            "description": {
+              "content": "Perform actions on sessions such as getting session info, refreshing idle timeout, or logging out. The action is specified via the _action query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform on the session"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a9c0f9a7-9cc3-4549-bd19-4b4e91296472",
+              "name": "Session action completed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"universalId\": \"string\",\n  \"realm\": \"string\",\n  \"latestAccessTime\": \"1979-10-21T23:24:44.433Z\",\n  \"maxIdleExpirationTime\": \"1999-11-19T17:10:24.686Z\",\n  \"maxSessionExpirationTime\": \"1995-10-15T08:00:56.899Z\",\n  \"properties\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c596f186-88b6-4503-8980-15fc7df422f1",
+              "name": "Session is invalid or expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tokenId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3878,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0ba52d18-4bd4-4ba0-9fad-c93ad81550fb",
+    "name": "ForgeRock Access Management Access Requests Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

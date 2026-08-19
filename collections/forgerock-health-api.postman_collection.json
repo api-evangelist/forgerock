@@ -1,0 +1,334 @@
+{
+  "item": [
+    {
+      "id": "e4289cf5-5635-45bc-83cb-602d145b7238",
+      "name": "Health",
+      "description": {
+        "content": "Health and status monitoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f63824f6-9389-443d-a3d1-aa3fdaa774ca",
+          "name": "Health check",
+          "request": {
+            "name": "Health check",
+            "description": {
+              "content": "Returns the health status of the DS instance. Used by load balancers and monitoring systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "601b36a1-7f87-4308-b54c-3e37b5d9b755",
+              "name": "DS is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Server is ALIVE",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6af66952-1034-445a-97cd-d5e569abbe9a",
+              "name": "DS is not healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a58b595-7c91-4e74-85dd-7b90ae135f35",
+          "name": "Detailed health check",
+          "request": {
+            "name": "Detailed health check",
+            "description": {
+              "content": "Returns detailed health status of the DS instance including replication state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "healthy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2921aff4-0b24-4589-9662-98db80ca8362",
+              "name": "DS is healthy and replicated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "healthy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"replicationStatus\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f1fa519-96aa-4299-83a8-7bc623c24a83",
+              "name": "DS is unhealthy or degraded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "healthy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d2d265b-8513-4494-a313-1f793d1ac57f",
+    "name": "ForgeRock Access Management Access Requests Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

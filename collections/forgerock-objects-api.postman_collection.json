@@ -1,0 +1,425 @@
+{
+  "item": [
+    {
+      "id": "2bcc2771-50a4-4a8e-a4e8-647ce924c880",
+      "name": "Objects",
+      "description": {
+        "content": "Inspect live IG configuration objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0070ea1c-9ace-4791-86e3-687a37ae1b89",
+          "name": "ForgeRock List configuration objects",
+          "request": {
+            "name": "ForgeRock List configuration objects",
+            "description": {
+              "content": "List all live configuration objects in the IG runtime, including routes, handlers, filters, and decorators currently loaded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a09d5290-b7cd-4187-a973-402c3c496205",
+              "name": "List of configuration objects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"resultCount\": 9950\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f73553e-3dac-4378-af14-81b5a0f4db16",
+              "name": "Forbidden - administrative access required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1619,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72e1fda5-d4b1-4734-9d94-6b9daa91e2dd",
+          "name": "ForgeRock Get a configuration object",
+          "request": {
+            "name": "ForgeRock Get a configuration object",
+            "description": {
+              "content": "Retrieve details of a specific live configuration object from the IG runtime.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                ":objectType",
+                ":objectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) Type of the configuration object"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectId",
+                  "description": "(Required) Identifier of the configuration object"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ccdb2aa-887c-4142-97fa-6f831ba35b8b",
+              "name": "Configuration object details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) Type of the configuration object"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) Identifier of the configuration object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"type\": \"string\",\n  \"name\": \"string\",\n  \"config\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "739a2d45-0de5-42c4-b09f-41869faad851",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) Type of the configuration object"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) Identifier of the configuration object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1619,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cf48ef39-f873-4c65-8ea2-dca05e647fa0",
+    "name": "ForgeRock Access Management Access Requests Objects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

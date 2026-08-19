@@ -1,0 +1,777 @@
+{
+  "item": [
+    {
+      "id": "53cfedb3-4eaa-4856-9337-6ec64df92fc0",
+      "name": "OAuth2",
+      "description": {
+        "content": "OAuth 2.0 token and authorization endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1e5d1a4-dc39-46ae-94b0-d008f5feb12b",
+          "name": "ForgeRock OAuth 2.0 authorization endpoint",
+          "request": {
+            "name": "ForgeRock OAuth 2.0 authorization endpoint",
+            "description": {
+              "content": "Initiates an OAuth 2.0 authorization code or implicit grant flow. Redirects the user agent to authenticate and consent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<uri>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fd05f0d-9da0-4f3a-8954-3811280e2597",
+              "name": "Redirect to login or consent",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1bca89ed-c0e1-47e0-ab7a-61703a472087",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc687d88-01c3-46a3-958e-e33293586b7b",
+          "name": "ForgeRock OAuth 2.0 token endpoint",
+          "request": {
+            "name": "ForgeRock OAuth 2.0 token endpoint",
+            "description": {
+              "content": "Exchange credentials for access tokens. Supports authorization_code, client_credentials, refresh_token, password, and device_code grants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "access_token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "redirect_uri",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fe8e8b96-1c86-4273-9bc5-443f52a1e74b",
+              "name": "Access token response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 8958,\n  \"refresh_token\": \"string\",\n  \"scope\": \"string\",\n  \"id_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6df1a0f-6904-4d0f-b547-6883e7351ffd",
+              "name": "Invalid grant",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "access_token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "997e8cb9-376b-4a2e-b058-f62f6166660b",
+          "name": "ForgeRock OAuth 2.0 token introspection",
+          "request": {
+            "name": "ForgeRock OAuth 2.0 token introspection",
+            "description": {
+              "content": "Retrieve information about an access token including its scope, expiration, and associated client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "tokeninfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "access_token",
+                  "value": "<string>",
+                  "description": "(Required) The access token to introspect"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a9d3d9b-6352-4142-9636-a5400c5c6da3",
+              "name": "Token information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "tokeninfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"grant_type\": \"string\",\n  \"scope\": [\n    \"string\",\n    \"string\"\n  ],\n  \"realm\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 2264,\n  \"client_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cad508c-ec95-4dea-9a16-dc375da6885f",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "tokeninfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "access_token",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "64c11eb9-7d15-4b3c-bf82-b84812f2c9ab",
+    "name": "ForgeRock Access Management Access Requests OAuth2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

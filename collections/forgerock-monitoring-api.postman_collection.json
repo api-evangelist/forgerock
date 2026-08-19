@@ -1,0 +1,482 @@
+{
+  "item": [
+    {
+      "id": "0f3bf346-ce1f-44fb-81a3-65ff1675207a",
+      "name": "Monitoring",
+      "description": {
+        "content": "Health check and monitoring endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fbe54c55-fa3f-4c93-8dcb-f68ee4d637b4",
+          "name": "ForgeRock Get monitoring summary",
+          "request": {
+            "name": "ForgeRock Get monitoring summary",
+            "description": {
+              "content": "Retrieve a monitoring summary of the IG instance, including request counts, response times, and status code distributions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "monitoring"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3e9e4c8-1fa6-4f57-9336-f3cc69266bdd",
+              "name": "Monitoring summary",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "monitoring"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRequestCount\": 8994,\n  \"totalResponseCount\": 708,\n  \"averageResponseTime\": 6310.708150060092,\n  \"statusCodeCounts\": {\n    \"key_0\": 7781,\n    \"key_1\": 8916\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3a381a90-a12e-42e5-903f-0f7cc028d0e7",
+          "name": "ForgeRock Get endpoint monitoring",
+          "request": {
+            "name": "ForgeRock Get endpoint monitoring",
+            "description": {
+              "content": "Retrieve monitoring data for a specific endpoint or route, including request counts and response time percentiles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "monitoring",
+                ":endpointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "endpointId",
+                  "description": "(Required) The endpoint or route identifier to monitor"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2f79407-abb9-4547-96f1-fbf0eafb8710",
+              "name": "Endpoint monitoring data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "monitoring",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The endpoint or route identifier to monitor"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestCount\": 285,\n  \"responseCount\": 3254,\n  \"averageResponseTime\": 631.7206883183801,\n  \"percentiles\": {\n    \"p50\": 9983.093294847686,\n    \"p95\": 6869.255060621571,\n    \"p99\": 9366.945820552082\n  },\n  \"statusCodeCounts\": {\n    \"key_0\": 6655,\n    \"key_1\": 3605\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fae327b-ef9c-44a3-beb0-8af12b66f65e",
+              "name": "Endpoint not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "monitoring",
+                    ":endpointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "endpointId",
+                      "description": "(Required) The endpoint or route identifier to monitor"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7542,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61b7baa2-edb1-4338-a6c9-125e6e45a6d2",
+          "name": "ForgeRock Check IG health",
+          "request": {
+            "name": "ForgeRock Check IG health",
+            "description": {
+              "content": "Returns the health status of the IG instance. Used for load balancer health checks and monitoring.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f31176d-e025-4a15-9b46-58eec9f61f30",
+              "name": "IG is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACTIVE\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0261fa62-bf41-4f9c-b6f4-28de8d5e0ac2",
+              "name": "IG is not healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"MAINTENANCE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8cc21a70-afef-4e2f-a2f4-2520c967dfe3",
+    "name": "ForgeRock Access Management Access Requests Monitoring API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

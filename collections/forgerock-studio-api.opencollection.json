@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Studio API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Studio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List studio routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/studio/routes"
+          },
+          "docs": "List routes available in the IG Studio interface for visual editing and management."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a route via Studio",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/openig/api/studio/routes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new route through the IG Studio API with a simplified configuration format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

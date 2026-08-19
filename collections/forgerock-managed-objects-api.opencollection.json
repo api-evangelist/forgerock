@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Managed Objects API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List managed objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/managed/:objectType",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields (prefix with - for descending)"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query managed objects of the specified type. Supports CREST query filters, pagination, sorting, and field selection."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/managed/:objectType",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Must be set to create for server-assigned IDs"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new managed object of the specified type. The server assigns the _id if not provided via the _action=create query parameter."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/managed/:objectType/:objectId",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific managed object by type and identifier."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Replace a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/managed/:objectType/:objectId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire managed object or create one with a client-assigned identifier."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Patch a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{deployment}/am/managed/:objectType/:objectId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a managed object using JSON Patch operations (add, remove, replace, increment)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a managed object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/managed/:objectType/:objectId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed object"
+              }
+            ]
+          },
+          "docs": "Delete a managed object by type and identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

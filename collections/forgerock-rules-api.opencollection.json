@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Rules API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List assignment rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/rules",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "entitlement",
+                "value": "",
+                "type": "query",
+                "description": "Filter by entitlement name"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name"
+              }
+            ]
+          },
+          "docs": "Query entitlement assignment rules derived from the AI model. Rules explain why specific entitlements are assigned based on user attribute combinations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "The rule identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific assignment rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

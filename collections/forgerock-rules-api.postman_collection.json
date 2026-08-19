@@ -1,0 +1,363 @@
+{
+  "item": [
+    {
+      "id": "6dccee30-6216-4fec-b56f-58b21b1398e8",
+      "name": "Rules",
+      "description": {
+        "content": "Access entitlement assignment rules and justifications",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09300d9b-013f-412a-9386-8ee25e92e1bd",
+          "name": "ForgeRock List assignment rules",
+          "request": {
+            "name": "ForgeRock List assignment rules",
+            "description": {
+              "content": "Query entitlement assignment rules derived from the AI model. Rules explain why specific entitlements are assigned based on user attribute combinations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "entitlement",
+                  "value": "<string>",
+                  "description": "Filter by entitlement name"
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application name"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94a4b751-fefa-405f-b9df-583fbfdad589",
+              "name": "List of rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "entitlement",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"entitlement\": \"string\",\n      \"application\": \"string\",\n      \"conditions\": [\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"startsWith\",\n          \"value\": \"string\"\n        },\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"startsWith\",\n          \"value\": \"string\"\n        }\n      ],\n      \"confidenceScore\": 5091.002765379383,\n      \"coverageCount\": 6042\n    },\n    {\n      \"id\": \"string\",\n      \"entitlement\": \"string\",\n      \"application\": \"string\",\n      \"conditions\": [\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"contains\",\n          \"value\": \"string\"\n        },\n        {\n          \"attribute\": \"string\",\n          \"operator\": \"equals\",\n          \"value\": \"string\"\n        }\n      ],\n      \"confidenceScore\": 3532.8010766781026,\n      \"coverageCount\": 417\n    }\n  ],\n  \"totalResults\": 6236\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7286a475-3090-47e4-a65b-2cff8b1b453a",
+          "name": "ForgeRock Get a rule",
+          "request": {
+            "name": "ForgeRock Get a rule",
+            "description": {
+              "content": "Retrieve details of a specific assignment rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) The rule identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "930ee7de-eccb-4bd1-a4d0-16e12bb77832",
+              "name": "Rule details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The rule identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"entitlement\": \"string\",\n  \"application\": \"string\",\n  \"conditions\": [\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"equals\",\n      \"value\": \"string\"\n    },\n    {\n      \"attribute\": \"string\",\n      \"operator\": \"equals\",\n      \"value\": \"string\"\n    }\n  ],\n  \"confidenceScore\": 214.12577811127485,\n  \"coverageCount\": 8721\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81b9ffa7-26d6-4e0c-bc81-52dd0fcb6691",
+              "name": "Rule not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) The rule identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4820,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "43d86bc8-bd4f-4baf-b357-26db5e8c750e",
+    "name": "ForgeRock Access Management Access Requests Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

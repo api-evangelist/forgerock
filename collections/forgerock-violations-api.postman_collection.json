@@ -1,0 +1,496 @@
+{
+  "item": [
+    {
+      "id": "2ca46c7b-9cee-4617-b8ec-cfac2903c221",
+      "name": "Violations",
+      "description": {
+        "content": "Manage policy violations and segregation of duties",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d21f940d-4623-496d-a53b-b0a1f6cfc50c",
+          "name": "ForgeRock List policy violations",
+          "request": {
+            "name": "ForgeRock List policy violations",
+            "description": {
+              "content": "Query segregation of duties (SoD) and compliance policy violations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "violation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7c054c7-c9cc-4595-b056-58e14e6e6185",
+              "name": "List of violations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"policyName\": \"string\",\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"conflictingEntitlements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"active\",\n      \"severity\": \"critical\",\n      \"detectedDate\": \"1976-10-27T18:07:36.612Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"policyName\": \"string\",\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"conflictingEntitlements\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"exception\",\n      \"severity\": \"low\",\n      \"detectedDate\": \"1963-09-13T21:00:03.987Z\"\n    }\n  ],\n  \"resultCount\": 2729,\n  \"totalPagedResults\": 1365\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3891e6c-7f53-4d3a-9287-b11b96326a63",
+          "name": "ForgeRock Get a policy violation",
+          "request": {
+            "name": "ForgeRock Get a policy violation",
+            "description": {
+              "content": "Retrieve details of a specific policy violation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "violation",
+                ":violationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) The violation identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2f554c0-7b9c-4f8d-a1bf-c06ba946f212",
+              "name": "Violation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) The violation identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"policyName\": \"string\",\n  \"userId\": \"string\",\n  \"userName\": \"string\",\n  \"conflictingEntitlements\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"exception\",\n  \"severity\": \"medium\",\n  \"detectedDate\": \"1999-01-24T17:20:42.424Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34b94a8b-2acc-4568-a331-e0b400490f71",
+              "name": "Violation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) The violation identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4940,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "295541e9-e29b-4736-8506-e83f5df46e8d",
+          "name": "ForgeRock Resolve a policy violation",
+          "request": {
+            "name": "ForgeRock Resolve a policy violation",
+            "description": {
+              "content": "Perform an action on a violation such as remediate, allow (exception), or escalate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "violation",
+                ":violationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "violationId",
+                  "description": "(Required) The violation identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\",\n  \"exceptionDuration\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e68229c7-4da7-474c-8f68-4b961e255579",
+              "name": "Violation action completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "violation",
+                    ":violationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "violationId",
+                      "description": "(Required) The violation identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\",\n  \"exceptionDuration\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"policyName\": \"string\",\n  \"userId\": \"string\",\n  \"userName\": \"string\",\n  \"conflictingEntitlements\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"exception\",\n  \"severity\": \"medium\",\n  \"detectedDate\": \"1999-01-24T17:20:42.424Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "712e19fe-e794-4629-83f9-743ad648359f",
+    "name": "ForgeRock Access Management Access Requests Violations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Routes API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Routes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List routes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/objects/router-handler/routes",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter for routes"
+              }
+            ]
+          },
+          "docs": "List all routes currently loaded in the IG router, including their names, conditions, and status."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/openig/api/system/objects/router-handler/routes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploy a new route configuration to the IG router. The route is immediately active upon creation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/objects/router-handler/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific route configuration by its identifier."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/openig/api/system/objects/router-handler/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a route configuration. The updated route is immediately active."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a route",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/openig/api/system/objects/router-handler/routes/:routeId",
+            "params": [
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "path",
+                "description": "The route identifier"
+              }
+            ]
+          },
+          "docs": "Remove a route from the IG router. The route is immediately deactivated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

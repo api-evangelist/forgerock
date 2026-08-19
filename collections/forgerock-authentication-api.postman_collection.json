@@ -1,0 +1,573 @@
+{
+  "item": [
+    {
+      "id": "ad440175-c8d3-4c88-97a9-298b5e9f46e7",
+      "name": "Authentication",
+      "description": {
+        "content": "Authenticate users via authentication trees and modules",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31dcbcdd-1421-43db-a0e7-ea9bdd9cb096",
+          "name": "ForgeRock Authenticate a user",
+          "request": {
+            "name": "ForgeRock Authenticate a user",
+            "description": {
+              "content": "Initiates or continues an authentication session using a specified authentication tree (journey) or module. On each step, the server returns callbacks that the client must respond to. On success, returns a tokenId (SSO token).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "authenticate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "authIndexType",
+                  "value": "<string>",
+                  "description": "Type of authentication index"
+                },
+                {
+                  "disabled": false,
+                  "key": "authIndexValue",
+                  "value": "<string>",
+                  "description": "Name of the authentication tree or module"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CREST API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"input\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"input\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92e47d24-d9e2-43c6-8b4c-b837a2eebab6",
+              "name": "Authentication step or success result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "authIndexType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authIndexValue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"input\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"input\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authId\": \"string\",\n  \"tokenId\": \"string\",\n  \"successUrl\": \"string\",\n  \"realm\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b321a34-5578-47c6-81de-4beaf506273c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "authIndexType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authIndexValue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"input\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"input\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4042,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b8bd78e-59c6-44aa-aa98-2fa11c5bb2cb",
+          "name": "ForgeRock Authenticate a user",
+          "request": {
+            "name": "ForgeRock Authenticate a user",
+            "description": {
+              "content": "Initiates or continues an authentication journey (tree) in the specified realm. Returns callbacks that the client must respond to, or a tokenId on successful completion of the journey.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "authenticate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "authIndexType",
+                  "value": "<string>",
+                  "description": "The type of authentication index to use (e.g., service, module)"
+                },
+                {
+                  "disabled": false,
+                  "key": "authIndexValue",
+                  "value": "<string>",
+                  "description": "The value of the authentication index (e.g., the tree/journey name)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"output\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "650c0a34-adb3-4b03-8547-895ac28d91a1",
+              "name": "Authentication step response containing callbacks or a successful authentication result with tokenId",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "authIndexType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authIndexValue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"authId\": \"string\",\n  \"tokenId\": \"string\",\n  \"successUrl\": \"string\",\n  \"realm\": \"string\",\n  \"callbacks\": [\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a54c064-47c6-4ac8-8c11-df75c46dbc9f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "authenticate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "authIndexType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authIndexValue",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"authId\": \"<string>\",\n  \"callbacks\": [\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    },\n    {\n      \"type\": \"NameCallback\",\n      \"output\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"input\": [\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"value\": {}\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 1515,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f42542f3-d145-4869-852b-2e6f78e40ddb",
+    "name": "ForgeRock Access Management Access Requests Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

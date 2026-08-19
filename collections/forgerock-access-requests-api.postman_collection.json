@@ -1,0 +1,680 @@
+{
+  "item": [
+    {
+      "id": "37c3db09-5ea3-4a66-bb73-1845b3ac84a5",
+      "name": "Access Requests",
+      "description": {
+        "content": "Request and approve access to resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "70e431a9-fe2d-42ca-b548-c97b0ca3ea2b",
+          "name": "ForgeRock List access requests",
+          "request": {
+            "name": "ForgeRock List access requests",
+            "description": {
+              "content": "Query access requests. Users can request access to applications, entitlements, or roles, and managers can request revocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Sort fields"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a11792a4-9f3a-4204-9053-da8813c2d16e",
+              "name": "List of access requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"requestType\": \"revoke\",\n      \"userId\": \"string\",\n      \"resourceType\": \"role\",\n      \"resourceId\": \"string\",\n      \"justification\": \"string\",\n      \"status\": \"failed\",\n      \"approver\": \"string\",\n      \"createdDate\": \"1975-04-16T18:17:14.911Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"requestType\": \"revoke\",\n      \"userId\": \"string\",\n      \"resourceType\": \"role\",\n      \"resourceId\": \"string\",\n      \"justification\": \"string\",\n      \"status\": \"failed\",\n      \"approver\": \"string\",\n      \"createdDate\": \"2013-04-15T08:20:55.446Z\"\n    }\n  ],\n  \"resultCount\": 2583,\n  \"totalPagedResults\": 5952\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e50d5ac0-03f4-4280-81db-ab2aa4b521db",
+          "name": "ForgeRock Create an access request",
+          "request": {
+            "name": "ForgeRock Create an access request",
+            "description": {
+              "content": "Submit a new access request for a user to gain access to a resource (application, entitlement, or role).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestType\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"justification\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approver\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3bd4089-6183-42e3-bda8-2ad34040884e",
+              "name": "Access request created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestType\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"justification\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approver\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"requestType\": \"grant\",\n  \"userId\": \"string\",\n  \"resourceType\": \"application\",\n  \"resourceId\": \"string\",\n  \"justification\": \"string\",\n  \"status\": \"failed\",\n  \"approver\": \"string\",\n  \"createdDate\": \"2022-05-28T20:59:30.879Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0672a3b-61e5-4a3f-a266-d61ca1161dbd",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestType\": \"<string>\",\n  \"userId\": \"<string>\",\n  \"resourceType\": \"<string>\",\n  \"resourceId\": \"<string>\",\n  \"justification\": \"<string>\",\n  \"status\": \"<string>\",\n  \"approver\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 663,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46627e74-02a7-4ffd-8a84-57cf19c38b89",
+          "name": "ForgeRock Get an access request",
+          "request": {
+            "name": "ForgeRock Get an access request",
+            "description": {
+              "content": "Retrieve details of a specific access request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) The access request identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59d7ba3f-333d-46f2-95df-03fee1e27c66",
+              "name": "Access request details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The access request identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"requestType\": \"grant\",\n  \"userId\": \"string\",\n  \"resourceType\": \"application\",\n  \"resourceId\": \"string\",\n  \"justification\": \"string\",\n  \"status\": \"failed\",\n  \"approver\": \"string\",\n  \"createdDate\": \"2022-05-28T20:59:30.879Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2fe9a54-9b33-44fd-a65d-f368c3174ff5",
+              "name": "Request not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The access request identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 663,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff386c44-1caa-43ed-92cb-4642a0201359",
+          "name": "ForgeRock Perform an access request action",
+          "request": {
+            "name": "ForgeRock Perform an access request action",
+            "description": {
+              "content": "Approve, deny, or cancel an access request via the _action query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "request",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) The access request identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5ed7309e-c036-46b2-8162-e634993854db",
+              "name": "Action completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "request",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) The access request identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"requestType\": \"grant\",\n  \"userId\": \"string\",\n  \"resourceType\": \"application\",\n  \"resourceId\": \"string\",\n  \"justification\": \"string\",\n  \"status\": \"failed\",\n  \"approver\": \"string\",\n  \"createdDate\": \"2022-05-28T20:59:30.879Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d47b3f6-a71e-4193-8bec-869d84b9f885",
+    "name": "ForgeRock Access Management Access Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

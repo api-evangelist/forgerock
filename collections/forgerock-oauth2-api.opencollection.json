@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests OAuth2 API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 authorization endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/authorize",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Initiates an OAuth 2.0 authorization code or implicit grant flow. Redirects the user agent to authenticate and consent."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 token endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/access_token",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange credentials for access tokens. Supports authorization_code, client_credentials, refresh_token, password, and device_code grants."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 token introspection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/tokeninfo",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "access_token",
+                "value": "",
+                "type": "query",
+                "description": "The access token to introspect"
+              }
+            ]
+          },
+          "docs": "Retrieve information about an access token including its scope, expiration, and associated client."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

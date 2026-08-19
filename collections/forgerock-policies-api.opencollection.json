@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Policies API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List authorization policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query authorization policies in the specified realm. Supports CREST query filters."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a policy or evaluate policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Action to perform (evaluate or evaluateTree)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new authorization policy, or evaluate policies using the _action=evaluate or _action=evaluateTree query parameter."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies/:policyName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "The policy name"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific authorization policy by name."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies/:policyName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "The policy name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an existing authorization policy."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/policies/:policyName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "The policy name"
+              }
+            ]
+          },
+          "docs": "Delete an authorization policy by name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

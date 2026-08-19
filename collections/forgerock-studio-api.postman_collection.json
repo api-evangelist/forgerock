@@ -1,0 +1,275 @@
+{
+  "item": [
+    {
+      "id": "cc61f84f-36d2-4048-8e09-171bc0638d7a",
+      "name": "Studio",
+      "description": {
+        "content": "IG Studio route design endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16dae8f3-3bcd-42a3-9772-a77b2758787f",
+          "name": "ForgeRock List studio routes",
+          "request": {
+            "name": "ForgeRock List studio routes",
+            "description": {
+              "content": "List routes available in the IG Studio interface for visual editing and management.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "studio",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60f4b597-650a-4017-bf16-2b690ac5d9be",
+              "name": "List of routes in Studio",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "studio",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"https://faQxVSyStnakcekkGYaHCPXmgx.vsAKqWKV2Lfjj3mYhOfTqqOcqb4l3Nv.sPE\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"https://NcYXRXrijXLGaUXAsTLZvgPRkgFDY.jdvquSpvNpDBYvmxvlaC9g47\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    }\n  ],\n  \"resultCount\": 2333\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac0f8426-472c-4627-b51d-55d6ee600b33",
+          "name": "ForgeRock Create a route via Studio",
+          "request": {
+            "name": "ForgeRock Create a route via Studio",
+            "description": {
+              "content": "Create a new route through the IG Studio API with a simplified configuration format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "studio",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d2c36e8-cb8e-4283-88b4-268d634940bc",
+              "name": "Route created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "studio",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://gqFKTVEvkqDGYBVtlJd.ldprBdRHR8AfuHOgHAxSBOjZ0Bqljn+5wtCIMZu5L3kLCEXJHATTysPbyMIw\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "80fe130c-34a6-431e-8058-65253bee71b2",
+    "name": "ForgeRock Access Management Access Requests Studio API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

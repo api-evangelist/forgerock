@@ -1,0 +1,930 @@
+{
+  "item": [
+    {
+      "id": "d53fd4a0-d954-4ea7-a4d3-62e5f0f542c2",
+      "name": "Routes",
+      "description": {
+        "content": "Manage IG route configurations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f26d3dd-5418-4c33-ae1f-a07bf36a1d28",
+          "name": "ForgeRock List routes",
+          "request": {
+            "name": "ForgeRock List routes",
+            "description": {
+              "content": "List all routes currently loaded in the IG router, including their names, conditions, and status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter for routes"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "53dd648c-2fc6-4950-bf4a-95f069f6bf9f",
+              "name": "List of routes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"http://FTFcXWXOBMwCeSKEpqobaUKyBnWyeV.maaagQESkjedwxhXrzEwiPnNG7Q\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"condition\": \"string\",\n      \"handler\": \"string\",\n      \"baseURI\": \"http://KLXMJDQSZocEmeVWkCFZwJCTHHVqp.mcWw4Dmt.0MXC8nIy4Msy1YLpkzka6nu8xr\",\n      \"heap\": [\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        },\n        {\n          \"name\": \"string\",\n          \"type\": \"string\",\n          \"config\": {}\n        }\n      ],\n      \"auditService\": {}\n    }\n  ],\n  \"resultCount\": 7245\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f37911b3-3ac6-4a85-a5d3-21c7a6d21c94",
+          "name": "ForgeRock Create a route",
+          "request": {
+            "name": "ForgeRock Create a route",
+            "description": {
+              "content": "Deploy a new route configuration to the IG router. The route is immediately active upon creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f649d3c6-7f02-42fc-b74c-d78acf4e2814",
+              "name": "Route created and deployed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://GHnQAhbKL.mffhE05beF\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8395c462-2704-4009-9619-7bc8f57a7a18",
+              "name": "Invalid route configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2404,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28a79001-2c5d-4464-95f1-74ed20302890",
+          "name": "ForgeRock Get a route",
+          "request": {
+            "name": "ForgeRock Get a route",
+            "description": {
+              "content": "Retrieve a specific route configuration by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) The route identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1288967e-266b-416b-a395-97e977efbdae",
+              "name": "The route configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://GHnQAhbKL.mffhE05beF\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "136b015c-31a7-4f6e-9122-dc7b3f479911",
+              "name": "Route not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2404,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dfd0adf-409f-46de-96fa-0975574ae224",
+          "name": "ForgeRock Update a route",
+          "request": {
+            "name": "ForgeRock Update a route",
+            "description": {
+              "content": "Replace a route configuration. The updated route is immediately active.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) The route identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6917c57-9085-44ed-8c0e-525ffb2b3104",
+              "name": "Route updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://GHnQAhbKL.mffhE05beF\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d70631ae-194d-4333-b84a-ead76a76401c",
+              "name": "Route not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"condition\": \"<string>\",\n  \"handler\": \"<string>\",\n  \"baseURI\": \"<uri>\",\n  \"heap\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"config\": \"<object>\"\n    }\n  ],\n  \"auditService\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2404,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e00b986a-d6b9-4b9b-b64d-cec78f0da291",
+          "name": "ForgeRock Delete a route",
+          "request": {
+            "name": "ForgeRock Delete a route",
+            "description": {
+              "content": "Remove a route from the IG router. The route is immediately deactivated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openig",
+                "api",
+                "system",
+                "objects",
+                "router-handler",
+                "routes",
+                ":routeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "routeId",
+                  "description": "(Required) The route identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6bb36a0-1621-4d92-9cd2-1005413e6679",
+              "name": "Route deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"condition\": \"string\",\n  \"handler\": \"string\",\n  \"baseURI\": \"https://GHnQAhbKL.mffhE05beF\",\n  \"heap\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"config\": {}\n    }\n  ],\n  \"auditService\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23b5db0a-3742-40cd-8d59-ba2ed86127d2",
+              "name": "Route not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openig",
+                    "api",
+                    "system",
+                    "objects",
+                    "router-handler",
+                    "routes",
+                    ":routeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "routeId",
+                      "description": "(Required) The route identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2404,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b5804747-9f4b-4f6e-8d59-46443cb2127c",
+    "name": "ForgeRock Access Management Access Requests Routes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

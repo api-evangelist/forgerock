@@ -1,0 +1,1024 @@
+{
+  "item": [
+    {
+      "id": "9f3f24f0-9bf8-4ba9-a3f4-848d648552b7",
+      "name": "Entitlements",
+      "description": {
+        "content": "Query entitlements and confidence scores",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c82ad6b-c1ff-4cf3-9cc1-b97bcd5935d7",
+          "name": "ForgeRock List entitlements",
+          "request": {
+            "name": "ForgeRock List entitlements",
+            "description": {
+              "content": "Query entitlements across all onboarded applications. Returns entitlement details with aggregated confidence score statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "application",
+                  "value": "<string>",
+                  "description": "Filter by application name"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Minimum confidence score threshold (0-100)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91930ff4-db69-4921-a6b2-cc1428a0a8b8",
+              "name": "List of entitlements with confidence data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"application\": \"string\",\n      \"totalUsers\": 9170,\n      \"averageConfidenceScore\": 9271.034822954325,\n      \"confidenceDistribution\": {\n        \"high\": 844,\n        \"medium\": 9423,\n        \"low\": 9508\n      },\n      \"drivingAttributes\": [\n        {\n          \"attribute\": \"string\",\n          \"weight\": 2941.2633075691906\n        },\n        {\n          \"attribute\": \"string\",\n          \"weight\": 4626.892664400021\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"application\": \"string\",\n      \"totalUsers\": 6414,\n      \"averageConfidenceScore\": 9309.648462462243,\n      \"confidenceDistribution\": {\n        \"high\": 4989,\n        \"medium\": 2270,\n        \"low\": 6811\n      },\n      \"drivingAttributes\": [\n        {\n          \"attribute\": \"string\",\n          \"weight\": 4822.6509493200265\n        },\n        {\n          \"attribute\": \"string\",\n          \"weight\": 2279.3787657818343\n        }\n      ]\n    }\n  ],\n  \"totalResults\": 1412,\n  \"offset\": 9055\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50b57a98-df0e-4b01-be8b-55ef0e935c3d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "application",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9775,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92e1adfc-31db-4d2d-a9fc-4cf50ea578c9",
+          "name": "ForgeRock Get entitlement details",
+          "request": {
+            "name": "ForgeRock Get entitlement details",
+            "description": {
+              "content": "Retrieve detailed information about a specific entitlement including confidence score distribution, assigned users, and driving attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements",
+                ":entitlementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38a2d440-ad3d-4f3a-8af7-fbb52e53ff3e",
+              "name": "Entitlement details with analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"application\": \"string\",\n  \"totalUsers\": 1586,\n  \"averageConfidenceScore\": 8664.375180269137,\n  \"confidenceDistribution\": {\n    \"high\": 1201,\n    \"medium\": 6218,\n    \"low\": 1341\n  },\n  \"drivingAttributes\": [\n    {\n      \"attribute\": \"string\",\n      \"weight\": 6854.263864379812\n    },\n    {\n      \"attribute\": \"string\",\n      \"weight\": 2716.952225693107\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f4db5ae-5d58-4b5a-98ca-2c30898e975d",
+              "name": "Entitlement not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9775,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3886ea27-793b-4930-9b5c-e9d237e85c5f",
+          "name": "ForgeRock List users with entitlement",
+          "request": {
+            "name": "ForgeRock List users with entitlement",
+            "description": {
+              "content": "List all users assigned to a specific entitlement with their individual confidence scores and driving attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements",
+                ":entitlementId",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Filter by minimum confidence score"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb6859b9-1dd0-4e1f-890d-48bc58a337b4",
+              "name": "List of users with confidence scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"confidenceScore\": 1903.537008451892,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"confidenceScore\": 7548.0227500887895,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"totalResults\": 7603\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba673f3f-64cd-4eb1-951d-d85ec9e50c07",
+          "name": "ForgeRock Get entitlement recommendations",
+          "request": {
+            "name": "ForgeRock Get entitlement recommendations",
+            "description": {
+              "content": "Retrieve recommendations for users who do not have the entitlement but should, based on their attribute data and the AI model's predictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "entitlements",
+                ":entitlementId",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Minimum confidence score for recommendations"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bc37a3c-f089-4d3f-87ea-292ae8958655",
+              "name": "Recommendations for the entitlement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "entitlements",
+                    ":entitlementId",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 4059.7906269042774,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\"\n      }\n    },\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 8303.268581202776,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"totalResults\": 5829\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e09fb403-efd0-434f-bc6b-2f64cd9a85b6",
+          "name": "ForgeRock List entitlements",
+          "request": {
+            "name": "ForgeRock List entitlements",
+            "description": {
+              "content": "Query the entitlements catalog. Entitlements are aggregated from onboarded target applications into a centralized repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "entitlement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Sort fields"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0129b792-6585-4530-acc6-80b244e8b252",
+              "name": "List of entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "entitlement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"applicationName\": \"string\",\n      \"applicationId\": \"string\",\n      \"type\": \"string\",\n      \"owner\": \"string\",\n      \"riskLevel\": \"low\"\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"applicationName\": \"string\",\n      \"applicationId\": \"string\",\n      \"type\": \"string\",\n      \"owner\": \"string\",\n      \"riskLevel\": \"medium\"\n    }\n  ],\n  \"resultCount\": 9561,\n  \"totalPagedResults\": 2878\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5d499fe-8801-4860-ae8c-39ad6f31c9a6",
+          "name": "ForgeRock Get an entitlement",
+          "request": {
+            "name": "ForgeRock Get an entitlement",
+            "description": {
+              "content": "Retrieve details of a specific entitlement.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "entitlement",
+                ":entitlementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "entitlementId",
+                  "description": "(Required) The entitlement identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86ed3d4a-f08b-4d0b-9e13-96be2a3086b4",
+              "name": "Entitlement details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "entitlement",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"applicationName\": \"string\",\n  \"applicationId\": \"string\",\n  \"type\": \"string\",\n  \"owner\": \"string\",\n  \"riskLevel\": \"critical\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e954d75c-b137-4768-82bf-6703a4d938ce",
+              "name": "Entitlement not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "entitlement",
+                    ":entitlementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "entitlementId",
+                      "description": "(Required) The entitlement identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9775,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6abddba7-f658-47e9-8a2a-ba2c6bcfc9ae",
+    "name": "ForgeRock Access Management Access Requests Entitlements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

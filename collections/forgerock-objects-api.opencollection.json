@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Objects API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List configuration objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/objects",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter"
+              }
+            ]
+          },
+          "docs": "List all live configuration objects in the IG runtime, including routes, handlers, filters, and decorators currently loaded."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/objects/:objectType/:objectId",
+            "params": [
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "Type of the configuration object"
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the configuration object"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific live configuration object from the IG runtime."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Users API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List user entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/users/:userId/entitlements",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by minimum confidence score"
+              }
+            ]
+          },
+          "docs": "Retrieve all entitlements assigned to a specific user with their confidence scores and justification data."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get user recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/users/:userId/recommendations",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Get recommended entitlements for a user based on their attributes and the AI model's predictions."
+        },
+        {
+          "info": {
+            "name": "List directory users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/users",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsCookie",
+                "value": "",
+                "type": "query",
+                "description": "Cookie from a previous page for server-side paging"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              }
+            ]
+          },
+          "docs": "Query user entries in the directory. Supports CREST query filters which are translated to LDAP search operations with appropriate filter expressions."
+        },
+        {
+          "info": {
+            "name": "Create a directory user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user entry in the directory. The JSON resource is mapped to an LDAP entry with appropriate object classes and attributes."
+        },
+        {
+          "info": {
+            "name": "Perform a user action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The user identifier (maps to LDAP uid or _id)"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform actions on a user entry such as password reset or password change via _action query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,338 @@
+{
+  "item": [
+    {
+      "id": "541f130e-f266-4ea8-a7a0-123c3c9ca1a6",
+      "name": "OpenID Connect",
+      "description": {
+        "content": "OpenID Connect discovery and userinfo",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a52cab3f-1ad2-4e09-9333-5f4880200693",
+          "name": "ForgeRock OpenID Connect UserInfo endpoint",
+          "request": {
+            "name": "ForgeRock OpenID Connect UserInfo endpoint",
+            "description": {
+              "content": "Returns claims about the authenticated end-user. Requires a valid access token with the openid scope.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth2",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "userinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "feb2bc4e-a69c-4273-a0b3-8475996694af",
+              "name": "User info claims",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sub\": \"string\",\n  \"name\": \"string\",\n  \"given_name\": \"string\",\n  \"family_name\": \"string\",\n  \"email\": \"dvw-QXg1DKy@ZkAjXmDrH.kkwa\",\n  \"email_verified\": true,\n  \"phone_number\": \"string\",\n  \"address\": {\n    \"formatted\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d8cd029-242d-471f-9b01-737f77170198",
+              "name": "Invalid or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"error_description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f666dcad-dc44-41af-ab7a-d2294b24980e",
+          "name": "ForgeRock OpenID Connect discovery",
+          "request": {
+            "name": "ForgeRock OpenID Connect discovery",
+            "description": {
+              "content": "Returns the OpenID Connect Provider configuration metadata, including supported endpoints, scopes, claims, and signing algorithms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ".well-known",
+                "openid-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ea0fe10-b4c5-46f5-9448-8ed9913c1417",
+              "name": "OpenID Connect configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issuer\": \"http://LfnOecmKapYXbs.gqpLpX1B3PrYCE5jqma,3ggE+ORNS-ZnPFzG8-T9wydM9Nm9aPRIz5\",\n  \"authorization_endpoint\": \"https://DkQXYQIL.nceBzSYHi4lSJBS1PdjLtKjojIVN4wtuIfiN9wSQjBmnUidtcb\",\n  \"token_endpoint\": \"https://nNQcYDKfB.cjSqCmXCZ-4iITGOlNq,IcUbj7WOrzPi2QS9xgcxwrkO5DFi9UptcZnxW8Rf\",\n  \"userinfo_endpoint\": \"http://tUEqdrsWWf.jqhSizE4Sma3jiGiktK8F\",\n  \"jwks_uri\": \"https://TNmFctZtmDD.beheojPMN,wu6zZqMpwG4FjzCzkGD8\",\n  \"registration_endpoint\": \"https://geIwPOZoTfkcvNyAyWGE.vitrFGqY1mIR\",\n  \"scopes_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"response_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"grant_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"subject_types_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id_token_signing_alg_values_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"token_endpoint_auth_methods_supported\": [\n    \"string\",\n    \"string\"\n  ],\n  \"claims_supported\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0d2e6203-4eb3-40c1-bff7-8e8a95176341",
+    "name": "ForgeRock Access Management Access Requests OpenID Connect API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

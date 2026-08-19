@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Audit API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Query audit log entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/audit/:auditTopic",
+            "params": [
+              {
+                "name": "auditTopic",
+                "value": "",
+                "type": "path",
+                "description": "The audit topic to query"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields (prefix with - for descending)"
+              }
+            ]
+          },
+          "docs": "Query audit log records for the specified topic (e.g., access, activity, authentication, config, recon, sync)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an audit log entry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/audit/:auditTopic/:auditId",
+            "params": [
+              {
+                "name": "auditTopic",
+                "value": "",
+                "type": "path",
+                "description": "The audit topic"
+              },
+              {
+                "name": "auditId",
+                "value": "",
+                "type": "path",
+                "description": "The audit entry identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific audit log entry by topic and identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

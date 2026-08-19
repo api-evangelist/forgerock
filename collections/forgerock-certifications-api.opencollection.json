@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Certifications API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Certifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List certification campaigns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/certification",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields"
+              }
+            ]
+          },
+          "docs": "Query certification campaigns. Certifications enable authorized users to review and certify access assignments to ensure compliance."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a certification campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/governance/certification",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new access certification campaign. Supports identity certification, role definition certification, and role membership certification types."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a certification campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/certification/:certificationId",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific certification campaign."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a certification campaign",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{deployment}/am/governance/certification/:certificationId",
+            "params": [
+              {
+                "name": "certificationId",
+                "value": "",
+                "type": "path",
+                "description": "The certification campaign identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a certification campaign (e.g., close or cancel it)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Managed Roles API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List managed roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openidm/managed/:realm_role",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for paginated results"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query managed role objects in the specified realm. Supports filtering, sorting, and pagination."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a managed role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/openidm/managed/:realm_role",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new managed role object in the specified realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a managed role",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openidm/managed/:realm_role/:roleId",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed role"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific managed role object by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

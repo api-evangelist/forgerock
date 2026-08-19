@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Scripts API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/scripts",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter"
+              }
+            ]
+          },
+          "docs": "Query scripts configured in the specified realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a script",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/scripts/:scriptId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "scriptId",
+                "value": "",
+                "type": "path",
+                "description": "The script UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific script by its UUID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

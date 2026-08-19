@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Authentication API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Authenticate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/authenticate",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "authIndexType",
+                "value": "",
+                "type": "query",
+                "description": "Type of authentication index"
+              },
+              {
+                "name": "authIndexValue",
+                "value": "",
+                "type": "query",
+                "description": "Name of the authentication tree or module"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates or continues an authentication session using a specified authentication tree (journey) or module. On each step, the server returns callbacks that the client must respond to. On success, returns a tokenId (SSO token)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Authenticate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/am/json/realms/root/realms/:realm/authenticate",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              },
+              {
+                "name": "authIndexType",
+                "value": "",
+                "type": "query",
+                "description": "The type of authentication index to use (e.g., service, module)"
+              },
+              {
+                "name": "authIndexValue",
+                "value": "",
+                "type": "query",
+                "description": "The value of the authentication index (e.g., the tree/journey name)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates or continues an authentication journey (tree) in the specified realm. Returns callbacks that the client must respond to, or a tokenId on successful completion of the journey."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List access requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/request",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields"
+              }
+            ]
+          },
+          "docs": "Query access requests. Users can request access to applications, entitlements, or roles, and managers can request revocation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/governance/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new access request for a user to gain access to a resource (application, entitlement, or role)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an access request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/request/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The access request identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific access request."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Perform an access request action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/governance/request/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The access request identifier"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approve, deny, or cancel an access request via the _action query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

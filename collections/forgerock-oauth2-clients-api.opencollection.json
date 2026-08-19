@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests OAuth2 Clients API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2 Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 authorization endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/am/oauth2/realms/root/realms/:realm/authorize",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 client identifier"
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "The OAuth 2.0 response type"
+              },
+              {
+                "name": "redirect_uri",
+                "value": "",
+                "type": "query",
+                "description": "The URI to redirect to after authorization"
+              },
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "Space-delimited list of requested scopes"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Opaque value to maintain state between request and callback"
+              }
+            ]
+          },
+          "docs": "Initiates an OAuth 2.0 authorization flow. Redirects the user agent to the authorization server for authentication and consent."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OAuth 2.0 token endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/am/oauth2/realms/root/realms/:realm/access_token",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "redirect_uri",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "password",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Exchange an authorization code, refresh token, or client credentials for an access token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

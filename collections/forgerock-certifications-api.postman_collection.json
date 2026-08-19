@@ -1,0 +1,736 @@
+{
+  "item": [
+    {
+      "id": "2bc9a9af-5eb5-4d33-bcbd-b254d8b07981",
+      "name": "Certifications",
+      "description": {
+        "content": "Manage access certification campaigns",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b4b3db8-db1d-445d-ad2c-704c538cc069",
+          "name": "ForgeRock List certification campaigns",
+          "request": {
+            "name": "ForgeRock List certification campaigns",
+            "description": {
+              "content": "Query certification campaigns. Certifications enable authorized users to review and certify access assignments to ensure compliance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Sort fields"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f45800ed-875b-4cbf-a037-93caed5e02d5",
+              "name": "List of certification campaigns",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"roleDefinition\",\n      \"status\": \"expired\",\n      \"stages\": [\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1958-03-02T02:36:25.724Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1987-03-02T15:02:16.812Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"entitlementFilter\": {},\n      \"createdDate\": \"2006-04-02T06:25:57.496Z\",\n      \"closedDate\": \"1959-08-03T00:50:42.965Z\"\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"type\": \"identity\",\n      \"status\": \"active\",\n      \"stages\": [\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1981-09-27T07:38:49.978Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"deadline\": \"1951-11-17T13:47:58.934Z\",\n          \"reviewers\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"entitlementFilter\": {},\n      \"createdDate\": \"2016-02-03T03:32:13.714Z\",\n      \"closedDate\": \"2016-06-30T13:37:25.997Z\"\n    }\n  ],\n  \"resultCount\": 8809,\n  \"totalPagedResults\": 8475\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "091b3acf-87f8-4078-8f79-cebbf61dd63f",
+              "name": "Insufficient privileges",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8195,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5fb46692-d91b-45de-9cbb-ed747877047c",
+          "name": "ForgeRock Create a certification campaign",
+          "request": {
+            "name": "ForgeRock Create a certification campaign",
+            "description": {
+              "content": "Create a new access certification campaign. Supports identity certification, role definition certification, and role membership certification types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f23c3672-1edc-4e8f-878d-0a761b34af3f",
+              "name": "Certification campaign created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"identity\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2014-07-01T03:33:26.223Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2012-07-22T18:20:40.173Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"2014-12-29T06:22:18.429Z\",\n  \"closedDate\": \"2014-08-29T01:24:11.314Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "725cfaf1-916a-4a3b-b662-d6109a20cd32",
+              "name": "Invalid certification configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"stages\": [\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"deadline\": \"<dateTime>\",\n      \"reviewers\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8195,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f871df25-dc6c-4470-8a46-1a9f48af1eb4",
+          "name": "ForgeRock Get a certification campaign",
+          "request": {
+            "name": "ForgeRock Get a certification campaign",
+            "description": {
+              "content": "Retrieve details of a specific certification campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20ab2c9e-88f2-420b-bd1a-bb71790700ba",
+              "name": "Certification campaign details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"identity\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2014-07-01T03:33:26.223Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2012-07-22T18:20:40.173Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"2014-12-29T06:22:18.429Z\",\n  \"closedDate\": \"2014-08-29T01:24:11.314Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f730774-80ec-4191-a5f8-44203e004f9d",
+              "name": "Certification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8195,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3118b143-41f1-48fb-8f9a-1cbd3e3868e1",
+          "name": "ForgeRock Update a certification campaign",
+          "request": {
+            "name": "ForgeRock Update a certification campaign",
+            "description": {
+              "content": "Partially update a certification campaign (e.g., close or cancel it).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "governance",
+                "certification",
+                ":certificationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificationId",
+                  "description": "(Required) The certification campaign identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3457ccb8-71ff-4f84-869d-fd29fba30700",
+              "name": "Certification updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "governance",
+                    "certification",
+                    ":certificationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificationId",
+                      "description": "(Required) The certification campaign identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"type\": \"identity\",\n  \"status\": \"expired\",\n  \"stages\": [\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2014-07-01T03:33:26.223Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"deadline\": \"2012-07-22T18:20:40.173Z\",\n      \"reviewers\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"entitlementFilter\": {},\n  \"createdDate\": \"2014-12-29T06:22:18.429Z\",\n  \"closedDate\": \"2014-08-29T01:24:11.314Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c1f59a9-030a-4438-be49-862f0a79bad7",
+    "name": "ForgeRock Access Management Access Requests Certifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

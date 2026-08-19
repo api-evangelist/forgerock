@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Configuration API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List configuration objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/config"
+          },
+          "docs": "List all IDM configuration objects stored in the repository."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/config/:configId",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path",
+                "description": "Configuration object identifier (e.g., managed, sync, audit)"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific configuration object by its identifier (e.g., managed, sync, router, audit)."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/config/:configId",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path",
+                "description": "Configuration object identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire configuration object."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a configuration object",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/config/:configId",
+            "params": [
+              {
+                "name": "configId",
+                "value": "",
+                "type": "path",
+                "description": "Configuration object identifier"
+              }
+            ]
+          },
+          "docs": "Delete a configuration object by identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

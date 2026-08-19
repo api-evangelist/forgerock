@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Entries API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List directory entries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The HDAP collection name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsCookie",
+                "value": "",
+                "type": "query",
+                "description": "Cookie from a previous page for server-side paging"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return"
+              }
+            ]
+          },
+          "docs": "Query entries from any HDAP-configured collection endpoint. The collection maps to an LDAP subtree with a defined JSON-to-LDAP mapping."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

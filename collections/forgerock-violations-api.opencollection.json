@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Violations API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Violations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List policy violations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/violation",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Query segregation of duties (SoD) and compliance policy violations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a policy violation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/violation/:violationId",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "The violation identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific policy violation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Resolve a policy violation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/governance/violation/:violationId",
+            "params": [
+              {
+                "name": "violationId",
+                "value": "",
+                "type": "path",
+                "description": "The violation identifier"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform an action on a violation such as remediate, allow (exception), or escalate."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Resource Types API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resource Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List resource types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter"
+              }
+            ]
+          },
+          "docs": "Query resource types used in authorization policies."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new resource type for use in authorization policies."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The resource type UUID"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific resource type by its UUID."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The resource type UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an existing resource type."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a resource type",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/resourcetypes/:resourceTypeId",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "resourceTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The resource type UUID"
+              }
+            ]
+          },
+          "docs": "Delete a resource type by UUID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

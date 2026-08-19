@@ -1,0 +1,272 @@
+{
+  "item": [
+    {
+      "id": "15b03846-7ab9-45c8-9f6a-9392bc8a2460",
+      "name": "Analytics",
+      "description": {
+        "content": "Analytics pipeline status and results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "586b9ff4-e3c2-44e1-94ae-af8d571e3810",
+          "name": "ForgeRock Get analytics pipeline status",
+          "request": {
+            "name": "ForgeRock Get analytics pipeline status",
+            "description": {
+              "content": "Retrieve the current status of the analytics pipeline, including training status, last run time, and pipeline health.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "analytics",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65bc49bf-ccdc-4d31-b7a9-95caa928f435",
+              "name": "Analytics pipeline status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "analytics",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pipelineStatus\": \"failed\",\n  \"lastRunTime\": \"1989-02-19T16:12:33.935Z\",\n  \"lastRunDuration\": \"string\",\n  \"trainingStatus\": \"completed\",\n  \"predictionStatus\": \"completed\",\n  \"recommendationStatus\": \"failed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75e5e5c0-c205-4f4e-9d24-b3c2b1aac316",
+          "name": "ForgeRock List analytics reports",
+          "request": {
+            "name": "ForgeRock List analytics reports",
+            "description": {
+              "content": "List available analytics reports from completed pipeline runs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "analytics",
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e163a33-bec7-4e36-930a-a50662e4b757",
+              "name": "List of analytics reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "analytics",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"id\": \"string\",\n      \"runDate\": \"2024-11-14T12:47:52.430Z\",\n      \"status\": \"string\",\n      \"totalEntitlementsProcessed\": 1832,\n      \"totalUsersProcessed\": 114,\n      \"averageConfidenceScore\": 6583.18583544115\n    },\n    {\n      \"id\": \"string\",\n      \"runDate\": \"1986-10-03T23:23:04.054Z\",\n      \"status\": \"string\",\n      \"totalEntitlementsProcessed\": 2970,\n      \"totalUsersProcessed\": 4197,\n      \"averageConfidenceScore\": 6867.929998133387\n    }\n  ],\n  \"totalResults\": 8042\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c8772ea3-465b-452b-a3b9-5511427c360a",
+    "name": "ForgeRock Access Management Access Requests Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

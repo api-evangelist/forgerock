@@ -1,0 +1,1549 @@
+{
+  "item": [
+    {
+      "id": "296df6ae-7033-41e9-8a95-6cb3db04452b",
+      "name": "Managed Objects",
+      "description": {
+        "content": "CRUD operations on managed identity objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88691374-d917-4b5e-89f8-9433b748ffc1",
+          "name": "ForgeRock List managed objects",
+          "request": {
+            "name": "ForgeRock List managed objects",
+            "description": {
+              "content": "Query managed objects of the specified type. Supports CREST query filters, pagination, sorting, and field selection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managed",
+                ":objectType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated sort fields (prefix with - for descending)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b32274f-b35c-43d5-a84f-1f09f2199c25",
+              "name": "Query results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"key_0\": 8351.12773587345\n    }\n  ],\n  \"resultCount\": 9629,\n  \"pagedResultsCookie\": \"string\",\n  \"totalPagedResultsPolicy\": \"string\",\n  \"totalPagedResults\": 3916,\n  \"remainingPagedResults\": 29\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f2409fc-3d5f-4883-aa30-988c070ef162",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67c6e07d-845b-4ab2-b4c3-5249ece2d838",
+          "name": "ForgeRock Create a managed object",
+          "request": {
+            "name": "ForgeRock Create a managed object",
+            "description": {
+              "content": "Create a new managed object of the specified type. The server assigns the _id if not provided via the _action=create query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managed",
+                ":objectType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "Must be set to create for server-assigned IDs"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d133f3fb-911f-4234-a702-4f41847d70d1",
+              "name": "Object created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9253.344896348026\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"key_0\": 3624.764782355918,\n  \"key_1\": 9886.984246718841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55cc5c87-53bb-4737-b9f8-237d055c0ae0",
+              "name": "Invalid object data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9253.344896348026\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a3677b4-afb7-47b6-b5a7-75c0d54135ff",
+              "name": "Object already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9253.344896348026\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95387ac0-948e-4364-a95e-8ff45981ac2b",
+          "name": "ForgeRock Get a managed object",
+          "request": {
+            "name": "ForgeRock Get a managed object",
+            "description": {
+              "content": "Retrieve a specific managed object by type and identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managed",
+                ":objectType",
+                ":objectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectId",
+                  "description": "(Required) The unique identifier of the managed object"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed65d1e5-a7a7-493b-9361-80dc56f5cc74",
+              "name": "The managed object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"key_0\": 3624.764782355918,\n  \"key_1\": 9886.984246718841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5892d5f9-7b2e-43e2-9ad9-daaa34596f40",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eda0241e-2a3d-4dc4-a14b-ac47946b03a7",
+          "name": "ForgeRock Replace a managed object",
+          "request": {
+            "name": "ForgeRock Replace a managed object",
+            "description": {
+              "content": "Replace an entire managed object or create one with a client-assigned identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managed",
+                ":objectType",
+                ":objectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectId",
+                  "description": "(Required) The unique identifier of the managed object"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d58cf57c-c849-4bd2-918d-ca52a7dc66b5",
+              "name": "Object updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9253.344896348026\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"key_0\": 3624.764782355918,\n  \"key_1\": 9886.984246718841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53759262-f1c8-4181-8930-895902fa7d3f",
+              "name": "Object created with client-assigned ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9253.344896348026\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"key_0\": 3624.764782355918,\n  \"key_1\": 9886.984246718841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7758aa3-c409-4123-84a2-29118b92decc",
+              "name": "Revision mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true,\n  \"key_1\": 9253.344896348026\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ffb218c-d50f-44b2-b39c-18e6eccc6423",
+          "name": "ForgeRock Patch a managed object",
+          "request": {
+            "name": "ForgeRock Patch a managed object",
+            "description": {
+              "content": "Partially update a managed object using JSON Patch operations (add, remove, replace, increment).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managed",
+                ":objectType",
+                ":objectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectId",
+                  "description": "(Required) The unique identifier of the managed object"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92e098b4-3d9b-4751-90a7-18b02fa6b351",
+              "name": "Object patched",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"key_0\": 3624.764782355918,\n  \"key_1\": 9886.984246718841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "895c4cd5-d585-4673-be04-e462fb1895d4",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": \"\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5276e67c-212a-47a0-9838-585a835713de",
+          "name": "ForgeRock Delete a managed object",
+          "request": {
+            "name": "ForgeRock Delete a managed object",
+            "description": {
+              "content": "Delete a managed object by type and identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "managed",
+                ":objectType",
+                ":objectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectType",
+                  "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectId",
+                  "description": "(Required) The unique identifier of the managed object"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24c83dcb-4b8d-4431-89ce-d3726bc1c88c",
+              "name": "Object deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"key_0\": 3624.764782355918,\n  \"key_1\": 9886.984246718841\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b8d64c2-a483-4bdd-be4d-faea524b0f0a",
+              "name": "Object not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "managed",
+                    ":objectType",
+                    ":objectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectType",
+                      "description": "(Required) The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectId",
+                      "description": "(Required) The unique identifier of the managed object"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3913,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5332fe51-a320-4299-b641-4ffa28377f27",
+    "name": "ForgeRock Access Management Access Requests Managed Objects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

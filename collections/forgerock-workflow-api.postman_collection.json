@@ -1,0 +1,803 @@
+{
+  "item": [
+    {
+      "id": "ed4438c8-6fb4-4a70-ae02-e4d19e24cada",
+      "name": "Workflow",
+      "description": {
+        "content": "Manage BPMN workflow processes and tasks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f9bec9ab-5b29-46a3-9fe0-20262b71e8fc",
+          "name": "ForgeRock List workflow process definitions",
+          "request": {
+            "name": "ForgeRock List workflow process definitions",
+            "description": {
+              "content": "Query available BPMN workflow process definitions deployed to IDM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "processdefinition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72325100-ea29-4c67-a665-a0386fdf512a",
+              "name": "List of process definitions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "processdefinition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"key\": \"string\",\n      \"version\": 7710,\n      \"category\": \"string\",\n      \"deploymentId\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"key\": \"string\",\n      \"version\": 7905,\n      \"category\": \"string\",\n      \"deploymentId\": \"string\"\n    }\n  ],\n  \"resultCount\": 349\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f19a7315-b8c6-4396-8cbd-7e9212b74c40",
+          "name": "ForgeRock List workflow process instances",
+          "request": {
+            "name": "ForgeRock List workflow process instances",
+            "description": {
+              "content": "Query active workflow process instances.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "processinstance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c2e470b-aad5-442c-8a4f-e6d4a92dd6ec",
+              "name": "List of process instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "processinstance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"processDefinitionId\": \"string\",\n      \"businessKey\": \"string\",\n      \"startTime\": \"1990-03-17T07:14:02.854Z\",\n      \"startUserId\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"_id\": \"string\",\n      \"processDefinitionId\": \"string\",\n      \"businessKey\": \"string\",\n      \"startTime\": \"1986-05-10T08:17:00.800Z\",\n      \"startUserId\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"resultCount\": 872\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "883fe164-ff34-4423-87be-50946f3f4aa8",
+          "name": "ForgeRock Start a workflow process",
+          "request": {
+            "name": "ForgeRock Start a workflow process",
+            "description": {
+              "content": "Start a new workflow process instance from a deployed process definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "processinstance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_key\": \"<string>\",\n  \"variables\": {\n    \"key_0\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "85cd5b76-5cbd-498e-b032-ba5a5af921c9",
+              "name": "Process instance started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "processinstance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_key\": \"<string>\",\n  \"variables\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"processDefinitionId\": \"string\",\n  \"businessKey\": \"string\",\n  \"startTime\": \"2008-02-29T17:27:49.211Z\",\n  \"startUserId\": \"string\",\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6db09012-be84-42ad-a23c-08e6339f527b",
+          "name": "ForgeRock List workflow task instances",
+          "request": {
+            "name": "ForgeRock List workflow task instances",
+            "description": {
+              "content": "Query active user tasks from running workflow processes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "taskinstance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0383eb6a-d018-4977-a28c-793a2ff025f7",
+              "name": "List of task instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "taskinstance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"assignee\": \"string\",\n      \"createTime\": \"2023-01-10T02:04:03.947Z\",\n      \"dueDate\": \"2022-09-15T13:29:41.217Z\",\n      \"processDefinitionId\": \"string\",\n      \"processInstanceId\": \"string\",\n      \"variables\": {\n        \"key_0\": 7833.636916287354,\n        \"key_1\": 6990.610659528722,\n        \"key_2\": 3595.941214221595,\n        \"key_3\": false\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"assignee\": \"string\",\n      \"createTime\": \"2015-03-23T07:20:00.740Z\",\n      \"dueDate\": \"1959-03-13T12:08:02.423Z\",\n      \"processDefinitionId\": \"string\",\n      \"processInstanceId\": \"string\",\n      \"variables\": {\n        \"key_0\": true\n      }\n    }\n  ],\n  \"resultCount\": 1380\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5025e945-82e4-4bb0-b1fc-ba37a66afdc8",
+          "name": "ForgeRock Get a task instance",
+          "request": {
+            "name": "ForgeRock Get a task instance",
+            "description": {
+              "content": "Retrieve details of a specific workflow task instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "taskinstance",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task instance identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37f7ccfa-bcf5-45f3-b11f-acb4855640c3",
+              "name": "The task instance",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "taskinstance",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task instance identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"assignee\": \"string\",\n  \"createTime\": \"2017-04-03T06:57:15.175Z\",\n  \"dueDate\": \"1975-11-07T21:12:06.039Z\",\n  \"processDefinitionId\": \"string\",\n  \"processInstanceId\": \"string\",\n  \"variables\": {\n    \"key_0\": 2860,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4eac64bd-0db6-46d6-b0ed-ba3f737f66f1",
+              "name": "Task not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "taskinstance",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task instance identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5363,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21635706-ed09-408f-9984-942395535ca9",
+          "name": "ForgeRock Complete a task instance",
+          "request": {
+            "name": "ForgeRock Complete a task instance",
+            "description": {
+              "content": "Complete a workflow user task and provide output variables.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workflow",
+                "taskinstance",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) The task instance identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": 7403\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1a8f7ae-f28d-47ea-a5d3-672b190c3fd5",
+              "name": "Task completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "taskinstance",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) The task instance identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 1737.8534293869996\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"assignee\": \"string\",\n  \"createTime\": \"2017-04-03T06:57:15.175Z\",\n  \"dueDate\": \"1975-11-07T21:12:06.039Z\",\n  \"processDefinitionId\": \"string\",\n  \"processInstanceId\": \"string\",\n  \"variables\": {\n    \"key_0\": 2860,\n    \"key_1\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "88d6594f-d0fb-450a-8987-2b8b8df7ebac",
+    "name": "ForgeRock Access Management Access Requests Workflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

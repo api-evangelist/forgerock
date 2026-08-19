@@ -1,0 +1,689 @@
+{
+  "item": [
+    {
+      "id": "4d30814b-4787-477b-a9ae-e785dd043f52",
+      "name": "Scheduler",
+      "description": {
+        "content": "Manage scheduled tasks and jobs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c7640c2c-421b-4a8d-958e-e00e0947750b",
+          "name": "ForgeRock List scheduled jobs",
+          "request": {
+            "name": "ForgeRock List scheduled jobs",
+            "description": {
+              "content": "Query all configured scheduled jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8bde2089-3845-4121-9a4f-fd452fb49f98",
+              "name": "List of scheduled jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"enabled\": false,\n      \"type\": \"simple\",\n      \"schedule\": \"string\",\n      \"misfirePolicy\": \"doNothing\",\n      \"invokeService\": \"string\",\n      \"invokeContext\": {\n        \"action\": \"string\",\n        \"mapping\": \"string\"\n      },\n      \"invokeLogLevel\": \"info\"\n    },\n    {\n      \"_id\": \"string\",\n      \"enabled\": true,\n      \"type\": \"cron\",\n      \"schedule\": \"string\",\n      \"misfirePolicy\": \"fireAndProceed\",\n      \"invokeService\": \"string\",\n      \"invokeContext\": {\n        \"action\": \"string\",\n        \"mapping\": \"string\"\n      },\n      \"invokeLogLevel\": \"trace\"\n    }\n  ],\n  \"resultCount\": 9091\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebee3498-388e-4fc5-ba3d-699aa1020efc",
+          "name": "ForgeRock Create a scheduled job",
+          "request": {
+            "name": "ForgeRock Create a scheduled job",
+            "description": {
+              "content": "Create a new scheduled job with a cron expression or interval.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "job"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"misfirePolicy\": \"<string>\",\n  \"invokeService\": \"<string>\",\n  \"invokeContext\": {\n    \"action\": \"<string>\",\n    \"mapping\": \"<string>\"\n  },\n  \"invokeLogLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98ccfe6c-7b1f-4524-982e-857b467b6015",
+              "name": "Job created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "job"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"misfirePolicy\": \"<string>\",\n  \"invokeService\": \"<string>\",\n  \"invokeContext\": {\n    \"action\": \"<string>\",\n    \"mapping\": \"<string>\"\n  },\n  \"invokeLogLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"enabled\": true,\n  \"type\": \"cron\",\n  \"schedule\": \"string\",\n  \"misfirePolicy\": \"doNothing\",\n  \"invokeService\": \"string\",\n  \"invokeContext\": {\n    \"action\": \"string\",\n    \"mapping\": \"string\"\n  },\n  \"invokeLogLevel\": \"info\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4d55d21-f715-4a2e-b474-b0e60e1865d5",
+          "name": "ForgeRock Get a scheduled job",
+          "request": {
+            "name": "ForgeRock Get a scheduled job",
+            "description": {
+              "content": "Retrieve a specific scheduled job configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "job",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7c3aa3c-15a5-428d-8c75-23489ccb589d",
+              "name": "The scheduled job",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "job",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"enabled\": true,\n  \"type\": \"cron\",\n  \"schedule\": \"string\",\n  \"misfirePolicy\": \"doNothing\",\n  \"invokeService\": \"string\",\n  \"invokeContext\": {\n    \"action\": \"string\",\n    \"mapping\": \"string\"\n  },\n  \"invokeLogLevel\": \"info\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f6082f0-9efb-4820-bb31-c70367bd40f8",
+              "name": "Job not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "job",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5869,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb8ae36f-35b3-45e3-94f9-3898e0402213",
+          "name": "ForgeRock Update a scheduled job",
+          "request": {
+            "name": "ForgeRock Update a scheduled job",
+            "description": {
+              "content": "Replace a scheduled job configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "job",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"misfirePolicy\": \"<string>\",\n  \"invokeService\": \"<string>\",\n  \"invokeContext\": {\n    \"action\": \"<string>\",\n    \"mapping\": \"<string>\"\n  },\n  \"invokeLogLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6dea82ef-ba3f-4c4f-af67-e2f7fe784302",
+              "name": "Job updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "job",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"type\": \"<string>\",\n  \"schedule\": \"<string>\",\n  \"misfirePolicy\": \"<string>\",\n  \"invokeService\": \"<string>\",\n  \"invokeContext\": {\n    \"action\": \"<string>\",\n    \"mapping\": \"<string>\"\n  },\n  \"invokeLogLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"enabled\": true,\n  \"type\": \"cron\",\n  \"schedule\": \"string\",\n  \"misfirePolicy\": \"doNothing\",\n  \"invokeService\": \"string\",\n  \"invokeContext\": {\n    \"action\": \"string\",\n    \"mapping\": \"string\"\n  },\n  \"invokeLogLevel\": \"info\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d6580b9-a145-45fc-b40f-ce20b52fbd81",
+          "name": "ForgeRock Delete a scheduled job",
+          "request": {
+            "name": "ForgeRock Delete a scheduled job",
+            "description": {
+              "content": "Delete a scheduled job by identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduler",
+                "job",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The job identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7dbcb5c-469d-4c4d-b4b3-88e501ad3365",
+              "name": "Job deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduler",
+                    "job",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The job identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"enabled\": true,\n  \"type\": \"cron\",\n  \"schedule\": \"string\",\n  \"misfirePolicy\": \"doNothing\",\n  \"invokeService\": \"string\",\n  \"invokeContext\": {\n    \"action\": \"string\",\n    \"mapping\": \"string\"\n  },\n  \"invokeLogLevel\": \"info\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "35e6dbcb-14c5-4ed7-9a0b-0026117613be",
+    "name": "ForgeRock Access Management Access Requests Scheduler API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,531 @@
+{
+  "item": [
+    {
+      "id": "db6ff188-9d98-42b6-8df9-6cc23ae35265",
+      "name": "Reconciliation",
+      "description": {
+        "content": "Trigger and manage reconciliation operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b72c4cab-6c4c-4c89-ad1e-99886298fc59",
+          "name": "ForgeRock Trigger reconciliation",
+          "request": {
+            "name": "ForgeRock Trigger reconciliation",
+            "description": {
+              "content": "Trigger a reconciliation operation for the specified mapping. The mapping defines the source and target systems and the synchronization rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recon",
+                ":mappingName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) Must be recon"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mappingName",
+                  "description": "(Required) The sync mapping name (e.g., systemLdapAccounts_managedUser)"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd225c42-8429-4a87-b3ba-d137a278de80",
+              "name": "Reconciliation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recon",
+                    ":mappingName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mappingName",
+                      "description": "(Required) The sync mapping name (e.g., systemLdapAccounts_managedUser)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"state\": \"FAILED\",\n  \"stage\": \"string\",\n  \"mapping\": \"string\",\n  \"started\": \"2003-06-16T05:03:15.456Z\",\n  \"ended\": \"1954-03-22T18:02:33.452Z\",\n  \"progress\": {\n    \"source\": {\n      \"existing\": {\n        \"processed\": 1867,\n        \"total\": \"string\"\n      }\n    },\n    \"target\": {\n      \"existing\": {\n        \"processed\": 2813,\n        \"total\": \"string\"\n      }\n    }\n  },\n  \"situationSummary\": {\n    \"key_0\": 2431\n  },\n  \"statusSummary\": {\n    \"key_0\": 5522\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f500d37b-ef9b-46f0-9ea6-6ddddee3c146",
+              "name": "Mapping not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recon",
+                    ":mappingName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mappingName",
+                      "description": "(Required) The sync mapping name (e.g., systemLdapAccounts_managedUser)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5958,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8c9e05d-458d-46b5-945d-7e65599cece1",
+          "name": "ForgeRock List reconciliation runs",
+          "request": {
+            "name": "ForgeRock List reconciliation runs",
+            "description": {
+              "content": "Query reconciliation run records. Returns details about past and in-progress reconciliation operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recon"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated sort fields (prefix with - for descending)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e531f0cd-9a04-46e9-83c5-347e03b418ee",
+              "name": "List of reconciliation records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recon"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"state\": \"FAILED\",\n      \"stage\": \"string\",\n      \"mapping\": \"string\",\n      \"started\": \"2011-05-01T20:43:14.968Z\",\n      \"ended\": \"2025-08-20T14:21:11.282Z\",\n      \"progress\": {\n        \"source\": {\n          \"existing\": {\n            \"processed\": 2140,\n            \"total\": \"string\"\n          }\n        },\n        \"target\": {\n          \"existing\": {\n            \"processed\": 6446,\n            \"total\": \"string\"\n          }\n        }\n      },\n      \"situationSummary\": {\n        \"key_0\": 1879\n      },\n      \"statusSummary\": {\n        \"key_0\": 6450,\n        \"key_1\": 1197\n      }\n    },\n    {\n      \"_id\": \"string\",\n      \"state\": \"CANCELED\",\n      \"stage\": \"string\",\n      \"mapping\": \"string\",\n      \"started\": \"1963-05-21T03:15:04.684Z\",\n      \"ended\": \"1964-02-28T20:32:51.133Z\",\n      \"progress\": {\n        \"source\": {\n          \"existing\": {\n            \"processed\": 7214,\n            \"total\": \"string\"\n          }\n        },\n        \"target\": {\n          \"existing\": {\n            \"processed\": 6548,\n            \"total\": \"string\"\n          }\n        }\n      },\n      \"situationSummary\": {\n        \"key_0\": 7266,\n        \"key_1\": 5221\n      },\n      \"statusSummary\": {\n        \"key_0\": 2952\n      }\n    }\n  ],\n  \"resultCount\": 5560\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32e45b58-b891-4398-a6af-30680820bbb3",
+          "name": "ForgeRock Get reconciliation details",
+          "request": {
+            "name": "ForgeRock Get reconciliation details",
+            "description": {
+              "content": "Retrieve details about a specific reconciliation run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recon",
+                ":reconId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reconId",
+                  "description": "(Required) The reconciliation run identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9f9fc1c-392f-48ed-be16-56b3b3a8f98f",
+              "name": "Reconciliation details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recon",
+                    ":reconId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reconId",
+                      "description": "(Required) The reconciliation run identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"state\": \"FAILED\",\n  \"stage\": \"string\",\n  \"mapping\": \"string\",\n  \"started\": \"2003-06-16T05:03:15.456Z\",\n  \"ended\": \"1954-03-22T18:02:33.452Z\",\n  \"progress\": {\n    \"source\": {\n      \"existing\": {\n        \"processed\": 1867,\n        \"total\": \"string\"\n      }\n    },\n    \"target\": {\n      \"existing\": {\n        \"processed\": 2813,\n        \"total\": \"string\"\n      }\n    }\n  },\n  \"situationSummary\": {\n    \"key_0\": 2431\n  },\n  \"statusSummary\": {\n    \"key_0\": 5522\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3834558e-b8ce-4be3-9196-1b6128b42eba",
+              "name": "Reconciliation not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recon",
+                    ":reconId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reconId",
+                      "description": "(Required) The reconciliation run identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5958,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ab6c9510-a690-4571-9c7c-ed5b2fd2d909",
+    "name": "ForgeRock Access Management Access Requests Reconciliation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

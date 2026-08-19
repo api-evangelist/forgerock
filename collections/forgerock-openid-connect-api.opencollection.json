@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests OpenID Connect API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OpenID Connect",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock OpenID Connect UserInfo endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/oauth2/realms/root/realms/:realm/userinfo",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns claims about the authenticated end-user. Requires a valid access token with the openid scope."
+        },
+        {
+          "info": {
+            "name": "ForgeRock OpenID Connect discovery",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/.well-known/openid-configuration"
+          },
+          "docs": "Returns the OpenID Connect Provider configuration metadata, including supported endpoints, scopes, claims, and signing algorithms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Realms API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Realms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List realms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/global-config/realms",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter for realms"
+              }
+            ]
+          },
+          "docs": "Query all configured realms in the AM deployment."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/global-config/realms",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new realm in the AM deployment."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/global-config/realms/:realmName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ]
+          },
+          "docs": "Retrieve configuration for a specific realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/json/global-config/realms/:realmName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update configuration for an existing realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/json/global-config/realms/:realmName",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              }
+            ]
+          },
+          "docs": "Delete a realm from the AM deployment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

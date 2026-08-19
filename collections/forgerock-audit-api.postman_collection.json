@@ -1,0 +1,398 @@
+{
+  "item": [
+    {
+      "id": "a81f7d40-4935-4861-9238-75f7a89b00cf",
+      "name": "Audit",
+      "description": {
+        "content": "Access audit log records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8f000b74-666d-4b21-8338-ade151fd26aa",
+          "name": "ForgeRock Query audit log entries",
+          "request": {
+            "name": "ForgeRock Query audit log entries",
+            "description": {
+              "content": "Query audit log records for the specified topic (e.g., access, activity, authentication, config, recon, sync).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit",
+                ":auditTopic"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated sort fields (prefix with - for descending)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "auditTopic",
+                  "description": "(Required) The audit topic to query"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08181704-2109-4e1c-8c34-664db2299f1c",
+              "name": "Audit log entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit",
+                    ":auditTopic"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditTopic",
+                      "description": "(Required) The audit topic to query"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"eventName\": \"string\",\n      \"timestamp\": \"1969-03-24T01:23:36.668Z\",\n      \"transactionId\": \"string\",\n      \"userId\": \"string\",\n      \"trackingIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runAs\": \"string\",\n      \"objectId\": \"string\",\n      \"operation\": \"string\",\n      \"before\": {},\n      \"after\": {},\n      \"changedFields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"SUCCESS\"\n    },\n    {\n      \"_id\": \"string\",\n      \"eventName\": \"string\",\n      \"timestamp\": \"2015-08-07T06:35:43.268Z\",\n      \"transactionId\": \"string\",\n      \"userId\": \"string\",\n      \"trackingIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"runAs\": \"string\",\n      \"objectId\": \"string\",\n      \"operation\": \"string\",\n      \"before\": {},\n      \"after\": {},\n      \"changedFields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"SUCCESS\"\n    }\n  ],\n  \"resultCount\": 6178,\n  \"totalPagedResults\": 2203\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "543872a4-fcd1-4edc-b11f-d048ba7ec7b8",
+          "name": "ForgeRock Get an audit log entry",
+          "request": {
+            "name": "ForgeRock Get an audit log entry",
+            "description": {
+              "content": "Retrieve a specific audit log entry by topic and identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "audit",
+                ":auditTopic",
+                ":auditId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "auditTopic",
+                  "description": "(Required) The audit topic"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "auditId",
+                  "description": "(Required) The audit entry identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "357cce9c-f28d-4427-acf0-d0b74ca91cee",
+              "name": "The audit entry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit",
+                    ":auditTopic",
+                    ":auditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditTopic",
+                      "description": "(Required) The audit topic"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditId",
+                      "description": "(Required) The audit entry identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"eventName\": \"string\",\n  \"timestamp\": \"1950-11-08T00:25:23.786Z\",\n  \"transactionId\": \"string\",\n  \"userId\": \"string\",\n  \"trackingIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"runAs\": \"string\",\n  \"objectId\": \"string\",\n  \"operation\": \"string\",\n  \"before\": {},\n  \"after\": {},\n  \"changedFields\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"SUCCESS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44f37517-38e6-44d2-a081-dedfca46e6e6",
+              "name": "Audit entry not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audit",
+                    ":auditTopic",
+                    ":auditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditTopic",
+                      "description": "(Required) The audit topic"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditId",
+                      "description": "(Required) The audit entry identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5974,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d0036451-c682-4d23-b271-d30ab4f787b8",
+    "name": "ForgeRock Access Management Access Requests Audit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

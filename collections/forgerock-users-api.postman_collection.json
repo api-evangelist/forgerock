@@ -1,0 +1,1002 @@
+{
+  "item": [
+    {
+      "id": "78ba5517-5bb0-4d43-a25f-9ef4bc19a3b5",
+      "name": "Users",
+      "description": {
+        "content": "Query user entitlement data and recommendations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e71ce760-ba51-4553-bdb0-50bb3a098df8",
+          "name": "ForgeRock List user entitlements",
+          "request": {
+            "name": "ForgeRock List user entitlements",
+            "description": {
+              "content": "Retrieve all entitlements assigned to a specific user with their confidence scores and justification data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users",
+                ":userId",
+                "entitlements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceThreshold",
+                  "value": "<number>",
+                  "description": "Filter by minimum confidence score"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The user identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb8ccbf3-a218-4c87-b969-d7781922a4a2",
+              "name": "List of user entitlements with confidence scores",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    ":userId",
+                    "entitlements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "confidenceThreshold",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The user identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 1529.1068891953164,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\",\n        \"key_3\": \"string\"\n      },\n      \"justification\": \"string\"\n    },\n    {\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 2619.646660545376,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"justification\": \"string\"\n    }\n  ],\n  \"totalResults\": 474\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4da2bd43-28c2-4a57-9936-5faecaee64d1",
+          "name": "ForgeRock Get user recommendations",
+          "request": {
+            "name": "ForgeRock Get user recommendations",
+            "description": {
+              "content": "Get recommended entitlements for a user based on their attributes and the AI model's predictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users",
+                ":userId",
+                "recommendations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "25",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The user identifier"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3389056-ac69-416a-af17-965317b778e1",
+              "name": "Entitlement recommendations for the user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    ":userId",
+                    "recommendations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "maxResults",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The user identifier"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 5535.968270664358,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"userId\": \"string\",\n      \"userName\": \"string\",\n      \"entitlementId\": \"string\",\n      \"entitlementName\": \"string\",\n      \"application\": \"string\",\n      \"confidenceScore\": 8999.204349208301,\n      \"drivingAttributes\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ],\n  \"totalResults\": 3967\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "810577ff-2561-4158-bcd3-dce2ab48f0d5",
+          "name": "List directory users",
+          "request": {
+            "name": "List directory users",
+            "description": {
+              "content": "Query user entries in the directory. Supports CREST query filters which are translated to LDAP search operations with appropriate filter expressions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsCookie",
+                  "value": "<string>",
+                  "description": "Cookie from a previous page for server-side paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated sort fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ac1aa4e6-5804-4032-80ae-aed6ad434759",
+              "name": "List of user entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsCookie",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"userName\": \"string\",\n      \"givenName\": \"string\",\n      \"sn\": \"string\",\n      \"cn\": \"string\",\n      \"mail\": \"cEG0bl0eOQpc6@HnhdppHNEjmZqBRoSjBQYBoI.am\",\n      \"telephoneNumber\": \"string\",\n      \"description\": \"string\",\n      \"memberOf\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"userName\": \"string\",\n      \"givenName\": \"string\",\n      \"sn\": \"string\",\n      \"cn\": \"string\",\n      \"mail\": \"6ZFEyw@WNApmDHHVISMRz.qbu\",\n      \"telephoneNumber\": \"string\",\n      \"description\": \"string\",\n      \"memberOf\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"resultCount\": 5533,\n  \"pagedResultsCookie\": \"string\",\n  \"totalPagedResults\": 2871\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33103d23-30e2-4620-a4b9-d034073a52f9",
+              "name": "Invalid query filter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsCookie",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4734,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f202ec1-7a45-44dd-9bb9-f9abf7f72f94",
+          "name": "Create a directory user",
+          "request": {
+            "name": "Create a directory user",
+            "description": {
+              "content": "Create a new user entry in the directory. The JSON resource is mapped to an LDAP entry with appropriate object classes and attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"userPassword\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42cac172-b6b8-4398-8e80-cb61d066a523",
+              "name": "User created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"userPassword\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"cn\": \"string\",\n  \"mail\": \"pm6mgt@rNkhhAhfyFOjSrUZMrLONbJwPV.twth\",\n  \"telephoneNumber\": \"string\",\n  \"description\": \"string\",\n  \"memberOf\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e8fe018-c126-413a-8d0a-474504d2e93b",
+              "name": "Invalid user data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"userPassword\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4734,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6890e9ba-45ec-449f-9f37-77bbd9656847",
+              "name": "User already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": \"<string>\",\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"cn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"userPassword\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4734,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a87f706-59b8-43cd-8586-4a85a526ff18",
+          "name": "Perform a user action",
+          "request": {
+            "name": "Perform a user action",
+            "description": {
+              "content": "Perform actions on a user entry such as password reset or password change via _action query parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_action",
+                  "value": "<string>",
+                  "description": "(Required) The action to perform"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The user identifier (maps to LDAP uid or _id)"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f81704aa-0c7d-4662-8db0-4c6f217bd6b1",
+              "name": "Action completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The user identifier (maps to LDAP uid or _id)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b79cde9d-1ffd-4de5-af9d-714a43bddc23",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_action",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The user identifier (maps to LDAP uid or _id)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"oldPassword\": \"<string>\",\n  \"newPassword\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4734,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f015318-a7da-41b2-b2b6-0bfa433bb694",
+    "name": "ForgeRock Access Management Access Requests Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

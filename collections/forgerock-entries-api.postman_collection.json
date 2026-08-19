@@ -1,0 +1,208 @@
+{
+  "item": [
+    {
+      "id": "79633a6a-1ddf-4de1-bc3e-059b674a8fba",
+      "name": "Entries",
+      "description": {
+        "content": "Generic LDAP entry operations via HDAP",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a071d40-5dab-44b8-adf6-9ededf147cf4",
+          "name": "List directory entries",
+          "request": {
+            "name": "List directory entries",
+            "description": {
+              "content": "Query entries from any HDAP-configured collection endpoint. The collection maps to an LDAP subtree with a defined JSON-to-LDAP mapping.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                ":collection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression, translated to an LDAP filter (e.g., uid eq \"jdoe\" becomes (uid=jdoe))"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsCookie",
+                  "value": "<string>",
+                  "description": "Cookie from a previous page for server-side paging"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection",
+                  "description": "(Required) The HDAP collection name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "87595fc7-24e5-4fb8-8118-763e4dcadb46",
+              "name": "Query results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    ":collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsCookie",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection",
+                      "description": "(Required) The HDAP collection name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"key_0\": \"string\",\n      \"key_1\": true\n    },\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": 3755,\n      \"key_3\": 4489.82579978061\n    }\n  ],\n  \"resultCount\": 1018,\n  \"pagedResultsCookie\": \"string\",\n  \"totalPagedResults\": 9538\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3736b827-339f-41f4-bd69-cd2dd5b29c63",
+    "name": "ForgeRock Access Management Access Requests Entries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

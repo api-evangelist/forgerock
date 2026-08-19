@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Workflow API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List workflow process definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/workflow/processdefinition",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query available BPMN workflow process definitions deployed to IDM."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List workflow process instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/workflow/processinstance",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query active workflow process instances."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Start a workflow process",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/workflow/processinstance",
+            "params": [
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new workflow process instance from a deployed process definition."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List workflow task instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/workflow/taskinstance",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query active user tasks from running workflow processes."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a task instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/workflow/taskinstance/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task instance identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific workflow task instance."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Complete a task instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/workflow/taskinstance/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path",
+                "description": "The task instance identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Complete a workflow user task and provide output variables."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

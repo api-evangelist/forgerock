@@ -1,0 +1,1417 @@
+{
+  "item": [
+    {
+      "id": "1cecbac8-484b-4b47-8444-6a426f14a333",
+      "name": "Managed Users",
+      "description": {
+        "content": "CRUD operations on managed user objects",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b87fdc28-76c2-4e07-af98-79600016f488",
+          "name": "ForgeRock List managed users",
+          "request": {
+            "name": "ForgeRock List managed users",
+            "description": {
+              "content": "Query managed user objects in the specified realm. Supports filtering, sorting, and pagination through query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pageSize",
+                  "value": "<integer>",
+                  "description": "Number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "_pagedResultsOffset",
+                  "value": "<integer>",
+                  "description": "Offset for paginated results"
+                },
+                {
+                  "disabled": false,
+                  "key": "_sortKeys",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to sort by (prefix with - for descending)"
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f287c9ee-00bd-44be-b331-f870bc275d9e",
+              "name": "List of managed users",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"userName\": \"string\",\n      \"givenName\": \"string\",\n      \"sn\": \"string\",\n      \"mail\": \"WSL@meFj.ro\",\n      \"telephoneNumber\": \"string\",\n      \"accountStatus\": \"inactive\"\n    },\n    {\n      \"_id\": \"string\",\n      \"_rev\": \"string\",\n      \"userName\": \"string\",\n      \"givenName\": \"string\",\n      \"sn\": \"string\",\n      \"mail\": \"YVfKIe4@MzpFHnbRNsU.extk\",\n      \"telephoneNumber\": \"string\",\n      \"accountStatus\": \"inactive\"\n    }\n  ],\n  \"resultCount\": 9287,\n  \"pagedResultsCookie\": \"string\",\n  \"totalPagedResultsPolicy\": \"string\",\n  \"totalPagedResults\": 6536,\n  \"remainingPagedResults\": 1146\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdfdc58d-4729-4175-a437-3faa75e0d97d",
+              "name": "Forbidden - insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_pagedResultsOffset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "_sortKeys",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc0c073a-2e41-44c0-9d6d-e093a7a71488",
+          "name": "ForgeRock Create a managed user",
+          "request": {
+            "name": "ForgeRock Create a managed user",
+            "description": {
+              "content": "Create a new managed user object in the specified realm. The user object must include required properties such as userName.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b477a1d3-2bfe-46fa-8db5-e40f576f835d",
+              "name": "Managed user created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"dHk0o1KkTl4hgH@TXXcLfpRtkCOYRHrQbeECbJex.qcyg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33978bf5-005d-43ec-a453-4494e9a258a6",
+              "name": "Bad request - invalid user data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f87c8c80-68d2-4bd8-94d2-b2c601412734",
+              "name": "Conflict - user already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5e0f0ca-818e-445d-83df-8bbd8bc82fbc",
+          "name": "ForgeRock Get a managed user",
+          "request": {
+            "name": "ForgeRock Get a managed user",
+            "description": {
+              "content": "Retrieve a specific managed user object by its identifier from the specified realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to include in the response"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb6b9b1a-97d4-4838-81d9-fb80deb1a834",
+              "name": "The managed user object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"dHk0o1KkTl4hgH@TXXcLfpRtkCOYRHrQbeECbJex.qcyg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8a1a08e-57f7-4f33-856e-92f391c6b0f3",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3078fdb-ec54-4498-af9f-8827790e4330",
+          "name": "ForgeRock Replace a managed user",
+          "request": {
+            "name": "ForgeRock Replace a managed user",
+            "description": {
+              "content": "Replace an entire managed user object. The request body must contain the complete user representation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision identifier for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4b1b99f8-d335-4588-b856-0a1eceef1e06",
+              "name": "Managed user updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"dHk0o1KkTl4hgH@TXXcLfpRtkCOYRHrQbeECbJex.qcyg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f6fb134-a74d-4a91-bb9d-93e8c644fda9",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c0a26f82-6870-46e3-9edd-5589a9026621",
+              "name": "Precondition failed - revision mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userName\": \"<string>\",\n  \"givenName\": \"<string>\",\n  \"sn\": \"<string>\",\n  \"mail\": \"<email>\",\n  \"telephoneNumber\": \"<string>\",\n  \"password\": \"<password>\",\n  \"accountStatus\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8a81ae2-5024-484e-ad26-b6d0d12ae13b",
+          "name": "ForgeRock Patch a managed user",
+          "request": {
+            "name": "ForgeRock Patch a managed user",
+            "description": {
+              "content": "Partially update a managed user object using JSON Patch operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision identifier for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7476272-562d-40e1-b507-d73fc9e7261c",
+              "name": "Managed user patched successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"dHk0o1KkTl4hgH@TXXcLfpRtkCOYRHrQbeECbJex.qcyg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20629d6b-adb2-4f57-9b7a-f257ee84db4a",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  },\n  {\n    \"operation\": \"<string>\",\n    \"field\": \"<string>\",\n    \"value\": {}\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea2cf310-d582-4cce-9c8f-ad8fab234c15",
+          "name": "ForgeRock Delete a managed user",
+          "request": {
+            "name": "ForgeRock Delete a managed user",
+            "description": {
+              "content": "Delete a managed user object from the specified realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "openidm",
+                "managed",
+                "{{realm}}_user",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "userId",
+                  "description": "(Required) The unique identifier of the managed user"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Revision identifier for optimistic concurrency control",
+                "key": "If-Match",
+                "value": "*"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b14feaee-84a7-4b41-9da0-570efe73821f",
+              "name": "Managed user deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"string\",\n  \"_rev\": \"string\",\n  \"userName\": \"string\",\n  \"givenName\": \"string\",\n  \"sn\": \"string\",\n  \"mail\": \"dHk0o1KkTl4hgH@TXXcLfpRtkCOYRHrQbeECbJex.qcyg\",\n  \"telephoneNumber\": \"string\",\n  \"accountStatus\": \"active\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70403ed4-5c05-4d60-9bfb-9f513097da07",
+              "name": "User not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "openidm",
+                    "managed",
+                    "{{realm}}_user",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "userId",
+                      "description": "(Required) The unique identifier of the managed user"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Revision identifier for optimistic concurrency control",
+                    "key": "If-Match",
+                    "value": "*"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5796,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The realm name prefix for managed objects (e.g., alpha, bravo)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "alpha",
+      "key": "realm"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "942aa393-bae8-40bf-b9bb-f5065fce6167",
+    "name": "ForgeRock Access Management Access Requests Managed Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

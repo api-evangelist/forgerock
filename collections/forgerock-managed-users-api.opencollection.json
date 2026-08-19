@@ -1,0 +1,230 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Managed Users API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Managed Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List managed users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openidm/managed/:realm_user",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression (e.g., userName eq \"jdoe\" or true for all)"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for paginated results"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to sort by (prefix with - for descending)"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query managed user objects in the specified realm. Supports filtering, sorting, and pagination through query parameters."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/openidm/managed/:realm_user",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new managed user object in the specified realm. The user object must include required properties such as userName."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openidm/managed/:realm_user/:userId",
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific managed user object by its identifier from the specified realm."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Replace a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/openidm/managed/:realm_user/:userId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an entire managed user object. The request body must contain the complete user representation."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Patch a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{deployment}/am/openidm/managed/:realm_user/:userId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially update a managed user object using JSON Patch operations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a managed user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/openidm/managed/:realm_user/:userId",
+            "headers": [
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name prefix for managed objects (e.g., alpha, bravo)"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the managed user"
+              }
+            ]
+          },
+          "docs": "Delete a managed user object from the specified realm."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

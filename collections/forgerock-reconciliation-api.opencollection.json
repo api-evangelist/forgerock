@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Reconciliation API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reconciliation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Trigger reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/recon/:mappingName",
+            "params": [
+              {
+                "name": "mappingName",
+                "value": "",
+                "type": "path",
+                "description": "The sync mapping name (e.g., systemLdapAccounts_managedUser)"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "Must be recon"
+              }
+            ]
+          },
+          "docs": "Trigger a reconciliation operation for the specified mapping. The mapping defines the source and target systems and the synchronization rules."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List reconciliation runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/recon",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated sort fields (prefix with - for descending)"
+              }
+            ]
+          },
+          "docs": "Query reconciliation run records. Returns details about past and in-progress reconciliation operations."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get reconciliation details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/recon/:reconId",
+            "params": [
+              {
+                "name": "reconId",
+                "value": "",
+                "type": "path",
+                "description": "The reconciliation run identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details about a specific reconciliation run."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

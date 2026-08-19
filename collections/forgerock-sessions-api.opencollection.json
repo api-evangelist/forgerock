@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Sessions API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Query sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/sessions",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter for sessions"
+              }
+            ]
+          },
+          "docs": "Query active sessions in the specified realm. Requires administrative privileges."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Perform a session action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/json/realms/root/realms/:realm/sessions",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The session action to perform"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform an action on a session such as validate, logout, getSessionInfo, or refresh."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Perform session actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/am/json/realms/root/realms/:realm/sessions",
+            "headers": [
+              {
+                "name": "Accept-API-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realm",
+                "value": "",
+                "type": "path",
+                "description": "The realm name (e.g., alpha, bravo)"
+              },
+              {
+                "name": "_action",
+                "value": "",
+                "type": "query",
+                "description": "The action to perform on the session"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform actions on sessions such as getting session info, refreshing idle timeout, or logging out. The action is specified via the _action query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

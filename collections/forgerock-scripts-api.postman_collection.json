@@ -1,0 +1,418 @@
+{
+  "item": [
+    {
+      "id": "5ca9178d-fade-4766-ad08-7e12591cf147",
+      "name": "Scripts",
+      "description": {
+        "content": "Manage AM scripts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eca9e3d9-a100-4a14-b94b-ee377dc30b29",
+          "name": "ForgeRock List scripts",
+          "request": {
+            "name": "ForgeRock List scripts",
+            "description": {
+              "content": "Query scripts configured in the specified realm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "scripts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_queryFilter",
+                  "value": "<string>",
+                  "description": "CREST query filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CREST API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31519bb2-7264-4494-93d7-114de991104f",
+              "name": "List of scripts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "scripts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_queryFilter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"_id\": \"8534f883-141e-36be-36e3-1c5872348c11\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"script\": \"string\",\n      \"language\": \"GROOVY\",\n      \"context\": \"POLICY_CONDITION\",\n      \"createdBy\": \"string\",\n      \"creationDate\": 9901,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedDate\": 4180\n    },\n    {\n      \"_id\": \"ceb44cf3-31cc-04b4-7611-54d2ce880619\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"script\": \"string\",\n      \"language\": \"GROOVY\",\n      \"context\": \"AUTHENTICATION_TREE_DECISION_NODE\",\n      \"createdBy\": \"string\",\n      \"creationDate\": 2864,\n      \"lastModifiedBy\": \"string\",\n      \"lastModifiedDate\": 4703\n    }\n  ],\n  \"resultCount\": 1777\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8baf16f-e36b-4259-ad28-4138110a96f0",
+          "name": "ForgeRock Get a script",
+          "request": {
+            "name": "ForgeRock Get a script",
+            "description": {
+              "content": "Retrieve a specific script by its UUID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "scripts",
+                ":scriptId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "root",
+                  "key": "realm",
+                  "description": "(Required) The realm name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "scriptId",
+                  "description": "(Required) The script UUID"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CREST API version protocol header",
+                "key": "Accept-API-Version",
+                "value": "resource=2.0,protocol=1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e21f2fb7-4268-4cb0-bbab-b53733f0df8a",
+              "name": "The script",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "scripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scriptId",
+                      "description": "(Required) The script UUID"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"d1ab0b22-c2e1-7bb6-007a-e706f4ec5852\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"script\": \"string\",\n  \"language\": \"GROOVY\",\n  \"context\": \"OIDC_CLAIMS\",\n  \"createdBy\": \"string\",\n  \"creationDate\": 6355,\n  \"lastModifiedBy\": \"string\",\n  \"lastModifiedDate\": 4204\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e307bcb9-7381-41fd-98bb-97550e912183",
+              "name": "Script not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "scripts",
+                    ":scriptId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "root",
+                      "key": "realm",
+                      "description": "(Required) The realm name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "scriptId",
+                      "description": "(Required) The script UUID"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CREST API version protocol header",
+                    "key": "Accept-API-Version",
+                    "value": "resource=2.0,protocol=1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8652,\n  \"reason\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5431c203-a372-4046-8e2c-e779d02d9a65",
+    "name": "ForgeRock Access Management Access Requests Scripts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Scheduler API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scheduler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List scheduled jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/scheduler/job",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              }
+            ]
+          },
+          "docs": "Query all configured scheduled jobs."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Create a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{deployment}/am/scheduler/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new scheduled job with a cron expression or interval."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/scheduler/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific scheduled job configuration."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Update a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{deployment}/am/scheduler/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a scheduled job configuration."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Delete a scheduled job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{deployment}/am/scheduler/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The job identifier"
+              }
+            ]
+          },
+          "docs": "Delete a scheduled job by identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

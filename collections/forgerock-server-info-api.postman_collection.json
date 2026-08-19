@@ -1,0 +1,178 @@
+{
+  "item": [
+    {
+      "id": "66c2c9bd-b6b9-49a6-b376-cf016c28a22d",
+      "name": "Server Info",
+      "description": {
+        "content": "Retrieve server information and configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "650f0dba-ab53-4cdd-bd8c-987b67761c09",
+          "name": "ForgeRock Get server information",
+          "request": {
+            "name": "ForgeRock Get server information",
+            "description": {
+              "content": "Retrieve server information including supported features, cookie name, and realm configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "am",
+                "json",
+                "realms",
+                "root",
+                "realms",
+                ":realm",
+                "serverinfo",
+                "*"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "alpha",
+                  "key": "realm",
+                  "description": "(Required) The realm name (e.g., alpha, bravo)"
+                },
+                {
+                  "description": "The AM deployment hostname",
+                  "type": "any",
+                  "value": "{{deployment}}",
+                  "key": "deployment"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e05a33d7-6088-4af0-973a-dccedcfc2ea6",
+              "name": "Server information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "am",
+                    "json",
+                    "realms",
+                    "root",
+                    "realms",
+                    ":realm",
+                    "serverinfo",
+                    "*"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "alpha",
+                      "key": "realm",
+                      "description": "(Required) The realm name (e.g., alpha, bravo)"
+                    },
+                    {
+                      "description": "The AM deployment hostname",
+                      "type": "any",
+                      "value": "{{deployment}}",
+                      "key": "deployment"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "iPlanetDirectoryPro",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cookieName\": \"string\",\n  \"domains\": [\n    \"string\",\n    \"string\"\n  ],\n  \"protectedUserAttributes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"forgotPassword\": \"string\",\n  \"selfRegistration\": \"string\",\n  \"lang\": \"string\",\n  \"successfulUserRegistrationDestination\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The AM deployment hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "am.example.com",
+      "key": "deployment"
+    },
+    {
+      "type": "string",
+      "value": "https://{{deployment}}/am",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "iPlanetDirectoryPro"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5852e554-166e-47cf-98d9-37b6dc8c4f5b",
+    "name": "ForgeRock Access Management Access Requests Server Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.\n\nContact Support:\n Name: ForgeRock",
+      "type": "text/plain"
+    }
+  }
+}

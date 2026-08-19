@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Entitlements API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Entitlements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/entitlements",
+            "params": [
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "application",
+                "value": "",
+                "type": "query",
+                "description": "Filter by application name"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Minimum confidence score threshold (0-100)"
+              }
+            ]
+          },
+          "docs": "Query entitlements across all onboarded applications. Returns entitlement details with aggregated confidence score statistics."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get entitlement details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/entitlements/:entitlementId",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific entitlement including confidence score distribution, assigned users, and driving attributes."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List users with entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/entitlements/:entitlementId/users",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Filter by minimum confidence score"
+              }
+            ]
+          },
+          "docs": "List all users assigned to a specific entitlement with their individual confidence scores and driving attributes."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get entitlement recommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/api/entitlements/:entitlementId/recommendations",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "confidenceThreshold",
+                "value": "",
+                "type": "query",
+                "description": "Minimum confidence score for recommendations"
+              }
+            ]
+          },
+          "docs": "Retrieve recommendations for users who do not have the entitlement but should, based on their attribute data and the AI model's predictions."
+        },
+        {
+          "info": {
+            "name": "ForgeRock List entitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/entitlement",
+            "params": [
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_pagedResultsOffset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "_sortKeys",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields"
+              }
+            ]
+          },
+          "docs": "Query the entitlements catalog. Entitlements are aggregated from onboarded target applications into a centralized repository."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get an entitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/governance/entitlement/:entitlementId",
+            "params": [
+              {
+                "name": "entitlementId",
+                "value": "",
+                "type": "path",
+                "description": "The entitlement identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific entitlement."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

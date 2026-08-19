@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests System Objects API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock List system objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/system/:systemName/:objectType",
+            "params": [
+              {
+                "name": "systemName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the connected system"
+              },
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "Object type in the connected system (e.g., account, group)"
+              },
+              {
+                "name": "_queryFilter",
+                "value": "",
+                "type": "query",
+                "description": "CREST query filter expression"
+              },
+              {
+                "name": "_pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Query objects from a connected remote system (connector). The system name and object type correspond to the connector configuration and its object types."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get a system object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/system/:systemName/:objectType/:objectId",
+            "params": [
+              {
+                "name": "systemName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the connected system"
+              },
+              {
+                "name": "objectType",
+                "value": "",
+                "type": "path",
+                "description": "Object type in the connected system"
+              },
+              {
+                "name": "objectId",
+                "value": "",
+                "type": "path",
+                "description": "Object identifier in the remote system"
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated fields to include in the response"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific object from a connected remote system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

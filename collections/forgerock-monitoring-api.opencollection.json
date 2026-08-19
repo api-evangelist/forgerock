@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ForgeRock Access Management Access Requests Monitoring API",
+    "version": "7.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "iPlanetDirectoryPro",
+      "value": "{{iPlanetDirectoryPro}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ForgeRock Get monitoring summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/monitoring"
+          },
+          "docs": "Retrieve a monitoring summary of the IG instance, including request counts, response times, and status code distributions."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Get endpoint monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/monitoring/:endpointId",
+            "params": [
+              {
+                "name": "endpointId",
+                "value": "",
+                "type": "path",
+                "description": "The endpoint or route identifier to monitor"
+              }
+            ]
+          },
+          "docs": "Retrieve monitoring data for a specific endpoint or route, including request counts and response time percentiles."
+        },
+        {
+          "info": {
+            "name": "ForgeRock Check IG health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{deployment}/am/openig/api/system/health"
+          },
+          "docs": "Returns the health status of the IG instance. Used for load balancer health checks and monitoring."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
