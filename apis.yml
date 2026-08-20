@@ -25,6 +25,13 @@ tags:
   - Authorization
   - Identity Governance
   - Identity Management
+  - OpenID Connect
+tags_raw:
+  - Access Management
+  - Authentication
+  - Authorization
+  - Identity Governance
+  - Identity Management
   - OAuth
   - OpenID Connect
 created: '2024'
@@ -36,6 +43,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - AccessRequests
+  tags_raw:
   - Access Requests
   properties:
   - type: OpenAPI
@@ -219,6 +228,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -707,6 +718,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -1073,6 +1086,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth2
   properties:
   - type: OpenAPI
@@ -2171,6 +2186,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -2293,6 +2310,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
