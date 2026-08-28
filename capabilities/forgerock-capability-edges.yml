@@ -1,0 +1,188 @@
+slug: forgerock
+provider: ForgeRock
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 18
+edges:
+- tag: Authentication
+  spec_file: forgerock-authentication-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.95
+  evidence: POST /json/realms/root/realms/{realm}/authenticate 'Authenticate a user'; AuthenticationRequest,
+    AuthenticationCallbackRequest
+  reason: Operations perform user authentication against realms with callback flows — core Identity &
+    Access Management.
+- tag: Access Requests
+  spec_file: forgerock-access-requests-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /governance/request  createAccessRequest ... AccessRequest
+  reason: Identity governance access request lifecycle (raise, approve/act on requests for entitlements)
+    is Identity & Access Management.
+- tag: Access Reviews
+  spec_file: forgerock-access-reviews-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: PATCH /governance/certification/{certificationId}/items/{itemId}  reviewCertificationItem
+  reason: Access certification campaigns and item review are classic identity governance/recertification,
+    part of Identity & Access Management.
+- tag: Managed Users
+  spec_file: forgerock-managed-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: POST /openidm/managed/{realm}_user 'Create a managed user'; DELETE '...deleteManagedUser'
+  reason: Full lifecycle CRUD over identity accounts in realms — joiner/mover/leaver style identity administration,
+    squarely Identity & Access Management, not HR employee records.
+- tag: Certifications
+  spec_file: forgerock-certifications-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /governance/certification 'List certification campaigns'; POST 'Create a certification
+    campaign'
+  reason: Access certification campaigns under a /governance path are identity governance / access review,
+    a recognised IAM function. Not quality certification (BC-720) nor service attestation.
+- tag: Entitlements
+  spec_file: forgerock-entitlements-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /api/entitlements/{entitlementId}/users 'List users with entitlement'; GET /governance/entitlement
+    'List an entitlement'
+  reason: Entitlements here are access rights granted to users within identity governance, i.e. access
+    management — not subscription entitlements (BC-4240.70).
+- tag: Groups
+  spec_file: forgerock-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: POST /api/groups 'Create a directory group'; schema Group, GroupQueryResult
+  reason: CRUD over identity-directory groups used for access grouping — Identity & Access Management.
+- tag: Managed Roles
+  spec_file: forgerock-managed-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /openidm/managed/{realm}_role 'List managed roles'; schema ManagedRole
+  reason: Role objects in the identity management realm — role-based access administration within IAM.
+- tag: OAuth2
+  spec_file: forgerock-oauth2-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET .../authorize  oAuth2Authorize  ForgeRock OAuth 2.0 authorization endpoint; POST .../access_token  oAuth2Token
+  reason: OAuth 2.0 authorization, token issuance and token introspection endpoints are the core of federated
+    authentication/authorization, i.e. Identity & Access Management. ForgeRock is an IAM vendor, so this
+    is the honest cross-industry IT capability.
+- tag: OpenID Connect
+  spec_file: forgerock-openid-connect-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: GET /oauth2/realms/root/realms/{realm}/userinfo  oidcUserInfo  ForgeRock OpenID Connect UserInfo
+    endpoint
+  reason: OIDC UserInfo and discovery endpoints deliver federated identity assertions about the authenticated
+    subject — Identity & Access Management (federation).
+- tag: Sessions
+  spec_file: forgerock-sessions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: 'GET /json/realms/root/realms/{realm}/sessions querySessions; ''Perform a session action'';
+    spec: ''authentication, authorization, session management'''
+  reason: Session lifecycle management in an access management product is part of identity & access management.
+- tag: Users
+  spec_file: forgerock-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: listUserEntitlements 'List user entitlements'; 'Create a directory user'; schemas UserEntitlementList,
+    User
+  reason: Directory user account creation and entitlement listing is core identity & access management
+    (joiners-movers-leavers, entitlements).
+- tag: OAuth2 Clients
+  spec_file: forgerock-oauth2-clients-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: POST /am/oauth2/realms/root/realms/{realm}/access_token  getAccessToken  ForgeRock OAuth 2.0
+    token endpoint
+  reason: Despite the tag name, the operations are the OAuth 2.0 authorize and token endpoints — access
+    token issuance and federation, which sits under Identity & Access Management. Slight ambiguity because
+    no client-registration CRUD is present.
+- tag: Policies
+  spec_file: forgerock-policies-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.8
+  evidence: 'POST .../policies  createPolicyOrEvaluate  ForgeRock Create a policy or evaluate policies;
+    schemas: PolicyDecision'
+  reason: These are authorization policies with policy evaluation returning a PolicyDecision — access
+    control, not corporate policy lifecycle. Maps to Identity & Access Management rather than BC-130.20.
+- tag: Roles
+  spec_file: forgerock-roles-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.75
+  evidence: GET /governance/role  listGovernanceRoles  ForgeRock List governance roles
+  reason: Governance roles are the role constructs used in identity governance for entitlement assignment,
+    mapping to Identity & Access Management. Only a single read operation, so confidence is tempered.
+- tag: Reconciliation
+  spec_file: forgerock-reconciliation-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /recon/{mappingName}  triggerReconciliation  ForgeRock Trigger reconciliation
+  reason: This is ForgeRock IDM identity reconciliation — synchronising accounts between source and target
+    datastores via a mapping — i.e. identity provisioning/joiners-movers-leavers, NOT financial or nostro
+    reconciliation. Some ambiguity with data quality management.
+- tag: Resource Types
+  spec_file: forgerock-resource-types-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /json/realms/root/realms/{realm}/resourcetypes  createResourceType  ForgeRock Create
+    a resource type
+  reason: Resource types define the protected resources and actions used by AM authorization policies,
+    so they are part of access-control configuration under Identity & Access Management; thin context,
+    hence moderate confidence.
+- tag: Violations
+  spec_file: forgerock-violations-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: GET /governance/violation listViolations 'List policy violations'; 'Resolve a policy violation'
+  reason: Identity governance SoD/access policy violation detection and remediation — sits within IAM
+    governance; could also be read as broader policy compliance, hence moderate confidence.
