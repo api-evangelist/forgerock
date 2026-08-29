@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests Certifications API
-  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
-  version: 7.3.0
+  title: ForgeRock Identity Governance Certifications API
+  description: REST API for ForgeRock Identity Governance providing access reviews, certifications, role management, entitlement management, access requests, and compliance workflows. Enables organizations to review and certify access assignments, manage entitlements from onboarded applications, and enforce compliance policies.
+  version: 7.1.0
   contact:
     name: ForgeRock
     url: https://www.forgerock.com
@@ -10,16 +10,15 @@ info:
     name: Proprietary
     url: https://www.forgerock.com/terms
   x-provider: forgerock
-  x-api: access-management
+  x-api: identity-governance
 servers:
-- url: https://{deployment}/am
-  description: ForgeRock Access Management server
+- url: https://{deployment}/iga
+  description: ForgeRock Identity Governance server
   variables:
     deployment:
-      default: am.example.com
-      description: The AM deployment hostname
+      default: iga.example.com
+      description: The Identity Governance deployment hostname
 security:
-- ssoToken: []
 - bearerAuth: []
 tags:
 - name: Certifications
@@ -121,12 +120,6 @@ paths:
                 $ref: '#/components/schemas/Certification'
 components:
   parameters:
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
     SortKeys:
       name: _sortKeys
       in: query
@@ -154,27 +147,30 @@ components:
       description: The certification campaign identifier
       schema:
         type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-    CertificationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Certification'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
+    PatchOperations:
+      type: array
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
     Certification:
       type: object
       description: An access certification campaign
@@ -231,31 +227,29 @@ components:
           type: string
           format: date-time
           readOnly: true
-    PatchOperations:
-      type: array
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            enum:
-            - add
-            - remove
-            - replace
-          field:
-            type: string
-          value: {}
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    CertificationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certification'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
   securitySchemes:
-    ssoToken:
-      type: apiKey
-      in: header
-      name: iPlanetDirectoryPro
-      description: AM SSO token obtained from authentication
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 access token
+      description: OAuth 2.0 access token with governance scopes

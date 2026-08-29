@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests OAuth2 API
+  title: ForgeRock Access Management O Auth2 API
   description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
   version: 7.3.0
   contact:
@@ -146,15 +146,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/OAuthError'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
   schemas:
     TokenInfo:
       type: object
@@ -200,6 +191,15 @@ components:
           type: string
         id_token:
           type: string
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
   securitySchemes:
     ssoToken:
       type: apiKey

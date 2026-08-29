@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests Scripts API
+  title: ForgeRock Access Management Scripts API
   description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
   version: 7.3.0
   contact:
@@ -131,6 +131,15 @@ components:
           type: string
         lastModifiedDate:
           type: integer
+    ScriptList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+        resultCount:
+          type: integer
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -141,15 +150,6 @@ components:
           type: string
         message:
           type: string
-    ScriptList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Script'
-        resultCount:
-          type: integer
   securitySchemes:
     ssoToken:
       type: apiKey

@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests Managed Users API
-  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
-  version: 7.3.0
+  title: ForgeRock Identity Cloud REST Managed Users API
+  description: REST API for managing identities, authentication, and authorization in ForgeRock Identity Cloud (PingOne Advanced Identity Cloud). Provides access management and identity management endpoints for Advanced Identity Cloud tenant environments, including authentication journeys, session management, managed object CRUD, OAuth 2.0 and OpenID Connect flows.
+  version: 1.0.0
   contact:
     name: ForgeRock
     url: https://www.forgerock.com
@@ -10,17 +10,17 @@ info:
     name: Proprietary
     url: https://www.forgerock.com/terms
   x-provider: forgerock
-  x-api: access-management
+  x-api: identity-cloud
 servers:
-- url: https://{deployment}/am
-  description: ForgeRock Access Management server
+- url: https://{tenant}.forgeblocks.com
+  description: ForgeRock Identity Cloud tenant
   variables:
-    deployment:
-      default: am.example.com
-      description: The AM deployment hostname
+    tenant:
+      default: mycompany
+      description: The tenant identifier for your Identity Cloud environment
 security:
-- ssoToken: []
 - bearerAuth: []
+- apiKeyAuth: []
 tags:
 - name: Managed Users
   description: CRUD operations on managed user objects
@@ -216,20 +216,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
-    RealmName:
-      name: realm
-      in: path
-      required: true
-      description: The realm name prefix for managed objects (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
-      schema:
-        type: string
     SortKeys:
       name: _sortKeys
       in: query
@@ -243,13 +229,6 @@ components:
       schema:
         type: integer
         minimum: 1
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: The unique identifier of the managed user
-      schema:
-        type: string
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -257,13 +236,92 @@ components:
       schema:
         type: integer
         minimum: 0
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the managed user
+      schema:
+        type: string
     Fields:
       name: _fields
       in: query
       description: Comma-separated list of fields to include in the response
       schema:
         type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   schemas:
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            description: The patch operation type
+            enum:
+            - add
+            - remove
+            - replace
+            - increment
+          field:
+            type: string
+            description: JSON pointer to the field to patch
+          value:
+            description: The value for add, replace, or increment operations
+    ManagedUserList:
+      type: object
+      description: Paginated list of managed users
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedUser'
+        resultCount:
+          type: integer
+          description: Number of results in this page
+        pagedResultsCookie:
+          type: string
+          description: Cookie for fetching the next page
+        totalPagedResultsPolicy:
+          type: string
+          description: Policy for total result count
+        totalPagedResults:
+          type: integer
+          description: Total number of results (-1 if unknown)
+        remainingPagedResults:
+          type: integer
+          description: Remaining results after this page
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
     ManagedUser:
       type: object
       description: A managed user identity object
@@ -315,72 +373,14 @@ components:
           readOnly: true
           items:
             type: object
-    PatchOperations:
-      type: array
-      description: JSON Patch operations
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            description: The patch operation type
-            enum:
-            - add
-            - remove
-            - replace
-            - increment
-          field:
-            type: string
-            description: JSON pointer to the field to patch
-          value:
-            description: The value for add, replace, or increment operations
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
-    ManagedUserList:
-      type: object
-      description: Paginated list of managed users
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedUser'
-        resultCount:
-          type: integer
-          description: Number of results in this page
-        pagedResultsCookie:
-          type: string
-          description: Cookie for fetching the next page
-        totalPagedResultsPolicy:
-          type: string
-          description: Policy for total result count
-        totalPagedResults:
-          type: integer
-          description: Total number of results (-1 if unknown)
-        remainingPagedResults:
-          type: integer
-          description: Remaining results after this page
   securitySchemes:
-    ssoToken:
-      type: apiKey
-      in: header
-      name: iPlanetDirectoryPro
-      description: AM SSO token obtained from authentication
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 access token
+      description: OAuth 2.0 access token obtained from the token endpoint. Required for access management and identity management operations.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for tenant read-only operations. Used together with x-api-secret header.

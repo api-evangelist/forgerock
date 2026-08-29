@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests Groups API
-  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
-  version: 7.3.0
+  title: ForgeRock Directory Services Groups API
+  description: HTTP Directory Access Protocol (HDAP) REST API for ForgeRock Directory Services (DS). Provides JSON-based access to directory data, translating HTTP operations into LDAP operations and mapping JSON resources to LDAP entries. Supports CRUD operations, search, and password management for directory entries.
+  version: 7.4.0
   contact:
     name: ForgeRock
     url: https://www.forgerock.com
@@ -10,17 +10,17 @@ info:
     name: Proprietary
     url: https://www.forgerock.com/terms
   x-provider: forgerock
-  x-api: access-management
+  x-api: directory-services
 servers:
-- url: https://{deployment}/am
-  description: ForgeRock Access Management server
+- url: https://{deployment}/ds
+  description: ForgeRock Directory Services HDAP endpoint
   variables:
     deployment:
-      default: am.example.com
-      description: The AM deployment hostname
+      default: ds.example.com
+      description: The DS deployment hostname
 security:
-- ssoToken: []
 - bearerAuth: []
+- basicAuth: []
 tags:
 - name: Groups
   description: Manage group entries in the directory
@@ -171,6 +171,37 @@ paths:
                 $ref: '#/components/schemas/Group'
 components:
   schemas:
+    GroupQueryResult:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
     Group:
       type: object
       description: A directory group entry
@@ -193,37 +224,6 @@ components:
           description: Group member identifiers
           items:
             type: string
-    PatchOperations:
-      type: array
-      description: JSON Patch operations
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            enum:
-            - add
-            - remove
-            - replace
-          field:
-            type: string
-          value: {}
-    GroupQueryResult:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-        resultCount:
-          type: integer
-        pagedResultsCookie:
-          type: string
-        totalPagedResults:
-          type: integer
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -235,18 +235,6 @@ components:
         message:
           type: string
   parameters:
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
-      schema:
-        type: string
-    PagedResultsCookie:
-      name: _pagedResultsCookie
-      in: query
-      description: Cookie from a previous page for server-side paging
-      schema:
-        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -254,6 +242,18 @@ components:
       schema:
         type: integer
         minimum: 1
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
     Fields:
       name: _fields
       in: query
@@ -261,13 +261,11 @@ components:
       schema:
         type: string
   securitySchemes:
-    ssoToken:
-      type: apiKey
-      in: header
-      name: iPlanetDirectoryPro
-      description: AM SSO token obtained from authentication
     bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT
       description: OAuth 2.0 access token
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication (for directory bind)

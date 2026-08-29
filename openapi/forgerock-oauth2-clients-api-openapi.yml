@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests OAuth2 Clients API
-  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
-  version: 7.3.0
+  title: ForgeRock Identity Cloud REST OAuth2 Clients API
+  description: REST API for managing identities, authentication, and authorization in ForgeRock Identity Cloud (PingOne Advanced Identity Cloud). Provides access management and identity management endpoints for Advanced Identity Cloud tenant environments, including authentication journeys, session management, managed object CRUD, OAuth 2.0 and OpenID Connect flows.
+  version: 1.0.0
   contact:
     name: ForgeRock
     url: https://www.forgerock.com
@@ -10,17 +10,17 @@ info:
     name: Proprietary
     url: https://www.forgerock.com/terms
   x-provider: forgerock
-  x-api: access-management
+  x-api: identity-cloud
 servers:
-- url: https://{deployment}/am
-  description: ForgeRock Access Management server
+- url: https://{tenant}.forgeblocks.com
+  description: ForgeRock Identity Cloud tenant
   variables:
-    deployment:
-      default: am.example.com
-      description: The AM deployment hostname
+    tenant:
+      default: mycompany
+      description: The tenant identifier for your Identity Cloud environment
 security:
-- ssoToken: []
 - bearerAuth: []
+- apiKeyAuth: []
 tags:
 - name: OAuth2 Clients
   description: Manage OAuth 2.0 client registrations
@@ -143,16 +143,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/OAuthErrorResponse'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
   schemas:
+    OAuthErrorResponse:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+          description: Error code
+        error_description:
+          type: string
+          description: Human-readable error description
     TokenResponse:
       type: object
       description: OAuth 2.0 token response
@@ -175,16 +176,6 @@ components:
         id_token:
           type: string
           description: OpenID Connect ID token (if applicable)
-    OAuthErrorResponse:
-      type: object
-      description: OAuth 2.0 error response
-      properties:
-        error:
-          type: string
-          description: Error code
-        error_description:
-          type: string
-          description: Human-readable error description
     ErrorResponse:
       type: object
       description: Standard error response
@@ -198,14 +189,23 @@ components:
         message:
           type: string
           description: Detailed error message
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   securitySchemes:
-    ssoToken:
-      type: apiKey
-      in: header
-      name: iPlanetDirectoryPro
-      description: AM SSO token obtained from authentication
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 access token
+      description: OAuth 2.0 access token obtained from the token endpoint. Required for access management and identity management operations.
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+      description: API key for tenant read-only operations. Used together with x-api-secret header.

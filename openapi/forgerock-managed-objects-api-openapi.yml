@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ForgeRock Access Management Access Requests Managed Objects API
-  description: REST API for ForgeRock Access Management (AM) providing authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows, authentication trees/journeys, policy-based authorization decisions, and realm management.
-  version: 7.3.0
+  title: ForgeRock Identity Management Managed Objects API
+  description: REST API for ForgeRock Identity Management (IDM) providing CRUD operations on managed objects and identity lifecycle management. Supports provisioning, synchronization, reconciliation, workflow-driven identity operations, and configuration management through the /openidm context path.
+  version: 7.4.0
   contact:
     name: ForgeRock
     url: https://www.forgerock.com
@@ -10,17 +10,17 @@ info:
     name: Proprietary
     url: https://www.forgerock.com/terms
   x-provider: forgerock
-  x-api: access-management
+  x-api: identity-management
 servers:
-- url: https://{deployment}/am
-  description: ForgeRock Access Management server
+- url: https://{deployment}/openidm
+  description: ForgeRock Identity Management server
   variables:
     deployment:
-      default: am.example.com
-      description: The AM deployment hostname
+      default: idm.example.com
+      description: The IDM deployment hostname
 security:
-- ssoToken: []
 - bearerAuth: []
+- basicAuth: []
 tags:
 - name: Managed Objects
   description: CRUD operations on managed identity objects
@@ -221,30 +221,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
     ObjectType:
       name: objectType
       in: path
       required: true
       description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
-      schema:
-        type: string
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    ObjectId:
-      name: objectId
-      in: path
-      required: true
-      description: The unique identifier of the managed object
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
       schema:
         type: string
     PagedResultsOffset:
@@ -254,13 +248,19 @@ components:
       schema:
         type: integer
         minimum: 0
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
+    ObjectId:
+      name: objectId
+      in: path
+      required: true
+      description: The unique identifier of the managed object
       schema:
-        type: integer
-        minimum: 1
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
     Fields:
       name: _fields
       in: query
@@ -268,29 +268,6 @@ components:
       schema:
         type: string
   schemas:
-    ManagedObject:
-      type: object
-      description: A managed identity object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier
-          readOnly: true
-        _rev:
-          type: string
-          description: Object revision for concurrency control
-          readOnly: true
-      additionalProperties: true
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     PatchOperations:
       type: array
       description: JSON Patch operations
@@ -310,6 +287,19 @@ components:
           field:
             type: string
           value: {}
+    ManagedObject:
+      type: object
+      description: A managed identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
     QueryResult:
       type: object
       description: CREST query result
@@ -328,14 +318,23 @@ components:
           type: integer
         remainingPagedResults:
           type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
   securitySchemes:
-    ssoToken:
-      type: apiKey
-      in: header
-      name: iPlanetDirectoryPro
-      description: AM SSO token obtained from authentication
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: OAuth 2.0 access token
+      description: OAuth 2.0 access token or IDM session token
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication (for internal admin access)
