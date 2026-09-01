@@ -55,7 +55,7 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
-  - Access Requests
+  - AccessRequests
   tags_raw:
   - Access Requests
   properties:
