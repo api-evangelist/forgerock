@@ -12,16 +12,18 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: paid
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Paid · Self-serve signup
-  confidence: high
+  label: Paid
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  - {url: 'https://www.forgerock.com', status: 301, note: 'declared website redirects to https://www.pingidentity.com/en.html?utm_source=forgerock.com&utm_medium=referral&utm_campaign=fr-blanket-redirect — a different registrable domain (forgerock.com -> pingidentity.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
+  generated: '2026-09-03'
   method: derived
 specificationVersion: '0.23'
 name: ForgeRock
