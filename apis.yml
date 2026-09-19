@@ -427,6 +427,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - Certification
+  tags_raw:
   - Certifications
   properties:
   - type: OpenAPI
@@ -2324,6 +2326,8 @@ apis:
   humanURL: https://backstage.forgerock.com/docs/idcloud/latest
   baseURL: https://{tenant}.forgeblocks.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth2
   properties:
   - type: OpenAPI
@@ -2384,6 +2388,16 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+
+  - type: ParentCompany
+
+    url: https://apis.io/providers/ping-identity/
+
+    name: Ping Identity
+
+    x-relationship: acquired
+
+    x-evidence: description names the acquirer and https://www.forgerock.com now redirects to pingidentity.com (roadmap#390, corroborate-dead.py)
   - type: CapabilityMap
     url: capabilities/forgerock-capability-edges.yml
     name: ForgeRock Business Capability Map
