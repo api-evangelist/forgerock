@@ -1,179 +1,43 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: ForgeRock
-providerId: forgerock
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: true
-tags:
-  - Access Management
-  - Authentication
-  - Authorization
-  - Identity Governance
-  - Identity Management
-  - OAuth
-  - OpenID Connect
-description: ForgeRock was acquired by Ping Identity in 2023 and the forgerock.com pricing/platform pages now redirect to pingidentity.com. The unified ForgeRock + PingOne platform is sold via two product families — PingOne for Customers (CIAM) and PingOne for Workforce (workforce IAM) — with public starting prices on both. Self-hosted ForgeRock Identity Platform deployments remain available under custom enterprise contracts.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.pingidentity.com/en/platform/pricing.html
 sources:
-  - https://www.pingidentity.com/en/platform/pricing.html
-  - https://www.forgerock.com/platform/pricing
+- https://www.pingidentity.com/en/platform/pricing.html
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Workforce pricing noted as *Based on annual contract for 5,000 user minimum; free 30-day trials
+  offered. Mix of per-seat and annual-package pricing.
+plan_count: 5
+currency: USD
 plans:
-  - id: forgerock-pingone-customers-essential
-    name: PingOne for Customers — Essential
-    type: subscription
-    description: Customer Identity and Access Management (CIAM) entry tier covering authentication, registration, and SSO for end customers. Annual contract; pricing starts at $35,000/year.
-    entries:
-      - label: Annual License
-        description: Customer-identity (CIAM) annual license — entry tier
-        name: pingone_customers_essential
-        type: subscription
-        metric: year
-        limit: -1
-        timeFrame: year
-        geo: global
-        domains:
-          - https://api.pingone.com
-        unit: 1
-        price: starting at $35,000 annually
-        userMultiplied: false
-    elements:
-      - name: Authentication & SSO
-      - name: Registration & Self-Service
-      - name: Adaptive MFA
-      - name: PingOne Admin Console
-      - name: 30-Day Free Trial
-  - id: forgerock-pingone-customers-plus
-    name: PingOne for Customers — Plus
-    type: subscription
-    description: CIAM upper tier; expands on Essential with deeper risk, fraud, and orchestration capabilities. Annual contract; pricing starts at $50,000/year.
-    entries:
-      - label: Annual License
-        description: Customer-identity Plus tier annual license
-        name: pingone_customers_plus
-        type: subscription
-        metric: year
-        limit: -1
-        timeFrame: year
-        geo: global
-        domains:
-          - https://api.pingone.com
-        unit: 1
-        price: starting at $50,000 annually
-        userMultiplied: false
-    elements:
-      - name: All Essential Features
-      - name: Risk-Based Authentication
-      - name: Identity Orchestration (PingOne DaVinci)
-      - name: Fraud Signals
-  - id: forgerock-pingone-workforce-essential
-    name: PingOne for Workforce — Essential
-    type: subscription
-    description: Workforce IAM entry tier for employees, contractors, and partners. Per-user monthly pricing on annual contract with a 5,000-user minimum.
-    entries:
-      - label: Per-User License
-        description: Workforce identity per-user monthly fee on annual contract; 5,000-user minimum
-        name: pingone_workforce_essential
-        type: subscription
-        metric: seat
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.pingone.com
-        unit: 1
-        price: $3 per user per month
-        userMultiplied: true
-    elements:
-      - name: SSO
-      - name: Multi-Factor Authentication
-      - name: Provisioning
-      - name: 5,000-User Minimum
-      - name: Annual Contract
-  - id: forgerock-pingone-workforce-plus
-    name: PingOne for Workforce — Plus
-    type: subscription
-    description: Workforce IAM upper tier with advanced risk, lifecycle, and governance features. Per-user monthly pricing on annual contract with a 5,000-user minimum.
-    entries:
-      - label: Per-User License
-        description: Workforce Plus per-user monthly fee on annual contract; 5,000-user minimum
-        name: pingone_workforce_plus
-        type: subscription
-        metric: seat
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.pingone.com
-        unit: 1
-        price: $6 per user per month
-        userMultiplied: true
-    elements:
-      - name: All Essential Features
-      - name: Risk-Based Authentication
-      - name: Lifecycle Workflows
-      - name: 5,000-User Minimum
-      - name: Annual Contract
-  - id: forgerock-passwordless
-    name: PingOne Passwordless
-    type: enterprise
-    description: Passwordless authentication add-on (FIDO2 / passkeys / DaVinci flows). Public pricing not disclosed.
-    entries:
-      - label: Add-on
-        description: Passwordless add-on; pricing on request
-        name: passwordless
-        type: subscription
-        metric: varies
-        limit: -1
-        timeFrame: year
-        geo: global
-        domains:
-          - https://api.pingone.com
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: FIDO2 / Passkeys
-      - name: DaVinci Orchestration
-      - name: Risk Signals
-  - id: forgerock-self-hosted-enterprise
-    name: ForgeRock Identity Platform (Self-Hosted)
-    type: enterprise
-    description: Self-managed ForgeRock Identity Platform deployments (AM, IDM, DS, IG, IGA, Autonomous Identity) for customers requiring on-premises or private-cloud install. Custom-negotiated contracts; sold by Ping Identity.
-    entries:
-      - label: Enterprise License
-        description: Self-managed ForgeRock platform license
-        name: self_hosted
-        type: subscription
-        metric: year
-        limit: -1
-        timeFrame: year
-        geo: configurable
-        domains:
-          - https://{tenant}.forgeblocks.com
-          - https://{deployment}/am
-          - https://{deployment}/openidm
-          - https://{deployment}/ig
-          - https://{deployment}/ds
-          - https://{deployment}/iga
-          - https://{deployment}/autoid
-        unit: 1
-        price: custom
-        userMultiplied: false
-    elements:
-      - name: ForgeRock Access Management (AM)
-      - name: ForgeRock Identity Management (IDM)
-      - name: ForgeRock Directory Services (DS)
-      - name: ForgeRock Identity Gateway (IG)
-      - name: ForgeRock Identity Governance (IGA)
-      - name: ForgeRock Autonomous Identity (AutoID)
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Custom Data Residency
-maintainers:
-  - name: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+- name: PingOne for Customers Passwordless
+  price_text: Contact Sales for Pricing
+  period: none
+- name: PingOne for Customers Essential
+  price_text: 'Starting at: $35k annually'
+  price: 35000
+  currency: USD
+  period: year
+- name: PingOne for Customers Plus
+  price_text: 'Starting at: $50k annually'
+  price: 50000
+  currency: USD
+  period: year
+- name: PingOne for Workforce Essential
+  price_text: $3 per user per month*
+  price: 3
+  currency: USD
+  period: month
+  unit: user
+- name: PingOne for Workforce Plus
+  price_text: $6 per user per month*
+  price: 6
+  currency: USD
+  period: month
+  unit: user
