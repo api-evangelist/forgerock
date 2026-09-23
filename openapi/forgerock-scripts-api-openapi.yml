@@ -78,24 +78,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ScriptList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Script'
+        resultCount:
+          type: integer
     Script:
       type: object
       description: An AM script
@@ -131,25 +133,23 @@ components:
           type: string
         lastModifiedDate:
           type: integer
-    ScriptList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Script'
-        resultCount:
-          type: integer
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
+  parameters:
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
   securitySchemes:
     ssoToken:
       type: apiKey

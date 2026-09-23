@@ -145,6 +145,16 @@ paths:
                 $ref: '#/components/schemas/Realm'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     RealmList:
       type: object
       properties:
@@ -172,16 +182,6 @@ components:
           items:
             type: string
           description: DNS aliases for the realm
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
   parameters:
     ApiVersion:
       name: Accept-API-Version

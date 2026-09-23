@@ -44,6 +44,15 @@ paths:
                 $ref: '#/components/schemas/GovernanceRoleList'
 components:
   schemas:
+    GovernanceRoleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/GovernanceRole'
+        resultCount:
+          type: integer
     GovernanceRole:
       type: object
       description: A governance role
@@ -64,15 +73,6 @@ components:
           type: array
           items:
             type: string
-    GovernanceRoleList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/GovernanceRole'
-        resultCount:
-          type: integer
   parameters:
     PageSize:
       name: _pageSize

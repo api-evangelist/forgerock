@@ -70,6 +70,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ApplicationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
     Application:
       type: object
       description: An onboarded application
@@ -86,24 +104,6 @@ components:
           type: integer
         averageConfidenceScore:
           type: number
-    ApplicationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        totalResults:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
   parameters:
     PageSize:
       name: maxResults

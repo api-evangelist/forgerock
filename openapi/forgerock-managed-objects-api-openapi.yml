@@ -220,54 +220,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    ObjectType:
-      name: objectType
-      in: path
-      required: true
-      description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-    ObjectId:
-      name: objectId
-      in: path
-      required: true
-      description: The unique identifier of the managed object
-      schema:
-        type: string
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated fields to include in the response
-      schema:
-        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     PatchOperations:
       type: array
       description: JSON Patch operations
@@ -287,19 +250,6 @@ components:
           field:
             type: string
           value: {}
-    ManagedObject:
-      type: object
-      description: A managed identity object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier
-          readOnly: true
-        _rev:
-          type: string
-          description: Object revision for concurrency control
-          readOnly: true
-      additionalProperties: true
     QueryResult:
       type: object
       description: CREST query result
@@ -318,16 +268,66 @@ components:
           type: integer
         remainingPagedResults:
           type: integer
-    ErrorResponse:
+    ManagedObject:
       type: object
-      description: Standard CREST error response
+      description: A managed identity object
       properties:
-        code:
-          type: integer
-        reason:
+        _id:
           type: string
-        message:
+          description: Unique identifier
+          readOnly: true
+        _rev:
           type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
+  parameters:
+    ObjectId:
+      name: objectId
+      in: path
+      required: true
+      description: The unique identifier of the managed object
+      schema:
+        type: string
+    ObjectType:
+      name: objectType
+      in: path
+      required: true
+      description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated fields to include in the response
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

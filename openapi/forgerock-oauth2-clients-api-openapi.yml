@@ -144,16 +144,6 @@ paths:
                 $ref: '#/components/schemas/OAuthErrorResponse'
 components:
   schemas:
-    OAuthErrorResponse:
-      type: object
-      description: OAuth 2.0 error response
-      properties:
-        error:
-          type: string
-          description: Error code
-        error_description:
-          type: string
-          description: Human-readable error description
     TokenResponse:
       type: object
       description: OAuth 2.0 token response
@@ -189,6 +179,16 @@ components:
         message:
           type: string
           description: Detailed error message
+    OAuthErrorResponse:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+          description: Error code
+        error_description:
+          type: string
+          description: Human-readable error description
   parameters:
     RealmPath:
       name: realm

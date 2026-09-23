@@ -102,40 +102,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated fields to include in the response
-      schema:
-        type: string
   schemas:
-    ManagedObject:
+    ErrorResponse:
       type: object
-      description: A managed identity object
+      description: Standard CREST error response
       properties:
-        _id:
+        code:
+          type: integer
+        reason:
           type: string
-          description: Unique identifier
-          readOnly: true
-        _rev:
+        message:
           type: string
-          description: Object revision for concurrency control
-          readOnly: true
-      additionalProperties: true
     QueryResult:
       type: object
       description: CREST query result
@@ -154,16 +131,39 @@ components:
           type: integer
         remainingPagedResults:
           type: integer
-    ErrorResponse:
+    ManagedObject:
       type: object
-      description: Standard CREST error response
+      description: A managed identity object
       properties:
-        code:
-          type: integer
-        reason:
+        _id:
           type: string
-        message:
+          description: Unique identifier
+          readOnly: true
+        _rev:
           type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated fields to include in the response
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

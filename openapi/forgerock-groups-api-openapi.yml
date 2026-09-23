@@ -171,19 +171,16 @@ paths:
                 $ref: '#/components/schemas/Group'
 components:
   schemas:
-    GroupQueryResult:
+    ErrorResponse:
       type: object
+      description: Standard CREST error response
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-        resultCount:
+        code:
           type: integer
-        pagedResultsCookie:
+        reason:
           type: string
-        totalPagedResults:
-          type: integer
+        message:
+          type: string
     PatchOperations:
       type: array
       description: JSON Patch operations
@@ -224,16 +221,19 @@ components:
           description: Group member identifiers
           items:
             type: string
-    ErrorResponse:
+    GroupQueryResult:
       type: object
-      description: Standard CREST error response
       properties:
-        code:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        resultCount:
           type: integer
-        reason:
+        pagedResultsCookie:
           type: string
-        message:
-          type: string
+        totalPagedResults:
+          type: integer
   parameters:
     PageSize:
       name: _pageSize
@@ -242,10 +242,10 @@ components:
       schema:
         type: integer
         minimum: 1
-    PagedResultsCookie:
-      name: _pagedResultsCookie
+    Fields:
+      name: _fields
       in: query
-      description: Cookie from a previous page for server-side paging
+      description: Comma-separated list of fields to return
       schema:
         type: string
     QueryFilter:
@@ -254,10 +254,10 @@ components:
       description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
       schema:
         type: string
-    Fields:
-      name: _fields
+    PagedResultsCookie:
+      name: _pagedResultsCookie
       in: query
-      description: Comma-separated list of fields to return
+      description: Cookie from a previous page for server-side paging
       schema:
         type: string
   securitySchemes:

@@ -137,17 +137,15 @@ paths:
                 $ref: '#/components/schemas/AccessRequest'
 components:
   schemas:
-    AccessRequestList:
+    ErrorResponse:
       type: object
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccessRequest'
-        resultCount:
+        code:
           type: integer
-        totalPagedResults:
-          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     AccessRequest:
       type: object
       description: An access request
@@ -193,22 +191,18 @@ components:
           type: string
           format: date-time
           readOnly: true
-    ErrorResponse:
+    AccessRequestList:
       type: object
       properties:
-        code:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccessRequest'
+        resultCount:
           type: integer
-        reason:
-          type: string
-        message:
-          type: string
+        totalPagedResults:
+          type: integer
   parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
-      schema:
-        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -223,6 +217,12 @@ components:
       schema:
         type: integer
         minimum: 0
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
     QueryFilter:
       name: _queryFilter
       in: query

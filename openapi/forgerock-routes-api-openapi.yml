@@ -157,6 +157,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     Route:
       type: object
       description: An IG route configuration
@@ -203,16 +213,6 @@ components:
         auditService:
           type: object
           description: Audit service configuration for this route
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     RouteList:
       type: object
       properties:

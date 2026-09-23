@@ -175,63 +175,7 @@ paths:
           default: mycompany
           description: The tenant identifier for your Identity Cloud environment
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
-    RealmPath_2:
-      name: realm
-      in: path
-      required: true
-      description: The realm name (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
   schemas:
-    SessionQueryResult:
-      type: object
-      description: Session query results
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionInfo'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
-    SessionInfo:
-      type: object
-      description: Session information
-      properties:
-        username:
-          type: string
-        universalId:
-          type: string
-        realm:
-          type: string
-        latestAccessTime:
-          type: string
-          format: date-time
-        maxIdleExpirationTime:
-          type: string
-          format: date-time
-        maxSessionExpirationTime:
-          type: string
-          format: date-time
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -253,6 +197,50 @@ components:
           type: string
         realm:
           type: string
+    SessionInfo:
+      type: object
+      description: Session information
+      properties:
+        username:
+          type: string
+        universalId:
+          type: string
+        realm:
+          type: string
+        latestAccessTime:
+          type: string
+          format: date-time
+        maxIdleExpirationTime:
+          type: string
+          format: date-time
+        maxSessionExpirationTime:
+          type: string
+          format: date-time
+    SessionQueryResult:
+      type: object
+      description: Session query results
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionInfo'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+    ErrorResponse_2:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
     SessionInfo_2:
       type: object
       description: Session information
@@ -283,19 +271,31 @@ components:
           description: Session properties
           additionalProperties:
             type: string
-    ErrorResponse_2:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
+  parameters:
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    RealmPath_2:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   securitySchemes:
     ssoToken:
       type: apiKey

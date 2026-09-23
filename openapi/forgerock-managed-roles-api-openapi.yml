@@ -167,6 +167,19 @@ components:
                 type: string
                 description: ISO 8601 time interval
   parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
     RealmName:
       name: realm
       in: path
@@ -175,13 +188,6 @@ components:
       schema:
         type: string
         default: alpha
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results to return per page
-      schema:
-        type: integer
-        minimum: 1
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -189,12 +195,6 @@ components:
       schema:
         type: integer
         minimum: 0
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
     QueryFilter:
       name: _queryFilter
       in: query

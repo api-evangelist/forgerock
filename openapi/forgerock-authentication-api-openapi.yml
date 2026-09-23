@@ -142,32 +142,34 @@ paths:
           default: mycompany
           description: The tenant identifier for your Identity Cloud environment
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
-    RealmPath_2:
-      name: realm
-      in: path
-      required: true
-      description: The realm name (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    AuthenticationResponse:
+      type: object
+      description: Authentication step or success result
+      properties:
+        authId:
+          type: string
+        tokenId:
+          type: string
+          description: SSO token on successful authentication
+        successUrl:
+          type: string
+        realm:
+          type: string
+        callbacks:
+          type: array
+          items:
+            type: object
     AuthenticationCallbackRequest:
       type: object
       description: Authentication callback response from client
@@ -190,65 +192,6 @@ components:
                 type: array
                 items:
                   type: object
-    AuthenticationResponse:
-      type: object
-      description: Authentication step or success result
-      properties:
-        authId:
-          type: string
-        tokenId:
-          type: string
-          description: SSO token on successful authentication
-        successUrl:
-          type: string
-        realm:
-          type: string
-        callbacks:
-          type: array
-          items:
-            type: object
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-    Callback:
-      type: object
-      description: An authentication callback
-      properties:
-        type:
-          type: string
-          description: The callback type
-          examples:
-          - NameCallback
-          - PasswordCallback
-          - ChoiceCallback
-          - TextOutputCallback
-        output:
-          type: array
-          description: Output values from the server
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                description: The output value
-        input:
-          type: array
-          description: Input values to be provided by the client
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                description: The input value
     AuthenticationResponse_2:
       type: object
       description: Authentication step result
@@ -295,6 +238,63 @@ components:
           description: Completed callback responses
           items:
             $ref: '#/components/schemas/Callback'
+    Callback:
+      type: object
+      description: An authentication callback
+      properties:
+        type:
+          type: string
+          description: The callback type
+          examples:
+          - NameCallback
+          - PasswordCallback
+          - ChoiceCallback
+          - TextOutputCallback
+        output:
+          type: array
+          description: Output values from the server
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                description: The output value
+        input:
+          type: array
+          description: Input values to be provided by the client
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                description: The input value
+  parameters:
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    RealmPath_2:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   securitySchemes:
     ssoToken:
       type: apiKey

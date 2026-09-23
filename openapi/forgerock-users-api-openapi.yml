@@ -224,32 +224,62 @@ paths:
           default: ds.example.com
           description: The DS deployment hostname
 components:
+  parameters:
+    PageSize:
+      name: maxResults
+      in: query
+      description: Maximum number of results to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The user identifier (maps to LDAP uid or _id)
+      schema:
+        type: string
+    PageSize_2:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to return
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
   schemas:
-    UserEntitlementList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              entitlementId:
-                type: string
-              entitlementName:
-                type: string
-              application:
-                type: string
-              confidenceScore:
-                type: number
-              drivingAttributes:
-                type: object
-                additionalProperties:
-                  type: string
-              justification:
-                type: string
-                description: AI-generated justification for the assignment
-        totalResults:
-          type: integer
     RecommendationList:
       type: object
       description: Entitlement recommendations
@@ -278,19 +308,41 @@ components:
                   type: string
         totalResults:
           type: integer
-    UserQueryResult:
+    UserEntitlementList:
       type: object
       properties:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/User'
-        resultCount:
+            type: object
+            properties:
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
+              justification:
+                type: string
+                description: AI-generated justification for the assignment
+        totalResults:
           type: integer
-        pagedResultsCookie:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
           type: string
-        totalPagedResults:
-          type: integer
+        message:
+          type: string
     User:
       type: object
       description: A directory user entry mapped from LDAP to JSON via HDAP
@@ -335,71 +387,19 @@ components:
           format: password
           description: Password (write-only, stored hashed)
           writeOnly: true
-    ErrorResponse:
+    UserQueryResult:
       type: object
-      description: Standard CREST error response
       properties:
-        code:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        resultCount:
           type: integer
-        reason:
+        pagedResultsCookie:
           type: string
-        message:
-          type: string
-  parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    PageSize:
-      name: maxResults
-      in: query
-      description: Maximum number of results to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields
-      schema:
-        type: string
-    PageSize_2:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: The user identifier (maps to LDAP uid or _id)
-      schema:
-        type: string
-    PagedResultsCookie:
-      name: _pagedResultsCookie
-      in: query
-      description: Cookie from a previous page for server-side paging
-      schema:
-        type: string
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
-      schema:
-        type: string
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to return
-      schema:
-        type: string
+        totalPagedResults:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

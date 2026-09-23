@@ -91,20 +91,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ConfigObject:
-      type: object
-      description: A live configuration object in the IG runtime
-      properties:
-        _id:
-          type: string
-        type:
-          type: string
-          description: Object type (Router, Handler, Filter, etc.)
-        name:
-          type: string
-        config:
-          type: object
-          description: Object configuration
     ObjectList:
       type: object
       properties:
@@ -124,6 +110,20 @@ components:
           type: string
         message:
           type: string
+    ConfigObject:
+      type: object
+      description: A live configuration object in the IG runtime
+      properties:
+        _id:
+          type: string
+        type:
+          type: string
+          description: Object type (Router, Handler, Filter, etc.)
+        name:
+          type: string
+        config:
+          type: object
+          description: Object configuration
   securitySchemes:
     bearerAuth:
       type: http

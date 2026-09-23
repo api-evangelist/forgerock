@@ -80,6 +80,24 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    RuleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        totalResults:
+          type: integer
     Rule:
       type: object
       description: An entitlement assignment rule from the AI model
@@ -113,24 +131,6 @@ components:
         coverageCount:
           type: integer
           description: Number of users matching this rule
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-    RuleList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-        totalResults:
-          type: integer
   parameters:
     PageSize:
       name: maxResults

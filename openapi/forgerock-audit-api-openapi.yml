@@ -92,6 +92,16 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     AuditEntry:
       type: object
       description: An audit log entry
@@ -130,16 +140,6 @@ components:
           enum:
           - SUCCESS
           - FAILURE
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     AuditQueryResult:
       type: object
       properties:
@@ -152,12 +152,6 @@ components:
         totalPagedResults:
           type: integer
   parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -165,6 +159,12 @@ components:
       schema:
         type: integer
         minimum: 1
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query

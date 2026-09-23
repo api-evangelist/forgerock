@@ -239,6 +239,15 @@ paths:
           description: The Identity Governance deployment hostname
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     EntitlementDetail:
       type: object
       description: Detailed entitlement with analytics data
@@ -282,6 +291,39 @@ components:
                 type: string
               weight:
                 type: number
+    EntitlementUserList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              userName:
+                type: string
+              confidenceScore:
+                type: number
+                description: Confidence score (0-100)
+              drivingAttributes:
+                type: object
+                description: Attributes driving the confidence score
+                additionalProperties:
+                  type: string
+        totalResults:
+          type: integer
+    EntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntitlementDetail'
+        totalResults:
+          type: integer
+        offset:
+          type: integer
     RecommendationList:
       type: object
       description: Entitlement recommendations
@@ -309,48 +351,6 @@ components:
                 additionalProperties:
                   type: string
         totalResults:
-          type: integer
-    EntitlementUserList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              userId:
-                type: string
-              userName:
-                type: string
-              confidenceScore:
-                type: number
-                description: Confidence score (0-100)
-              drivingAttributes:
-                type: object
-                description: Attributes driving the confidence score
-                additionalProperties:
-                  type: string
-        totalResults:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-    EntitlementList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntitlementDetail'
-        totalResults:
-          type: integer
-        offset:
           type: integer
     Entitlement:
       type: object
@@ -409,12 +409,6 @@ components:
         type: integer
         minimum: 0
         default: 0
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
-      schema:
-        type: string
     PageSize_2:
       name: _pageSize
       in: query
@@ -422,6 +416,12 @@ components:
       schema:
         type: integer
         minimum: 1
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query

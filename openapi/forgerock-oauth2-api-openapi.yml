@@ -147,6 +147,22 @@ paths:
                 $ref: '#/components/schemas/OAuthError'
 components:
   schemas:
+    TokenResponse:
+      type: object
+      description: OAuth 2.0 token response
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+        id_token:
+          type: string
     TokenInfo:
       type: object
       description: Token introspection result
@@ -174,22 +190,6 @@ components:
         error:
           type: string
         error_description:
-          type: string
-    TokenResponse:
-      type: object
-      description: OAuth 2.0 token response
-      properties:
-        access_token:
-          type: string
-        token_type:
-          type: string
-        expires_in:
-          type: integer
-        refresh_token:
-          type: string
-        scope:
-          type: string
-        id_token:
           type: string
   parameters:
     RealmPath:

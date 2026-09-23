@@ -164,48 +164,16 @@ paths:
                 $ref: '#/components/schemas/TaskInstance'
 components:
   schemas:
-    ProcessInstance:
+    ErrorResponse:
       type: object
-      description: A running workflow process instance
+      description: Standard CREST error response
       properties:
-        _id:
+        code:
+          type: integer
+        reason:
           type: string
-        processDefinitionId:
+        message:
           type: string
-        businessKey:
-          type: string
-        startTime:
-          type: string
-          format: date-time
-        startUserId:
-          type: string
-        status:
-          type: string
-    TaskInstance:
-      type: object
-      description: A workflow user task instance
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        assignee:
-          type: string
-        createTime:
-          type: string
-          format: date-time
-        dueDate:
-          type: string
-          format: date-time
-        processDefinitionId:
-          type: string
-        processInstanceId:
-          type: string
-        variables:
-          type: object
-          additionalProperties: true
     ProcessDefinitionList:
       type: object
       properties:
@@ -231,15 +199,31 @@ components:
           type: string
         deploymentId:
           type: string
-    ErrorResponse:
+    ProcessInstanceList:
       type: object
-      description: Standard CREST error response
       properties:
-        code:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessInstance'
+        resultCount:
           type: integer
-        reason:
+    ProcessInstance:
+      type: object
+      description: A running workflow process instance
+      properties:
+        _id:
           type: string
-        message:
+        processDefinitionId:
+          type: string
+        businessKey:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        startUserId:
+          type: string
+        status:
           type: string
     TaskInstanceList:
       type: object
@@ -250,15 +234,31 @@ components:
             $ref: '#/components/schemas/TaskInstance'
         resultCount:
           type: integer
-    ProcessInstanceList:
+    TaskInstance:
       type: object
+      description: A workflow user task instance
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessInstance'
-        resultCount:
-          type: integer
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assignee:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        processDefinitionId:
+          type: string
+        processInstanceId:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
   parameters:
     QueryFilter:
       name: _queryFilter

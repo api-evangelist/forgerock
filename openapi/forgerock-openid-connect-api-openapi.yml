@@ -64,15 +64,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/OIDCConfiguration'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
   schemas:
     OAuthError:
       type: object
@@ -157,6 +148,15 @@ components:
           properties:
             formatted:
               type: string
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
   securitySchemes:
     ssoToken:
       type: apiKey
