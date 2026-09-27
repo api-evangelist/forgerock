@@ -121,17 +121,6 @@ components:
           type: string
         message:
           type: string
-    ViolationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Violation'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     Violation:
       type: object
       description: A segregation of duties or compliance policy violation
@@ -167,14 +156,18 @@ components:
         detectedDate:
           type: string
           format: date-time
+    ViolationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Violation'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
   parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -182,6 +175,13 @@ components:
       schema:
         type: integer
         minimum: 0
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
     QueryFilter:
       name: _queryFilter
       in: query

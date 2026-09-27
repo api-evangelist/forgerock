@@ -179,7 +179,7 @@ paths:
           description: The Autonomous Identity deployment hostname
   /governance/entitlement:
     get:
-      operationId: listEntitlements
+      operationId: getGovernanceEntitlement
       summary: ForgeRock List entitlements
       description: Query the entitlements catalog. Entitlements are aggregated from onboarded target applications into a centralized repository.
       tags:
@@ -196,6 +196,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/EntitlementList_2'
+      x-operation-id-source: normalized
+      x-operation-id-original: listEntitlements
     servers:
     - url: https://{deployment}/iga
       description: ForgeRock Identity Governance server
@@ -205,7 +207,7 @@ paths:
           description: The Identity Governance deployment hostname
   /governance/entitlement/{entitlementId}:
     get:
-      operationId: getEntitlement
+      operationId: getGovernanceEntitlementByEntitlementId
       summary: ForgeRock Get an entitlement
       description: Retrieve details of a specific entitlement.
       tags:
@@ -230,6 +232,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      x-operation-id-source: normalized
+      x-operation-id-original: getEntitlement
     servers:
     - url: https://{deployment}/iga
       description: ForgeRock Identity Governance server
@@ -248,6 +252,39 @@ components:
           type: string
         message:
           type: string
+    EntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntitlementDetail'
+        totalResults:
+          type: integer
+        offset:
+          type: integer
+    EntitlementUserList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: string
+              userName:
+                type: string
+              confidenceScore:
+                type: number
+                description: Confidence score (0-100)
+              drivingAttributes:
+                type: object
+                description: Attributes driving the confidence score
+                additionalProperties:
+                  type: string
+        totalResults:
+          type: integer
     EntitlementDetail:
       type: object
       description: Detailed entitlement with analytics data
@@ -291,39 +328,6 @@ components:
                 type: string
               weight:
                 type: number
-    EntitlementUserList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              userId:
-                type: string
-              userName:
-                type: string
-              confidenceScore:
-                type: number
-                description: Confidence score (0-100)
-              drivingAttributes:
-                type: object
-                description: Attributes driving the confidence score
-                additionalProperties:
-                  type: string
-        totalResults:
-          type: integer
-    EntitlementList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntitlementDetail'
-        totalResults:
-          type: integer
-        offset:
-          type: integer
     RecommendationList:
       type: object
       description: Entitlement recommendations
@@ -393,14 +397,6 @@ components:
         totalPagedResults:
           type: integer
   parameters:
-    PageSize:
-      name: maxResults
-      in: query
-      description: Maximum number of results to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
     Offset:
       name: offset
       in: query
@@ -409,13 +405,14 @@ components:
         type: integer
         minimum: 0
         default: 0
-    PageSize_2:
-      name: _pageSize
+    PageSize:
+      name: maxResults
       in: query
-      description: Number of results per page
+      description: Maximum number of results to return
       schema:
         type: integer
         minimum: 1
+        default: 25
     SortKeys:
       name: _sortKeys
       in: query
@@ -429,6 +426,13 @@ components:
       schema:
         type: integer
         minimum: 0
+    PageSize_2:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
     QueryFilter:
       name: _queryFilter
       in: query

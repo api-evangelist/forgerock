@@ -164,76 +164,6 @@ paths:
                 $ref: '#/components/schemas/TaskInstance'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-    ProcessDefinitionList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessDefinition'
-        resultCount:
-          type: integer
-    ProcessDefinition:
-      type: object
-      description: A BPMN workflow process definition
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        key:
-          type: string
-        version:
-          type: integer
-        category:
-          type: string
-        deploymentId:
-          type: string
-    ProcessInstanceList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessInstance'
-        resultCount:
-          type: integer
-    ProcessInstance:
-      type: object
-      description: A running workflow process instance
-      properties:
-        _id:
-          type: string
-        processDefinitionId:
-          type: string
-        businessKey:
-          type: string
-        startTime:
-          type: string
-          format: date-time
-        startUserId:
-          type: string
-        status:
-          type: string
-    TaskInstanceList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskInstance'
-        resultCount:
-          type: integer
     TaskInstance:
       type: object
       description: A workflow user task instance
@@ -259,6 +189,76 @@ components:
         variables:
           type: object
           additionalProperties: true
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ProcessInstance:
+      type: object
+      description: A running workflow process instance
+      properties:
+        _id:
+          type: string
+        processDefinitionId:
+          type: string
+        businessKey:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        startUserId:
+          type: string
+        status:
+          type: string
+    ProcessDefinition:
+      type: object
+      description: A BPMN workflow process definition
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        version:
+          type: integer
+        category:
+          type: string
+        deploymentId:
+          type: string
+    TaskInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskInstance'
+        resultCount:
+          type: integer
+    ProcessDefinitionList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessDefinition'
+        resultCount:
+          type: integer
+    ProcessInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessInstance'
+        resultCount:
+          type: integer
   parameters:
     QueryFilter:
       name: _queryFilter

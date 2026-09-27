@@ -155,15 +155,6 @@ components:
           type: string
         message:
           type: string
-    RealmList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Realm'
-        resultCount:
-          type: integer
     Realm:
       type: object
       description: An AM realm configuration
@@ -182,6 +173,15 @@ components:
           items:
             type: string
           description: DNS aliases for the realm
+    RealmList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Realm'
+        resultCount:
+          type: integer
   parameters:
     ApiVersion:
       name: Accept-API-Version

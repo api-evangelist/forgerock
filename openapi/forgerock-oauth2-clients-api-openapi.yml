@@ -144,6 +144,29 @@ paths:
                 $ref: '#/components/schemas/OAuthErrorResponse'
 components:
   schemas:
+    OAuthErrorResponse:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+          description: Error code
+        error_description:
+          type: string
+          description: Human-readable error description
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
     TokenResponse:
       type: object
       description: OAuth 2.0 token response
@@ -166,29 +189,6 @@ components:
         id_token:
           type: string
           description: OpenID Connect ID token (if applicable)
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
-    OAuthErrorResponse:
-      type: object
-      description: OAuth 2.0 error response
-      properties:
-        error:
-          type: string
-          description: Error code
-        error_description:
-          type: string
-          description: Human-readable error description
   parameters:
     RealmPath:
       name: realm

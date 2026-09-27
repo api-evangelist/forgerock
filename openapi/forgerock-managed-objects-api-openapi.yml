@@ -231,6 +231,37 @@ components:
           type: string
         message:
           type: string
+    ManagedObject:
+      type: object
+      description: A managed identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
+    QueryResult:
+      type: object
+      description: CREST query result
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedObject'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResultsPolicy:
+          type: string
+        totalPagedResults:
+          type: integer
+        remainingPagedResults:
+          type: integer
     PatchOperations:
       type: array
       description: JSON Patch operations
@@ -250,59 +281,7 @@ components:
           field:
             type: string
           value: {}
-    QueryResult:
-      type: object
-      description: CREST query result
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedObject'
-        resultCount:
-          type: integer
-        pagedResultsCookie:
-          type: string
-        totalPagedResultsPolicy:
-          type: string
-        totalPagedResults:
-          type: integer
-        remainingPagedResults:
-          type: integer
-    ManagedObject:
-      type: object
-      description: A managed identity object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier
-          readOnly: true
-        _rev:
-          type: string
-          description: Object revision for concurrency control
-          readOnly: true
-      additionalProperties: true
   parameters:
-    ObjectId:
-      name: objectId
-      in: path
-      required: true
-      description: The unique identifier of the managed object
-      schema:
-        type: string
-    ObjectType:
-      name: objectType
-      in: path
-      required: true
-      description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
-      schema:
-        type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
     SortKeys:
       name: _sortKeys
       in: query
@@ -315,6 +294,20 @@ components:
       description: Comma-separated fields to include in the response
       schema:
         type: string
+    ObjectType:
+      name: objectType
+      in: path
+      required: true
+      description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
+      schema:
+        type: string
+    ObjectId:
+      name: objectId
+      in: path
+      required: true
+      description: The unique identifier of the managed object
+      schema:
+        type: string
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -322,6 +315,13 @@ components:
       schema:
         type: integer
         minimum: 0
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
     QueryFilter:
       name: _queryFilter
       in: query

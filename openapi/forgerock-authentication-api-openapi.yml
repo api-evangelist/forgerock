@@ -153,23 +153,6 @@ components:
           type: string
         message:
           type: string
-    AuthenticationResponse:
-      type: object
-      description: Authentication step or success result
-      properties:
-        authId:
-          type: string
-        tokenId:
-          type: string
-          description: SSO token on successful authentication
-        successUrl:
-          type: string
-        realm:
-          type: string
-        callbacks:
-          type: array
-          items:
-            type: object
     AuthenticationCallbackRequest:
       type: object
       description: Authentication callback response from client
@@ -192,52 +175,23 @@ components:
                 type: array
                 items:
                   type: object
-    AuthenticationResponse_2:
+    AuthenticationResponse:
       type: object
-      description: Authentication step result
+      description: Authentication step or success result
       properties:
         authId:
           type: string
-          description: Authentication session identifier for the next step
         tokenId:
           type: string
-          description: SSO token ID returned on successful authentication
+          description: SSO token on successful authentication
         successUrl:
           type: string
-          description: URL to redirect to after successful authentication
         realm:
           type: string
-          description: The realm in which authentication occurred
         callbacks:
           type: array
-          description: Callbacks requiring user input
           items:
-            $ref: '#/components/schemas/Callback'
-    ErrorResponse_2:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
-    AuthenticationRequest:
-      type: object
-      description: Authentication callback response payload
-      properties:
-        authId:
-          type: string
-          description: Authentication session identifier from the previous step
-        callbacks:
-          type: array
-          description: Completed callback responses
-          items:
-            $ref: '#/components/schemas/Callback'
+            type: object
     Callback:
       type: object
       description: An authentication callback
@@ -270,15 +224,53 @@ components:
                 type: string
               value:
                 description: The input value
+    ErrorResponse_2:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
+    AuthenticationRequest:
+      type: object
+      description: Authentication callback response payload
+      properties:
+        authId:
+          type: string
+          description: Authentication session identifier from the previous step
+        callbacks:
+          type: array
+          description: Completed callback responses
+          items:
+            $ref: '#/components/schemas/Callback'
+    AuthenticationResponse_2:
+      type: object
+      description: Authentication step result
+      properties:
+        authId:
+          type: string
+          description: Authentication session identifier for the next step
+        tokenId:
+          type: string
+          description: SSO token ID returned on successful authentication
+        successUrl:
+          type: string
+          description: URL to redirect to after successful authentication
+        realm:
+          type: string
+          description: The realm in which authentication occurred
+        callbacks:
+          type: array
+          description: Callbacks requiring user input
+          items:
+            $ref: '#/components/schemas/Callback'
   parameters:
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
     RealmPath:
       name: realm
       in: path
@@ -287,6 +279,14 @@ components:
       schema:
         type: string
         default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
     RealmPath_2:
       name: realm
       in: path

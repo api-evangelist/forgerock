@@ -40,6 +40,7 @@ tags:
   - Identity Governance
   - Identity Management
   - OpenID Connect
+  - Identity Federation
 tags_raw:
   - Access Management
   - Authentication
@@ -48,6 +49,7 @@ tags_raw:
   - Identity Management
   - OAuth
   - OpenID Connect
+  - Identity Federation
 created: '2024'
 modified: '2026-05-19'
 apis:
@@ -2463,3 +2465,4 @@ common:
     url: json-schema/forgerock-entitlement-schema.json
   - type: JSONSchema
     url: json-schema/forgerock-directory-entry-schema.json
+x-parent: ping-identity

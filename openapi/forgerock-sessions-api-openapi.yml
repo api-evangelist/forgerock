@@ -176,16 +176,6 @@ paths:
           description: The tenant identifier for your Identity Cloud environment
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     SessionActionResult:
       type: object
       description: Result of a session action
@@ -197,6 +187,28 @@ components:
           type: string
         realm:
           type: string
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    SessionQueryResult:
+      type: object
+      description: Session query results
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionInfo'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
     SessionInfo:
       type: object
       description: Session information
@@ -216,18 +228,6 @@ components:
         maxSessionExpirationTime:
           type: string
           format: date-time
-    SessionQueryResult:
-      type: object
-      description: Session query results
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionInfo'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     ErrorResponse_2:
       type: object
       description: Standard error response
@@ -272,14 +272,6 @@ components:
           additionalProperties:
             type: string
   parameters:
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
     RealmPath:
       name: realm
       in: path
@@ -288,6 +280,14 @@ components:
       schema:
         type: string
         default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
     RealmPath_2:
       name: realm
       in: path

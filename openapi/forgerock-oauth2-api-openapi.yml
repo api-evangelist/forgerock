@@ -147,21 +147,13 @@ paths:
                 $ref: '#/components/schemas/OAuthError'
 components:
   schemas:
-    TokenResponse:
+    OAuthError:
       type: object
-      description: OAuth 2.0 token response
+      description: OAuth 2.0 error response
       properties:
-        access_token:
+        error:
           type: string
-        token_type:
-          type: string
-        expires_in:
-          type: integer
-        refresh_token:
-          type: string
-        scope:
-          type: string
-        id_token:
+        error_description:
           type: string
     TokenInfo:
       type: object
@@ -183,13 +175,21 @@ components:
           type: integer
         client_id:
           type: string
-    OAuthError:
+    TokenResponse:
       type: object
-      description: OAuth 2.0 error response
+      description: OAuth 2.0 token response
       properties:
-        error:
+        access_token:
           type: string
-        error_description:
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        scope:
+          type: string
+        id_token:
           type: string
   parameters:
     RealmPath:

@@ -194,28 +194,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    PolicyDecision:
-      type: object
-      description: Authorization decision for a resource
-      properties:
-        resource:
-          type: string
-        actions:
-          type: object
-          additionalProperties:
-            type: boolean
-        attributes:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        advices:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -226,6 +204,17 @@ components:
           type: string
         message:
           type: string
+    PolicyList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
     Policy:
       type: object
       description: An authorization policy
@@ -260,17 +249,6 @@ components:
         resourceTypeUuid:
           type: string
           description: UUID of the resource type
-    PolicyList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Policy'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     PolicyEvaluationRequest:
       type: object
       description: Policy evaluation request
@@ -298,15 +276,29 @@ components:
             type: array
             items:
               type: string
+    PolicyDecision:
+      type: object
+      description: Authorization decision for a resource
+      properties:
+        resource:
+          type: string
+        actions:
+          type: object
+          additionalProperties:
+            type: boolean
+        attributes:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        advices:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
   parameters:
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
     RealmPath:
       name: realm
       in: path
@@ -315,6 +307,14 @@ components:
       schema:
         type: string
         default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
   securitySchemes:
     ssoToken:
       type: apiKey

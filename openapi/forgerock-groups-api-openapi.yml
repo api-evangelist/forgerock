@@ -181,24 +181,6 @@ components:
           type: string
         message:
           type: string
-    PatchOperations:
-      type: array
-      description: JSON Patch operations
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            enum:
-            - add
-            - remove
-            - replace
-          field:
-            type: string
-          value: {}
     Group:
       type: object
       description: A directory group entry
@@ -221,6 +203,24 @@ components:
           description: Group member identifiers
           items:
             type: string
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
     GroupQueryResult:
       type: object
       properties:
@@ -235,6 +235,18 @@ components:
         totalPagedResults:
           type: integer
   parameters:
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -246,18 +258,6 @@ components:
       name: _fields
       in: query
       description: Comma-separated list of fields to return
-      schema:
-        type: string
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
-      schema:
-        type: string
-    PagedResultsCookie:
-      name: _pagedResultsCookie
-      in: query
-      description: Cookie from a previous page for server-side paging
       schema:
         type: string
   securitySchemes:

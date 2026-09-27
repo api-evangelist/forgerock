@@ -229,6 +229,29 @@ components:
         message:
           type: string
           description: Detailed error message
+    ManagedUserList:
+      type: object
+      description: Paginated list of managed users
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedUser'
+        resultCount:
+          type: integer
+          description: Number of results in this page
+        pagedResultsCookie:
+          type: string
+          description: Cookie for fetching the next page
+        totalPagedResultsPolicy:
+          type: string
+          description: Policy for total result count
+        totalPagedResults:
+          type: integer
+          description: Total number of results (-1 if unknown)
+        remainingPagedResults:
+          type: integer
+          description: Remaining results after this page
     ManagedUser:
       type: object
       description: A managed user identity object
@@ -302,44 +325,7 @@ components:
             description: JSON pointer to the field to patch
           value:
             description: The value for add, replace, or increment operations
-    ManagedUserList:
-      type: object
-      description: Paginated list of managed users
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedUser'
-        resultCount:
-          type: integer
-          description: Number of results in this page
-        pagedResultsCookie:
-          type: string
-          description: Cookie for fetching the next page
-        totalPagedResultsPolicy:
-          type: string
-          description: Policy for total result count
-        totalPagedResults:
-          type: integer
-          description: Total number of results (-1 if unknown)
-        remainingPagedResults:
-          type: integer
-          description: Remaining results after this page
   parameters:
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: The unique identifier of the managed user
-      schema:
-        type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results to return per page
-      schema:
-        type: integer
-        minimum: 1
     SortKeys:
       name: _sortKeys
       in: query
@@ -352,6 +338,27 @@ components:
       description: Comma-separated list of fields to include in the response
       schema:
         type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the managed user
+      schema:
+        type: string
     RealmName:
       name: realm
       in: path
@@ -360,13 +367,6 @@ components:
       schema:
         type: string
         default: alpha
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for paginated results
-      schema:
-        type: integer
-        minimum: 0
     QueryFilter:
       name: _queryFilter
       in: query

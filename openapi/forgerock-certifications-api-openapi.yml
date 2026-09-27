@@ -214,24 +214,17 @@ components:
           format: date-time
           readOnly: true
   parameters:
-    PageSize:
-      name: _pageSize
+    SortKeys:
+      name: _sortKeys
       in: query
-      description: Number of results per page
+      description: Sort fields
       schema:
-        type: integer
-        minimum: 1
+        type: string
     CertificationId:
       name: certificationId
       in: path
       required: true
       description: The certification campaign identifier
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
       schema:
         type: string
     PagedResultsOffset:
@@ -241,6 +234,13 @@ components:
       schema:
         type: integer
         minimum: 0
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
     QueryFilter:
       name: _queryFilter
       in: query
