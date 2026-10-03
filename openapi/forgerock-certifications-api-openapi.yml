@@ -120,6 +120,23 @@ paths:
                 $ref: '#/components/schemas/Certification'
 components:
   schemas:
+    PatchOperations:
+      type: array
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
     ErrorResponse:
       type: object
       properties:
@@ -140,23 +157,6 @@ components:
           type: integer
         totalPagedResults:
           type: integer
-    PatchOperations:
-      type: array
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            enum:
-            - add
-            - remove
-            - replace
-          field:
-            type: string
-          value: {}
     Certification:
       type: object
       description: An access certification campaign
@@ -214,26 +214,6 @@ components:
           format: date-time
           readOnly: true
   parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
-      schema:
-        type: string
-    CertificationId:
-      name: certificationId
-      in: path
-      required: true
-      description: The certification campaign identifier
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        minimum: 0
     PageSize:
       name: _pageSize
       in: query
@@ -247,6 +227,26 @@ components:
       description: CREST query filter expression
       schema:
         type: string
+    CertificationId:
+      name: certificationId
+      in: path
+      required: true
+      description: The certification campaign identifier
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     bearerAuth:
       type: http

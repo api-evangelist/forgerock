@@ -121,6 +121,17 @@ components:
           type: string
         message:
           type: string
+    ViolationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Violation'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
     Violation:
       type: object
       description: A segregation of duties or compliance policy violation
@@ -156,25 +167,7 @@ components:
         detectedDate:
           type: string
           format: date-time
-    ViolationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Violation'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
   parameters:
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        minimum: 0
     PageSize:
       name: _pageSize
       in: query
@@ -188,6 +181,13 @@ components:
       description: CREST query filter expression
       schema:
         type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     bearerAuth:
       type: http

@@ -252,17 +252,6 @@ components:
           type: string
         message:
           type: string
-    EntitlementList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntitlementDetail'
-        totalResults:
-          type: integer
-        offset:
-          type: integer
     EntitlementUserList:
       type: object
       properties:
@@ -284,6 +273,17 @@ components:
                 additionalProperties:
                   type: string
         totalResults:
+          type: integer
+    EntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntitlementDetail'
+        totalResults:
+          type: integer
+        offset:
           type: integer
     EntitlementDetail:
       type: object
@@ -397,14 +397,6 @@ components:
         totalPagedResults:
           type: integer
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageSize:
       name: maxResults
       in: query
@@ -413,19 +405,14 @@ components:
         type: integer
         minimum: 1
         default: 25
-    SortKeys:
-      name: _sortKeys
+    Offset:
+      name: offset
       in: query
-      description: Sort fields
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Pagination offset
+      description: Offset for pagination
       schema:
         type: integer
         minimum: 0
+        default: 0
     PageSize_2:
       name: _pageSize
       in: query
@@ -439,6 +426,19 @@ components:
       description: CREST query filter expression
       schema:
         type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     bearerAuth:
       type: http

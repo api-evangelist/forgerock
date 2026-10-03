@@ -117,15 +117,6 @@ components:
           type: string
         message:
           type: string
-    ReconciliationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReconciliationResult'
-        resultCount:
-          type: integer
     ReconciliationResult:
       type: object
       description: Reconciliation run result
@@ -185,13 +176,16 @@ components:
           description: Summary of action outcomes
           additionalProperties:
             type: integer
+    ReconciliationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReconciliationResult'
+        resultCount:
+          type: integer
   parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -203,6 +197,12 @@ components:
       name: _queryFilter
       in: query
       description: CREST query filter expression
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
       schema:
         type: string
   securitySchemes:

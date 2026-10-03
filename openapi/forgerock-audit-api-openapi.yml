@@ -152,19 +152,6 @@ components:
           - SUCCESS
           - FAILURE
   parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
     PageSize:
       name: _pageSize
       in: query
@@ -178,6 +165,19 @@ components:
       description: CREST query filter expression
       schema:
         type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     bearerAuth:
       type: http

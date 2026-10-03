@@ -192,38 +192,6 @@ components:
           type: array
           items:
             type: object
-    Callback:
-      type: object
-      description: An authentication callback
-      properties:
-        type:
-          type: string
-          description: The callback type
-          examples:
-          - NameCallback
-          - PasswordCallback
-          - ChoiceCallback
-          - TextOutputCallback
-        output:
-          type: array
-          description: Output values from the server
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                description: The output value
-        input:
-          type: array
-          description: Input values to be provided by the client
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                description: The input value
     ErrorResponse_2:
       type: object
       description: Standard error response
@@ -270,15 +238,39 @@ components:
           description: Callbacks requiring user input
           items:
             $ref: '#/components/schemas/Callback'
+    Callback:
+      type: object
+      description: An authentication callback
+      properties:
+        type:
+          type: string
+          description: The callback type
+          examples:
+          - NameCallback
+          - PasswordCallback
+          - ChoiceCallback
+          - TextOutputCallback
+        output:
+          type: array
+          description: Output values from the server
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                description: The output value
+        input:
+          type: array
+          description: Input values to be provided by the client
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                description: The input value
   parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
     ApiVersion:
       name: Accept-API-Version
       in: header
@@ -287,6 +279,14 @@ components:
       schema:
         type: string
         default: resource=2.0,protocol=1.0
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
     RealmPath_2:
       name: realm
       in: path

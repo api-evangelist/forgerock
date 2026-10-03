@@ -101,16 +101,6 @@ paths:
                     - FAILED
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     EndpointMonitoring:
       type: object
       description: Monitoring data for a specific endpoint
@@ -138,6 +128,16 @@ components:
           type: object
           additionalProperties:
             type: integer
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     MonitoringSummary:
       type: object
       description: IG monitoring summary

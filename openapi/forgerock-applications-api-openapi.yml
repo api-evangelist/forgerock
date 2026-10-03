@@ -79,6 +79,15 @@ components:
           type: string
         message:
           type: string
+    ApplicationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+        totalResults:
+          type: integer
     Application:
       type: object
       description: An onboarded application
@@ -95,24 +104,7 @@ components:
           type: integer
         averageConfidenceScore:
           type: number
-    ApplicationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-        totalResults:
-          type: integer
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageSize:
       name: maxResults
       in: query
@@ -121,6 +113,14 @@ components:
         type: integer
         minimum: 1
         default: 25
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

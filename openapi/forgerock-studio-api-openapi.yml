@@ -59,15 +59,6 @@ paths:
                 $ref: '#/components/schemas/Route'
 components:
   schemas:
-    RouteList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Route'
-        resultCount:
-          type: integer
     Route:
       type: object
       description: An IG route configuration
@@ -114,6 +105,15 @@ components:
         auditService:
           type: object
           description: Audit service configuration for this route
+    RouteList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+        resultCount:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

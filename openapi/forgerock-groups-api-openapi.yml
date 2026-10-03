@@ -171,6 +171,24 @@ paths:
                 $ref: '#/components/schemas/Group'
 components:
   schemas:
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -203,24 +221,6 @@ components:
           description: Group member identifiers
           items:
             type: string
-    PatchOperations:
-      type: array
-      description: JSON Patch operations
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            enum:
-            - add
-            - remove
-            - replace
-          field:
-            type: string
-          value: {}
     GroupQueryResult:
       type: object
       properties:
@@ -235,18 +235,6 @@ components:
         totalPagedResults:
           type: integer
   parameters:
-    PagedResultsCookie:
-      name: _pagedResultsCookie
-      in: query
-      description: Cookie from a previous page for server-side paging
-      schema:
-        type: string
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
-      schema:
-        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -254,6 +242,18 @@ components:
       schema:
         type: integer
         minimum: 1
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
     Fields:
       name: _fields
       in: query

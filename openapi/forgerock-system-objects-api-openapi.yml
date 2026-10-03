@@ -102,26 +102,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated fields to include in the response
-      schema:
-        type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
   schemas:
     ErrorResponse:
       type: object
@@ -164,6 +144,26 @@ components:
           type: integer
         remainingPagedResults:
           type: integer
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated fields to include in the response
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

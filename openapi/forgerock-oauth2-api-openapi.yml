@@ -146,15 +146,16 @@ paths:
               schema:
                 $ref: '#/components/schemas/OAuthError'
 components:
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
   schemas:
-    OAuthError:
-      type: object
-      description: OAuth 2.0 error response
-      properties:
-        error:
-          type: string
-        error_description:
-          type: string
     TokenInfo:
       type: object
       description: Token introspection result
@@ -175,6 +176,14 @@ components:
           type: integer
         client_id:
           type: string
+    OAuthError:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
     TokenResponse:
       type: object
       description: OAuth 2.0 token response
@@ -191,15 +200,6 @@ components:
           type: string
         id_token:
           type: string
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
   securitySchemes:
     ssoToken:
       type: apiKey

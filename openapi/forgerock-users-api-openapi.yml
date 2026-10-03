@@ -225,31 +225,6 @@ paths:
           description: The DS deployment hostname
 components:
   schemas:
-    UserEntitlementList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              entitlementId:
-                type: string
-              entitlementName:
-                type: string
-              application:
-                type: string
-              confidenceScore:
-                type: number
-              drivingAttributes:
-                type: object
-                additionalProperties:
-                  type: string
-              justification:
-                type: string
-                description: AI-generated justification for the assignment
-        totalResults:
-          type: integer
     RecommendationList:
       type: object
       description: Entitlement recommendations
@@ -276,6 +251,31 @@ components:
                 type: object
                 additionalProperties:
                   type: string
+        totalResults:
+          type: integer
+    UserEntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            type: object
+            properties:
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
+              justification:
+                type: string
+                description: AI-generated justification for the assignment
         totalResults:
           type: integer
     ErrorResponse:
@@ -369,6 +369,12 @@ components:
       schema:
         type: integer
         minimum: 1
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
     SortKeys:
       name: _sortKeys
       in: query
@@ -379,12 +385,6 @@ components:
       name: _pagedResultsCookie
       in: query
       description: Cookie from a previous page for server-side paging
-      schema:
-        type: string
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
       schema:
         type: string
     UserId:

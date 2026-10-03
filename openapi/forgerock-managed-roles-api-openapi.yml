@@ -122,6 +122,20 @@ components:
         message:
           type: string
           description: Detailed error message
+    ManagedRoleList:
+      type: object
+      description: Paginated list of managed roles
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedRole'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
     ManagedRole:
       type: object
       description: A managed role object
@@ -152,34 +166,7 @@ components:
               duration:
                 type: string
                 description: ISO 8601 time interval
-    ManagedRoleList:
-      type: object
-      description: Paginated list of managed roles
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedRole'
-        resultCount:
-          type: integer
-        pagedResultsCookie:
-          type: string
-        totalPagedResults:
-          type: integer
   parameters:
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for paginated results
-      schema:
-        type: integer
-        minimum: 0
     PageSize:
       name: _pageSize
       in: query
@@ -195,6 +182,19 @@ components:
       schema:
         type: string
         default: alpha
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
     Fields:
       name: _fields
       in: query

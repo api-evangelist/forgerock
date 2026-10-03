@@ -157,15 +157,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    RouteList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Route'
-        resultCount:
-          type: integer
     ErrorResponse:
       type: object
       description: Standard error response
@@ -222,6 +213,15 @@ components:
         auditService:
           type: object
           description: Audit service configuration for this route
+    RouteList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Route'
+        resultCount:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

@@ -42,6 +42,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/ServerInfo'
 components:
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   schemas:
     ServerInfo:
       type: object
@@ -71,15 +80,6 @@ components:
           type: array
           items:
             type: object
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
   securitySchemes:
     bearerAuth:
       type: http

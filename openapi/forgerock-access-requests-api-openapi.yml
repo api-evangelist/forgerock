@@ -137,6 +137,15 @@ paths:
                 $ref: '#/components/schemas/AccessRequest'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     AccessRequestList:
       type: object
       properties:
@@ -148,15 +157,6 @@ components:
           type: integer
         totalPagedResults:
           type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     AccessRequest:
       type: object
       description: An access request
@@ -203,19 +203,6 @@ components:
           format: date-time
           readOnly: true
   parameters:
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        minimum: 0
     PageSize:
       name: _pageSize
       in: query
@@ -229,6 +216,19 @@ components:
       description: CREST query filter expression
       schema:
         type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     bearerAuth:
       type: http

@@ -89,6 +89,15 @@ components:
           type: string
         message:
           type: string
+    RuleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        totalResults:
+          type: integer
     Rule:
       type: object
       description: An entitlement assignment rule from the AI model
@@ -122,24 +131,7 @@ components:
         coverageCount:
           type: integer
           description: Number of users matching this rule
-    RuleList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rule'
-        totalResults:
-          type: integer
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageSize:
       name: maxResults
       in: query
@@ -148,6 +140,14 @@ components:
         type: integer
         minimum: 1
         default: 25
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     bearerAuth:
       type: http

@@ -124,17 +124,6 @@ components:
           type: string
         message:
           type: string
-    CertificationItemList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/CertificationItem'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     CertificationItem:
       type: object
       description: An individual item within a certification campaign
@@ -169,7 +158,31 @@ components:
         reviewDate:
           type: string
           format: date-time
+    CertificationItemList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertificationItem'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
   parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
     CertificationId:
       name: certificationId
       in: path
@@ -184,19 +197,6 @@ components:
       schema:
         type: integer
         minimum: 0
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

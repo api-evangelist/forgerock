@@ -52,18 +52,6 @@ paths:
                 $ref: '#/components/schemas/EntryQueryResult'
 components:
   parameters:
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to return
-      schema:
-        type: string
-    PagedResultsCookie:
-      name: _pagedResultsCookie
-      in: query
-      description: Cookie from a previous page for server-side paging
-      schema:
-        type: string
     PageSize:
       name: _pageSize
       in: query
@@ -75,6 +63,18 @@ components:
       name: _queryFilter
       in: query
       description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to return
       schema:
         type: string
   schemas:
