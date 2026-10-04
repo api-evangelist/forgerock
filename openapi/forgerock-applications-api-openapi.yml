@@ -70,15 +70,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     ApplicationList:
       type: object
       properties:
@@ -104,6 +95,15 @@ components:
           type: integer
         averageConfidenceScore:
           type: number
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
   parameters:
     PageSize:
       name: maxResults

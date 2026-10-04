@@ -153,6 +153,15 @@ paths:
                 $ref: '#/components/schemas/ResourceType'
 components:
   schemas:
+    ResourceTypeList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+        resultCount:
+          type: integer
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -163,15 +172,6 @@ components:
           type: string
         message:
           type: string
-    ResourceTypeList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceType'
-        resultCount:
-          type: integer
     ResourceType:
       type: object
       description: A resource type definition
@@ -194,14 +194,6 @@ components:
           additionalProperties:
             type: boolean
   parameters:
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
     RealmPath:
       name: realm
       in: path
@@ -210,6 +202,14 @@ components:
       schema:
         type: string
         default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
   securitySchemes:
     ssoToken:
       type: apiKey

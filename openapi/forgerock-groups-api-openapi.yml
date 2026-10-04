@@ -170,7 +170,46 @@ paths:
               schema:
                 $ref: '#/components/schemas/Group'
 components:
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to return
+      schema:
+        type: string
+    PagedResultsCookie:
+      name: _pagedResultsCookie
+      in: query
+      description: Cookie from a previous page for server-side paging
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      schema:
+        type: string
   schemas:
+    GroupQueryResult:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
     PatchOperations:
       type: array
       description: JSON Patch operations
@@ -221,45 +260,6 @@ components:
           description: Group member identifiers
           items:
             type: string
-    GroupQueryResult:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Group'
-        resultCount:
-          type: integer
-        pagedResultsCookie:
-          type: string
-        totalPagedResults:
-          type: integer
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
-      schema:
-        type: string
-    PagedResultsCookie:
-      name: _pagedResultsCookie
-      in: query
-      description: Cookie from a previous page for server-side paging
-      schema:
-        type: string
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to return
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

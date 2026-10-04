@@ -64,16 +64,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/OIDCConfiguration'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
   schemas:
+    OAuthError:
+      type: object
+      description: OAuth 2.0 error response
+      properties:
+        error:
+          type: string
+        error_description:
+          type: string
     UserInfo:
       type: object
       description: OpenID Connect UserInfo claims
@@ -99,14 +98,6 @@ components:
           properties:
             formatted:
               type: string
-    OAuthError:
-      type: object
-      description: OAuth 2.0 error response
-      properties:
-        error:
-          type: string
-        error_description:
-          type: string
     OIDCConfiguration:
       type: object
       description: OpenID Connect discovery metadata
@@ -157,6 +148,15 @@ components:
           type: array
           items:
             type: string
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
   securitySchemes:
     ssoToken:
       type: apiKey

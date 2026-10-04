@@ -59,10 +59,10 @@ components:
       schema:
         type: integer
         minimum: 1
-    QueryFilter:
-      name: _queryFilter
+    Fields:
+      name: _fields
       in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      description: Comma-separated list of fields to return
       schema:
         type: string
     PagedResultsCookie:
@@ -71,10 +71,10 @@ components:
       description: Cookie from a previous page for server-side paging
       schema:
         type: string
-    Fields:
-      name: _fields
+    QueryFilter:
+      name: _queryFilter
       in: query
-      description: Comma-separated list of fields to return
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
       schema:
         type: string
   schemas:

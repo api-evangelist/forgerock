@@ -164,6 +164,65 @@ paths:
                 $ref: '#/components/schemas/TaskInstance'
 components:
   schemas:
+    TaskInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskInstance'
+        resultCount:
+          type: integer
+    ProcessDefinition:
+      type: object
+      description: A BPMN workflow process definition
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        version:
+          type: integer
+        category:
+          type: string
+        deploymentId:
+          type: string
+    ProcessDefinitionList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessDefinition'
+        resultCount:
+          type: integer
+    TaskInstance:
+      type: object
+      description: A workflow user task instance
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        assignee:
+          type: string
+        createTime:
+          type: string
+          format: date-time
+        dueDate:
+          type: string
+          format: date-time
+        processDefinitionId:
+          type: string
+        processInstanceId:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -191,24 +250,6 @@ components:
           type: string
         status:
           type: string
-    ProcessDefinitionList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessDefinition'
-        resultCount:
-          type: integer
-    TaskInstanceList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskInstance'
-        resultCount:
-          type: integer
     ProcessInstanceList:
       type: object
       properties:
@@ -218,47 +259,6 @@ components:
             $ref: '#/components/schemas/ProcessInstance'
         resultCount:
           type: integer
-    ProcessDefinition:
-      type: object
-      description: A BPMN workflow process definition
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        key:
-          type: string
-        version:
-          type: integer
-        category:
-          type: string
-        deploymentId:
-          type: string
-    TaskInstance:
-      type: object
-      description: A workflow user task instance
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        assignee:
-          type: string
-        createTime:
-          type: string
-          format: date-time
-        dueDate:
-          type: string
-          format: date-time
-        processDefinitionId:
-          type: string
-        processInstanceId:
-          type: string
-        variables:
-          type: object
-          additionalProperties: true
   parameters:
     QueryFilter:
       name: _queryFilter

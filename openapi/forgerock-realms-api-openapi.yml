@@ -145,16 +145,6 @@ paths:
                 $ref: '#/components/schemas/Realm'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     Realm:
       type: object
       description: An AM realm configuration
@@ -182,6 +172,16 @@ components:
             $ref: '#/components/schemas/Realm'
         resultCount:
           type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
   parameters:
     ApiVersion:
       name: Accept-API-Version

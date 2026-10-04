@@ -101,6 +101,25 @@ paths:
                     - FAILED
 components:
   schemas:
+    MonitoringSummary:
+      type: object
+      description: IG monitoring summary
+      properties:
+        totalRequestCount:
+          type: integer
+          description: Total number of requests processed
+        totalResponseCount:
+          type: integer
+          description: Total number of responses sent
+        averageResponseTime:
+          type: number
+          format: double
+          description: Average response time in milliseconds
+        statusCodeCounts:
+          type: object
+          description: Response counts by HTTP status code
+          additionalProperties:
+            type: integer
     EndpointMonitoring:
       type: object
       description: Monitoring data for a specific endpoint
@@ -138,25 +157,6 @@ components:
           type: string
         message:
           type: string
-    MonitoringSummary:
-      type: object
-      description: IG monitoring summary
-      properties:
-        totalRequestCount:
-          type: integer
-          description: Total number of requests processed
-        totalResponseCount:
-          type: integer
-          description: Total number of responses sent
-        averageResponseTime:
-          type: number
-          format: double
-          description: Average response time in milliseconds
-        statusCodeCounts:
-          type: object
-          description: Response counts by HTTP status code
-          additionalProperties:
-            type: integer
   securitySchemes:
     bearerAuth:
       type: http

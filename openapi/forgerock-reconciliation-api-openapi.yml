@@ -106,6 +106,26 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
   schemas:
     ErrorResponse:
       type: object
@@ -117,6 +137,15 @@ components:
           type: string
         message:
           type: string
+    ReconciliationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReconciliationResult'
+        resultCount:
+          type: integer
     ReconciliationResult:
       type: object
       description: Reconciliation run result
@@ -176,35 +205,6 @@ components:
           description: Summary of action outcomes
           additionalProperties:
             type: integer
-    ReconciliationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReconciliationResult'
-        resultCount:
-          type: integer
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

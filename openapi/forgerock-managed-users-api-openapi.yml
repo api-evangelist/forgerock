@@ -215,6 +215,54 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the managed user
+      schema:
+        type: string
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated list of fields to sort by (prefix with - for descending)
+      schema:
+        type: string
   schemas:
     PatchOperations:
       type: array
@@ -238,42 +286,6 @@ components:
             description: JSON pointer to the field to patch
           value:
             description: The value for add, replace, or increment operations
-    ManagedUserList:
-      type: object
-      description: Paginated list of managed users
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedUser'
-        resultCount:
-          type: integer
-          description: Number of results in this page
-        pagedResultsCookie:
-          type: string
-          description: Cookie for fetching the next page
-        totalPagedResultsPolicy:
-          type: string
-          description: Policy for total result count
-        totalPagedResults:
-          type: integer
-          description: Total number of results (-1 if unknown)
-        remainingPagedResults:
-          type: integer
-          description: Remaining results after this page
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
     ManagedUser:
       type: object
       description: A managed user identity object
@@ -325,54 +337,42 @@ components:
           readOnly: true
           items:
             type: object
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results to return per page
-      schema:
-        type: integer
-        minimum: 1
-    RealmName:
-      name: realm
-      in: path
-      required: true
-      description: The realm name prefix for managed objects (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated list of fields to sort by (prefix with - for descending)
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for paginated results
-      schema:
-        type: integer
-        minimum: 0
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: The unique identifier of the managed user
-      schema:
-        type: string
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
+    ManagedUserList:
+      type: object
+      description: Paginated list of managed users
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedUser'
+        resultCount:
+          type: integer
+          description: Number of results in this page
+        pagedResultsCookie:
+          type: string
+          description: Cookie for fetching the next page
+        totalPagedResultsPolicy:
+          type: string
+          description: Policy for total result count
+        totalPagedResults:
+          type: integer
+          description: Total number of results (-1 if unknown)
+        remainingPagedResults:
+          type: integer
+          description: Remaining results after this page
   securitySchemes:
     bearerAuth:
       type: http

@@ -111,27 +111,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/Violation'
 components:
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-    ViolationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Violation'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     Violation:
       type: object
       description: A segregation of duties or compliance policy violation
@@ -167,27 +168,26 @@ components:
         detectedDate:
           type: string
           format: date-time
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        minimum: 0
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ViolationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Violation'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

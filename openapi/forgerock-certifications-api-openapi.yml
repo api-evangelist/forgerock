@@ -119,6 +119,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/Certification'
 components:
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        minimum: 0
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    CertificationId:
+      name: certificationId
+      in: path
+      required: true
+      description: The certification campaign identifier
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
   schemas:
     PatchOperations:
       type: array
@@ -137,15 +171,6 @@ components:
           field:
             type: string
           value: {}
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     CertificationList:
       type: object
       properties:
@@ -213,40 +238,15 @@ components:
           type: string
           format: date-time
           readOnly: true
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    CertificationId:
-      name: certificationId
-      in: path
-      required: true
-      description: The certification campaign identifier
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
-      schema:
-        type: string
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        minimum: 0
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http
