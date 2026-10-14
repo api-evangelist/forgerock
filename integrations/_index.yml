@@ -40,3 +40,28 @@
     detected: '2026-10-13'
   status: not-a-workflow
   arazzo: null
+- slug: forgerock-crowdstrike-own
+  label: CrowdStrike (own)
+  partner: crowdstrike
+  partner_name: CrowdStrike (own)
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.crowdstrike.com/listings/forgerock-identity-platform/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: forgerock-microsoft-sentinel-own
+  label: Microsoft Sentinel (own)
+  partner: microsoft-sentinel
+  partner_name: Microsoft Sentinel (own)
+  category: Identity
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/Azure/Azure-Sentinel/tree/master/Solutions/ForgeRock%20Common%20Audit%20for%20CEF
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
