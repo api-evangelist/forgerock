@@ -91,6 +91,33 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
   schemas:
     AuditEntry:
       type: object
@@ -130,6 +157,16 @@ components:
           enum:
           - SUCCESS
           - FAILURE
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     AuditQueryResult:
       type: object
       properties:
@@ -141,43 +178,6 @@ components:
           type: integer
         totalPagedResults:
           type: integer
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

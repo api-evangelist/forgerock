@@ -120,13 +120,6 @@ paths:
                 $ref: '#/components/schemas/Certification'
 components:
   parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -153,35 +146,14 @@ components:
       description: Sort fields
       schema:
         type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
   schemas:
-    PatchOperations:
-      type: array
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            enum:
-            - add
-            - remove
-            - replace
-          field:
-            type: string
-          value: {}
-    CertificationList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Certification'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     Certification:
       type: object
       description: An access certification campaign
@@ -238,6 +210,34 @@ components:
           type: string
           format: date-time
           readOnly: true
+    PatchOperations:
+      type: array
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            enum:
+            - add
+            - remove
+            - replace
+          field:
+            type: string
+          value: {}
+    CertificationList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certification'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
     ErrorResponse:
       type: object
       properties:

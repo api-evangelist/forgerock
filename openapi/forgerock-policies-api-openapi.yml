@@ -193,18 +193,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
   schemas:
-    PolicyList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Policy'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
     PolicyDecision:
       type: object
       description: Authorization decision for a resource
@@ -227,6 +233,17 @@ components:
             type: array
             items:
               type: string
+    PolicyList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
     Policy:
       type: object
       description: An authorization policy
@@ -298,23 +315,6 @@ components:
           type: string
         message:
           type: string
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
   securitySchemes:
     ssoToken:
       type: apiKey

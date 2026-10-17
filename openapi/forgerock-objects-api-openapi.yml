@@ -91,6 +91,25 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ObjectList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConfigObject'
+        resultCount:
+          type: integer
     ConfigObject:
       type: object
       description: A live configuration object in the IG runtime
@@ -105,25 +124,6 @@ components:
         config:
           type: object
           description: Object configuration
-    ObjectList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ConfigObject'
-        resultCount:
-          type: integer
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

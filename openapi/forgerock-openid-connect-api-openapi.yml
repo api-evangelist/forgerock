@@ -73,31 +73,6 @@ components:
           type: string
         error_description:
           type: string
-    UserInfo:
-      type: object
-      description: OpenID Connect UserInfo claims
-      properties:
-        sub:
-          type: string
-          description: Subject identifier
-        name:
-          type: string
-        given_name:
-          type: string
-        family_name:
-          type: string
-        email:
-          type: string
-          format: email
-        email_verified:
-          type: boolean
-        phone_number:
-          type: string
-        address:
-          type: object
-          properties:
-            formatted:
-              type: string
     OIDCConfiguration:
       type: object
       description: OpenID Connect discovery metadata
@@ -148,6 +123,31 @@ components:
           type: array
           items:
             type: string
+    UserInfo:
+      type: object
+      description: OpenID Connect UserInfo claims
+      properties:
+        sub:
+          type: string
+          description: Subject identifier
+        name:
+          type: string
+        given_name:
+          type: string
+        family_name:
+          type: string
+        email:
+          type: string
+          format: email
+        email_verified:
+          type: boolean
+        phone_number:
+          type: string
+        address:
+          type: object
+          properties:
+            formatted:
+              type: string
   parameters:
     RealmPath:
       name: realm

@@ -164,31 +164,15 @@ paths:
                 $ref: '#/components/schemas/TaskInstance'
 components:
   schemas:
-    TaskInstanceList:
+    ProcessInstanceList:
       type: object
       properties:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/TaskInstance'
+            $ref: '#/components/schemas/ProcessInstance'
         resultCount:
           type: integer
-    ProcessDefinition:
-      type: object
-      description: A BPMN workflow process definition
-      properties:
-        _id:
-          type: string
-        name:
-          type: string
-        key:
-          type: string
-        version:
-          type: integer
-        category:
-          type: string
-        deploymentId:
-          type: string
     ProcessDefinitionList:
       type: object
       properties:
@@ -223,6 +207,31 @@ components:
         variables:
           type: object
           additionalProperties: true
+    TaskInstanceList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskInstance'
+        resultCount:
+          type: integer
+    ProcessDefinition:
+      type: object
+      description: A BPMN workflow process definition
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        key:
+          type: string
+        version:
+          type: integer
+        category:
+          type: string
+        deploymentId:
+          type: string
     ErrorResponse:
       type: object
       description: Standard CREST error response
@@ -250,15 +259,6 @@ components:
           type: string
         status:
           type: string
-    ProcessInstanceList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessInstance'
-        resultCount:
-          type: integer
   parameters:
     QueryFilter:
       name: _queryFilter

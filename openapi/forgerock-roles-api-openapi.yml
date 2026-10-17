@@ -44,13 +44,6 @@ paths:
                 $ref: '#/components/schemas/GovernanceRoleList'
 components:
   parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -64,7 +57,23 @@ components:
       description: CREST query filter expression
       schema:
         type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
   schemas:
+    GovernanceRoleList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/GovernanceRole'
+        resultCount:
+          type: integer
     GovernanceRole:
       type: object
       description: A governance role
@@ -85,15 +94,6 @@ components:
           type: array
           items:
             type: string
-    GovernanceRoleList:
-      type: object
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/GovernanceRole'
-        resultCount:
-          type: integer
   securitySchemes:
     bearerAuth:
       type: http

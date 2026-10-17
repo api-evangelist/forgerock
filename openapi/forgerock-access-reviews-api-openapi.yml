@@ -115,13 +115,6 @@ paths:
                 $ref: '#/components/schemas/CertificationItem'
 components:
   parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -142,6 +135,13 @@ components:
       description: The certification campaign identifier
       schema:
         type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
   schemas:
     CertificationItemList:
       type: object

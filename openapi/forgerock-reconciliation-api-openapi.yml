@@ -107,13 +107,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
     QueryFilter:
       name: _queryFilter
       in: query
@@ -126,17 +119,14 @@ components:
       description: Comma-separated sort fields (prefix with - for descending)
       schema:
         type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
   schemas:
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     ReconciliationList:
       type: object
       properties:
@@ -205,6 +195,16 @@ components:
           description: Summary of action outcomes
           additionalProperties:
             type: integer
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

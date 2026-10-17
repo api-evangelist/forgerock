@@ -166,6 +166,16 @@ components:
             $ref: '#/components/schemas/Route'
         resultCount:
           type: integer
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     Route:
       type: object
       description: An IG route configuration
@@ -212,16 +222,6 @@ components:
         auditService:
           type: object
           description: Audit service configuration for this route
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

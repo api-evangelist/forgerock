@@ -160,16 +160,6 @@ components:
           type: array
           items:
             type: object
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     AuthenticationCallbackRequest:
       type: object
       description: Authentication callback response from client
@@ -192,6 +182,16 @@ components:
                 type: array
                 items:
                   type: object
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     AuthenticationResponse_2:
       type: object
       description: Authentication step result
@@ -245,6 +245,18 @@ components:
                 type: string
               value:
                 description: The input value
+    AuthenticationRequest:
+      type: object
+      description: Authentication callback response payload
+      properties:
+        authId:
+          type: string
+          description: Authentication session identifier from the previous step
+        callbacks:
+          type: array
+          description: Completed callback responses
+          items:
+            $ref: '#/components/schemas/Callback'
     ErrorResponse_2:
       type: object
       description: Standard error response
@@ -258,27 +270,7 @@ components:
         message:
           type: string
           description: Detailed error message
-    AuthenticationRequest:
-      type: object
-      description: Authentication callback response payload
-      properties:
-        authId:
-          type: string
-          description: Authentication session identifier from the previous step
-        callbacks:
-          type: array
-          description: Completed callback responses
-          items:
-            $ref: '#/components/schemas/Callback'
   parameters:
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
     RealmPath:
       name: realm
       in: path
@@ -287,6 +279,14 @@ components:
       schema:
         type: string
         default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
     RealmPath_2:
       name: realm
       in: path

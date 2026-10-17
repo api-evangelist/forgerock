@@ -143,15 +143,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/OAuthErrorResponse'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
   schemas:
     OAuthErrorResponse:
       type: object
@@ -198,6 +189,15 @@ components:
         id_token:
           type: string
           description: OpenID Connect ID token (if applicable)
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   securitySchemes:
     bearerAuth:
       type: http

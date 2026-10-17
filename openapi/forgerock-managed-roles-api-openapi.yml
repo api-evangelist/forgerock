@@ -108,42 +108,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results to return per page
-      schema:
-        type: integer
-        minimum: 1
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    RealmName:
-      name: realm
-      in: path
-      required: true
-      description: The realm name prefix for managed objects (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for paginated results
-      schema:
-        type: integer
-        minimum: 0
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
-      schema:
-        type: string
   schemas:
+    ManagedRoleList:
+      type: object
+      description: Paginated list of managed roles
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedRole'
+        resultCount:
+          type: integer
+        pagedResultsCookie:
+          type: string
+        totalPagedResults:
+          type: integer
     ManagedRole:
       type: object
       description: A managed role object
@@ -187,20 +166,41 @@ components:
         message:
           type: string
           description: Detailed error message
-    ManagedRoleList:
-      type: object
-      description: Paginated list of managed roles
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedRole'
-        resultCount:
-          type: integer
-        pagedResultsCookie:
-          type: string
-        totalPagedResults:
-          type: integer
+  parameters:
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
   securitySchemes:
     bearerAuth:
       type: http

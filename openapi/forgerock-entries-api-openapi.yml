@@ -52,13 +52,12 @@ paths:
                 $ref: '#/components/schemas/EntryQueryResult'
 components:
   parameters:
-    PageSize:
-      name: _pageSize
+    QueryFilter:
+      name: _queryFilter
       in: query
-      description: Number of results per page
+      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
       schema:
-        type: integer
-        minimum: 1
+        type: string
     Fields:
       name: _fields
       in: query
@@ -71,12 +70,13 @@ components:
       description: Cookie from a previous page for server-side paging
       schema:
         type: string
-    QueryFilter:
-      name: _queryFilter
+    PageSize:
+      name: _pageSize
       in: query
-      description: CREST query filter expression, translated to an LDAP filter (e.g., uid eq "jdoe" becomes (uid=jdoe))
+      description: Number of results per page
       schema:
-        type: string
+        type: integer
+        minimum: 1
   schemas:
     EntryQueryResult:
       type: object
