@@ -34,11 +34,10 @@ url: https://www.forgerock.com
 type: Index
 image: https://www.forgerock.com/themes/custom/forgerock/logo.svg
 tags:
-  - Access Management
+  - Identity and Access Management
   - Authentication
   - Authorization
   - Identity Governance
-  - Identity Management
   - OpenID Connect
   - Identity Federation
 tags_raw:
