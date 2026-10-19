@@ -221,6 +221,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    ObjectId:
+      name: objectId
+      in: path
+      required: true
+      description: The unique identifier of the managed object
+      schema:
+        type: string
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -232,6 +246,12 @@ components:
       name: _queryFilter
       in: query
       description: CREST query filter expression
+      schema:
+        type: string
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated sort fields (prefix with - for descending)
       schema:
         type: string
     Fields:
@@ -247,45 +267,17 @@ components:
       description: The managed object type (e.g., user, role, assignment, organization). In Identity Cloud, this is prefixed with the realm name (e.g., alpha_user).
       schema:
         type: string
-    ObjectId:
-      name: objectId
-      in: path
-      required: true
-      description: The unique identifier of the managed object
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated sort fields (prefix with - for descending)
-      schema:
-        type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
   schemas:
-    QueryResult:
+    ErrorResponse:
       type: object
-      description: CREST query result
+      description: Standard CREST error response
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ManagedObject'
-        resultCount:
+        code:
           type: integer
-        pagedResultsCookie:
+        reason:
           type: string
-        totalPagedResultsPolicy:
+        message:
           type: string
-        totalPagedResults:
-          type: integer
-        remainingPagedResults:
-          type: integer
     ManagedObject:
       type: object
       description: A managed identity object
@@ -318,16 +310,24 @@ components:
           field:
             type: string
           value: {}
-    ErrorResponse:
+    QueryResult:
       type: object
-      description: Standard CREST error response
+      description: CREST query result
       properties:
-        code:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ManagedObject'
+        resultCount:
           type: integer
-        reason:
+        pagedResultsCookie:
           type: string
-        message:
+        totalPagedResultsPolicy:
           type: string
+        totalPagedResults:
+          type: integer
+        remainingPagedResults:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

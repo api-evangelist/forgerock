@@ -160,6 +160,16 @@ components:
           type: array
           items:
             type: object
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     AuthenticationCallbackRequest:
       type: object
       description: Authentication callback response from client
@@ -182,16 +192,6 @@ components:
                 type: array
                 items:
                   type: object
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     AuthenticationResponse_2:
       type: object
       description: Authentication step result
@@ -213,6 +213,19 @@ components:
           description: Callbacks requiring user input
           items:
             $ref: '#/components/schemas/Callback'
+    ErrorResponse_2:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
     Callback:
       type: object
       description: An authentication callback
@@ -257,19 +270,6 @@ components:
           description: Completed callback responses
           items:
             $ref: '#/components/schemas/Callback'
-    ErrorResponse_2:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
   parameters:
     RealmPath:
       name: realm

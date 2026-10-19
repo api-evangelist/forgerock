@@ -80,14 +80,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageSize:
       name: maxResults
       in: query
@@ -96,7 +88,24 @@ components:
         type: integer
         minimum: 1
         default: 25
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     Rule:
       type: object
       description: An entitlement assignment rule from the AI model
@@ -139,15 +148,6 @@ components:
             $ref: '#/components/schemas/Rule'
         totalResults:
           type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

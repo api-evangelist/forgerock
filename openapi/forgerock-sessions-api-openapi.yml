@@ -175,32 +175,40 @@ paths:
           default: mycompany
           description: The tenant identifier for your Identity Cloud environment
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
-    RealmPath_2:
-      name: realm
-      in: path
-      required: true
-      description: The realm name (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    SessionQueryResult:
+      type: object
+      description: Session query results
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SessionInfo'
+        resultCount:
+          type: integer
+        totalPagedResults:
+          type: integer
+    SessionActionResult:
+      type: object
+      description: Result of a session action
+      properties:
+        valid:
+          type: boolean
+          description: Whether the session is valid (for validate action)
+        uid:
+          type: string
+        realm:
+          type: string
     SessionInfo:
       type: object
       description: Session information
@@ -220,39 +228,6 @@ components:
         maxSessionExpirationTime:
           type: string
           format: date-time
-    SessionActionResult:
-      type: object
-      description: Result of a session action
-      properties:
-        valid:
-          type: boolean
-          description: Whether the session is valid (for validate action)
-        uid:
-          type: string
-        realm:
-          type: string
-    SessionQueryResult:
-      type: object
-      description: Session query results
-      properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SessionInfo'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     ErrorResponse_2:
       type: object
       description: Standard error response
@@ -296,6 +271,31 @@ components:
           description: Session properties
           additionalProperties:
             type: string
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
+    RealmPath_2:
+      name: realm
+      in: path
+      required: true
+      description: The realm name (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
   securitySchemes:
     ssoToken:
       type: apiKey

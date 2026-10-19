@@ -135,16 +135,15 @@ paths:
                 $ref: '#/components/schemas/SchedulerJob'
 components:
   schemas:
-    ErrorResponse:
+    SchedulerJobList:
       type: object
-      description: Standard CREST error response
       properties:
-        code:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerJob'
+        resultCount:
           type: integer
-        reason:
-          type: string
-        message:
-          type: string
     SchedulerJob:
       type: object
       description: A scheduled job configuration
@@ -187,15 +186,16 @@ components:
           - info
           - debug
           - trace
-    SchedulerJobList:
+    ErrorResponse:
       type: object
+      description: Standard CREST error response
       properties:
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchedulerJob'
-        resultCount:
+        code:
           type: integer
+        reason:
+          type: string
+        message:
+          type: string
   parameters:
     QueryFilter:
       name: _queryFilter

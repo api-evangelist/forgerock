@@ -7,7 +7,8 @@
     "_original/forgerock-identity-cloud-openapi.yml",
     "_original/forgerock-identity-gateway-openapi.yml",
     "_original/forgerock-identity-governance-openapi.yml",
-    "_original/forgerock-identity-management-openapi.yml"
+    "_original/forgerock-identity-management-openapi.yml",
+    "_original/forgerock-openapi.yml"
   ],
   "outputs": [
     "forgerock-authentication-api-openapi.yml",
@@ -47,13 +48,26 @@
     "forgerock-scheduler-api-openapi.yml",
     "forgerock-synchronization-api-openapi.yml",
     "forgerock-system-objects-api-openapi.yml",
-    "forgerock-workflow-api-openapi.yml"
+    "forgerock-workflow-api-openapi.yml",
+    "forgerock-csrs-api-openapi.yml",
+    "forgerock-certificates-api-openapi.yml",
+    "forgerock-content-security-policy-api-openapi.yml",
+    "forgerock-cookie-domains-api-openapi.yml",
+    "forgerock-count-api-openapi.yml",
+    "forgerock-custom-domains-api-openapi.yml",
+    "forgerock-federation-enforcement-api-openapi.yml",
+    "forgerock-promotion-api-openapi.yml",
+    "forgerock-release-api-openapi.yml",
+    "forgerock-restart-api-openapi.yml",
+    "forgerock-sso-cookie-api-openapi.yml",
+    "forgerock-secrets-api-openapi.yml",
+    "forgerock-variables-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (7 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (8 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "forgerock-access-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "forgerock-autonomous-identity-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "forgerock-directory-services-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
@@ -61,11 +75,12 @@
     "forgerock-identity-gateway-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "forgerock-identity-governance-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "forgerock-identity-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "forgerock-openapi.yml: upgraded swagger 2.0 -> OpenAPI 3.2.0",
     "tag 'Authentication' spans 2 source specs (forgerock-access-management-openapi.yml, forgerock-identity-cloud-openapi.yml): per-path servers applied",
     "tag 'Sessions' spans 2 source specs (forgerock-access-management-openapi.yml, forgerock-identity-cloud-openapi.yml): per-path servers applied",
     "tag 'Entitlements' spans 2 source specs (forgerock-autonomous-identity-openapi.yml, forgerock-identity-governance-openapi.yml): per-path servers applied",
     "tag 'Users' spans 2 source specs (forgerock-autonomous-identity-openapi.yml, forgerock-directory-services-openapi.yml): per-path servers applied",
-    "apis.yml register: already-registered"
+    "apis.yml register: written (+13 apis, 51 total)"
   ],
   "skipped": [
     "forgerock-access-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",

@@ -215,7 +215,90 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
+  parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results to return per page
+      schema:
+        type: integer
+        minimum: 1
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Comma-separated list of fields to sort by (prefix with - for descending)
+      schema:
+        type: string
+    PagedResultsOffset:
+      name: _pagedResultsOffset
+      in: query
+      description: Offset for paginated results
+      schema:
+        type: integer
+        minimum: 0
+    QueryFilter:
+      name: _queryFilter
+      in: query
+      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
+      schema:
+        type: string
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: The unique identifier of the managed user
+      schema:
+        type: string
+    RealmName:
+      name: realm
+      in: path
+      required: true
+      description: The realm name prefix for managed objects (e.g., alpha, bravo)
+      schema:
+        type: string
+        default: alpha
+    Fields:
+      name: _fields
+      in: query
+      description: Comma-separated list of fields to include in the response
+      schema:
+        type: string
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error response
+      properties:
+        code:
+          type: integer
+          description: HTTP status code
+        reason:
+          type: string
+          description: HTTP status reason phrase
+        message:
+          type: string
+          description: Detailed error message
+    PatchOperations:
+      type: array
+      description: JSON Patch operations
+      items:
+        type: object
+        required:
+        - operation
+        - field
+        properties:
+          operation:
+            type: string
+            description: The patch operation type
+            enum:
+            - add
+            - remove
+            - replace
+            - increment
+          field:
+            type: string
+            description: JSON pointer to the field to patch
+          value:
+            description: The value for add, replace, or increment operations
     ManagedUser:
       type: object
       description: A managed user identity object
@@ -290,89 +373,6 @@ components:
         remainingPagedResults:
           type: integer
           description: Remaining results after this page
-    PatchOperations:
-      type: array
-      description: JSON Patch operations
-      items:
-        type: object
-        required:
-        - operation
-        - field
-        properties:
-          operation:
-            type: string
-            description: The patch operation type
-            enum:
-            - add
-            - remove
-            - replace
-            - increment
-          field:
-            type: string
-            description: JSON pointer to the field to patch
-          value:
-            description: The value for add, replace, or increment operations
-    ErrorResponse:
-      type: object
-      description: Standard error response
-      properties:
-        code:
-          type: integer
-          description: HTTP status code
-        reason:
-          type: string
-          description: HTTP status reason phrase
-        message:
-          type: string
-          description: Detailed error message
-  parameters:
-    PagedResultsOffset:
-      name: _pagedResultsOffset
-      in: query
-      description: Offset for paginated results
-      schema:
-        type: integer
-        minimum: 0
-    RealmName:
-      name: realm
-      in: path
-      required: true
-      description: The realm name prefix for managed objects (e.g., alpha, bravo)
-      schema:
-        type: string
-        default: alpha
-    QueryFilter:
-      name: _queryFilter
-      in: query
-      description: CREST query filter expression (e.g., userName eq "jdoe" or true for all)
-      schema:
-        type: string
-    Fields:
-      name: _fields
-      in: query
-      description: Comma-separated list of fields to include in the response
-      schema:
-        type: string
-    UserId:
-      name: userId
-      in: path
-      required: true
-      description: The unique identifier of the managed user
-      schema:
-        type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Comma-separated list of fields to sort by (prefix with - for descending)
-      schema:
-        type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results to return per page
-      schema:
-        type: integer
-        minimum: 1
   securitySchemes:
     bearerAuth:
       type: http

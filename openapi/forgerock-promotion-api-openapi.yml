@@ -1,0 +1,1243 @@
+openapi: 3.2.0
+info:
+  description: '## Introduction
+
+    The PingOne Advanced Identity Cloud REST API lets customers manage their PingOne Advanced Identity Cloud tenants. The API exposes access management and identity management endpoints, with additional endpoints specific to PingOne Advanced Identity Cloud tenant environments.
+
+
+    We are now publishing the API spec in OpenAPI 3.0. For the legacy Swagger 2.0 spec, please download swagger.yaml, but note that it may not contain all new functionality.
+
+
+    For full PingOne Advanced Identity Cloud documentation, please visit the docs website.
+
+    ## Authenticating to the API
+
+    The PingOne Advanced Identity Cloud REST API has two different authentication methods:
+
+
+    - API key and secret: used for tenant read-only operations
+
+    - Access token: used for access management operations, identity management operations or tenant write operations
+
+
+    For a summary of how to use these authentication methods, refer to Authenticate to Advanced Identity Cloud REST API.'
+  title: PingOne Advanced Identity Cloud Promotion API
+  version: 1.0.0
+  x-logo:
+    altText: Ping Identity logo
+    backgroundColor: '#FAFAFA'
+    url: https://cdn-docs.pingidentity.com/site-nav/ping-logo-horizontal.svg
+servers:
+- url: https://openam-example.id.forgerock.io/
+security:
+- OAuth2:
+  - fr:idm:*
+  - fr:idc:esv:*
+  - fr:idc:esv:read
+  - fr:idc:esv:update
+  - fr:idc:esv:restart
+  - fr:idc:promotion:*
+tags:
+- description: API endpoints related to self-service promotions
+  name: Promotion
+paths:
+  /environment/promotion/lock:
+    post:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Lock has started on the environment
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionStartLocking'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '409':
+          description: A promotion is already running
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionConflictingLockState'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      tags:
+      - Promotion
+      description: Starts the lock process on the lower and upper environments
+      operationId: lock
+      summary: Lock environments
+  /environment/promotion/lock/state:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      - allowEmptyValue: true
+        description: If set to true this parameter will only return the lock status of the environment the request is aimed at
+        in: query
+        name: localLockOnly
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Current status of lock on the environment
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionLockState'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      tags:
+      - Promotion
+      description: Get the lock status of the lower and upper environments.
+      operationId: check-lock
+      summary: Get lock status
+  /environment/promotion/lock/{promotionId}:
+    delete:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      - description: Promotion unique identifier
+        in: path
+        name: promotionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Environment is unlocked
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionUnlocked'
+        '202':
+          description: Unlock has started on the environment
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionStartUnlocking'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '409':
+          description: Environment is currently locking or unlocking
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionConflictingLockState'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      tags:
+      - Promotion
+      description: Start the unlock process on the lower and upper environments.
+      operationId: unlock
+      summary: Unlock environments
+  /environment/promotion/promote:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionProgress'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+      tags:
+      - Promotion
+      description: Get the status of a promotion, if one is in progress.
+      operationId: progress
+      summary: Get promotion status
+    post:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Promotion process started successfully
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionStart'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '409':
+          description: 'Promotion request is conflicting with the current state of the environment. For example, the environment is not locked, or a promotion or rollback is already running.
+
+            '
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Promotion
+      description: Promote configuration from the lower environment to the upper environment.
+      operationId: start
+      summary: Run a promotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/promotionRequest'
+        description: A request body with info required to initiate a promotion
+        required: true
+  /environment/promotion/report:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Promotion
+      description: This will return the contents of the last run config promotion report
+      operationId: getLastReport
+      summary: Get last promotion report
+  /environment/promotion/report/provisional:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        default:
+          description: Unexpected error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Promotion
+      description: Get a provisional report of changes since the last time the lower environment was promoted to the upper environment. The report generated is for informational purposes only and may not reflect all the changes in a full promotion. A dry-run promotion is always recommended prior to a full promotion between environments.
+      operationId: getProvisionalReport
+      summary: Get a provisional promotion report
+  /environment/promotion/report/provisional-rollback:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        default:
+          description: Unexpected error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Promotion
+      description: Get a provisional rollback report of changes when we rollback the configuration to the previous promotion.
+      operationId: getProvisionalRollbackReport
+      summary: Get a provisional rollback report
+  /environment/promotion/report/{reportId}:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      - description: Promotion report unique identifier
+        in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: report not found for given id
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Unexpected error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Promotion
+      description: Get a specific promotion report.
+      operationId: getReport
+      summary: Get a promotion report
+  /environment/promotion/reports:
+    get:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionReportList'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      tags:
+      - Promotion
+      description: Get a list of previous promotion reports in date order.
+      operationId: getReportList
+      summary: Get promotion reports
+  /environment/promotion/rollback:
+    post:
+      parameters:
+      - description: protocol=1.0,resource=1.0
+        in: header
+        name: Accept-API-Version
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: Rollback process started successfully
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rollbackStart'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '409':
+          description: 'Rollback request is conflicting with the current state of the environment. For example, the environment is not locked, or a promotion or rollback is already running.
+
+            '
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Promotion
+      description: Rollback the most recent configuration promotion.
+      operationId: rollback
+      summary: Rollback a promotion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rollbackRequest'
+        description: A request body with info required to initiate a rollback
+        required: true
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+    promotionStartUnlocking:
+      properties:
+        description:
+          example: Environment unlocking in progress
+          type: string
+        promotionId:
+          example: ba594bbe-a589-4676-80a4-42975a56f5b6
+          type: string
+        result:
+          example: unlocking
+          type: string
+      type: object
+    promotionReportContent:
+      properties:
+        configChange:
+          properties:
+            added:
+              items:
+                $ref: '#/components/schemas/promotionCIMeta'
+              type: array
+              x-omitempty: true
+            deleted:
+              items:
+                $ref: '#/components/schemas/promotionCIMeta'
+              type: array
+              x-omitempty: true
+            modified:
+              items:
+                $ref: '#/components/schemas/promotionCIMeta'
+              type: array
+              x-omitempty: true
+          type: object
+        configItem:
+          example: Email > Templates
+          type: string
+      type: object
+    promotionProgress:
+      properties:
+        blockingError:
+          default: false
+          example: false
+          type: boolean
+        encryptedSecrets:
+          items:
+            example: mySecret
+            type: string
+          type: array
+          x-omitempty: true
+        globalLock:
+          example: LOCKED
+          type: string
+        message:
+          example: Environment ready for promotion
+          type: string
+        missingESVs:
+          items:
+            example: myVariable
+            type: string
+          type: array
+          x-omitempty: true
+        promotionId:
+          example: 7e7634c3-406e-4d37-80a3-d34461c2f309
+          type: string
+        status:
+          example: READY
+          type: string
+        timeStamp:
+          example: '2022-02-01T14:17:02+01:00'
+          type: string
+        type:
+          description: Either promotion or rollback depending on whether the report was for a config promotion or a config rollback
+          example: promotion
+          type: string
+      type: object
+    promotionRequest:
+      properties:
+        dryRun:
+          description: A boolean denoting whether this a dry run
+          type: boolean
+        ignoreEncryptedSecrets:
+          description: A boolean denoting whether or not to ignore encrypted secrets detected in config during the promotion
+          type: boolean
+          x-isnullable: false
+        promoter:
+          description: The name of the admin user who initiated the promotion
+          type: string
+          x-isnullable: false
+        promotionDescription:
+          description: Promoter specified note to make it easier for them to identify what was promoted
+          type: string
+          x-isnullable: false
+        unlockEnvironmentsAfterPromotion:
+          description: A boolean denoting whether or not to automatically unlock the environments after a successful promotion
+          type: boolean
+          x-isnullable: false
+        zendeskTicketReference:
+          description: A string denoting the Zendesk ticket reference to be added to the promotion commit message
+          type: string
+          x-isnullable: false
+      required:
+      - dryRun
+      type: object
+    promotionReportMeta:
+      properties:
+        createdDate:
+          example: '2022-01-26T15:53:05Z'
+          type: string
+        dryRun:
+          example: true
+          type: boolean
+          x-omitempty: false
+        promoter:
+          example: rocky.balboa
+          type: string
+        promotionId:
+          example: 7575f185-cd0b-4823-b8b1-f677895291d4
+          type: string
+        reportId:
+          example: d19e140-8325-4669-b9f3-1cd82784e24e
+          type: string
+        type:
+          description: Either promotion or rollback depending on whether the report was for a config promotion or a config rollback
+          example: promotion
+          type: string
+      type: object
+    promotionLockState:
+      properties:
+        description:
+          example: <meaningful when result=Error>
+          type: string
+        lowerEnv:
+          properties:
+            promotionId:
+              example: ba594bbe-a589-4676-80a4-42975a56f5b6
+              type: string
+            proxyState:
+              type: string
+            state:
+              type: string
+          type: object
+          x-omitempty: true
+        promotionId:
+          example: ba594bbe-a589-4676-80a4-42975a56f5b6
+          type: string
+        result:
+          enum:
+          - unlocked
+          - locking
+          - unlocking
+          - locked
+          - error
+          example: locked
+          type: string
+        upperEnv:
+          properties:
+            promotionId:
+              example: ba594bbe-a589-4676-80a4-42975a56f5b6
+              type: string
+            proxyState:
+              type: string
+            state:
+              type: string
+          type: object
+          x-omitempty: true
+      type: object
+    InternalServerError:
+      properties:
+        code:
+          example: 500
+          type: integer
+        message:
+          example: something unexpected happened
+          type: string
+        status:
+          example: Internal Server Error
+          type: string
+      type: object
+    promotionStartLocking:
+      properties:
+        description:
+          example: Environment lock in progress
+          type: string
+        promotionId:
+          example: ba594bbe-a589-4676-80a4-42975a56f5b6
+          type: string
+        result:
+          example: locking
+          type: string
+      type: object
+    Unauthorized:
+      properties:
+        code:
+          example: 401
+          type: integer
+        message:
+          example: unauthorized
+          type: string
+      type: object
+    promotionReport:
+      properties:
+        createdDate:
+          example: 2022-01-27T15-23+00Z
+          type: string
+        dryRun:
+          type: boolean
+        missingESVs:
+          items:
+            example: myVariable
+            type: string
+          type: array
+          x-omitempty: true
+        previouslyIgnoredEncryptedSecrets:
+          items:
+            type: string
+          type: array
+          x-omitempty: true
+        promoter:
+          description: The name of the admin user who requested the promotion
+          example: Barb Jensen
+          type: string
+        promotionDescription:
+          description: Promoter specified note to make it easier for them to identify what was promoted
+          example: Promoting our Forgotten Username journey
+          type: string
+        promotionId:
+          example: da0c66a4-9f37-4f9a-9988-0786ad301b17
+          type: string
+        report:
+          properties:
+            AMConfig:
+              items:
+                $ref: '#/components/schemas/promotionReportContent'
+              type: array
+              x-omitempty: true
+            IDMConfig:
+              items:
+                $ref: '#/components/schemas/promotionReportContent'
+              type: array
+              x-omitempty: true
+          type: object
+        reportId:
+          example: da0c66a4-9f37-4f9a-9988-0786ad301b17
+          type: string
+        reportName:
+          example: Report_2022-01-27T15-23+00Z_dryrun=true_a7456dd2-1acd-4bd9-8555-d44b2275a2da
+          type: string
+        type:
+          description: Either promotion or rollback depending on whether the report was for a config promotion or a config rollback
+          example: promotion
+          type: string
+      type: object
+    promotionUnlocked:
+      properties:
+        description:
+          example: Environment unlocked
+          type: string
+        promotionId:
+          example: ba594bbe-a589-4676-80a4-42975a56f5b6
+          type: string
+        result:
+          example: unlocked
+          type: string
+      type: object
+    rollbackStart:
+      properties:
+        result:
+          example: Rollback Complete
+          type: string
+      type: object
+    promotionStart:
+      properties:
+        result:
+          example: Promotion Complete
+          type: string
+      type: object
+    promotionReportList:
+      example:
+      - createdDate: '2022-01-19T13:04:00Z'
+        dryRun: true
+        promotionId: 7575f185-cd0b-4823-b8b1-f677895291d4
+        reportId: d19e140-8325-4669-b9f3-1cd82784e24e
+        type: rollback
+      - createdDate: '2022-01-19T13:05:00Z'
+        dryRun: true
+        promotionId: 7575f185-cd0b-4823-b8b1-f677895291dt
+        reportId: d19e140-8325-4669-b9f3-1cd82784e24f
+        type: promotion
+      items:
+        $ref: '#/components/schemas/promotionReportMeta'
+      type: array
+    promotionCIMeta:
+      properties:
+        name:
+          example: UMA Provider
+          type: string
+          x-omitempty: true
+        realm:
+          example: /bravo
+          type: string
+          x-omitempty: true
+        uid:
+          example: ou=39c08084-1238-43e8-857f-2e11005eac49,ou=scriptConfigurations,ou=default,ou=OrganizationConfig,ou=1.0,ou=ScriptingService,ou=services,o=alpha,ou=services,ou=am-config
+          type: string
+          x-omitempty: true
+      type: object
+    promotionConflictingLockState:
+      properties:
+        message:
+          example: Environment is not in locked state
+          type: string
+      type: object
+    rollbackRequest:
+      properties:
+        promoter:
+          description: The name of the admin user who initiated the promotion
+          type: string
+          x-isnullable: false
+        promotionDescription:
+          description: Promoter specified note to make it easier for them to identify what was promoted
+          type: string
+          x-isnullable: false
+        unlockEnvironmentsAfterPromotion:
+          description: A boolean denoting whether or not to automatically unlock the environments after a successful promotion
+          type: boolean
+          x-isnullable: false
+        zendeskTicketReference:
+          description: A string denoting the Zendesk ticket reference to be added to the promotion commit message
+          type: string
+          x-isnullable: false
+      type: object
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            fr:idc:certificate:*: Full access to certificates configuration
+            fr:idc:certificate:read: Read only access to certificates configuration
+            fr:idc:content-security-policy:*: Full access to content security policy configuration
+            fr:idc:custom-domain:*: Full access to custom domains configuration
+            fr:idc:esv:*: Full ESV access
+            fr:idc:esv:read: Read ESVs
+            fr:idc:esv:restart: Perform a restart of the ID Cloud workloads
+            fr:idc:esv:update: Modify or delete ESVs
+            fr:idc:federation:*: Full access to federation configuration
+            fr:idc:promotion:*: Allows a user to trigger a promotion
+            fr:idc:release:*: Full access to release configuration
+            fr:idc:sso-cookie:*: Full access to SSO cookie configuration
+            fr:idm:*: Grants full ESV access if user has openidm-admin role
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+x-components:
+  parameters:
+    X-ForgeRock-TransactionId:
+      description: Permits setting a specific transaction ID for this request
+      in: header
+      name: ForgeRock-Transaction-ID
+      required: false
+      schema:
+        type: string
+    apiVersion:
+      description: protocol=1.0,resource=1.0
+      in: header
+      name: Accept-API-Version
+      required: true
+      type: string
+    esvApiVersion:
+      description: resource=2.0
+      in: header
+      name: Accept-API-Version
+      type: string
+    esvOnlyPending:
+      default: false
+      description: '_Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied changes'
+      in: query
+      name: _onlyPending
+      type: boolean
+    esvPageSize:
+      default: 25
+      description: '_Accept-API-Version: resource=2.0_ only, maximum number of results returned by endpoint before paging'
+      in: query
+      maximum: 100
+      minimum: 1
+      name: _pageSize
+      required: false
+      type: integer
+    esvPagedResultsCookie:
+      default: ''
+      description: '_Accept-API-Version: resource=2.0_ only, opaque data used for paging result data, can be used for paging instead of having to track pageSize and pagedResultsOffset'
+      in: query
+      name: _pagedResultsCookie
+      required: false
+      type: string
+    esvPagedResultsOffset:
+      default: 0
+      description: '_Accept-API-Version: resource=2.0_ only, offset of the first result to be returned by endpoint'
+      in: query
+      minimum: 0
+      name: _pagedResultsOffset
+      required: false
+      type: integer
+    promotionId:
+      description: Promotion unique identifier
+      in: path
+      name: promotionId
+      required: true
+      type: string
+    reportId:
+      description: Promotion report unique identifier
+      in: path
+      name: reportId
+      required: true
+      type: string
+  requestBodies:
+    ContentSecurityPolicy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContentSecurityPolicy'
+      description: Enforced content security policy to apply to the tenant
+      required: true

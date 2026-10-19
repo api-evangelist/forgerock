@@ -243,14 +243,6 @@ paths:
           description: The Identity Governance deployment hostname
 components:
   parameters:
-    Offset:
-      name: offset
-      in: query
-      description: Offset for pagination
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     PageSize:
       name: maxResults
       in: query
@@ -259,6 +251,27 @@ components:
         type: integer
         minimum: 1
         default: 25
+    Offset:
+      name: offset
+      in: query
+      description: Offset for pagination
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    PageSize_2:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
+    SortKeys:
+      name: _sortKeys
+      in: query
+      description: Sort fields
+      schema:
+        type: string
     PagedResultsOffset:
       name: _pagedResultsOffset
       in: query
@@ -272,20 +285,27 @@ components:
       description: CREST query filter expression
       schema:
         type: string
-    SortKeys:
-      name: _sortKeys
-      in: query
-      description: Sort fields
-      schema:
-        type: string
-    PageSize_2:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
   schemas:
+    EntitlementList:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntitlementDetail'
+        totalResults:
+          type: integer
+        offset:
+          type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
     EntitlementUserList:
       type: object
       properties:
@@ -308,16 +328,33 @@ components:
                   type: string
         totalResults:
           type: integer
-    EntitlementList:
+    RecommendationList:
       type: object
+      description: Entitlement recommendations
       properties:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/EntitlementDetail'
+            type: object
+            properties:
+              userId:
+                type: string
+              userName:
+                type: string
+              entitlementId:
+                type: string
+              entitlementName:
+                type: string
+              application:
+                type: string
+              confidenceScore:
+                type: number
+                description: Predicted confidence score
+              drivingAttributes:
+                type: object
+                additionalProperties:
+                  type: string
         totalResults:
-          type: integer
-        offset:
           type: integer
     EntitlementDetail:
       type: object
@@ -362,43 +399,6 @@ components:
                 type: string
               weight:
                 type: number
-    RecommendationList:
-      type: object
-      description: Entitlement recommendations
-      properties:
-        result:
-          type: array
-          items:
-            type: object
-            properties:
-              userId:
-                type: string
-              userName:
-                type: string
-              entitlementId:
-                type: string
-              entitlementName:
-                type: string
-              application:
-                type: string
-              confidenceScore:
-                type: number
-                description: Predicted confidence score
-              drivingAttributes:
-                type: object
-                additionalProperties:
-                  type: string
-        totalResults:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
     EntitlementList_2:
       type: object
       properties:

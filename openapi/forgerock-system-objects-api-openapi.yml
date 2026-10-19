@@ -103,6 +103,13 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   parameters:
+    PageSize:
+      name: _pageSize
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        minimum: 1
     QueryFilter:
       name: _queryFilter
       in: query
@@ -115,14 +122,30 @@ components:
       description: Comma-separated fields to include in the response
       schema:
         type: string
-    PageSize:
-      name: _pageSize
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        minimum: 1
   schemas:
+    ErrorResponse:
+      type: object
+      description: Standard CREST error response
+      properties:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    ManagedObject:
+      type: object
+      description: A managed identity object
+      properties:
+        _id:
+          type: string
+          description: Unique identifier
+          readOnly: true
+        _rev:
+          type: string
+          description: Object revision for concurrency control
+          readOnly: true
+      additionalProperties: true
     QueryResult:
       type: object
       description: CREST query result
@@ -141,29 +164,6 @@ components:
           type: integer
         remainingPagedResults:
           type: integer
-    ManagedObject:
-      type: object
-      description: A managed identity object
-      properties:
-        _id:
-          type: string
-          description: Unique identifier
-          readOnly: true
-        _rev:
-          type: string
-          description: Object revision for concurrency control
-          readOnly: true
-      additionalProperties: true
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
-          type: integer
-        reason:
-          type: string
-        message:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

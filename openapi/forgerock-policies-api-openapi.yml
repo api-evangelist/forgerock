@@ -193,23 +193,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
-  parameters:
-    RealmPath:
-      name: realm
-      in: path
-      required: true
-      description: The realm name
-      schema:
-        type: string
-        default: root
-    ApiVersion:
-      name: Accept-API-Version
-      in: header
-      required: true
-      description: CREST API version protocol header
-      schema:
-        type: string
-        default: resource=2.0,protocol=1.0
   schemas:
     PolicyDecision:
       type: object
@@ -233,17 +216,43 @@ components:
             type: array
             items:
               type: string
-    PolicyList:
+    ErrorResponse:
       type: object
+      description: Standard CREST error response
       properties:
-        result:
+        code:
+          type: integer
+        reason:
+          type: string
+        message:
+          type: string
+    PolicyEvaluationRequest:
+      type: object
+      description: Policy evaluation request
+      properties:
+        resources:
           type: array
           items:
-            $ref: '#/components/schemas/Policy'
-        resultCount:
-          type: integer
-        totalPagedResults:
-          type: integer
+            type: string
+          description: Resources to evaluate
+        application:
+          type: string
+          description: Policy set name
+        subject:
+          type: object
+          description: Subject for evaluation
+          properties:
+            ssoToken:
+              type: string
+            claims:
+              type: object
+        environment:
+          type: object
+          description: Environment conditions
+          additionalProperties:
+            type: array
+            items:
+              type: string
     Policy:
       type: object
       description: An authorization policy
@@ -278,43 +287,34 @@ components:
         resourceTypeUuid:
           type: string
           description: UUID of the resource type
-    PolicyEvaluationRequest:
+    PolicyList:
       type: object
-      description: Policy evaluation request
       properties:
-        resources:
+        result:
           type: array
           items:
-            type: string
-          description: Resources to evaluate
-        application:
-          type: string
-          description: Policy set name
-        subject:
-          type: object
-          description: Subject for evaluation
-          properties:
-            ssoToken:
-              type: string
-            claims:
-              type: object
-        environment:
-          type: object
-          description: Environment conditions
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    ErrorResponse:
-      type: object
-      description: Standard CREST error response
-      properties:
-        code:
+            $ref: '#/components/schemas/Policy'
+        resultCount:
           type: integer
-        reason:
-          type: string
-        message:
-          type: string
+        totalPagedResults:
+          type: integer
+  parameters:
+    RealmPath:
+      name: realm
+      in: path
+      required: true
+      description: The realm name
+      schema:
+        type: string
+        default: root
+    ApiVersion:
+      name: Accept-API-Version
+      in: header
+      required: true
+      description: CREST API version protocol header
+      schema:
+        type: string
+        default: resource=2.0,protocol=1.0
   securitySchemes:
     ssoToken:
       type: apiKey

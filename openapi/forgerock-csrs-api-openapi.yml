@@ -1,0 +1,741 @@
+openapi: 3.2.0
+info:
+  description: '## Introduction
+
+    The PingOne Advanced Identity Cloud REST API lets customers manage their PingOne Advanced Identity Cloud tenants. The API exposes access management and identity management endpoints, with additional endpoints specific to PingOne Advanced Identity Cloud tenant environments.
+
+
+    We are now publishing the API spec in OpenAPI 3.0. For the legacy Swagger 2.0 spec, please download swagger.yaml, but note that it may not contain all new functionality.
+
+
+    For full PingOne Advanced Identity Cloud documentation, please visit the docs website.
+
+    ## Authenticating to the API
+
+    The PingOne Advanced Identity Cloud REST API has two different authentication methods:
+
+
+    - API key and secret: used for tenant read-only operations
+
+    - Access token: used for access management operations, identity management operations or tenant write operations
+
+
+    For a summary of how to use these authentication methods, refer to Authenticate to Advanced Identity Cloud REST API.'
+  title: PingOne Advanced Identity Cloud CSRs API
+  version: 1.0.0
+  x-logo:
+    altText: Ping Identity logo
+    backgroundColor: '#FAFAFA'
+    url: https://cdn-docs.pingidentity.com/site-nav/ping-logo-horizontal.svg
+servers:
+- url: https://openam-example.id.forgerock.io/
+security:
+- OAuth2:
+  - fr:idm:*
+  - fr:idc:esv:*
+  - fr:idc:esv:read
+  - fr:idc:esv:update
+  - fr:idc:esv:restart
+  - fr:idc:promotion:*
+tags:
+- description: Operations related to certificate signing requests
+  name: CSRs
+paths:
+  /environment/csrs:
+    get:
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CertificateSigningRequest'
+                type: array
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+        - fr:idc:certificate:read
+      tags:
+      - CSRs
+      description: Returns all certificate signing requests created in the environment
+      operationId: getCertificateSigningRequests
+      summary: Get all CSRs
+    post:
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateSigningRequest'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+      tags:
+      - CSRs
+      description: Create a new certificate signing request
+      operationId: createCertificateSigningRequest
+      summary: Create CSR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCertificateSigningRequestRequest'
+        description: JSON body of the new certificate signing request
+        required: true
+  /environment/csrs/{id}:
+    delete:
+      parameters:
+      - description: ID of the certificateSigningRequest
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+      tags:
+      - CSRs
+      description: Deletes a CSR created in the tenant.
+      operationId: deleteCertificateSigningRequestById
+      summary: Delete CSR by ID
+    get:
+      parameters:
+      - description: ID of the CSR
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateSigningRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+        - fr:idc:certificate:read
+      tags:
+      - CSRs
+      description: Returns information about a CSR created in the tenant.
+      operationId: getCertificateSigningRequestById
+      summary: Get CSR by ID
+    patch:
+      parameters:
+      - description: ID of the certificateSigningRequest
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateSigningRequest'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+      tags:
+      - CSRs
+      description: Upload a certificate to complete a CSR request, installing the certificate in the tenant. Only the `certificate` field can be set on an upload request.
+      operationId: updateCertificateSigningRequestById
+      summary: Update CSR by ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCertificateSigningRequestRequest'
+        description: JSON body of the new certificate signing request
+        required: true
+components:
+  schemas:
+    BadRequest:
+      properties:
+        code:
+          example: 400
+          type: integer
+        message:
+          type: string
+      type: object
+    CreateCertificateSigningRequestRequest:
+      default:
+        algorithm: rsa
+        subjectAlternativeNames: []
+      properties:
+        algorithm:
+          description: The algorithm for the private key. The encryption algorithm will either be RSA-2048 or ECDSA P-256 depending on the algorithm choice. The default is RSA-2048.
+          enum:
+          - rsa
+          - ecdsa
+          type: string
+        businessCategory:
+          description: Category of business, such as "Private Organization", “Government Entity”, “Business Entity”, or “Non-Commercial Entity”. Relevant for EV certificates.
+          example: Private Organization
+          type: string
+        city:
+          example: Los Angeles
+          type: string
+        commonName:
+          description: Domain name that the SSL certificate is securing
+          example: id.example.com
+          type: string
+        country:
+          description: Two-letter ISO-3166 country code
+          example: US
+          pattern: '[A-Z]{2}'
+          type: string
+        email:
+          example: bob@example.com
+          pattern: ^\S+@\S+$
+          type: string
+        jurisdictionCity:
+          description: This field contains only information relevant to the Jurisdiction of Incorporation or Registration. Relevant for EV certificates.
+          example: Los Angeles
+          type: string
+        jurisdictionCountry:
+          description: This field contains only information relevant to the Jurisdiction of Incorporation or Registration. Relevant for EV certificates.
+          example: US
+          type: string
+        jurisdictionState:
+          description: This field contains only information relevant to the Jurisdiction of Incorporation or Registration. Relevant for EV certificates.
+          example: California
+          type: string
+        organization:
+          description: Full name of company
+          example: example
+          type: string
+        organizationalUnit:
+          description: Company section or department
+          example: business
+          type: string
+        postalCode:
+          example: '94105'
+          type: string
+        serialNumber:
+          description: The Registration (or similar) Number assigned to the Subject by the Incorporating or Registration Agency in its Jurisdiction of Incorporation or Registration. Relevant for EV certificates.
+          example: '1234567'
+          type: string
+        state:
+          example: California
+          type: string
+        streetAddress:
+          example: Nice Street
+          type: string
+        subjectAlternativeNames:
+          description: Additional domain or domains that the SSL certificate is securing
+          items:
+            type: string
+          type: array
+      type: object
+    Unauthorized:
+      properties:
+        code:
+          example: 401
+          type: integer
+        message:
+          example: unauthorized
+          type: string
+      type: object
+    InternalServerError:
+      properties:
+        code:
+          example: 500
+          type: integer
+        message:
+          example: something unexpected happened
+          type: string
+        status:
+          example: Internal Server Error
+          type: string
+      type: object
+    UpdateCertificateSigningRequestRequest:
+      properties:
+        certificate:
+          description: The matching signed certificate for the request. This should only be set on update requests to upload the certificate.
+          type: string
+      required:
+      - certificate
+      type: object
+    NotFound:
+      properties:
+        code:
+          example: 404
+          type: integer
+        message:
+          example: not found
+          type: string
+      type: object
+    CertificateSigningRequest:
+      properties:
+        algorithm:
+          description: The algorithm for the private key. The encryption algorithm will either be RSA-2048 or ECDSA P-256 depending on the algorithm choice. The default is RSA-2048.
+          type: string
+        certificateID:
+          description: The ID of the certificate created from this CSR if the CSR has been completed.
+          type: string
+        createdDate:
+          example: 2006-01-02T15:04:05Z07:00
+          type: string
+        id:
+          description: The unique identifier for the CSR
+          type: string
+        request:
+          description: PEM formatted CSR.
+          type: string
+          x-go-custom-tag: datastore:",noindex"
+        subject:
+          description: the CSR subject
+          type: string
+        subjectAlternativeNames:
+          description: Additional domain or domains that the SSL certificate is securing
+          items:
+            type: string
+          type: array
+      type: object
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            fr:idc:certificate:*: Full access to certificates configuration
+            fr:idc:certificate:read: Read only access to certificates configuration
+            fr:idc:content-security-policy:*: Full access to content security policy configuration
+            fr:idc:custom-domain:*: Full access to custom domains configuration
+            fr:idc:esv:*: Full ESV access
+            fr:idc:esv:read: Read ESVs
+            fr:idc:esv:restart: Perform a restart of the ID Cloud workloads
+            fr:idc:esv:update: Modify or delete ESVs
+            fr:idc:federation:*: Full access to federation configuration
+            fr:idc:promotion:*: Allows a user to trigger a promotion
+            fr:idc:release:*: Full access to release configuration
+            fr:idc:sso-cookie:*: Full access to SSO cookie configuration
+            fr:idm:*: Grants full ESV access if user has openidm-admin role
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+x-components:
+  parameters:
+    X-ForgeRock-TransactionId:
+      description: Permits setting a specific transaction ID for this request
+      in: header
+      name: ForgeRock-Transaction-ID
+      required: false
+      schema:
+        type: string
+    apiVersion:
+      description: protocol=1.0,resource=1.0
+      in: header
+      name: Accept-API-Version
+      required: true
+      type: string
+    esvApiVersion:
+      description: resource=2.0
+      in: header
+      name: Accept-API-Version
+      type: string
+    esvOnlyPending:
+      default: false
+      description: '_Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied changes'
+      in: query
+      name: _onlyPending
+      type: boolean
+    esvPageSize:
+      default: 25
+      description: '_Accept-API-Version: resource=2.0_ only, maximum number of results returned by endpoint before paging'
+      in: query
+      maximum: 100
+      minimum: 1
+      name: _pageSize
+      required: false
+      type: integer
+    esvPagedResultsCookie:
+      default: ''
+      description: '_Accept-API-Version: resource=2.0_ only, opaque data used for paging result data, can be used for paging instead of having to track pageSize and pagedResultsOffset'
+      in: query
+      name: _pagedResultsCookie
+      required: false
+      type: string
+    esvPagedResultsOffset:
+      default: 0
+      description: '_Accept-API-Version: resource=2.0_ only, offset of the first result to be returned by endpoint'
+      in: query
+      minimum: 0
+      name: _pagedResultsOffset
+      required: false
+      type: integer
+    promotionId:
+      description: Promotion unique identifier
+      in: path
+      name: promotionId
+      required: true
+      type: string
+    reportId:
+      description: Promotion report unique identifier
+      in: path
+      name: reportId
+      required: true
+      type: string
+  requestBodies:
+    ContentSecurityPolicy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContentSecurityPolicy'
+      description: Enforced content security policy to apply to the tenant
+      required: true

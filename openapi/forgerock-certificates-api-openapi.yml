@@ -1,0 +1,707 @@
+openapi: 3.2.0
+info:
+  description: '## Introduction
+
+    The PingOne Advanced Identity Cloud REST API lets customers manage their PingOne Advanced Identity Cloud tenants. The API exposes access management and identity management endpoints, with additional endpoints specific to PingOne Advanced Identity Cloud tenant environments.
+
+
+    We are now publishing the API spec in OpenAPI 3.0. For the legacy Swagger 2.0 spec, please download swagger.yaml, but note that it may not contain all new functionality.
+
+
+    For full PingOne Advanced Identity Cloud documentation, please visit the docs website.
+
+    ## Authenticating to the API
+
+    The PingOne Advanced Identity Cloud REST API has two different authentication methods:
+
+
+    - API key and secret: used for tenant read-only operations
+
+    - Access token: used for access management operations, identity management operations or tenant write operations
+
+
+    For a summary of how to use these authentication methods, refer to Authenticate to Advanced Identity Cloud REST API.'
+  title: PingOne Advanced Identity Cloud Certificates API
+  version: 1.0.0
+  x-logo:
+    altText: Ping Identity logo
+    backgroundColor: '#FAFAFA'
+    url: https://cdn-docs.pingidentity.com/site-nav/ping-logo-horizontal.svg
+servers:
+- url: https://openam-example.id.forgerock.io/
+security:
+- OAuth2:
+  - fr:idm:*
+  - fr:idc:esv:*
+  - fr:idc:esv:read
+  - fr:idc:esv:update
+  - fr:idc:esv:restart
+  - fr:idc:promotion:*
+tags:
+- description: Operations related to certificates
+  name: Certificates
+paths:
+  /environment/certificates:
+    get:
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Certificate'
+                type: array
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+        - fr:idc:certificate:read
+      tags:
+      - Certificates
+      description: Returns all certificates installed in the tenant.
+      operationId: getCertificates
+      summary: Get all certificates
+    post:
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+      tags:
+      - Certificates
+      description: Upload a new certificate to the tenant.
+      operationId: createCertificate
+      summary: Create certificate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCertificateRequest'
+        description: JSON body of the new certificate
+        required: true
+  /environment/certificates/{id}:
+    delete:
+      parameters:
+      - description: ID of the certificate resource
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+      tags:
+      - Certificates
+      description: Deletes a certificate installed on the tenant. This certificate must be disabled before deletion will be allowed.
+      operationId: deleteCertificateByID
+      summary: Delete certificate by ID
+    get:
+      parameters:
+      - description: ID of the certificate resource
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+        - fr:idc:certificate:read
+      tags:
+      - Certificates
+      description: Returns information about a certificate installed on the tenant.
+      operationId: getCertificateByID
+      summary: Get certificate by ID
+    patch:
+      parameters:
+      - description: ID of the certificate resource
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            WWW-Authenticate:
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              schema:
+                type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+      security:
+      - OAuth2:
+        - fr:idc:certificate:*
+      tags:
+      - Certificates
+      description: Updates information about a certificate installed on the tenant. This can be used to enable / disable certificates.
+      operationId: updateCertificateByID
+      summary: Update certificate by ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCertificateRequest'
+        description: JSON body of the updated certificate
+        required: true
+components:
+  schemas:
+    BadRequest:
+      properties:
+        code:
+          example: 400
+          type: integer
+        message:
+          type: string
+      type: object
+    UpdateCertificateRequest:
+      properties:
+        active:
+          description: The active status of the certificate. Set this to true for the certificate to actively be served.
+          type: boolean
+      type: object
+    Unauthorized:
+      properties:
+        code:
+          example: 401
+          type: integer
+        message:
+          example: unauthorized
+          type: string
+      type: object
+    InternalServerError:
+      properties:
+        code:
+          example: 500
+          type: integer
+        message:
+          example: something unexpected happened
+          type: string
+        status:
+          example: Internal Server Error
+          type: string
+      type: object
+    CreateCertificateRequest:
+      properties:
+        active:
+          description: The active status of the certificate. Set this to true for the certificate to actively be served.
+          type: boolean
+        certificate:
+          description: The PEM formatted certificate.
+          type: string
+        privateKey:
+          description: The private key for the certificate. For security reasons, only insert requests include this field.
+          type: string
+      required:
+      - certificate
+      - privateKey
+      type: object
+    Certificate:
+      properties:
+        active:
+          description: The active status of the certificate. Set this to true for the certificate to be made live on the loadbalancer.
+          type: boolean
+          x-omitempty: false
+        certificate:
+          description: Deprecated. Contains no data.
+          type: string
+          x-go-custom-tag: datastore:",noindex"
+        expireTime:
+          description: The expiry time of the certificate. Not used in insert requests.
+          type: string
+        id:
+          description: The unique identifier for the certificate resource. Not used in insert requests.
+          type: string
+        issuer:
+          description: The issuer DN of the certificate
+          type: string
+        live:
+          description: The live status of the certificate. This is automatically set by the system and indicates if the certificate is currently live externally.
+          type: boolean
+          x-omitempty: false
+        subject:
+          description: The subject DN of the certificate
+          type: string
+        subjectAlternativeNames:
+          description: Domains associated by with the certificate via the Subject Alternative Name extension. The common name should be included in the SANs as well. Not used in insert requests.
+          items:
+            type: string
+          type: array
+        validFromTime:
+          description: The notBefore time of the certificate.
+          type: string
+      type: object
+    NotFound:
+      properties:
+        code:
+          example: 404
+          type: integer
+        message:
+          example: not found
+          type: string
+      type: object
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          scopes:
+            fr:idc:certificate:*: Full access to certificates configuration
+            fr:idc:certificate:read: Read only access to certificates configuration
+            fr:idc:content-security-policy:*: Full access to content security policy configuration
+            fr:idc:custom-domain:*: Full access to custom domains configuration
+            fr:idc:esv:*: Full ESV access
+            fr:idc:esv:read: Read ESVs
+            fr:idc:esv:restart: Perform a restart of the ID Cloud workloads
+            fr:idc:esv:update: Modify or delete ESVs
+            fr:idc:federation:*: Full access to federation configuration
+            fr:idc:promotion:*: Allows a user to trigger a promotion
+            fr:idc:release:*: Full access to release configuration
+            fr:idc:sso-cookie:*: Full access to SSO cookie configuration
+            fr:idm:*: Grants full ESV access if user has openidm-admin role
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+x-components:
+  parameters:
+    X-ForgeRock-TransactionId:
+      description: Permits setting a specific transaction ID for this request
+      in: header
+      name: ForgeRock-Transaction-ID
+      required: false
+      schema:
+        type: string
+    apiVersion:
+      description: protocol=1.0,resource=1.0
+      in: header
+      name: Accept-API-Version
+      required: true
+      type: string
+    esvApiVersion:
+      description: resource=2.0
+      in: header
+      name: Accept-API-Version
+      type: string
+    esvOnlyPending:
+      default: false
+      description: '_Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied changes'
+      in: query
+      name: _onlyPending
+      type: boolean
+    esvPageSize:
+      default: 25
+      description: '_Accept-API-Version: resource=2.0_ only, maximum number of results returned by endpoint before paging'
+      in: query
+      maximum: 100
+      minimum: 1
+      name: _pageSize
+      required: false
+      type: integer
+    esvPagedResultsCookie:
+      default: ''
+      description: '_Accept-API-Version: resource=2.0_ only, opaque data used for paging result data, can be used for paging instead of having to track pageSize and pagedResultsOffset'
+      in: query
+      name: _pagedResultsCookie
+      required: false
+      type: string
+    esvPagedResultsOffset:
+      default: 0
+      description: '_Accept-API-Version: resource=2.0_ only, offset of the first result to be returned by endpoint'
+      in: query
+      minimum: 0
+      name: _pagedResultsOffset
+      required: false
+      type: integer
+    promotionId:
+      description: Promotion unique identifier
+      in: path
+      name: promotionId
+      required: true
+      type: string
+    reportId:
+      description: Promotion report unique identifier
+      in: path
+      name: reportId
+      required: true
+      type: string
+  requestBodies:
+    ContentSecurityPolicy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContentSecurityPolicy'
+      description: Enforced content security policy to apply to the tenant
+      required: true

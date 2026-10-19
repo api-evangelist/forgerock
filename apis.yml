@@ -2384,6 +2384,155 @@ apis:
   - type: Documentation
     url: >-
       https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html
+- aid: forgerock:forgerock-certificates-api
+  name: ForgeRock Certificates API
+  description: Operations related to certificates
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Certificates
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-certificates-api-openapi.yml
+- aid: forgerock:forgerock-content-security-policy-api
+  name: ForgeRock Content Security Policy API
+  description: Operations related to content security policy
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Content Security Policy
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-content-security-policy-api-openapi.yml
+- aid: forgerock:forgerock-cookie-domains-api
+  name: ForgeRock Cookie Domains API
+  description: Operations related to cookie domains
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Cookie Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-cookie-domains-api-openapi.yml
+- aid: forgerock:forgerock-count-api
+  name: ForgeRock Count API
+  description: Count is used to quickly identify how many variables and secrets are in an environment.
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Count
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-count-api-openapi.yml
+- aid: forgerock:forgerock-csrs-api
+  name: ForgeRock CSRs API
+  description: Operations related to certificate signing requests
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - CSRs
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-csrs-api-openapi.yml
+- aid: forgerock:forgerock-custom-domains-api
+  name: ForgeRock Custom Domains API
+  description: Operations related to custom domains
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Custom Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-custom-domains-api-openapi.yml
+- aid: forgerock:forgerock-federation-enforcement-api
+  name: ForgeRock Federation Enforcement API
+  description: Operations related to federation enforcement
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Federation Enforcement
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-federation-enforcement-api-openapi.yml
+- aid: forgerock:forgerock-promotion-api
+  name: ForgeRock Promotion API
+  description: API endpoints related to self-service promotions
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Promotion
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-promotion-api-openapi.yml
+- aid: forgerock:forgerock-release-api
+  name: ForgeRock Release API
+  description: Operations related to release management
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Release
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-release-api-openapi.yml
+- aid: forgerock:forgerock-restart-api
+  name: ForgeRock Restart API
+  description: >-
+    A restart of Identity Cloud services is used when new variables or secrets have been created and need
+    to be injected into Identity Cloud configuration.
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Restart
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-restart-api-openapi.yml
+- aid: forgerock:forgerock-secrets-api
+  name: ForgeRock Secrets API
+  description: >-
+    Secrets are used to set configuration values that need encrypting. The values may or may not need
+    to be different for each tenant environment. Authorization passwords and authentication signing keys
+    are examples of secrets that might exist in your configuration.<br /><br />
+
+    Secrets can have multiple versions enabled to allow rotation, and once set they cannot be read back.<br
+    /><br />
+
+    Secrets are injected into Identity Cloud configuration when the underlying services are started or
+    restarted.
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-secrets-api-openapi.yml
+- aid: forgerock:forgerock-sso-cookie-api
+  name: ForgeRock SSO Cookie API
+  description: Operations related to single sign-on cookies
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - SSO Cookie
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-sso-cookie-api-openapi.yml
+- aid: forgerock:forgerock-variables-api
+  name: ForgeRock Variables API
+  description: >-
+    Variables are used to set configuration values that need to be different for each tenant environment.
+    For example, an external service might need one URL in your development environment, but a different
+    URL in your production environment.<br /><br />
+
+    Variables are not versioned, and can be read back. They should not contain secrets.<br /><br />
+
+    Variables are injected into Identity Cloud configuration when the underlying services are started
+    or restarted.
+  humanURL: https://backstage.forgerock.com/docs/idcloud/latest
+  baseURL: https://{tenant}.forgeblocks.com
+  tags:
+  - Variables
+  properties:
+  - type: OpenAPI
+    url: openapi/forgerock-variables-api-openapi.yml
 maintainers:
   - name: Kin Lane
     email: kin@apievangelist.com

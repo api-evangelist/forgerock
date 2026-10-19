@@ -1,0 +1,4641 @@
+swagger: '2.0'
+info:
+  description: >
+    ## Introduction
+
+    The PingOne Advanced Identity Cloud REST API lets customers manage their
+    PingOne Advanced Identity Cloud tenants. The API exposes access management
+    and identity management endpoints, with additional endpoints specific to
+    PingOne Advanced Identity Cloud tenant environments.<br /><br />
+
+    We are now publishing the API spec in OpenAPI 3.0. For the legacy Swagger
+    2.0 spec, please download [swagger.yaml](swagger.yaml), but note that it may
+    not contain all new functionality.<br /><br />
+
+    For full PingOne Advanced Identity Cloud documentation, please visit [the
+    docs website](https://docs.pingidentity.com/pingoneaic/latest/).
+
+    ## Authenticating to the API
+
+    The PingOne Advanced Identity Cloud REST API has two different
+    authentication methods:
+
+     - [API key and secret](https://docs.pingidentity.com/pingoneaic/latest/developer-docs/authenticate-to-rest-api-with-api-key-and-secret.html): used for tenant read-only operations
+     - [Access token](https://docs.pingidentity.com/pingoneaic/latest/developer-docs/authenticate-to-rest-api-with-access-token.html): used for access management operations, identity management operations or tenant write operations
+
+    For a summary of how to use these authentication methods, refer to
+    [Authenticate to Advanced Identity Cloud REST
+    API](https://docs.pingidentity.com/pingoneaic/latest/developer-docs/authenticate-to-rest-api-overview.html).
+  title: PingOne Advanced Identity Cloud API
+  version: 1.0.0
+  x-logo:
+    altText: Ping Identity logo
+    backgroundColor: '#FAFAFA'
+    url: 'https://cdn-docs.pingidentity.com/site-nav/ping-logo-horizontal.svg'
+host: openam-example.id.forgerock.io
+basePath: /
+schemes:
+  - https
+paths:
+  /environment/certificates:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/Certificate'
+            type: array
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+            - 'fr:idc:certificate:read'
+      tags:
+        - Certificates
+      description: Returns all certificates installed in the tenant.
+      operationId: getCertificates
+      summary: Get all certificates
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: JSON body of the new certificate
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/CreateCertificateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Certificate'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+      tags:
+        - Certificates
+      description: Upload a new certificate to the tenant.
+      operationId: createCertificate
+      summary: Create certificate
+  '/environment/certificates/{id}':
+    delete:
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the certificate resource
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+      tags:
+        - Certificates
+      description: >-
+        Deletes a certificate installed on the tenant. This certificate must be
+        disabled before deletion will be allowed.
+      operationId: deleteCertificateByID
+      summary: Delete certificate by ID
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the certificate resource
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Certificate'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+            - 'fr:idc:certificate:read'
+      tags:
+        - Certificates
+      description: Returns information about a certificate installed on the tenant.
+      operationId: getCertificateByID
+      summary: Get certificate by ID
+    patch:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the certificate resource
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: JSON body of the updated certificate
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateCertificateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Certificate'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+      tags:
+        - Certificates
+      description: >-
+        Updates information about a certificate installed on the tenant. This
+        can be used to enable / disable certificates.
+      operationId: updateCertificateByID
+      summary: Update certificate by ID
+  /environment/content-security-policy/enforced:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:content-security-policy:*'
+      tags:
+        - Content Security Policy
+      description: Returns current enforced content security policy
+      operationId: getEnforcedContentSecurityPolicy
+      summary: Get enforced content security policy
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: Enforced content security policy to apply to the tenant
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:content-security-policy:*'
+      tags:
+        - Content Security Policy
+      description: Specify enforced content security policy
+      operationId: setEnforcedContentSecurityPolicy
+      summary: Set enforced content security policy
+  /environment/content-security-policy/report-only:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:content-security-policy:*'
+      tags:
+        - Content Security Policy
+      description: Returns current report-only content security policy
+      operationId: getReportOnlyContentSecurityPolicy
+      summary: Get report-only content security policy
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: Enforced content security policy to apply to the tenant
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:content-security-policy:*'
+      tags:
+        - Content Security Policy
+      description: Specify report-only content security policy
+      operationId: setReportOnlyContentSecurityPolicy
+      summary: Set report-only content security policy
+  /environment/cookie-domains:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CookieDomains'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:cookie-domain:*'
+      tags:
+        - Cookie Domains
+      description: Returns current cookie domains
+      operationId: getCookieDomains
+      summary: Get cookie domains
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: Cookie domains
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/CookieDomains'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CookieDomains'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:cookie-domain:*'
+      tags:
+        - Cookie Domains
+      description: Specify cookie domains
+      operationId: setCookieDomains
+      summary: Set cookie domains
+  /environment/count:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - default: false
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied
+            changes
+          in: query
+          name: _onlyPending
+          type: boolean
+      responses:
+        '200':
+          description: get count successful
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvCount'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        '500':
+          description: error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Count
+      description: Get count of ESV secrets and variables in the environment.
+      operationId: getCount
+      summary: Get count of ESVs
+  /environment/csrs:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/CertificateSigningRequest'
+            type: array
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+            - 'fr:idc:certificate:read'
+      tags:
+        - CSRs
+      description: Returns all certificate signing requests created in the environment
+      operationId: getCertificateSigningRequests
+      summary: Get all CSRs
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: JSON body of the new certificate signing request
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/CreateCertificateSigningRequestRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CertificateSigningRequest'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+      tags:
+        - CSRs
+      description: Create a new certificate signing request
+      operationId: createCertificateSigningRequest
+      summary: Create CSR
+  '/environment/csrs/{id}':
+    delete:
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the certificateSigningRequest
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+      tags:
+        - CSRs
+      description: Deletes a CSR created in the tenant.
+      operationId: deleteCertificateSigningRequestById
+      summary: Delete CSR by ID
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the CSR
+          in: path
+          name: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CertificateSigningRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+            - 'fr:idc:certificate:read'
+      tags:
+        - CSRs
+      description: Returns information about a CSR created in the tenant.
+      operationId: getCertificateSigningRequestById
+      summary: Get CSR by ID
+    patch:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the certificateSigningRequest
+          in: path
+          name: id
+          required: true
+          type: string
+        - description: JSON body of the new certificate signing request
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/UpdateCertificateSigningRequestRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CertificateSigningRequest'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: Not Found
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/NotFound'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:certificate:*'
+      tags:
+        - CSRs
+      description: >-
+        Upload a certificate to complete a CSR request, installing the
+        certificate in the tenant. Only the `certificate` field can be set on an
+        upload request.
+      operationId: updateCertificateSigningRequestById
+      summary: Update CSR by ID
+  /environment/custom-domains:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: Requested action type
+          enum:
+            - verify
+          in: query
+          name: _action
+          required: true
+          type: string
+        - description: Custom domain
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/CName'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:custom-domain:*'
+      tags:
+        - Custom Domains
+      description: Verify a CNAME
+      operationId: verifyCustomDomains
+      summary: Verify a CNAME
+  '/environment/custom-domains/{realm}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: Realm for the domain
+          enum:
+            - alpha
+            - bravo
+          in: path
+          name: realm
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CustomDomains'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:custom-domain:*'
+      tags:
+        - Custom Domains
+      description: Returns current custom domains
+      operationId: getCustomDomains
+      summary: Get custom domains
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: Realm for the domain
+          enum:
+            - alpha
+            - bravo
+          in: path
+          name: realm
+          required: true
+          type: string
+        - description: Custom domains
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/CustomDomains'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/CustomDomains'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/BadRequest'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Forbidden'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:custom-domain:*'
+      tags:
+        - Custom Domains
+      description: Specify custom domains
+      operationId: setCustomDomains
+      summary: Set custom domains
+  /environment/federation/enforcement:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/FederationEnforcement'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:federation:*'
+      tags:
+        - Federation Enforcement
+      description: Returns current federation enforcement settings
+      operationId: getEnforcement
+      summary: Get enforcement of federation
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: Enforcement settings to apply to the tenant
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/FederationEnforcement'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/FederationEnforcement'
+        '400':
+          description: Bad Request
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:federation:*'
+      tags:
+        - Federation Enforcement
+      description: Specify which admin groups are required to use federation
+      operationId: setEnforcement
+      summary: Set enforcement of federation
+  /environment/promotion/lock:
+    post:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+      responses:
+        '202':
+          description: Lock has started on the environment
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionStartLocking'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '409':
+          description: A promotion is already running
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionConflictingLockState'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      tags:
+        - Promotion
+      description: Starts the lock process on the lower and upper environments
+      operationId: lock
+      summary: Lock environments
+  /environment/promotion/lock/state:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+        - allowEmptyValue: true
+          description: >-
+            If set to true this parameter will only return the lock status of
+            the environment the request is aimed at
+          in: query
+          name: localLockOnly
+          type: boolean
+      responses:
+        '200':
+          description: Current status of lock on the environment
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionLockState'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      tags:
+        - Promotion
+      description: Get the lock status of the lower and upper environments.
+      operationId: check-lock
+      summary: Get lock status
+  '/environment/promotion/lock/{promotionId}':
+    delete:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+        - description: Promotion unique identifier
+          in: path
+          name: promotionId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Environment is unlocked
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/promotionUnlocked'
+        '202':
+          description: Unlock has started on the environment
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionStartUnlocking'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '409':
+          description: Environment is currently locking or unlocking
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionConflictingLockState'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      tags:
+        - Promotion
+      description: Start the unlock process on the lower and upper environments.
+      operationId: unlock
+      summary: Unlock environments
+  /environment/promotion/promote:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionProgress'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+      tags:
+        - Promotion
+      description: |
+        Get the status of a promotion, if one is in progress.
+      operationId: progress
+      summary: Get promotion status
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+        - description: A request body with info required to initiate a promotion
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/promotionRequest'
+      responses:
+        '202':
+          description: Promotion process started successfully
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionStart'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '409':
+          description: >
+            Promotion request is conflicting with the current state of the
+            environment. For example, the environment is not locked, or a
+            promotion or rollback is already running.
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      tags:
+        - Promotion
+      description: >-
+        Promote configuration from the lower environment to the upper
+        environment.
+      operationId: start
+      summary: Run a promotion
+  /environment/promotion/report:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      tags:
+        - Promotion
+      description: This will return the contents of the last run config promotion report
+      operationId: getLastReport
+      summary: Get last promotion report
+  /environment/promotion/report/provisional:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        default:
+          description: Unexpected error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Error'
+      tags:
+        - Promotion
+      description: >
+        Get a provisional report of changes since the last time the lower
+        environment was promoted to the upper environment. The report generated
+        is for informational purposes only and may not reflect all the changes
+        in a full promotion. A dry-run promotion is always recommended prior to
+        a full promotion between environments.
+      operationId: getProvisionalReport
+      summary: Get a provisional promotion report
+  /environment/promotion/report/provisional-rollback:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        default:
+          description: Unexpected error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Error'
+      tags:
+        - Promotion
+      description: >
+        Get a provisional rollback report of changes when we rollback the
+        configuration to the previous promotion.
+      operationId: getProvisionalRollbackReport
+      summary: Get a provisional rollback report
+  '/environment/promotion/report/{reportId}':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+        - description: Promotion report unique identifier
+          in: path
+          name: reportId
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionReport'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '404':
+          description: report not found for given id
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Unexpected error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Error'
+      tags:
+        - Promotion
+      description: Get a specific promotion report.
+      operationId: getReport
+      summary: Get a promotion report
+  /environment/promotion/reports:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/promotionReportList'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      tags:
+        - Promotion
+      description: Get a list of previous promotion reports in date order.
+      operationId: getReportList
+      summary: Get promotion reports
+  /environment/promotion/rollback:
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: 'protocol=1.0,resource=1.0'
+          in: header
+          name: Accept-API-Version
+          required: true
+          type: string
+        - description: A request body with info required to initiate a rollback
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/rollbackRequest'
+      responses:
+        '202':
+          description: Rollback process started successfully
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/rollbackStart'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '409':
+          description: >
+            Rollback request is conflicting with the current state of the
+            environment. For example, the environment is not locked, or a
+            promotion or rollback is already running.
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+      tags:
+        - Promotion
+      description: Rollback the most recent configuration promotion.
+      operationId: rollback
+      summary: Rollback a promotion
+  /environment/release:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Release'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:release:*'
+      tags:
+        - Release
+      description: Get release information
+      operationId: getReleaseInfo
+      summary: Get release information
+  /environment/secrets:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - default: 25
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, maximum number of results
+            returned by endpoint before paging
+          in: query
+          maximum: 100
+          minimum: 1
+          name: _pageSize
+          required: false
+          type: integer
+        - default: ''
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, opaque data used for paging
+            result data, can be used for paging instead of having to track
+            pageSize and pagedResultsOffset
+          in: query
+          name: _pagedResultsCookie
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, offset of the first result
+            to be returned by endpoint
+          in: query
+          minimum: 0
+          name: _pagedResultsOffset
+          required: false
+          type: integer
+        - default: false
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied
+            changes
+          in: query
+          name: _onlyPending
+          type: boolean
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretsListResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Secrets
+      description: 'Get all secrets, but not their secret versions or secret version values.'
+      operationId: getAllSecrets
+      summary: Get all secrets
+  '/environment/secrets/{secretId}':
+    delete:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Secrets
+      description: Delete a secret and all its secret versions and secret version values.
+      operationId: deleteSecret
+      summary: Delete a secret
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Secrets
+      description: 'Get a secret, but not its secret versions or secret version values.'
+      operationId: getSecret
+      summary: Get a secret
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - enum:
+            - setDescription
+          in: query
+          name: _action
+          required: true
+          type: string
+        - description: The description of this secret
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/esvSetDescriptionRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Secrets
+      operationId: actionSecret
+      summary: Set a secret description
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - description: JSON body of the new secret
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/esvSecretCreateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Secrets
+      description: Create a secret and its first secret version.
+      operationId: createSecret
+      summary: Create a secret
+  '/environment/secrets/{secretId}/versions':
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            items:
+              $ref: '#/definitions/esvSecretVersionResponse'
+            type: array
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Secrets
+      description: >
+        Get all versions and version metadata of a secret. It is not possible to
+        view the secret values.
+      operationId: getSecretVersions
+      summary: Get all versions of a secret
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: Can only be create
+          enum:
+            - create
+          in: query
+          name: _action
+          required: true
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - description: JSON body of the new secret version
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/esvSecretVersionCreateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretVersionResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Secrets
+      operationId: createSecretVersion
+      summary: Create a new version of a secret
+  '/environment/secrets/{secretId}/versions/{versionId}':
+    delete:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - description: ID of the secret version
+          in: path
+          name: versionId
+          pattern: '^latest$|^[0-9]+$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretVersionResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Secrets
+      operationId: deleteSecretVersion
+      summary: Delete a version of a secret
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - description: ID of the secret version
+          in: path
+          name: versionId
+          pattern: '^latest$|^[0-9]+$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretVersionResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Secrets
+      description: >-
+        Get a version and version metadata of a secret. It is not possible to
+        view the secret value.
+      operationId: getSecretVersion
+      summary: Get a version of a secret
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: Can only be changestatus
+          enum:
+            - changestatus
+          in: query
+          name: _action
+          required: true
+          type: string
+        - description: ID of the secret
+          in: path
+          name: secretId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - description: ID of the secret version
+          in: path
+          name: versionId
+          pattern: '^latest$|^[0-9]+$'
+          required: true
+          type: string
+        - description: JSON body of the new status of the secret version
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/esvSecretVersionStatusRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvSecretVersionResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Secrets
+      description: >-
+        Update the status of a version of a secret to either ENABLED or
+        DISABLED. The latest version of a secret cannot be updated to a status
+        of DISABLED.
+      operationId: changeSecretVersion
+      summary: Update the status of a version of a secret
+  /environment/sso-cookie:
+    get:
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/SSOCookie'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:sso-cookie:*'
+      tags:
+        - SSO Cookie
+      description: Returns current SSO cookie configuration
+      operationId: getSSOCookie
+      summary: Get SSO cookie configuration
+    post:
+      produces:
+        - application/json
+      parameters:
+        - description: Reset SSO cookie configuration to default
+          enum:
+            - reset
+          in: query
+          name: _action
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/SSOCookie'
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:sso-cookie:*'
+      tags:
+        - SSO Cookie
+      description: Reset SSO cookie configuration to default
+      operationId: resetSSOCookie
+      summary: Reset SSO cookie configuration
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: SSO cookie configuration to apply to the tenant
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/SSOCookie'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/SSOCookie'
+        '400':
+          description: Bad Request
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+        '401':
+          description: Invalid token
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            WWW-Authenticate:
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '403':
+          description: Forbidden
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/Unauthorized'
+        '500':
+          description: Internal Server Error
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+            X-ForgeRock-TransactionId:
+              description: Identifies a specific transaction (API call)
+              type: string
+          schema:
+            $ref: '#/definitions/InternalServerError'
+      security:
+        - OAuth2:
+            - 'fr:idc:sso-cookie:*'
+      tags:
+        - SSO Cookie
+      description: Specify SSO cookie configuration
+      operationId: setSSOCookie
+      summary: Set SSO cookie configuration
+  /environment/startup:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvRestartStatus'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        '500':
+          description: failed operation
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Restart
+      description: >-
+        Get restart status indicating whether any upgrade or rollout restart is
+        taking place on Identity Cloud services.
+      operationId: getRestartStatus
+      summary: Get restart status
+    post:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: Can only be restart
+          enum:
+            - restart
+          in: query
+          name: _action
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvRestartStatus'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:restart'
+      tags:
+        - Restart
+      description: >-
+        Initiate restart of Identity Cloud services. This will inject any new
+        variables or secrets into Identity Cloud configuration.
+      operationId: restart
+      summary: Initiate restart
+  /environment/variables:
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - default: 25
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, maximum number of results
+            returned by endpoint before paging
+          in: query
+          maximum: 100
+          minimum: 1
+          name: _pageSize
+          required: false
+          type: integer
+        - default: ''
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, opaque data used for paging
+            result data, can be used for paging instead of having to track
+            pageSize and pagedResultsOffset
+          in: query
+          name: _pagedResultsCookie
+          required: false
+          type: string
+        - default: 0
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, offset of the first result
+            to be returned by endpoint
+          in: query
+          minimum: 0
+          name: _pagedResultsOffset
+          required: false
+          type: integer
+        - default: false
+          description: >-
+            _Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied
+            changes
+          in: query
+          name: _onlyPending
+          type: boolean
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema: {}
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Variables
+      operationId: getAllVariables
+      summary: Get all variables
+  '/environment/variables/{variableId}':
+    delete:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the variable
+          in: path
+          name: variableId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvVariableResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Variables
+      operationId: deleteVariable
+      summary: Delete a variable
+    get:
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the variable
+          in: path
+          name: variableId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvVariableResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:read'
+      tags:
+        - Variables
+      operationId: getVariable
+      summary: Get a variable
+    post:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the variable
+          in: path
+          name: variableId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - enum:
+            - setDescription
+          in: query
+          name: _action
+          required: true
+          type: string
+        - description: The description of this variable
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/esvSetDescriptionRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Variables
+      operationId: actionVariable
+      summary: Set a variable description
+    put:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - description: resource=2.0
+          in: header
+          name: Accept-API-Version
+          type: string
+        - description: ID of the variable
+          in: path
+          name: variableId
+          pattern: '^esv-[a-z0-9_-]{1,124}$'
+          required: true
+          type: string
+        - description: JSON body of the new variable
+          in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/esvVariableCreateUpdateRequest'
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            Content-API-Version:
+              description: resource=1.0
+              type: string
+          schema:
+            $ref: '#/definitions/esvVariableResponse'
+        '401':
+          description: unauthorized
+          headers:
+            WWW-Authenticate:
+              type: string
+          schema:
+            $ref: '#/definitions/esvError'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/esvError'
+      security:
+        - OAuth2:
+            - 'fr:idc:esv:*'
+            - 'fr:idc:esv:update'
+      tags:
+        - Variables
+      description: >
+        Create or update a variable using a predefined name. Once created, a
+        variable name cannot be changed.
+      operationId: createVariables
+      summary: Create or update a variable
+definitions:
+  BadRequest:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        type: string
+    type: object
+  CName:
+    properties:
+      name:
+        description: The canonical name of the domain to be validated.
+        type: string
+    required:
+      - name
+    type: object
+  Certificate:
+    properties:
+      active:
+        description: >-
+          The active status of the certificate. Set this to true for the
+          certificate to be made live on the loadbalancer.
+        type: boolean
+        x-omitempty: false
+      certificate:
+        description: Deprecated. Contains no data.
+        type: string
+        x-go-custom-tag: 'datastore:",noindex"'
+      expireTime:
+        description: The expiry time of the certificate. Not used in insert requests.
+        type: string
+      id:
+        description: >-
+          The unique identifier for the certificate resource. Not used in insert
+          requests.
+        type: string
+      issuer:
+        description: The issuer DN of the certificate
+        type: string
+      live:
+        description: >-
+          The live status of the certificate. This is automatically set by the
+          system and indicates if the certificate is currently live externally.
+        type: boolean
+        x-omitempty: false
+      subject:
+        description: The subject DN of the certificate
+        type: string
+      subjectAlternativeNames:
+        description: >-
+          Domains associated by with the certificate via the Subject Alternative
+          Name extension. The common name should be included in the SANs as
+          well. Not used in insert requests.
+        items:
+          type: string
+        type: array
+      validFromTime:
+        description: The notBefore time of the certificate.
+        type: string
+    type: object
+  CertificateSigningRequest:
+    properties:
+      algorithm:
+        description: >-
+          The algorithm for the private key. The encryption algorithm will
+          either be RSA-2048 or ECDSA P-256 depending on the algorithm choice.
+          The default is RSA-2048.
+        type: string
+      certificateID:
+        description: >-
+          The ID of the certificate created from this CSR if the CSR has been
+          completed.
+        type: string
+      createdDate:
+        example: '2006-01-02T15:04:05Z07:00'
+        type: string
+      id:
+        description: The unique identifier for the CSR
+        type: string
+      request:
+        description: PEM formatted CSR.
+        type: string
+        x-go-custom-tag: 'datastore:",noindex"'
+      subject:
+        description: the CSR subject
+        type: string
+      subjectAlternativeNames:
+        description: Additional domain or domains that the SSL certificate is securing
+        items:
+          type: string
+        type: array
+    type: object
+  Conflict:
+    properties:
+      code:
+        example: 409
+        type: integer
+      message:
+        example: conflict
+        type: string
+    type: object
+  ContentSecurityPolicy:
+    properties:
+      active:
+        type: boolean
+        x-omitempty: false
+      directives:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+        x-omitempty: false
+    type: object
+  CookieDomains:
+    properties:
+      domains:
+        description: Cookie domains
+        items:
+          type: string
+        type: array
+    type: object
+  CreateCertificateRequest:
+    properties:
+      active:
+        description: >-
+          The active status of the certificate. Set this to true for the
+          certificate to actively be served.
+        type: boolean
+      certificate:
+        description: The PEM formatted certificate.
+        type: string
+      privateKey:
+        description: >-
+          The private key for the certificate. For security reasons, only insert
+          requests include this field.
+        type: string
+    required:
+      - certificate
+      - privateKey
+    type: object
+  CreateCertificateSigningRequestRequest:
+    default:
+      algorithm: rsa
+      subjectAlternativeNames: []
+    properties:
+      algorithm:
+        description: >-
+          The algorithm for the private key. The encryption algorithm will
+          either be RSA-2048 or ECDSA P-256 depending on the algorithm choice.
+          The default is RSA-2048.
+        enum:
+          - rsa
+          - ecdsa
+        type: string
+      businessCategory:
+        description: >-
+          Category of business, such as "Private Organization", “Government
+          Entity”, “Business Entity”, or “Non-Commercial Entity”. Relevant for
+          EV certificates.
+        example: Private Organization
+        type: string
+      city:
+        example: Los Angeles
+        type: string
+      commonName:
+        description: Domain name that the SSL certificate is securing
+        example: id.example.com
+        type: string
+      country:
+        description: Two-letter ISO-3166 country code
+        example: US
+        pattern: '[A-Z]{2}'
+        type: string
+      email:
+        example: bob@example.com
+        pattern: ^\S+@\S+$
+        type: string
+      jurisdictionCity:
+        description: >-
+          This field contains only information relevant to the Jurisdiction of
+          Incorporation or Registration. Relevant for EV certificates.
+        example: Los Angeles
+        type: string
+      jurisdictionCountry:
+        description: >-
+          This field contains only information relevant to the Jurisdiction of
+          Incorporation or Registration. Relevant for EV certificates.
+        example: US
+        type: string
+      jurisdictionState:
+        description: >-
+          This field contains only information relevant to the Jurisdiction of
+          Incorporation or Registration. Relevant for EV certificates.
+        example: California
+        type: string
+      organization:
+        description: Full name of company
+        example: example
+        type: string
+      organizationalUnit:
+        description: Company section or department
+        example: business
+        type: string
+      postalCode:
+        example: '94105'
+        type: string
+      serialNumber:
+        description: >-
+          The Registration (or similar) Number assigned to the Subject by the
+          Incorporating or Registration Agency in its Jurisdiction of
+          Incorporation or Registration. Relevant for EV certificates.
+        example: '1234567'
+        type: string
+      state:
+        example: California
+        type: string
+      streetAddress:
+        example: Nice Street
+        type: string
+      subjectAlternativeNames:
+        description: Additional domain or domains that the SSL certificate is securing
+        items:
+          type: string
+        type: array
+    type: object
+  CustomDomains:
+    properties:
+      domains:
+        description: Custom domains
+        items:
+          type: string
+        type: array
+    type: object
+  Error:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  FederationEnforcement:
+    properties:
+      groups:
+        enum:
+          - none
+          - non-global
+          - all
+        type: string
+    required:
+      - groups
+    type: object
+  Forbidden:
+    properties:
+      code:
+        example: 403
+        type: integer
+      message:
+        example: forbidden
+        type: string
+    type: object
+  InternalServerError:
+    properties:
+      code:
+        example: 500
+        type: integer
+      message:
+        example: something unexpected happened
+        type: string
+      status:
+        example: Internal Server Error
+        type: string
+    type: object
+  NotFound:
+    properties:
+      code:
+        example: 404
+        type: integer
+      message:
+        example: not found
+        type: string
+    type: object
+  P1Connect:
+    properties:
+      active:
+        type: boolean
+      adminClientId:
+        type: string
+      defaultIssuer:
+        type: string
+      idpAuthEndpoint:
+        type: string
+      idpClientId:
+        type: string
+      idpEnabled:
+        type: boolean
+      idpIssuer:
+        type: string
+      idpTokenEndpoint:
+        type: string
+      idpWellKnownEndpoint:
+        type: string
+    type: object
+  P1ConnectConfigureRequest:
+    properties:
+      adminDiscoveryEndpoint:
+        description: >-
+          The OIDC well-known endpoint for the PingOne environment where admin
+          identities exist
+        format: uri
+        type: string
+      consumerDiscoveryEndpoint:
+        description: >-
+          The OIDC well-known endpoint for the PingOne consumer environment
+          being linked
+        format: uri
+        type: string
+      pingOneAdminJwksEndpoint:
+        description: The JWKS endpoint for the dynamically-registered admin client
+        format: uri
+        type: string
+      ssoAppId:
+        description: The client ID to use in the PingOne IDP definition for SSO
+        type: string
+    required:
+      - adminDiscoveryEndpoint
+      - consumerDiscoveryEndpoint
+      - pingOneAdminJwksEndpoint
+      - ssoAppId
+    type: object
+  P1ConnectConfigureResponse:
+    properties:
+      adminClientId:
+        type: string
+    type: object
+  P1Connects:
+    items:
+      $ref: '#/definitions/P1Connect'
+    type: array
+  Release:
+    properties:
+      currentVersion:
+        type: string
+      nextUpgrade:
+        format: date-time
+        type: string
+        x-nullable: true
+    type: object
+  SSOCookie:
+    properties:
+      name:
+        pattern: '^[a-zA-Z0-9]{1,32}$'
+        type: string
+    required:
+      - name
+    type: object
+  Unauthorized:
+    properties:
+      code:
+        example: 401
+        type: integer
+      message:
+        example: unauthorized
+        type: string
+    type: object
+  UpdateCertificateRequest:
+    properties:
+      active:
+        description: >-
+          The active status of the certificate. Set this to true for the
+          certificate to actively be served.
+        type: boolean
+    type: object
+  UpdateCertificateSigningRequestRequest:
+    properties:
+      certificate:
+        description: >-
+          The matching signed certificate for the request. This should only be
+          set on update requests to upload the certificate.
+        type: string
+    required:
+      - certificate
+    type: object
+  default:
+    properties:
+      message:
+        type: string
+    type: object
+  esvCount:
+    properties:
+      secrets:
+        example: 10
+        type: integer
+      variables:
+        example: 0
+        type: integer
+    required:
+      - secrets
+      - variables
+    type: object
+  esvError:
+    properties:
+      code:
+        example: 401
+        type: integer
+      message:
+        example: unauthorized
+        type: string
+    required:
+      - message
+      - code
+    type: object
+  esvRestartStatus:
+    properties:
+      restartStatus:
+        enum:
+          - restarting
+          - ready
+        example: restarting
+        type: string
+    required:
+      - restartStatus
+    type: object
+  esvSecretCreateRequest:
+    properties:
+      description:
+        example: My secret
+        maxLength: 1000
+        type: string
+      encoding:
+        enum:
+          - generic
+          - pem
+          - base64hmac
+          - base64aes
+        example: generic
+        type: string
+      useInPlaceholders:
+        type: boolean
+      valueBase64:
+        example: ZGF0YQ==
+        format: byte
+        pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
+        type: string
+    required:
+      - encoding
+      - useInPlaceholders
+      - valueBase64
+    type: object
+  esvSecretResponse:
+    properties:
+      _id:
+        example: esv-mysecret1
+        type: string
+      activeVersion:
+        example: '1'
+        type: string
+      description:
+        example: My secret
+        type: string
+      encoding:
+        example: generic
+        type: string
+      lastChangeDate:
+        example: '1999-12-31T23:59:59Z'
+        format: date-time
+        type: string
+      lastChangedBy:
+        example: bjensen
+        type: string
+      loaded:
+        type: boolean
+      loadedVersion:
+        example: '1'
+        type: string
+      useInPlaceholders:
+        type: boolean
+    required:
+      - _id
+      - activeVersion
+      - description
+      - encoding
+      - lastChangeDate
+      - lastChangedBy
+      - loaded
+      - loadedVersion
+      - useInPlaceholders
+    type: object
+  esvSecretVersionCreateRequest:
+    properties:
+      valueBase64:
+        example: ZGF0YQ==
+        format: byte
+        pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
+        type: string
+    required:
+      - valueBase64
+    type: object
+  esvSecretVersionResponse:
+    properties:
+      createDate:
+        example: '1999-12-31T23:59:59Z'
+        format: date-time
+        type: string
+      loaded:
+        example: false
+        type: boolean
+      status:
+        example: DISABLED
+        type: string
+      version:
+        example: latest
+        pattern: '^latest$|^[0-9]+$'
+        type: string
+    required:
+      - version
+      - createDate
+      - loaded
+      - status
+    type: object
+  esvSecretVersionStatusRequest:
+    properties:
+      status:
+        enum:
+          - DISABLED
+          - ENABLED
+        example: DISABLED
+        type: string
+    required:
+      - status
+    type: object
+  esvSecretsListResponse:
+    properties:
+      pagedResultsCookie:
+        example: 'null'
+        type: string
+        x-nullable: true
+      remainingPagedResults:
+        example: 0
+        type: integer
+      result:
+        items:
+          $ref: '#/definitions/esvSecretResponse'
+        type: array
+      resultCount:
+        example: 4
+        type: integer
+      totalPagedResults:
+        example: 1
+        type: integer
+      totalPagedResultsPolicy:
+        type: string
+    required:
+      - result
+      - resultCount
+      - pagedResultsCookie
+      - totalPagedResultsPolicy
+      - totalPagedResults
+      - remainingPagedResults
+    type: object
+  esvSetDescriptionRequest:
+    properties:
+      description:
+        example: My secret
+        maxLength: 1000
+        type: string
+    required:
+      - description
+    type: object
+  esvVariableCreateUpdateRequest:
+    properties:
+      description:
+        example: My variable
+        maxLength: 1000
+        type: string
+      expressionType:
+        enum:
+          - string
+          - list
+          - array
+          - object
+          - bool
+          - int
+          - number
+          - base64encodedinlined
+          - keyvaluelist
+        example: array
+        type: string
+      valueBase64:
+        example: ZGF0YQ==
+        format: byte
+        pattern: '^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$'
+        type: string
+    required:
+      - valueBase64
+    type: object
+  esvVariableListV1:
+    description: >-
+      Variable list response when requested with empty Accept-API-Version or
+      Accept-API-Version: resource=1.0
+    properties:
+      pagedResultsCookie:
+        example: null
+        type: string
+        x-nullable: true
+      remainingPagedResults:
+        example: 0
+        type: integer
+      result:
+        items:
+          $ref: '#/definitions/esvVariableResponse'
+        type: array
+      resultCount:
+        example: 4
+        type: integer
+      totalPagedResults:
+        example: 1
+        type: integer
+      totalPagedResultsPolicy:
+        type: string
+    required:
+      - result
+      - resultCount
+      - pagedResultsCookie
+      - totalPagedResultsPolicy
+      - totalPagedResults
+      - remainingPagedResults
+    type: object
+  esvVariableListV2:
+    description: >-
+      Variable list response when requested with Accept-API-Version:
+      resource=2.0
+    properties:
+      pagedResultsCookie:
+        example: null
+        type: string
+        x-nullable: true
+      remainingPagedResults:
+        example: 0
+        type: integer
+      result:
+        items:
+          $ref: '#/definitions/esvVariableResponseV2'
+        type: array
+      resultCount:
+        example: 4
+        type: integer
+      totalPagedResults:
+        example: 1
+        type: integer
+      totalPagedResultsPolicy:
+        type: string
+    required:
+      - result
+      - resultCount
+      - pagedResultsCookie
+      - totalPagedResultsPolicy
+      - totalPagedResults
+      - remainingPagedResults
+    type: object
+  esvVariableResponse:
+    properties:
+      _id:
+        example: esv-myvariable1
+        type: string
+      description:
+        example: My variable
+        type: string
+      expressionType:
+        example: list
+        type: string
+      lastChangeDate:
+        example: '1999-12-31T23:59:59Z'
+        format: date-time
+        type: string
+      lastChangedBy:
+        example: bjensen
+        type: string
+      loaded:
+        example: false
+        type: boolean
+      valueBase64:
+        example: ZGF0YQ==
+        format: byte
+        type: string
+    required:
+      - _id
+      - lastChangedBy
+      - expressionType
+      - lastChangeDate
+      - loaded
+      - valueBase64
+      - description
+    type: object
+  esvVariableResponseV2:
+    properties:
+      _id:
+        example: esv-myvariable1
+        type: string
+      description:
+        example: My variable
+        type: string
+      expressionType:
+        example: list
+        type: string
+      lastChangeDate:
+        example: '1999-12-31T23:59:59Z'
+        format: date-time
+        type: string
+      lastChangedBy:
+        example: bjensen
+        type: string
+      loaded:
+        example: false
+        type: boolean
+    required:
+      - _id
+      - lastChangedBy
+      - expressionType
+      - lastChangeDate
+      - loaded
+      - description
+    type: object
+  promotionCIMeta:
+    properties:
+      name:
+        example: UMA Provider
+        type: string
+        x-omitempty: true
+      realm:
+        example: /bravo
+        type: string
+        x-omitempty: true
+      uid:
+        example: >-
+          ou=39c08084-1238-43e8-857f-2e11005eac49,ou=scriptConfigurations,ou=default,ou=OrganizationConfig,ou=1.0,ou=ScriptingService,ou=services,o=alpha,ou=services,ou=am-config
+        type: string
+        x-omitempty: true
+    type: object
+  promotionConflictingLockState:
+    properties:
+      message:
+        example: Environment is not in locked state
+        type: string
+    type: object
+  promotionLockState:
+    properties:
+      description:
+        example: <meaningful when result=Error>
+        type: string
+      lowerEnv:
+        properties:
+          promotionId:
+            example: ba594bbe-a589-4676-80a4-42975a56f5b6
+            type: string
+          proxyState:
+            type: string
+          state:
+            type: string
+        type: object
+        x-omitempty: true
+      promotionId:
+        example: ba594bbe-a589-4676-80a4-42975a56f5b6
+        type: string
+      result:
+        enum:
+          - unlocked
+          - locking
+          - unlocking
+          - locked
+          - error
+        example: locked
+        type: string
+      upperEnv:
+        properties:
+          promotionId:
+            example: ba594bbe-a589-4676-80a4-42975a56f5b6
+            type: string
+          proxyState:
+            type: string
+          state:
+            type: string
+        type: object
+        x-omitempty: true
+    type: object
+  promotionProgress:
+    properties:
+      blockingError:
+        default: false
+        example: false
+        type: boolean
+      encryptedSecrets:
+        items:
+          example: mySecret
+          type: string
+        type: array
+        x-omitempty: true
+      globalLock:
+        example: LOCKED
+        type: string
+      message:
+        example: Environment ready for promotion
+        type: string
+      missingESVs:
+        items:
+          example: myVariable
+          type: string
+        type: array
+        x-omitempty: true
+      promotionId:
+        example: 7e7634c3-406e-4d37-80a3-d34461c2f309
+        type: string
+      status:
+        example: READY
+        type: string
+      timeStamp:
+        example: '2022-02-01T14:17:02+01:00'
+        type: string
+      type:
+        description: >-
+          Either promotion or rollback depending on whether the report was for a
+          config promotion or a config rollback
+        example: promotion
+        type: string
+    type: object
+  promotionReport:
+    properties:
+      createdDate:
+        example: 2022-01-27T15-23+00Z
+        type: string
+      dryRun:
+        type: boolean
+      missingESVs:
+        items:
+          example: myVariable
+          type: string
+        type: array
+        x-omitempty: true
+      previouslyIgnoredEncryptedSecrets:
+        items:
+          type: string
+        type: array
+        x-omitempty: true
+      promoter:
+        description: The name of the admin user who requested the promotion
+        example: Barb Jensen
+        type: string
+      promotionDescription:
+        description: >-
+          Promoter specified note to make it easier for them to identify what
+          was promoted
+        example: Promoting our Forgotten Username journey
+        type: string
+      promotionId:
+        example: da0c66a4-9f37-4f9a-9988-0786ad301b17
+        type: string
+      report:
+        properties:
+          AMConfig:
+            items:
+              $ref: '#/definitions/promotionReportContent'
+            type: array
+            x-omitempty: true
+          IDMConfig:
+            items:
+              $ref: '#/definitions/promotionReportContent'
+            type: array
+            x-omitempty: true
+        type: object
+      reportId:
+        example: da0c66a4-9f37-4f9a-9988-0786ad301b17
+        type: string
+      reportName:
+        example: >-
+          Report_2022-01-27T15-23+00Z_dryrun=true_a7456dd2-1acd-4bd9-8555-d44b2275a2da
+        type: string
+      type:
+        description: >-
+          Either promotion or rollback depending on whether the report was for a
+          config promotion or a config rollback
+        example: promotion
+        type: string
+    type: object
+  promotionReportContent:
+    properties:
+      configChange:
+        properties:
+          added:
+            items:
+              $ref: '#/definitions/promotionCIMeta'
+            type: array
+            x-omitempty: true
+          deleted:
+            items:
+              $ref: '#/definitions/promotionCIMeta'
+            type: array
+            x-omitempty: true
+          modified:
+            items:
+              $ref: '#/definitions/promotionCIMeta'
+            type: array
+            x-omitempty: true
+        type: object
+      configItem:
+        example: Email > Templates
+        type: string
+    type: object
+  promotionReportList:
+    example:
+      - createdDate: '2022-01-19T13:04:00Z'
+        dryRun: true
+        promotionId: 7575f185-cd0b-4823-b8b1-f677895291d4
+        reportId: d19e140-8325-4669-b9f3-1cd82784e24e
+        type: rollback
+      - createdDate: '2022-01-19T13:05:00Z'
+        dryRun: true
+        promotionId: 7575f185-cd0b-4823-b8b1-f677895291dt
+        reportId: d19e140-8325-4669-b9f3-1cd82784e24f
+        type: promotion
+    items:
+      $ref: '#/definitions/promotionReportMeta'
+    type: array
+  promotionReportMeta:
+    properties:
+      createdDate:
+        example: '2022-01-26T15:53:05Z'
+        type: string
+      dryRun:
+        example: true
+        type: boolean
+        x-omitempty: false
+      promoter:
+        example: rocky.balboa
+        type: string
+      promotionId:
+        example: 7575f185-cd0b-4823-b8b1-f677895291d4
+        type: string
+      reportId:
+        example: d19e140-8325-4669-b9f3-1cd82784e24e
+        type: string
+      type:
+        description: >-
+          Either promotion or rollback depending on whether the report was for a
+          config promotion or a config rollback
+        example: promotion
+        type: string
+    type: object
+  promotionRequest:
+    properties:
+      dryRun:
+        description: A boolean denoting whether this a dry run
+        type: boolean
+      ignoreEncryptedSecrets:
+        description: >-
+          A boolean denoting whether or not to ignore encrypted secrets detected
+          in config during the promotion
+        type: boolean
+        x-isnullable: false
+      promoter:
+        description: The name of the admin user who initiated the promotion
+        type: string
+        x-isnullable: false
+      promotionDescription:
+        description: >-
+          Promoter specified note to make it easier for them to identify what
+          was promoted
+        type: string
+        x-isnullable: false
+      unlockEnvironmentsAfterPromotion:
+        description: >-
+          A boolean denoting whether or not to automatically unlock the
+          environments after a successful promotion
+        type: boolean
+        x-isnullable: false
+      zendeskTicketReference:
+        description: >-
+          A string denoting the Zendesk ticket reference to be added to the
+          promotion commit message
+        type: string
+        x-isnullable: false
+    required:
+      - dryRun
+    type: object
+  promotionStart:
+    properties:
+      result:
+        example: Promotion Complete
+        type: string
+    type: object
+  promotionStartLocking:
+    properties:
+      description:
+        example: Environment lock in progress
+        type: string
+      promotionId:
+        example: ba594bbe-a589-4676-80a4-42975a56f5b6
+        type: string
+      result:
+        example: locking
+        type: string
+    type: object
+  promotionStartUnlocking:
+    properties:
+      description:
+        example: Environment unlocking in progress
+        type: string
+      promotionId:
+        example: ba594bbe-a589-4676-80a4-42975a56f5b6
+        type: string
+      result:
+        example: unlocking
+        type: string
+    type: object
+  promotionUnlocked:
+    properties:
+      description:
+        example: Environment unlocked
+        type: string
+      promotionId:
+        example: ba594bbe-a589-4676-80a4-42975a56f5b6
+        type: string
+      result:
+        example: unlocked
+        type: string
+    type: object
+  rollbackRequest:
+    properties:
+      promoter:
+        description: The name of the admin user who initiated the promotion
+        type: string
+        x-isnullable: false
+      promotionDescription:
+        description: >-
+          Promoter specified note to make it easier for them to identify what
+          was promoted
+        type: string
+        x-isnullable: false
+      unlockEnvironmentsAfterPromotion:
+        description: >-
+          A boolean denoting whether or not to automatically unlock the
+          environments after a successful promotion
+        type: boolean
+        x-isnullable: false
+      zendeskTicketReference:
+        description: >-
+          A string denoting the Zendesk ticket reference to be added to the
+          promotion commit message
+        type: string
+        x-isnullable: false
+    type: object
+  rollbackStart:
+    properties:
+      result:
+        example: Rollback Complete
+        type: string
+    type: object
+securityDefinitions:
+  OAuth2:
+    authorizationUrl: 'https://example.com/oauth/authorize'
+    flow: accessCode
+    scopes:
+      'fr:idc:certificate:*': Full access to certificates configuration
+      'fr:idc:certificate:read': Read only access to certificates configuration
+      'fr:idc:content-security-policy:*': Full access to content security policy configuration
+      'fr:idc:custom-domain:*': Full access to custom domains configuration
+      'fr:idc:esv:*': Full ESV access
+      'fr:idc:esv:read': Read ESVs
+      'fr:idc:esv:restart': Perform a restart of the ID Cloud workloads
+      'fr:idc:esv:update': Modify or delete ESVs
+      'fr:idc:federation:*': Full access to federation configuration
+      'fr:idc:promotion:*': Allows a user to trigger a promotion
+      'fr:idc:release:*': Full access to release configuration
+      'fr:idc:sso-cookie:*': Full access to SSO cookie configuration
+      'fr:idm:*': Grants full ESV access if user has openidm-admin role
+    tokenUrl: 'https://example.com/oauth/token'
+    type: oauth2
+security:
+  - OAuth2:
+      - 'fr:idm:*'
+      - 'fr:idc:esv:*'
+      - 'fr:idc:esv:read'
+      - 'fr:idc:esv:update'
+      - 'fr:idc:esv:restart'
+      - 'fr:idc:promotion:*'
+tags:
+  - description: >
+      Environment secrets and variables (ESVs) let you individually configure
+      the development, staging, and production environments in your Identity
+      Cloud tenant.
+    name: Environment Secrets and Variables
+  - description: >
+      Variables are used to set configuration values that need to be different
+      for each tenant environment. For example, an external service might need
+      one URL in your development environment, but a different URL in your
+      production environment.<br /><br />
+
+      Variables are not versioned, and can be read back. They should not contain
+      secrets.<br /><br />
+
+      Variables are injected into Identity Cloud configuration when the
+      underlying services are started or restarted.
+    name: Variables
+  - description: >
+      Secrets are used to set configuration values that need encrypting. The
+      values may or may not need to be different for each tenant environment.
+      Authorization passwords and authentication signing keys are examples of
+      secrets that might exist in your configuration.<br /><br />
+
+      Secrets can have multiple versions enabled to allow rotation, and once set
+      they cannot be read back.<br /><br />
+
+      Secrets are injected into Identity Cloud configuration when the underlying
+      services are started or restarted.
+    name: Secrets
+  - description: >-
+      A restart of Identity Cloud services is used when new variables or secrets
+      have been created and need to be injected into Identity Cloud
+      configuration.
+    name: Restart
+  - description: >-
+      Count is used to quickly identify how many variables and secrets are in an
+      environment.
+    name: Count
+  - description: >
+      Identity Cloud lets you run self-service promotions to move configuration
+      between a sequential pair of tenant environments.
+    name: Config Promotions
+  - description: |
+      API endpoints related to self-service promotions
+    name: Promotion
+  - description: >
+      Identity Cloud gives you the ability to configure various environment
+      settings via REST.
+    name: Environment Configuration
+  - description: Operations related to certificates
+    name: Certificates
+  - description: Operations related to certificate signing requests
+    name: CSRs
+  - description: Operations related to content security policy
+    name: Content Security Policy
+  - description: Operations related to cookie domains
+    name: Cookie Domains
+  - description: Operations related to custom domains
+    name: Custom Domains
+  - description: Operations related to federation enforcement
+    name: Federation Enforcement
+  - description: Operations related to release management
+    name: Release
+  - description: Operations related to single sign-on cookies
+    name: SSO Cookie
+x-components:
+  parameters:
+    X-ForgeRock-TransactionId:
+      description: Permits setting a specific transaction ID for this request
+      in: header
+      name: ForgeRock-Transaction-ID
+      required: false
+      schema:
+        type: string
+    apiVersion:
+      description: 'protocol=1.0,resource=1.0'
+      in: header
+      name: Accept-API-Version
+      required: true
+      type: string
+    esvApiVersion:
+      description: resource=2.0
+      in: header
+      name: Accept-API-Version
+      type: string
+    esvOnlyPending:
+      default: false
+      description: >-
+        _Accept-API-Version: resource=2.0_ only, returns ESVs with unapplied
+        changes
+      in: query
+      name: _onlyPending
+      type: boolean
+    esvPageSize:
+      default: 25
+      description: >-
+        _Accept-API-Version: resource=2.0_ only, maximum number of results
+        returned by endpoint before paging
+      in: query
+      maximum: 100
+      minimum: 1
+      name: _pageSize
+      required: false
+      type: integer
+    esvPagedResultsCookie:
+      default: ''
+      description: >-
+        _Accept-API-Version: resource=2.0_ only, opaque data used for paging
+        result data, can be used for paging instead of having to track pageSize
+        and pagedResultsOffset
+      in: query
+      name: _pagedResultsCookie
+      required: false
+      type: string
+    esvPagedResultsOffset:
+      default: 0
+      description: >-
+        _Accept-API-Version: resource=2.0_ only, offset of the first result to
+        be returned by endpoint
+      in: query
+      minimum: 0
+      name: _pagedResultsOffset
+      required: false
+      type: integer
+    promotionId:
+      description: Promotion unique identifier
+      in: path
+      name: promotionId
+      required: true
+      type: string
+    reportId:
+      description: Promotion report unique identifier
+      in: path
+      name: reportId
+      required: true
+      type: string
+  requestBodies:
+    ContentSecurityPolicy:
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/ContentSecurityPolicy'
+      description: Enforced content security policy to apply to the tenant
+      required: true
+
