@@ -238,3 +238,9 @@ x-components:
             $ref: '#/components/schemas/ContentSecurityPolicy'
       description: Enforced content security policy to apply to the tenant
       required: true
+x-provenance:
+  method: harvested
+  publisher: ForgeRock
+  source: https://apidocs.id.forgerock.io/swagger.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
