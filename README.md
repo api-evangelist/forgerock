@@ -1,4 +1,4 @@
-# ForgeRock (forgerock)
+# ForgeRock
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,222 +66,242 @@
 
 ForgeRock, now part of Ping Identity, provides digital identity and access management solutions for secure authentication, authorization, and identity governance across cloud and hybrid environments.
 
-**APIs.json:** [https://www.forgerock.com](https://www.forgerock.com)
+**Areas:** Identity and Access Management · Authentication · Authorization · Identity Governance · OpenID Connect · Identity Federation
 
-## Scope
+## ForgeRock on APIs.io
 
-- **Type:** Index
+Everything profiled for ForgeRock is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/forgerock/](https://apis.io/providers/forgerock/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (38)
 
-- Access Management
-- Authentication
-- Authorization
-- Identity Governance
-- Identity Management
-- OAuth
-- OpenID Connect
+- [ForgeRock Access Requests API](https://apis.io/apis/forgerock/forgerock-access-requests-api/) — Request and approve access to resources
+- [ForgeRock Access Reviews API](https://apis.io/apis/forgerock/forgerock-access-reviews-api/) — Conduct and manage access review items
+- [ForgeRock Analytics API](https://apis.io/apis/forgerock/forgerock-analytics-api/) — Analytics pipeline status and results
+- [ForgeRock Applications API](https://apis.io/apis/forgerock/forgerock-applications-api/) — Query onboarded application data
+- [ForgeRock Audit API](https://apis.io/apis/forgerock/forgerock-audit-api/) — Access audit log records
+- [ForgeRock Authentication API](https://apis.io/apis/forgerock/forgerock-authentication-api/) — Authenticate users via authentication trees and modules
+- [ForgeRock Certifications API](https://apis.io/apis/forgerock/forgerock-certifications-api/) — Manage access certification campaigns
+- [ForgeRock Company View API](https://apis.io/apis/forgerock/forgerock-company-view-api/) — Company-wide analytics and dashboards
+- [ForgeRock Configuration API](https://apis.io/apis/forgerock/forgerock-configuration-api/) — Read and update IDM configuration
+- [ForgeRock Entitlements API](https://apis.io/apis/forgerock/forgerock-entitlements-api/) — Query entitlements and confidence scores
+- [ForgeRock Entries API](https://apis.io/apis/forgerock/forgerock-entries-api/) — Generic LDAP entry operations via HDAP
+- [ForgeRock Groups API](https://apis.io/apis/forgerock/forgerock-groups-api/) — Manage group entries in the directory
+- [ForgeRock Health API](https://apis.io/apis/forgerock/forgerock-health-api/) — Health and status monitoring
+- [ForgeRock Managed Objects API](https://apis.io/apis/forgerock/forgerock-managed-objects-api/) — CRUD operations on managed identity objects
+- [ForgeRock Managed Roles API](https://apis.io/apis/forgerock/forgerock-managed-roles-api/) — CRUD operations on managed role objects
+- [ForgeRock Managed Users API](https://apis.io/apis/forgerock/forgerock-managed-users-api/) — CRUD operations on managed user objects
+- [ForgeRock Monitoring API](https://apis.io/apis/forgerock/forgerock-monitoring-api/) — Health check and monitoring endpoints
+- [ForgeRock OAuth2 Clients API](https://apis.io/apis/forgerock/forgerock-oauth2-clients-api/) — Manage OAuth 2.0 client registrations
+- [ForgeRock Objects API](https://apis.io/apis/forgerock/forgerock-objects-api/) — Inspect live IG configuration objects
+- [ForgeRock OpenID Connect API](https://apis.io/apis/forgerock/forgerock-openid-connect-api/) — OpenID Connect discovery and userinfo
+- [ForgeRock Policies API](https://apis.io/apis/forgerock/forgerock-policies-api/) — Manage authorization policies
+- [ForgeRock Realms API](https://apis.io/apis/forgerock/forgerock-realms-api/) — Manage AM realms
+- [ForgeRock Reconciliation API](https://apis.io/apis/forgerock/forgerock-reconciliation-api/) — Trigger and manage reconciliation operations
+- [ForgeRock Resource Types API](https://apis.io/apis/forgerock/forgerock-resource-types-api/) — Manage resource types for authorization
+- [ForgeRock Roles API](https://apis.io/apis/forgerock/forgerock-roles-api/) — Manage identity governance roles
+- [ForgeRock Routes API](https://apis.io/apis/forgerock/forgerock-routes-api/) — Manage IG route configurations
+- [ForgeRock Rules API](https://apis.io/apis/forgerock/forgerock-rules-api/) — Access entitlement assignment rules and justifications
+- [ForgeRock Scheduler API](https://apis.io/apis/forgerock/forgerock-scheduler-api/) — Manage scheduled tasks and jobs
+- [ForgeRock Scripts API](https://apis.io/apis/forgerock/forgerock-scripts-api/) — Manage AM scripts
+- [ForgeRock Server Info API](https://apis.io/apis/forgerock/forgerock-server-info-api/) — Retrieve server information and configuration
+- [ForgeRock Sessions API](https://apis.io/apis/forgerock/forgerock-sessions-api/) — Query, validate, and manage authenticated sessions
+- [ForgeRock Studio API](https://apis.io/apis/forgerock/forgerock-studio-api/) — IG Studio route design endpoints
+- [ForgeRock Synchronization API](https://apis.io/apis/forgerock/forgerock-synchronization-api/) — Trigger on-demand synchronization
+- [ForgeRock System Objects API](https://apis.io/apis/forgerock/forgerock-system-objects-api/) — Access objects in connected remote systems
+- [ForgeRock Users API](https://apis.io/apis/forgerock/forgerock-users-api/) — Query user entitlement data and recommendations
+- [ForgeRock Violations API](https://apis.io/apis/forgerock/forgerock-violations-api/) — Manage policy violations and segregation of duties
+- [ForgeRock Workflow API](https://apis.io/apis/forgerock/forgerock-workflow-api/) — Manage BPMN workflow processes and tasks
+- [ForgeRock O Auth2 API](https://apis.io/apis/forgerock/forgerock-oauth2-api/) — OAuth 2.0 token and authorization endpoints
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### ForgeRock Identity Cloud REST API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-REST API for managing identities, authentication, and authorization in ForgeRock Identity Cloud, providing access management and identity management endpoints for Advanced Identity Cloud tenant environments.
+- [Forgerock Agentic Access](https://apis.io/agentic-access/forgerock/forgerock-agentic-access/)
 
-- **Human URL:** [https://backstage.forgerock.com/docs/idcloud/latest](https://backstage.forgerock.com/docs/idcloud/latest)
-- **Base URL:** `https://{tenant}.forgeblocks.com`
+#### JSON Schema (83)
 
-#### Tags
+The data models the API reads and writes.
 
-- Access Management
-- Authentication
-- Cloud
-- Identity
-- REST
+- [AccessRequest](https://apis.io/schemas/forgerock/forgerock-accessrequest/)
+- [AccessRequestList](https://apis.io/schemas/forgerock/forgerock-accessrequestlist/)
+- [AnalyticsReportList](https://apis.io/schemas/forgerock/forgerock-analyticsreportlist/)
+- [AnalyticsStatus](https://apis.io/schemas/forgerock/forgerock-analyticsstatus/)
+- [Application](https://apis.io/schemas/forgerock/forgerock-application/)
+- [ApplicationList](https://apis.io/schemas/forgerock/forgerock-applicationlist/)
+- [AuditEntry](https://apis.io/schemas/forgerock/forgerock-auditentry/)
+- [AuditQueryResult](https://apis.io/schemas/forgerock/forgerock-auditqueryresult/)
+- [AuthenticationCallbackRequest](https://apis.io/schemas/forgerock/forgerock-authenticationcallbackrequest/)
+- [AuthenticationRequest](https://apis.io/schemas/forgerock/forgerock-authenticationrequest/)
+- [AuthenticationResponse](https://apis.io/schemas/forgerock/forgerock-authenticationresponse/)
+- [Callback](https://apis.io/schemas/forgerock/forgerock-callback/)
+- [Certification](https://apis.io/schemas/forgerock/forgerock-certification/)
+- [CertificationItem](https://apis.io/schemas/forgerock/forgerock-certificationitem/)
+- [CertificationItemList](https://apis.io/schemas/forgerock/forgerock-certificationitemlist/)
+- [CertificationList](https://apis.io/schemas/forgerock/forgerock-certificationlist/)
+- [CompanyView](https://apis.io/schemas/forgerock/forgerock-companyview/)
+- [ConfigObject](https://apis.io/schemas/forgerock/forgerock-configobject/)
+- [ForgeRock Directory Entry](https://apis.io/schemas/forgerock/forgerock-directory-entry/)
+- [EndpointMonitoring](https://apis.io/schemas/forgerock/forgerock-endpointmonitoring/)
+- [ForgeRock Entitlement](https://apis.io/schemas/forgerock/forgerock-entitlement/)
+- [EntitlementDetail](https://apis.io/schemas/forgerock/forgerock-entitlementdetail/)
+- [EntitlementList](https://apis.io/schemas/forgerock/forgerock-entitlementlist/)
+- [EntitlementUserList](https://apis.io/schemas/forgerock/forgerock-entitlementuserlist/)
+- [EntryQueryResult](https://apis.io/schemas/forgerock/forgerock-entryqueryresult/)
+- …and 58 more published on APIs.io
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://backstage.forgerock.com/docs/idcloud/latest/)
-- [OpenAPI](openapi/forgerock-identity-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/forgerock-identity-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/forgerock-identity-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [OpenAPI](https://backstage.forgerock.com/docs/idcloud/latest/openapi/) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [API Reference](https://apidocs.id.forgerock.io/)
-- [Getting Started](https://backstage.forgerock.com/docs/idcloud/latest/home.html)
-- [Authentication](https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html)
-- [S D Ks](https://backstage.forgerock.com/docs/idcloud/latest/end-user/sdks.html)
+Data models expressed in JSON Structure.
 
-### ForgeRock Access Management API
+- [Forgerock Structure](https://apis.io/json-structure/forgerock/forgerock-structure/)
 
-API for authentication, authorization, session management, and policy evaluation. Supports OAuth 2.0 and OpenID Connect flows for secure token-based access.
+#### JSON-LD (1)
 
-- **Human URL:** [https://backstage.forgerock.com/docs/am/7.3](https://backstage.forgerock.com/docs/am/7.3)
-- **Base URL:** `https://{deployment}/am`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Forgerock Context](https://apis.io/jsonld/forgerock/forgerock-context/)
 
-- Access Management
-- Authentication
-- Authorization
-- OAuth
-- Sessions
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://backstage.forgerock.com/docs/am/7.3/)
-- [OpenAPI](openapi/forgerock-access-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/forgerock-access-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/forgerock-access-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [API Reference](https://backstage.forgerock.com/docs/am/7.3/apidocs/)
-- [Authentication](https://backstage.forgerock.com/docs/am/7/authentication-guide/)
-- [Getting Started](https://backstage.forgerock.com/docs/am/7.1/REST-guide/basic-rest-authentication.html)
-- [Changelog](https://backstage.forgerock.com/docs/am/7/release-notes/)
+- [ForgeRock Domain Vocabulary](https://apis.io/vocabularies/forgerock/forgerock-vocabulary/)
 
-### ForgeRock Identity Management API
+#### Collections (81)
 
-REST API for CRUD operations on managed objects and identity lifecycle management. Supports provisioning, synchronization, reconciliation, and workflow-driven identity operations.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://backstage.forgerock.com/docs/idm/7.4](https://backstage.forgerock.com/docs/idm/7.4)
-- **Base URL:** `https://{deployment}/openidm`
+- [ForgeRock Access Management API](https://apis.io/collections/forgerock/open-forgerock-access-management/)
+- [ForgeRock Access Management Access Requests API](https://apis.io/collections/forgerock/open-forgerock-access-requests-api/)
+- [ForgeRock Access Management Access Requests Analytics API](https://apis.io/collections/forgerock/open-forgerock-analytics-api/)
+- [ForgeRock Access Management Access Requests Applications API](https://apis.io/collections/forgerock/open-forgerock-applications-api/)
+- [ForgeRock Access Management Access Requests Audit API](https://apis.io/collections/forgerock/open-forgerock-audit-api/)
+- [ForgeRock Access Management Access Requests Authentication API](https://apis.io/collections/forgerock/open-forgerock-authentication-api/)
+- [ForgeRock Autonomous Identity API](https://apis.io/collections/forgerock/open-forgerock-autonomous-identity/)
+- [ForgeRock Access Management Access Requests Certifications API](https://apis.io/collections/forgerock/open-forgerock-certifications-api/)
+- [ForgeRock Access Management Access Requests Company View API](https://apis.io/collections/forgerock/open-forgerock-company-view-api/)
+- [ForgeRock Access Management Access Requests Configuration API](https://apis.io/collections/forgerock/open-forgerock-configuration-api/)
+- [ForgeRock Access Management Access Requests Entitlements API](https://apis.io/collections/forgerock/open-forgerock-entitlements-api/)
+- [ForgeRock Access Management Access Requests Entries API](https://apis.io/collections/forgerock/open-forgerock-entries-api/)
+- [ForgeRock Access Management Access Requests Groups API](https://apis.io/collections/forgerock/open-forgerock-groups-api/)
+- [ForgeRock Access Management Access Requests Health API](https://apis.io/collections/forgerock/open-forgerock-health-api/)
+- [ForgeRock Identity Cloud REST API](https://apis.io/collections/forgerock/open-forgerock-identity-cloud/)
+- [ForgeRock Identity Gateway API](https://apis.io/collections/forgerock/open-forgerock-identity-gateway/)
+- [ForgeRock Identity Governance API](https://apis.io/collections/forgerock/open-forgerock-identity-governance/)
+- [ForgeRock Identity Management API](https://apis.io/collections/forgerock/open-forgerock-identity-management/)
+- [ForgeRock Access Management Access Requests Managed Objects API](https://apis.io/collections/forgerock/open-forgerock-managed-objects-api/)
+- [ForgeRock Access Management Access Requests Managed Roles API](https://apis.io/collections/forgerock/open-forgerock-managed-roles-api/)
+- [ForgeRock Access Management Access Requests Managed Users API](https://apis.io/collections/forgerock/open-forgerock-managed-users-api/)
+- [ForgeRock Access Management Access Requests Monitoring API](https://apis.io/collections/forgerock/open-forgerock-monitoring-api/)
+- [ForgeRock Access Management Access Requests OAuth2 API](https://apis.io/collections/forgerock/open-forgerock-oauth2-api/)
+- [ForgeRock Access Management Access Requests OAuth2 Clients API](https://apis.io/collections/forgerock/open-forgerock-oauth2-clients-api/)
+- [ForgeRock Access Management Access Requests Objects API](https://apis.io/collections/forgerock/open-forgerock-objects-api/)
+- …and 56 more published on APIs.io
 
-#### Tags
+#### Governance rules (1)
 
-- Identity Management
-- Lifecycle Management
-- Provisioning
-- Synchronization
+Spectral rulesets for the provider's contracts.
 
-#### Properties
+- [ForgeRock — jsonschema rules](https://apis.io/rules/forgerock/forgerock-jsonschema-spectral-rules/)
 
-- [Documentation](https://backstage.forgerock.com/docs/idm/7.4/)
-- [OpenAPI](openapi/forgerock-identity-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/forgerock-identity-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/forgerock-identity-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [R E S T  A P I  Guide](https://backstage.forgerock.com/docs/idm/7.4/rest-api-reference/)
-- [Getting Started](https://backstage.forgerock.com/docs/idm/7.4/getting-started/)
-- [Changelog](https://backstage.forgerock.com/docs/idm/7.4/release-notes/preface.html)
+#### Security (3)
 
-### ForgeRock Identity Gateway API
+Authentication, trust centre, and vulnerability disclosure.
 
-API for reverse proxy functionality, policy enforcement, and request transformation. Integrates web applications, APIs, and microservices with the ForgeRock Identity Platform.
+- [Forgerock Authentication](https://apis.io/security/forgerock/forgerock-authentication/)
+- [Forgerock Domain Security](https://apis.io/security/forgerock/forgerock-domain-security/)
+- [Forgerock Vulnerability Disclosure](https://apis.io/security/forgerock/forgerock-vulnerability-disclosure/)
 
-- **Human URL:** [https://backstage.forgerock.com/docs/ig/7.3](https://backstage.forgerock.com/docs/ig/7.3)
-- **Base URL:** `https://{deployment}/ig`
+#### Plans and pricing (2)
 
-#### Tags
+Published plans, tiers and prices.
 
-- API Security
-- Gateway
-- Policy Enforcement
-- Reverse Proxy
+- [Forgerock Plans Pricing](https://apis.io/plans/forgerock/forgerock-plans-pricing/)
+- [Forgerock Price Estimates](https://apis.io/plans/forgerock/forgerock-price-estimates/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://backstage.forgerock.com/docs/ig/7.3/)
-- [OpenAPI](openapi/forgerock-identity-gateway-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/forgerock-identity-gateway.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/forgerock-identity-gateway.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Reference](https://backstage.forgerock.com/docs/ig/7.3/reference/)
-- [Getting Started](https://backstage.forgerock.com/docs/ig/7/gateway-guide/)
+Published request limits.
 
-### ForgeRock Directory Services API
+- [Forgerock Rate Limits](https://apis.io/rate-limits/forgerock/forgerock-rate-limits/)
 
-LDAP and REST API for directory operations and data management. Provides HDAP endpoints for accessing directory data as JSON resources.
+#### FinOps (1)
 
-- **Human URL:** [https://backstage.forgerock.com/docs/ds/7.4](https://backstage.forgerock.com/docs/ds/7.4)
-- **Base URL:** `https://{deployment}/ds`
+What the API costs to run, by operation.
 
-#### Tags
+- [Forgerock Finops](https://apis.io/finops/forgerock/forgerock-finops/)
 
-- Data Storage
-- Directory
-- HDAP
-- LDAP
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://backstage.forgerock.com/docs/ds/7.4/)
-- [OpenAPI](openapi/forgerock-directory-services-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [R E S T  A P I](https://backstage.forgerock.com/docs/ds/7.4/rest-guide/)
-- [Getting Started](https://backstage.forgerock.com/docs/ds/7.4/getting-started/rest.html)
-- [Reference](https://backstage.forgerock.com/docs/ds/7.4/rest-guide/rest-operations.html)
-
-### ForgeRock Identity Governance API
-
-REST API for identity governance operations including access reviews, certifications, role management, and policy enforcement. Provides endpoints for managing entitlements and compliance workflows.
-
-- **Human URL:** [https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html](https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html)
-- **Base URL:** `https://{deployment}/iga`
-
-#### Tags
-
-- Access Reviews
-- Compliance
-- Entitlements
-- Identity Governance
-
-#### Properties
-
-- [Documentation](https://backstage.forgerock.com/docs/identity-governance/7.1/api-guide/preface.html)
-- [OpenAPI](openapi/forgerock-identity-governance-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/forgerock-identity-governance.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/forgerock-identity-governance.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [API Reference](https://backstage.forgerock.com/docs/idcloud/latest/identity-governance/rest-api/endpoints/rest-iga.html)
-
-### ForgeRock Autonomous Identity API
-
-REST API for the Autonomous Identity analytics platform that uses AI-driven analysis to determine confidence scores, predictions, and recommendations for entitlement assignments.
-
-- **Human URL:** [https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html](https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html)
-- **Base URL:** `https://{deployment}/autoid`
-
-#### Tags
-
-- Analytics
-- Artificial Intelligence
-- Autonomous Identity
-- Entitlements
-
-#### Properties
-
-- [Documentation](https://backstage.forgerock.com/docs/autonomous-identity/2022.11.0/api-guide/preface.html)
-- [OpenAPI](openapi/forgerock-autonomous-identity-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/forgerock-autonomous-identity.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/forgerock-autonomous-identity.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/forgerock)
-- [Portal](https://backstage.forgerock.com)
-- [Documentation](https://backstage.forgerock.com/docs)
-- [Getting Started](https://community.forgerock.com/c/getting-started-guides/36)
-- [Authentication](https://backstage.forgerock.com/docs/idcloud/latest/developer-docs/authenticate-to-rest-api-overview.html)
-- [Blog](https://www.forgerock.com/blog)
-- [Status Page](https://status.id.forgerock.io)
-- [Support](https://backstage.forgerock.com/support)
-- [Terms of Service](https://www.forgerock.com/terms)
-- [Privacy Policy](https://www.forgerock.com/privacy-policy)
-- [GitHub Organization](https://github.com/ForgeRock)
-- [Community](https://community.forgerock.com/)
 - [Website](https://www.forgerock.com)
-- [Login](https://backstage.forgerock.com/account)
-- [Sign Up](https://backstage.forgerock.com/account/register)
-- [S D Ks](https://docs.pingidentity.com/sdks/latest/index.html)
-- [J S O N- L D  Context](json-ld/forgerock-context.jsonld)
-- [J S O N  Schema](json-schema/forgerock-managed-user-schema.json)
-- [J S O N  Schema](json-schema/forgerock-session-schema.json)
-- [J S O N  Schema](json-schema/forgerock-policy-schema.json)
-- [J S O N  Schema](json-schema/forgerock-oauth2-token-schema.json)
-- [J S O N  Schema](json-schema/forgerock-managed-role-schema.json)
-- [J S O N  Schema](json-schema/forgerock-entitlement-schema.json)
-- [J S O N  Schema](json-schema/forgerock-directory-entry-schema.json)
+- [Documentation](https://backstage.forgerock.com/docs)
+- [Getting started](https://community.forgerock.com/c/getting-started-guides/36)
+- [Pricing](https://www.pingidentity.com/en/platform/pricing.html)
+- [Support](https://backstage.forgerock.com/support)
+- [Blog](https://www.forgerock.com/blog)
+- [Terms of service](https://www.forgerock.com/terms)
+- [Privacy policy](https://www.forgerock.com/privacy-policy)
+- [GitHub](https://github.com/ForgeRock)
+- [Status](https://status.id.forgerock.io)
 
-## Maintainers
+## API Evangelist rating
 
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 57.1** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 59.3 |
+| Contract governance | 9.8 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 65.5 |
+| Access clarity | 69.7 |
+
+**Agent readiness 26.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/forgerock/](https://apis.io/providers/forgerock/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for ForgeRock: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/forgerock/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
